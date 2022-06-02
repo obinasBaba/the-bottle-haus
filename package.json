@@ -27,13 +27,17 @@
     ]
   },
   "dependencies": {
+    "@vercel/fetch": "6.2.0",
+    "js-cookie": "3.0.1",
     "next": "12.1.6",
+    "node-fetch": "2.6.7",
     "react": "18.1.0",
     "react-dom": "18.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "17.0.1",
     "@commitlint/config-conventional": "17.0.0",
+    "@types/js-cookie": "3.0.2",
     "@types/node": "16.11.36",
     "@types/react": "18.0.9",
     "@types/react-dom": "18.0.5",
@@ -49,6 +53,7 @@
     "husky": "8.0.1",
     "lint-staged": "12.4.2",
     "prettier": "2.6.2",
+    "sass": "1.52.1",
     "typescript": "4.7.2"
   },
   "config": {
