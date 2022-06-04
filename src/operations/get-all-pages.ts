@@ -1,19 +1,12 @@
 import { PageCountableEdge, QueryPagesArgs } from '@/schema';
 import * as Query from '../util/queries';
-import {
-  CommerceAPIConfig,
-  OperationContext,
-  Provider,
-} from '@/types/operations';
+import { CommerceAPIConfig, OperationContext, Operations, Provider } from '@/types/operations';
 
 export type Page = any;
 
-export type GetAllPagesResult<T extends { pages: any[] } = { pages: Page[] }> =
-  T;
+export type GetAllPagesResult<T extends { pages: any[] } = { pages: Page[] }> = T;
 
-export default function getAllPagesOperation({
-  commerce,
-}: OperationContext<Provider>) {
+export default function getAllPagesOperation({ commerce }: OperationContext) {
   async function getAllPages({
     query = Query.PageMany,
     config,

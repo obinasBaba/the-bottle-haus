@@ -1,5 +1,4 @@
-import { OperationContext, Provider } from '@/types/operations';
-import { SaleorConfig } from '@/operations';
+import { CommerceAPIConfig, OperationContext } from '@/types/operations';
 import { getAllProductsPathsQuery } from '@/util/queries';
 import fetchAllProducts from '@/util/fetch-all-products';
 import { ProductCountableEdge } from '@/schema';
@@ -8,16 +7,14 @@ export type GetAllProductPathsResult = {
   products: Array<{ path: string }>;
 };
 
-export default function getAllProductPathsOperation({
-  commerce,
-}: OperationContext<Provider>) {
+export default function getAllProductPathsOperation({ commerce }: OperationContext) {
   async function getAllProductPaths({
     query,
     config,
     variables,
   }: {
     query?: string;
-    config?: SaleorConfig;
+    config?: CommerceAPIConfig;
     variables?: any;
   } = {}): Promise<GetAllProductPathsResult> {
     config = commerce.getConfig(config);

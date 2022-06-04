@@ -1,10 +1,14 @@
-.root{
+.root {
   border: thick solid rebeccapurple;
   max-width: 2460px;
   height: 100%;
   display: flex;
+  flex-flow: column;
 
-  .main{
+
+  .main {
     flex: 1;
   }
+
+
 }

@@ -2,6 +2,36 @@ import Head from 'next/head';
 import Image from 'next/image';
 
 import styles from '@/styles/Home.module.scss';
+import { GetStaticPropsContext } from 'next';
+import commerce from '@lib/api/commerce';
+
+export async function getStaticProps({ preview, locale, locales }: GetStaticPropsContext) {
+  const config = { locale, locales };
+
+  // const pagesPromise = commerce.getAllPages({ config, preview });
+  // const siteInfoPromise = commerce.getSiteInfo({ config, preview });
+  const productsPromise = commerce.getAllProducts({
+    variables: { first: 6 },
+    config,
+    preview,
+    // Saleor provider only
+    ...({ featured: false } as any),
+  });
+
+  /*  const { products } = await productsPromise;
+  const { pages } = await pagesPromise;
+  const { categories, brands } = await siteInfoPromise;*/
+
+  return {
+    props: {
+      /* products,
+      pages,
+      categories,
+      brands,*/
+    },
+    revalidate: 60,
+  };
+}
 
 export default function Home() {
   return (
@@ -21,8 +51,7 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>src/pages/index.tsx</code>
+          Get started by editing <code className={styles.code}>src/pages/index.tsx</code>
         </p>
 
         <div className={styles.grid}>
@@ -36,9 +65,7 @@ export default function Home() {
             <p>Learn about Next.js in an interactive course with quizzes!</p>
           </a>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}>
+          <a href="https://github.com/vercel/next.js/tree/master/examples" className={styles.card}>
             <h2>Examples &rarr;</h2>
             <p>Discover and deploy boilerplate example Next.js projects.</p>
           </a>
@@ -47,9 +74,7 @@ export default function Home() {
             href="https://vercel.com/new?utm_source=typescript-nextjs-starter"
             className={styles.card}>
             <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
+            <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
           </a>
         </div>
       </main>

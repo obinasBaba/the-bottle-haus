@@ -13,14 +13,17 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "baseUrl": ".",
     "incremental": true,
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@operations/*": ["./src/operations/*"],
-      "@/public/*": ["./public/*"]
+      "@/operations/*": ["./src/operations/*"],
+      "@global/*": ["./src/styles/global-style/*"],
+      "@/styles/*": ["./src/styles/*"],
+      "@/public/*": ["./public/*"],
+      "@lib/*": ["./src/lib/*"]
     },
   },
   "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.d.ts", "**/*.ts", "**/*.tsx", "**/*.js"]
+  "include": ["next-env.d.ts", "**/*.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.scss"]
 }

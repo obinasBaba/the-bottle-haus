@@ -1,9 +1,9 @@
 import { Category } from '@/types/site';
 import * as query from './queries';
-import { SaleorConfig } from '@/operations';
 import { CollectionCountableEdge } from '@/schema';
+import { CommerceAPIConfig } from '@/types/operations';
 
-const getCategories = async (config: SaleorConfig): Promise<Category[]> => {
+const getCategories = async (config: CommerceAPIConfig): Promise<Category[]> => {
   const { data } = await config.fetch(query.CollectionMany, {
     variables: {
       first: 100,
@@ -11,14 +11,12 @@ const getCategories = async (config: SaleorConfig): Promise<Category[]> => {
   });
 
   return (
-    data.collections?.edges?.map(
-      ({ node: { id, name, slug } }: CollectionCountableEdge) => ({
-        id,
-        name,
-        slug,
-        path: `/${slug}`,
-      }),
-    ) ?? []
+    data.collections?.edges?.map(({ node: { id, name, slug } }: CollectionCountableEdge) => ({
+      id,
+      name,
+      slug,
+      path: `/${slug}`,
+    })) ?? []
   );
 };
 

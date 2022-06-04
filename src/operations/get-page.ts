@@ -1,16 +1,13 @@
-import type { SaleorConfig } from '@/operations';
 import { QueryPageArgs } from '@/schema';
 
 import * as Query from '@/util/queries';
-import { OperationContext, Provider } from '@/types/operations';
+import { CommerceAPIConfig, OperationContext } from '@/types/operations';
 
 export type Page = any;
 
 export type GetPageResult<T extends { page?: any } = { page?: Page }> = T;
 
-export default function getPageOperation({
-  commerce,
-}: OperationContext<Provider>) {
+export default function getPageOperation({ commerce }: OperationContext) {
   async function getPage({
     query = Query.PageOne,
     variables,
@@ -18,7 +15,7 @@ export default function getPageOperation({
   }: {
     query?: string;
     variables: QueryPageArgs;
-    config?: Partial<SaleorConfig>;
+    config?: Partial<CommerceAPIConfig>;
     preview?: boolean;
   }): Promise<GetPageResult> {
     // get the 'config' file by merging it with custom passed config properties

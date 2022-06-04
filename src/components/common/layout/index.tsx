@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './layout.module.scss';
+import NavBar from '@/components/common/NavBar';
 
 interface Props {
   children: React.ReactNode;
@@ -11,8 +12,8 @@ interface Props {
 const Layout: React.FC<Props> = ({ children, pageProps }) => {
   return (
     <div className={s.root}>
-      <nav></nav>
-      <main> {children} </main>
+      <NavBar></NavBar>
+      <main className={s.main}> {children} </main>
       <footer></footer>
     </div>
   );

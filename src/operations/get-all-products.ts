@@ -1,21 +1,15 @@
 import { Product } from '@/types/product';
-import {
-  GraphQLFetcherResult,
-  OperationContext,
-  Provider,
-} from '@/types/operations';
-import { SaleorConfig } from '@/operations/index';
+import { CommerceAPIConfig, OperationContext, Provider } from '@/types/operations';
 import * as Query from '@/util/queries';
 import { ProductCountableEdge } from '@/schema';
 import { normalizeProduct } from '@/util/normalize';
+import { GraphQLFetcherResult } from '@/types/fetcher';
 
 type ReturnType = {
   products: Product[];
 };
 
-export default function getAllProductsOperation({
-  commerce,
-}: OperationContext<Provider>) {
+export default function getAllProductsOperation({ commerce }: OperationContext) {
   async function getAllProducts({
     query = Query.ProductMany,
     variables,
@@ -24,7 +18,7 @@ export default function getAllProductsOperation({
   }: {
     query?: string;
     variables?: any;
-    config?: Partial<SaleorConfig>;
+    config?: Partial<CommerceAPIConfig>;
     preview?: boolean;
     featured?: boolean;
   } = {}): Promise<ReturnType> {
@@ -49,8 +43,8 @@ export default function getAllProductsOperation({
 
     if (featured) {
       const products =
-        data.collection.products?.edges?.map(
-          ({ node: p }: ProductCountableEdge) => normalizeProduct(p),
+        data.collection.products?.edges?.map(({ node: p }: ProductCountableEdge) =>
+          normalizeProduct(p),
         ) ?? [];
 
       return {
@@ -58,9 +52,7 @@ export default function getAllProductsOperation({
       };
     } else {
       const products =
-        data.products?.edges?.map(({ node: p }: ProductCountableEdge) =>
-          normalizeProduct(p),
-        ) ?? [];
+        data.products?.edges?.map(({ node: p }: ProductCountableEdge) => normalizeProduct(p)) ?? [];
 
       return {
         products,

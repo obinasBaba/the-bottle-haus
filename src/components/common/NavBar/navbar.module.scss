@@ -1,0 +1,82 @@
+.container {
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  background: #ededed;
+
+  border: thick solid red;
+
+  & :global {
+
+    .menu {
+      position: relative;
+      max-width: 40px;
+    }
+
+    .logo {
+      position: relative;
+      display: grid;
+      place-items: center;
+      max-width: 40px;
+      width: 40px;
+
+    }
+
+  }
+
+  .others {
+    position: relative;
+    display: flex;
+
+    & :global {
+      .account {
+
+      }
+
+      .icons {
+        display: flex;
+        gap: 1rem;
+
+
+       .search-wrap{
+
+
+
+
+       }
+
+        .search {
+          position: relative;
+          height: 15px;
+          width: 15px;
+
+          border-radius: 5px;
+          background: white;
+
+          //border: thin solid teal;
+          display: grid;
+          place-items: center;
+          padding: .5rem;
+          height: 45px;
+          width: 45px;
+        }
+
+        .cart {
+          display: flex;
+
+          .cart-icon {
+            position: relative;
+            width: 50px;
+
+          }
+        }
+
+        //display: none;
+
+      }
+    }
+  }
+
+
+}

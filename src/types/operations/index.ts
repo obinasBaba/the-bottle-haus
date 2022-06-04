@@ -34,19 +34,11 @@ export const defaultOperations = OPERATIONS.reduce((ops, k) => {
   return ops;
 }, {} as { [K in AllowedOperations]: typeof noop });
 
-export type OperationOptions =
-  | { query: string; url?: never }
-  | { query?: never; url: string };
+export type OperationOptions = { query?: string; url?: string };
 
 // the main operations types
-export type Operations<P extends APIProvider> = {
+export type Operations<P extends APIProvider = APIProvider> = {
   login: {
-    <T extends LoginOperation>(opts: {
-      variables: T['variables'];
-      config?: P['config'];
-      res: ServerResponse;
-    }): Promise<T['data']>;
-
     <T extends LoginOperation>(
       opts: {
         variables: T['variables'];
@@ -57,11 +49,6 @@ export type Operations<P extends APIProvider> = {
   };
 
   getAllPages: {
-    <T extends GetAllPagesOperation>(opts?: {
-      config?: P['config'];
-      preview?: boolean;
-    }): Promise<T['data']>;
-
     <T extends GetAllPagesOperation>(
       opts: {
         config?: P['config'];
@@ -71,12 +58,6 @@ export type Operations<P extends APIProvider> = {
   };
 
   getPage: {
-    <T extends GetPageOperation>(opts: {
-      variables: T['variables'];
-      config?: P['config'];
-      preview?: boolean;
-    }): Promise<T['data']>;
-
     <T extends GetPageOperation>(
       opts: {
         variables: T['variables'];
@@ -87,11 +68,6 @@ export type Operations<P extends APIProvider> = {
   };
 
   getSiteInfo: {
-    <T extends GetSiteInfoOperation>(opts: {
-      config?: P['config'];
-      preview?: boolean;
-    }): Promise<T['data']>;
-
     <T extends GetSiteInfoOperation>(
       opts: {
         config?: P['config'];
@@ -101,12 +77,6 @@ export type Operations<P extends APIProvider> = {
   };
 
   getCustomerWishlist: {
-    <T extends GetCustomerWishlistOperation>(opts: {
-      variables: T['variables'];
-      config?: P['config'];
-      includeProducts?: boolean;
-    }): Promise<T['data']>;
-
     <T extends GetCustomerWishlistOperation>(
       opts: {
         variables: T['variables'];
@@ -117,11 +87,6 @@ export type Operations<P extends APIProvider> = {
   };
 
   getAllProductPaths: {
-    <T extends GetAllProductPathsOperation>(opts: {
-      variables?: T['variables'];
-      config?: P['config'];
-    }): Promise<T['data']>;
-
     <T extends GetAllProductPathsOperation>(
       opts: {
         variables?: T['variables'];
@@ -131,12 +96,6 @@ export type Operations<P extends APIProvider> = {
   };
 
   getAllProducts: {
-    <T extends GetAllProductsOperation>(opts: {
-      variables?: T['variables'];
-      config?: P['config'];
-      preview?: boolean;
-    }): Promise<T['data']>;
-
     <T extends GetAllProductsOperation>(
       opts: {
         variables?: T['variables'];
@@ -147,12 +106,6 @@ export type Operations<P extends APIProvider> = {
   };
 
   getProduct: {
-    <T extends GetProductOperation>(opts: {
-      variables: T['variables'];
-      config?: P['config'];
-      preview?: boolean;
-    }): Promise<T['data']>;
-
     <T extends GetProductOperation>(
       opts: {
         variables: T['variables'];
@@ -165,7 +118,7 @@ export type Operations<P extends APIProvider> = {
 
 // mapping every operation key with a wrapper function that have 'ctx' arg which return the value of each operation key ( function )
 export type APIOperations<P extends APIProvider> = {
-  [K in keyof Operations<P>]?: (ctx: OperationContext<P>) => Operations<P>[K];
+  [K in keyof Operations<P>]: (ctx: OperationContext) => Operations<P>[K];
 };
 
 // '-?' covert all properties that are optional to required property.
@@ -173,9 +126,7 @@ export type APIOperations<P extends APIProvider> = {
 // This is just making every 'APIOperations' optional properties required.
 // this is same as to 'Operations<K>' type
 export type AllOperations<P extends APIProvider> = {
-  [K in keyof APIOperations<P>]-?: P['operations'][K] extends (
-    ...args: any
-  ) => any
+  [K in keyof APIOperations<P>]-?: P['operations'][K] extends (...args: any) => any
     ? ReturnType<P['operations'][K]>
     : typeof noop;
 };
@@ -199,26 +150,25 @@ export type APIProvider = {
 
 export type Provider = typeof provider;
 
-export class CommerceAPICore<P extends APIProvider = APIProvider> {
-  constructor(readonly provider: P) {}
+export class CommerceAPICore<P extends CommerceAPIConfig = CommerceAPIConfig> {
+  constructor(private readonly provider: P) {}
 
   // 'Partial' makes it all property in config obj optional.
   // 👉🏾 this is just merging the passed custom user config with the initial default config properties
-  getConfig(userConfig: Partial<P['config']> = {}): P['config'] {
+  getConfig(userConfig: Partial<P> = {}): P {
     return Object.entries(userConfig).reduce(
       (cfg, [key, value]) => Object.assign(cfg, { [key]: value }),
-      { ...this.provider.config },
+      { ...this.provider },
     );
   }
 
-  setConfig(newConfig: Partial<P['config']>) {
-    Object.assign(this.provider.config, newConfig);
+  setConfig(newConfig: Partial<P>) {
+    Object.assign(this.provider, newConfig);
   }
 }
 
-export type CommerceAPI<P extends APIProvider = APIProvider> =
-  CommerceAPICore<P> & AllOperations<P>;
+export type CommerceAPI<P extends APIProvider = APIProvider> = CommerceAPICore & AllOperations<P>;
 
-export type OperationContext<P extends APIProvider> = {
-  commerce: CommerceAPI<P>;
+export type OperationContext = {
+  commerce: CommerceAPICore;
 };

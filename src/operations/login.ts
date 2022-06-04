@@ -2,12 +2,9 @@ import type { ServerResponse } from 'http';
 import { throwUserErrors } from '@/util';
 
 import * as Mutation from '@/util/mutations';
-import { OperationContext, Provider } from '@/types/operations';
-import { SaleorConfig } from '@/operations/index';
+import { CommerceAPIConfig, OperationContext, Provider } from '@/types/operations';
 
-export default function loginOperation({
-  commerce,
-}: OperationContext<Provider>) {
+export default function loginOperation({ commerce }: OperationContext) {
   async function login({
     query = Mutation.SessionCreate,
     variables,
@@ -16,7 +13,7 @@ export default function loginOperation({
     query?: string;
     variables: any;
     res: ServerResponse;
-    config?: SaleorConfig;
+    config?: CommerceAPIConfig;
   }): Promise<any> {
     config = commerce.getConfig(config);
 

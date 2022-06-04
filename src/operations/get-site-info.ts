@@ -1,24 +1,21 @@
 import { Category } from '@/types/site';
-import type { SaleorConfig } from '@/operations';
 
 import { getCategories, getVendors } from '@/util';
-import { OperationContext, Provider } from '@/types/operations';
+import { CommerceAPIConfig, OperationContext, Provider } from '@/types/operations';
 
 interface GetSiteInfoResult {
   categories: Category[];
   brands: any[];
 }
 
-export default function getSiteInfoOperation({
-  commerce,
-}: OperationContext<Provider>) {
+export default function getSiteInfoOperation({ commerce }: OperationContext) {
   async function getSiteInfo({
     query,
     config,
     variables,
   }: {
     query?: string;
-    config?: Partial<SaleorConfig>;
+    config?: Partial<CommerceAPIConfig>;
     preview?: boolean;
     variables?: any;
   } = {}): Promise<GetSiteInfoResult> {
