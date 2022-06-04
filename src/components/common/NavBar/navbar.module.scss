@@ -7,8 +7,21 @@
   padding: 0 2rem;
   display: flex;
   justify-content: space-between;
-  background: #ededed;
+  background: s.$clrs-gray-light;
 
+  //border: thin solid red;
+
+  .wrapper {
+    width: 100%;
+    max-width: 1500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+
+    //border: thin solid rebeccapurple;
+
+  }
 
   .menu {
     position: relative;
@@ -35,17 +48,7 @@
 
   }
 
-  .wrapper {
-    width: 100%;
-    max-width: 1500px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto;
 
-    //border: thin solid rebeccapurple;
-
-  }
 
   .others {
     $gap: 1rem;

@@ -1,0 +1,75 @@
+@use '@/styles' as s;
+
+.container{
+  @include s.padding(top, 7rem);
+  @include s.padding(bottom, 10rem);
+
+  max-width: 1300px;
+  //border: thin solid crimson;
+  width: 100%;
+
+  & :global{
+    .wrapper{
+      display: flex;
+      gap: s.f-unit(2rem);
+
+      .card{
+        position: relative;
+        display: flex;
+        flex-flow: column;
+        flex: 1;
+        background: s.$clrs-gray-light;
+        border-radius: 30px;
+        @include s.padding( 3.5rem, 1.8rem);
+
+
+        &:hover{
+          .title{
+            &:after{
+              height: 100%;
+            }
+          }
+        }
+
+        .desc{
+          @include s.font-size-text(1.1rem)
+        }
+
+        .title{
+          position: relative;
+          align-self: start;
+          z-index: 2;
+
+          @include s.margin(top, 1rem) ;
+
+          &:after{
+            content: '';
+            position: absolute;
+            bottom: 0;
+            display: block;
+            background: #fadac5;
+            width: 100%;
+            height: 17px;
+            z-index: -1;
+          }
+
+        }
+
+        .art{
+          position: absolute;
+          border-radius: 50%;
+          right:5%;
+          top: 5%;
+          height: 130px;
+          width: 130px;
+
+        }
+
+
+
+
+      }
+
+    }
+  }
+}

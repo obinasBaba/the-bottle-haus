@@ -34,6 +34,10 @@
     --coef-size: 1.25;
   }
 
+  * {
+    box-sizing: border-box;
+  }
+
 }
 
 html,
@@ -69,7 +73,7 @@ html {
 }
 
 body {
-  overflow-x: hidden;
+  //overflow-x: hidden;
   position: relative;
   margin: 0;
   -moz-osx-font-smoothing: grayscale;
@@ -82,7 +86,7 @@ h3,
 h4,
 h5,
 h6 {
-  //margin: 0;
+  margin: 0;
 }
 
 img {

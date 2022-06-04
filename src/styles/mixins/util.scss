@@ -1,3 +1,6 @@
+@use "sass:list";
+@use 'private' as p;
+
 @mixin col-width($from: 1, $to: 65) {
   grid-column-start: $from;
   grid-column-end: $to;
@@ -8,59 +11,16 @@
   grid-template-columns: repeat(64, calc(100% / 64));
 }
 
-@mixin margin($type, $size: 1px) {
-  @if $type == top {
-    margin-top: calc(#{$size} * var(--coef-indent));
-  }
-  @if $type == bottom {
-    margin-bottom: calc(#{$size} * var(--coef-indent));
-  }
-  @if $type == left {
-    margin-left: calc(#{$size} * var(--coef-indent));
-  }
-  @if $type == right {
-    margin-right: calc(#{$size} * var(--coef-indent));
-  }
-  @if $type == all {
-    margin: calc(#{$size} * var(--coef-indent) )
-  }
 
+@mixin margin($args...) {
+  @include p.margin_padding( 'margin', $args... )
 }
 
-// 👉🏾 complete this
-@mixin adpadding($top, $left, $right, $bottom){
-  @if((type-of(#{$left}) == null) and (type-of(#{$right}) == null) and (type-of(#{$left}) == null)  ){
-    padding: calc(#{$top} * var(--coef-indent) )
-  }
+@mixin padding($args...) {
+  @include p.margin_padding( 'padding', $args... )
 }
 
-@mixin padding($type, $size: 1px) {
 
-  @if $type == top {
-    padding-top: calc(#{$size} * var(--coef-indent));
-  }
-  @if $type == bottom {
-    padding-bottom: calc(#{$size} * var(--coef-indent));
-  }
-  @if $type == left {
-    padding-left: calc(#{$size} * var(--coef-indent));
-  }
-  @if $type == right {
-    padding-right: calc(#{$size} * var(--coef-indent));
-  }
-  @if $type == all {
-    padding: calc(#{$size} * var(--coef-indent) )
-  }
-  @if $type == hor {
-    padding-left: calc(#{$size} * var(--coef-indent) );
-    padding-right: calc(#{$size} * var(--coef-indent) );
-  }
-  @if $type == ver {
-    padding-top: calc(#{$size} * var(--coef-indent) );
-    padding-bottom: calc(#{$size} * var(--coef-indent) );
-  }
-
-}
 
 @mixin width($size) {
   width: calc(#{$size} * var(--coef-size));

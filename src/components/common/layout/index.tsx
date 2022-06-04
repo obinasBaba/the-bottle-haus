@@ -12,9 +12,11 @@ interface Props {
 const Layout: React.FC<Props> = ({ children, pageProps }) => {
   return (
     <div className={s.root}>
-      <NavBar></NavBar>
+      <NavBar />
       <main className={s.main}> {children} </main>
-      <footer></footer>
+      <footer>
+        <h1>this is fotter</h1>
+      </footer>
     </div>
   );
 };

@@ -20,8 +20,11 @@
       "@/operations/*": ["./src/operations/*"],
       "@global/*": ["./src/styles/global-style/*"],
       "@/styles/*": ["./src/styles/*"],
+      "@styles": ["./src/styles/index.scss"],
       "@/public/*": ["./public/*"],
-      "@lib/*": ["./src/lib/*"]
+      "@lib/*": ["./src/lib/*"],
+      "@homepage/*": ["./src/scenes/homepage/*"],
+      "@homepage": ["./src/scenes/homepage/index"]
     },
   },
   "exclude": ["node_modules"],
