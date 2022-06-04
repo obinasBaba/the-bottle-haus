@@ -27,7 +27,15 @@
 
 }
 
+// 👉🏾 complete this
+@mixin adpadding($top, $left, $right, $bottom){
+  @if((type-of(#{$left}) == null) and (type-of(#{$right}) == null) and (type-of(#{$left}) == null)  ){
+    padding: calc(#{$top} * var(--coef-indent) )
+  }
+}
+
 @mixin padding($type, $size: 1px) {
+
   @if $type == top {
     padding-top: calc(#{$size} * var(--coef-indent));
   }
@@ -58,10 +66,6 @@
   width: calc(#{$size} * var(--coef-size));
 }
 
-@mixin max-width($size) {
-  max-width: calc(#{$size} * var(--coef-size));
-}
-
 @mixin height($size) {
   height: calc(#{$size} * var(--coef-size));
 }
@@ -69,3 +73,5 @@
 @mixin max-width($size) {
   max-width: calc(#{$size} * var(--coef-size));
 }
+
+
