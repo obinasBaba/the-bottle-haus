@@ -67,6 +67,7 @@ export type SearchProductsHook<T extends ProductTypes = ProductTypes> = {
   body: T['searchBody'];
   input: T['searchBody'];
   fetcherInput: T['searchBody'];
+  // fetchData: {}
 };
 
 export type ProductsSchema<T extends ProductTypes = ProductTypes> = {

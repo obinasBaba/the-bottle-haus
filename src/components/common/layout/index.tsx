@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './layout.module.scss';
 import NavBar from '@/components/common/NavBar';
+import { getCommerceProvider } from '@/context/SWRHookContext';
 
 interface Props {
   children: React.ReactNode;
@@ -9,15 +10,19 @@ interface Props {
   };
 }
 
+const CommerceProvider = getCommerceProvider();
+
 const Layout: React.FC<Props> = ({ children, pageProps }) => {
   return (
-    <div className={s.root}>
-      <NavBar />
-      <main className={s.main}> {children} </main>
-      <footer>
-        <h1>this is fotter</h1>
-      </footer>
-    </div>
+    <CommerceProvider>
+      <div className={s.root}>
+        <NavBar />
+        <main className={s.main}> {children} </main>
+        <footer>
+          <h1>this is fotter</h1>
+        </footer>
+      </div>
+    </CommerceProvider>
   );
 };
 

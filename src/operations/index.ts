@@ -66,7 +66,7 @@ export function getApiOperations<P extends APIProvider = APIProvider>(
     const op = ops[k];
     if (op) {
       commerce[k] = op({
-        commerce /* : OperationContext */,
+        commerce /* : SWRHookContext */,
       });
     }
   });
