@@ -1,6 +1,7 @@
 import * as Query from '@/util/queries';
 import { CommerceAPIConfig, OperationContext, Provider } from '@/types/operations';
 import { normalizeProduct } from '@/util/normalize';
+import { GetProductOperation } from '@/types/product';
 
 type Variables = {
   slug: string;
@@ -20,7 +21,7 @@ export default function getProductOperation({ commerce }: OperationContext) {
     variables: Variables;
     config?: Partial<CommerceAPIConfig>;
     preview?: boolean;
-  }): Promise<ReturnType> {
+  }): Promise<GetProductOperation['data']> {
     const { fetch, locale } = commerce.getConfig(cfg);
 
     const { data } = await fetch(

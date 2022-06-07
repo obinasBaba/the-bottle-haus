@@ -117,8 +117,8 @@ export type Operations<P extends APIProvider = APIProvider> = {
 };
 
 // mapping every operation key with a wrapper function that have 'ctx' arg which return the value of each operation key ( function )
-export type APIOperations<P extends APIProvider> = {
-  [K in keyof Operations<P>]: (ctx: OperationContext) => Operations<P>[K];
+export type APIOperations<P extends APIProvider = APIProvider> = {
+  [K in keyof Operations<P>]?: (ctx: OperationContext) => Operations<P>[K];
 };
 
 // '-?' covert all properties that are optional to required property.

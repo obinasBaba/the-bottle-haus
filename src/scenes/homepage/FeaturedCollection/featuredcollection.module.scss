@@ -1,0 +1,39 @@
+@use '@/styles' as s;
+@import "keyframes.css";
+
+
+
+.container {
+  width: 100%;
+  max-width: 1300px;
+  @include s.margin(top, 10rem);
+  @include s.margin(bottom, 10rem);
+
+
+  & :global{
+    .header{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: s.$clrs-accent;
+      @include s.font-size-text(1.3rem);
+      border: thin solid red;
+
+
+
+      span{
+        color: transparent;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: s.$clrs-accent;
+      }
+    }
+
+    .whiskey-wrapper{
+      @include s.margin(top, 4rem);
+
+      border: thin solid teal;
+
+
+    }
+  }
+}

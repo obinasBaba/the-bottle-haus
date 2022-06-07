@@ -1,0 +1,11 @@
+@use "@/styles" as s;
+
+.container{
+  border-color: s.$clrs-accent;
+  border-width: 1px;
+  color: s.$clrs-accent;
+  border-radius: 10px;
+
+  @include s.padding(.8rem, 1.3rem);
+  @include s.font-size-text(1rem);
+}

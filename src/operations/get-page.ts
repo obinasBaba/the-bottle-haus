@@ -2,6 +2,7 @@ import { QueryPageArgs } from '@/schema';
 
 import * as Query from '@/util/queries';
 import { CommerceAPIConfig, OperationContext } from '@/types/operations';
+import { GetPageOperation } from '@/types/page';
 
 export type Page = any;
 
@@ -17,7 +18,7 @@ export default function getPageOperation({ commerce }: OperationContext) {
     variables: QueryPageArgs;
     config?: Partial<CommerceAPIConfig>;
     preview?: boolean;
-  }): Promise<GetPageResult> {
+  }): Promise<GetPageOperation['data']> {
     // get the 'config' file by merging it with custom passed config properties
     const { fetch, locale = 'en-US' } = commerce.getConfig(config);
 

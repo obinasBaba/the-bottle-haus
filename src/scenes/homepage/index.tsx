@@ -3,6 +3,7 @@ import Head from 'next/head';
 import s from './Home.module.scss';
 import Hero from './Hero';
 import VideoAd from '@homepage/VideoAd';
+import FeaturedCollection from '@homepage/FeaturedCollection';
 
 const HomePage = () => {
   return (
@@ -15,6 +16,7 @@ const HomePage = () => {
 
       <Hero />
       <VideoAd />
+      <FeaturedCollection />
     </div>
   );
 };

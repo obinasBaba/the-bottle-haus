@@ -7,6 +7,7 @@ export async function getStaticProps({ preview, locale, locales }: GetStaticProp
 
   // const pagesPromise = commerce.getAllPages({ config, preview });
   // const siteInfoPromise = commerce.getSiteInfo({ config, preview });
+
   const productsPromise = commerce.getAllProducts({
     variables: { first: 6 },
     config,

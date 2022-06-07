@@ -1,4 +1,4 @@
-import { Category } from '@/types/site';
+import { Category, GetSiteInfoOperation } from '@/types/site';
 
 import { getCategories, getVendors } from '@/util';
 import { CommerceAPIConfig, OperationContext, Provider } from '@/types/operations';
@@ -18,7 +18,7 @@ export default function getSiteInfoOperation({ commerce }: OperationContext) {
     config?: Partial<CommerceAPIConfig>;
     preview?: boolean;
     variables?: any;
-  } = {}): Promise<GetSiteInfoResult> {
+  } = {}): Promise<GetSiteInfoOperation['data']> {
     const cfg = commerce.getConfig(config);
 
     const categories = await getCategories(cfg);

@@ -2,7 +2,6 @@
 
 .container{
   @include s.padding(top, 7rem);
-  @include s.padding(bottom, 10rem);
 
   max-width: 1300px;
   //border: thin solid crimson;

@@ -1,6 +1,7 @@
 import { PageCountableEdge, QueryPagesArgs } from '@/schema';
 import * as Query from '../util/queries';
 import { CommerceAPIConfig, OperationContext, Operations, Provider } from '@/types/operations';
+import { GetAllPagesOperation } from '@/types/page';
 
 export type Page = any;
 
@@ -17,7 +18,7 @@ export default function getAllPagesOperation({ commerce }: OperationContext) {
     variables?: QueryPagesArgs;
     preview?: boolean;
     query?: string;
-  } = {}): Promise<GetAllPagesResult> {
+  } = {}): Promise<GetAllPagesOperation['data']> {
     const { fetch, locale, locales = ['en-US'] } = commerce.getConfig(config);
 
     const { data } = await fetch(

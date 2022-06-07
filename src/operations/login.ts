@@ -3,6 +3,7 @@ import { throwUserErrors } from '@/util';
 
 import * as Mutation from '@/util/mutations';
 import { CommerceAPIConfig, OperationContext, Provider } from '@/types/operations';
+import { LoginOperation } from '@/types/login';
 
 export default function loginOperation({ commerce }: OperationContext) {
   async function login({
@@ -14,7 +15,7 @@ export default function loginOperation({ commerce }: OperationContext) {
     variables: any;
     res: ServerResponse;
     config?: CommerceAPIConfig;
-  }): Promise<any> {
+  }): Promise<LoginOperation['data']> {
     config = commerce.getConfig(config);
 
     const {

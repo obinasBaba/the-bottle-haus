@@ -67,7 +67,7 @@ export function getApiOperations<P extends APIProvider = APIProvider>(
     if (op) {
       commerce[k] = op({
         commerce /* : OperationContext */,
-      }) as AllOperations<P>[typeof k];
+      });
     }
   });
 

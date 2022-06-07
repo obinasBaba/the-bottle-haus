@@ -1,4 +1,4 @@
-import { Product } from '@/types/product';
+import { GetAllProductsOperation, Product } from '@/types/product';
 import { CommerceAPIConfig, OperationContext, Provider } from '@/types/operations';
 import * as Query from '@/util/queries';
 import { ProductCountableEdge } from '@/schema';
@@ -21,7 +21,7 @@ export default function getAllProductsOperation({ commerce }: OperationContext) 
     config?: Partial<CommerceAPIConfig>;
     preview?: boolean;
     featured?: boolean;
-  } = {}): Promise<ReturnType> {
+  } = {}): Promise<GetAllProductsOperation['data']> {
     const { fetch, locale } = commerce.getConfig(config);
 
     if (featured) {
