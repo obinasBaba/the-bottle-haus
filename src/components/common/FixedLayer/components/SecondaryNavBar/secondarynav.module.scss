@@ -1,0 +1,33 @@
+@use '@/styles' as s;
+
+
+.container {
+  position: relative;
+  padding: .8rem 1rem;
+  backdrop-filter: blur(20px);
+
+  &:after{
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: .6;
+    //background-image: linear-gradient(s.$clrs-gray-light, rgba(237, 237, 237, 0));
+    background: s.$clrs-gray-light;
+  }
+
+  & :global {
+
+    .wrapper{
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      //border: thin solid red;
+      max-width: 1500px;
+      margin: 0 auto;
+    }
+
+    .item {
+    }
+  }
+}

@@ -28,7 +28,10 @@
   },
   "dependencies": {
     "@vercel/fetch": "6.2.0",
+    "framer-motion": "6.3.11",
+    "gsap": "3.10.4",
     "js-cookie": "3.0.1",
+    "locomotive-scroll": "4.1.4",
     "next": "12.1.6",
     "node-fetch": "2.6.7",
     "react": "18.1.0",

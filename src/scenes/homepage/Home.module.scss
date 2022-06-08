@@ -8,10 +8,7 @@
   flex-direction: column;
   align-items: center;
 
-  @include s.padding(top, 5rem);
-
- border: thick solid blue;
-
+  @include s.padding(top, 9rem);
 
 }
 

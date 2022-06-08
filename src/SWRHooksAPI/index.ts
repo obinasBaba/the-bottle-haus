@@ -12,6 +12,8 @@ import { handler, default as useSearch } from './product/use-search';
 
 import fetcher from '@/util/fetcher';
 
+// purpose
+
 export const saleorProvider = {
   locale: 'en-us',
   cartCookie: CHECKOUT_ID_COOKIE,

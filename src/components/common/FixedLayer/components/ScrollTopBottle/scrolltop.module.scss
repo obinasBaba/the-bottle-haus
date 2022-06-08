@@ -1,0 +1,14 @@
+@use "@/styles" as s;
+
+.container{
+  position: absolute;
+  bottom: 7%;
+  right: 5%;
+
+  & :global{
+    .bottle_wrapper{
+      max-width: s.f-unit(1.5rem);
+      transform: rotate(180deg);
+    }
+  }
+}

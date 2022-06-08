@@ -1,0 +1,18 @@
+
+
+.container {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  pointer-events: none;
+
+    & :global {
+
+      & {  // fix this
+        pointer-events: auto;
+      }
+    }
+
+
+  border: thick solid tomato;
+}

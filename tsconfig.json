@@ -24,7 +24,8 @@
       "@/public/*": ["./public/*"],
       "@lib/*": ["./src/lib/*"],
       "@homepage/*": ["./src/scenes/homepage/*"],
-      "@homepage": ["./src/scenes/homepage/index"]
+      "@homepage": ["./src/scenes/homepage/index"],
+      "@fixedLayer/*": ["./src/components/common/FixedLayer/*"]
     },
   },
   "exclude": ["node_modules"],

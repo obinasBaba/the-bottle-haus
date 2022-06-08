@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import s from './navbar.module.scss';
 
 type NavBarProps = Record<string, unknown>;
 
 const NavBar: React.FC = ({}) => {
+  const [logoWidth, setLogoWidth] = useState('150px');
+
   return (
     <nav className={s.container}>
       <div className={s.wrapper}>
@@ -23,8 +25,7 @@ const NavBar: React.FC = ({}) => {
           <Image
             src="/logo.png"
             alt="app-logo"
-            layout="fixed"
-            width={'100%'}
+            width={logoWidth}
             height="100%"
             objectFit="contain"
           />

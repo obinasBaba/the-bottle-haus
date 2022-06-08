@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './layout.module.scss';
-import NavBar from '@/components/common/NavBar';
 import { getCommerceProvider } from '@/context/SWRHookContext';
+import FixedLayer from '@fixedLayer/index';
 
 interface Props {
   children: React.ReactNode;
@@ -16,7 +16,7 @@ const Layout: React.FC<Props> = ({ children, pageProps }) => {
   return (
     <CommerceProvider>
       <div className={s.root}>
-        <NavBar />
+        <FixedLayer />
         <main className={s.main}> {children} </main>
         <footer>
           <h1>this is fotter</h1>

@@ -1,23 +1,40 @@
 @use '@/styles' as s;
 
 .container {
+  position: relative;
+  z-index: 1;
   $round: 18px;
 
   width: 100%;
   padding: 0 2rem;
   display: flex;
   justify-content: space-between;
-  background: s.$clrs-gray-light;
+  backdrop-filter: blur(35px);
+
+
+
+  &:after{
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: .8;
+    //background-image: linear-gradient(s.$clrs-gray-light, rgba(237, 237, 237, 0));
+    background: s.$clrs-gray-light;
+  }
 
   //border: thin solid red;
 
   .wrapper {
+    position: relative;
     width: 100%;
     max-width: 1500px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
+
+    padding: 2rem 0;
 
     //border: thin solid rebeccapurple;
 
@@ -35,14 +52,17 @@
   }
 
   .logo {
-    position: relative;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-45%);
     display: grid;
     place-items: center;
     width: 150px;
     height: auto;
 
+
     * {
-      width: 100% !important;
+      //width: 100% !important;
       //height: 100%;
     }
 
