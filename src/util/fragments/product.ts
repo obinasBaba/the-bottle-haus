@@ -11,6 +11,11 @@ export const ProductConnection = /* GraphQL */ `
         description
         slug
         pricing {
+          discount {
+            net {
+              amount
+            }
+          }
           priceRange {
             start {
               net {
@@ -19,6 +24,23 @@ export const ProductConnection = /* GraphQL */ `
             }
           }
         }
+        variants {
+          id
+          name
+          sku
+          quantityAvailable
+        }
+
+        attributes {
+          attribute {
+            name
+          }
+          values {
+            id
+            name
+          }
+        }
+
         media {
           url
           alt

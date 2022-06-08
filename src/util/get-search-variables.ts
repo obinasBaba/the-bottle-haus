@@ -1,7 +1,7 @@
 import { getSortVariables } from '@/util/get-sort-variables';
 import { SearchProductsBody } from '@/types/product';
 
-export const getSearchVariables = ({ brandId, search, categoryId, sort }: SearchProductsBody) => {
+export const getSearchVariables = ({ first, filter, categoryId, sort }: SearchProductsBody) => {
   const sortBy = {
     field: 'NAME',
     direction: 'ASC',
@@ -10,7 +10,8 @@ export const getSearchVariables = ({ brandId, search, categoryId, sort }: Search
   };
   return {
     categoryId,
-    filter: { search },
+    first,
+    filter,
     sortBy,
   };
 };

@@ -17,9 +17,8 @@
       align-items: center;
       color: s.$clrs-accent;
       @include s.font-size-text(1.3rem);
-      border: thin solid red;
 
-
+      //border: thin solid red;
 
       span{
         color: transparent;
@@ -29,9 +28,15 @@
     }
 
     .whiskey-wrapper{
+      display: grid;
+      //grid-template-columns: repeat(auto-fit, minmax(s.f-unit(15rem), 1fr) );
+      grid-template-columns: repeat(4, minmax(s.f-unit(13rem), 1fr) );
+      //flex-flow: wrap;
+      gap: s.f-unit(2rem);
+      row-gap: s.f-unit(2.9rem);
       @include s.margin(top, 4rem);
 
-      border: thin solid teal;
+      //border: thin solid red;
 
 
     }

@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { Provider, useCommerce } from '@/context/SWRHookContext';
 import type { MutationHook, PickRequired, SWRHook } from '@/types/SWRHooks';
-import useSwrCaller from './use-data';
+import useSwrCaller from './use-swr';
 
 export function useFetcher() {
   const { providerRef, fetcherRef } = useCommerce();

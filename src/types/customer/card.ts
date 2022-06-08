@@ -54,23 +54,20 @@ export type RemoveItemHook<T extends CustomerCardTypes = CustomerCardTypes> = {
   actionInput: { id: string };
 };
 
-export type CustomerCardHooks<T extends CustomerCardTypes = CustomerCardTypes> =
-  {
-    getCards: GetCardsHook<T>;
-    addItem: AddItemHook<T>;
-    updateItem: UpdateItemHook<T>;
-    removeItem: RemoveItemHook<T>;
-  };
+export type CustomerCardHooks<T extends CustomerCardTypes = CustomerCardTypes> = {
+  getCards: GetCardsHook<T>;
+  addItem: AddItemHook<T>;
+  updateItem: UpdateItemHook<T>;
+  removeItem: RemoveItemHook<T>;
+};
 
-export type CardsHandler<T extends CustomerCardTypes = CustomerCardTypes> =
-  GetCardsHook<T> & {
-    body: { cartId?: string };
-  };
+export type CardsHandler<T extends CustomerCardTypes = CustomerCardTypes> = GetCardsHook<T> & {
+  body: { cartId?: string };
+};
 
-export type AddItemHandler<T extends CustomerCardTypes = CustomerCardTypes> =
-  AddItemHook<T> & {
-    body: { cartId: string };
-  };
+export type AddItemHandler<T extends CustomerCardTypes = CustomerCardTypes> = AddItemHook<T> & {
+  body: { cartId: string };
+};
 
 export type UpdateItemHandler<T extends CustomerCardTypes = CustomerCardTypes> =
   UpdateItemHook<T> & {
@@ -83,18 +80,14 @@ export type RemoveItemHandler<T extends CustomerCardTypes = CustomerCardTypes> =
     body: { cartId: string };
   };
 
-export type CustomerCardHandlers<
-  T extends CustomerCardTypes = CustomerCardTypes,
-> = {
+export type CustomerCardHandlers<T extends CustomerCardTypes = CustomerCardTypes> = {
   getCards: GetCardsHook<T>;
   addItem: AddItemHandler<T>;
   updateItem: UpdateItemHandler<T>;
   removeItem: RemoveItemHandler<T>;
 };
 
-export type CustomerCardSchema<
-  T extends CustomerCardTypes = CustomerCardTypes,
-> = {
+export type CustomerCardSchema<T extends CustomerCardTypes = CustomerCardTypes> = {
   endpoint: {
     options: Record<string, unknown>;
     handlers: CustomerCardHandlers<T>;

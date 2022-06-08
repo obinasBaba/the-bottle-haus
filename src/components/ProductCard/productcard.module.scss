@@ -1,3 +1,105 @@
-.container{
+@use "@/styles" as s;
 
+.container{
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-flow: column;
+
+  &:hover{
+    & :global{
+      .product-img{
+        border: 2px solid s.$clrs-accent;
+      }
+    }
+  }
+
+
+  & :global{
+
+    .sold-out{
+      position: absolute;
+      z-index: 1;
+      font-family: s.$fonts-auger-500;
+      color: white;
+      font-size: .8rem;
+      background-color: #fe7c22;
+      border-radius: 20px;
+      top: 4%;
+      left: 6%;
+      letter-spacing: .8px;
+
+      @include s.padding(6px, 9px);
+    }
+
+    .product-img{
+      position: relative;
+      display: grid;
+      place-items: center;
+      border-radius: 30px;
+      background-color: #fff;
+      border: 2px solid transparent;
+    }
+
+    .title{
+      font-family: s.$fonts-auger-300;
+      margin-bottom: 0;
+    }
+
+    .price{
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      margin-top: auto;
+      font-family: s.$fonts-auger-900;
+      @include s.font-size-text(1rem);
+
+      .discount{
+        text-decoration: line-through;
+        font-family: s.$fonts-auger;
+        letter-spacing: -2px;
+        color: lightgray;
+      }
+
+    }
+  }
+}
+
+.add_to_cart{
+  position: absolute;
+  z-index: 2;
+  top: 4%;
+  right: 6%;
+  border-radius: 12px;
+  border: 1px solid #cdcdcd;
+  background-color: #fff;
+  cursor: pointer;
+
+  height: 30px;
+  width: 30px;
+
+  &:hover{
+    background-color: s.$clrs-accent;
+
+    &:after, &:before{
+      background-color: white;
+    }
+  }
+
+  &:after, &:before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 50%;
+    display: block;
+    background-color: black;
+    width: 1px;
+    height: 25%;
+  }
+
+  &:after{
+    transform: translateY(-54%) rotate(90deg);
+  }
 }

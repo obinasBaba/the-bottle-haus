@@ -15,7 +15,7 @@ export type ResponseState<Result> = SWRResponse<Result, CommerceError> & {
   isLoading: boolean;
 };
 
-export type UseData = <H extends SWRHookSchemaBase>(
+export type UseSwr = <H extends SWRHookSchemaBase>(
   options: {
     fetchOptions: HookFetcherOptions;
     fetcher: HookFetcherFn<H>;
@@ -25,7 +25,7 @@ export type UseData = <H extends SWRHookSchemaBase>(
   swrOptions?: SwrOptions<H['data'], H['fetcherInput']>,
 ) => ResponseState<H['data']>;
 
-const useSwrCaller: UseData = (options, input, fetcherFn, swrOptions) => {
+const useSwrCaller: UseSwr = (options, input, fetcherFn, swrOptions) => {
   const hookInput = Array.isArray(input) ? input : Object.entries(input);
   const fetcher = async (url: string, query?: string, method?: string, ...args: any[]) => {
     try {

@@ -16,10 +16,12 @@ export const handler: SWRHook<SearchProductsHook> = {
     const { categoryId } = input;
 
     const data = await fetch({
-      query: categoryId ? options.query : query.CollectionOne,
+      query: categoryId ? query.CollectionOne : options.query,
       method: options.method,
       variables: getSearchVariables(input),
     });
+
+    // console.log('fetcherData :', data, 'variables: ',  input.filter);
 
     let edges;
 
@@ -31,7 +33,7 @@ export const handler: SWRHook<SearchProductsHook> = {
 
     return {
       products: edges.map(({ node }: ProductCountableEdge) => normalizeProduct(node)),
-      found: !!edges.length,
+      found: !!edges.length, // converting to truthy
     };
   },
   useHook:
@@ -39,9 +41,9 @@ export const handler: SWRHook<SearchProductsHook> = {
     (input = {}) => {
       return fetchData({
         input: [
-          ['search', input.search],
+          ['first', input.first],
+          ['filter', input.filter],
           ['categoryId', input.categoryId],
-          ['brandId', input.brandId],
           ['sort', input.sort],
         ],
         swrOptions: {
@@ -57,7 +59,7 @@ type UseSearchType<H extends SWRHook<SearchProductsHook> = SWRHook<SearchProduct
 
 const fn = (p: Provider) => p.products?.useSearch!;
 
-export const fetcher: HookFetcherFn<SearchProductsHook> = SWRFetcher;
+const fetcher: HookFetcherFn<SearchProductsHook> = SWRFetcher;
 
 const useSearch: UseSearchType = (input) => {
   const options = useHook(fn);

@@ -1,6 +1,7 @@
 import type { SWRConfiguration } from 'swr';
 import type { CommerceError } from '@/util/errors';
-import type { ResponseState } from '@/util/use-data';
+import type { ResponseState } from '@/util/use-swr';
+import { ProductFilterInput } from '@/schema';
 
 /**
  * Returns the properties in T with the properties in type K, overriding properties defined in T
@@ -71,14 +72,15 @@ export type HookFetcherContext<H extends HookSchemaBase> = {
   options: HookFetcherOptions;
   input: H['fetcherInput'];
   fetch: <
-    T = H['fetchData'] extends Record<string, any> | null ? H['fetchData'] : any, // if fetchData exist that is the type if not( is unknown ) the type is any
     B = H['body'],
+    // if fetchData exist that is the type if not( is unknown ) the type is any
+    T = H['fetchData'] extends Record<string, any> | null ? H['fetchData'] : any,
   >(
     options: FetcherOptions<B>,
   ) => Promise<T>;
 };
 
-export type HookInputValue = string | number | boolean | undefined;
+export type HookInputValue = string | number | boolean | undefined | ProductFilterInput;
 
 export type HookSWRInput = [string, HookInputValue][];
 

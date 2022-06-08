@@ -2,13 +2,7 @@
 
 import { Product } from '@/types/product';
 
-import {
-  Checkout,
-  CheckoutLine,
-  Money,
-  Product as SaleorProduct,
-  ProductVariant,
-} from '@/schema';
+import { Checkout, CheckoutLine, Money, Product as SaleorProduct, ProductVariant } from '@/schema';
 
 import type { Cart as CoreCart } from '@/types';
 import type { LineItem as LineItemMain } from '@/types/cart';
@@ -35,17 +29,17 @@ const normalizeProductOptions = (options: ProductVariant[]) => {
   return options
     ?.map((option) => option?.attributes)
     .flat(1)
-    .reduce<any>((acc, x) => {
-      if (
-        acc.find(({ displayName }: any) => displayName === x.attribute.name)
-      ) {
+    .reduce<any>((acc, { attribute, values }) => {
+      return;
+      if (!attribute) return;
+      if (acc.find(({ displayName }: any) => displayName === attribute.name)) {
         return acc.map((opt: any) => {
-          return opt.displayName === x.attribute.name
+          return opt.displayName === attribute.name
             ? {
                 ...opt,
                 values: [
                   ...opt.values,
-                  ...x.values.map((value: any) => ({
+                  ...values.map((value: any) => ({
                     label: value?.name,
                   })),
                 ],
@@ -56,9 +50,9 @@ const normalizeProductOptions = (options: ProductVariant[]) => {
 
       return acc.concat({
         __typename: 'MultipleChoiceOption',
-        displayName: x.attribute.name,
+        displayName: attribute.name,
         variant: 'size',
-        values: x.values.map((value: any) => ({
+        values: values.map((value: any) => ({
           label: value?.name,
         })),
       });
@@ -67,57 +61,46 @@ const normalizeProductOptions = (options: ProductVariant[]) => {
 
 const normalizeProductVariants = (variants: ProductVariant[]) => {
   return variants?.map((variant) => {
-    const { id, sku, name, pricing } = variant;
+    const { id, sku, name, pricing, quantityAvailable } = variant;
     const price = pricing?.price?.net && money(pricing.price.net)?.value;
 
     return {
       id,
       name,
+      availableForSale: quantityAvailable > 0,
       sku: sku ?? id,
       price,
       listPrice: price,
       requiresShipping: true,
-      options: normalizeProductOptions([variant]),
+      options: [],
+      // options: normalizeProductOptions([variant]),
     };
   });
 };
 
 export function normalizeProduct(productNode: SaleorProduct): Product {
-  const {
-    id,
-    name,
-    media = [],
-    variants,
-    description,
-    slug,
-    pricing,
-    ...rest
-  } = productNode;
+  const { id, name, media = [], variants, description, slug, pricing, ...rest } = productNode;
 
   const product = {
     id,
     name,
     vendor: '',
-    description: description
-      ? JSON.parse(description)?.blocks[0]?.data.text
-      : '',
+    description: description ? JSON.parse(description)?.blocks[0]?.data.text : '',
     path: `/${slug}`,
     slug: slug?.replace(/^\/+|\/+$/g, ''),
-    price: (pricing?.priceRange?.start?.net &&
-      money(pricing.priceRange.start.net)) || {
+    price: (pricing?.priceRange?.start?.net && {
+      ...money(pricing.priceRange.start.net),
+      discount: pricing?.discount?.net?.amount || 0,
+    }) || {
+      discount: 0,
       value: 0,
       currencyCode: 'USD',
     },
     // TODO: Check nextjs-commerce bug if no images are added for a product
     images: media?.length ? media : [{ url: placeholderImg }],
     variants:
-      variants && variants.length > 0
-        ? normalizeProductVariants(variants as ProductVariant[])
-        : [],
-    options:
-      variants && variants.length > 0
-        ? normalizeProductOptions(variants as ProductVariant[])
-        : [],
+      variants && variants.length > 0 ? normalizeProductVariants(variants as ProductVariant[]) : [],
+    options: [],
     ...rest,
   };
 
@@ -150,8 +133,7 @@ function normalizeLineItem({ id, variant, quantity }: CheckoutLine): LineItem {
 
 export function normalizeCart(checkout: Checkout): Cart {
   const lines = checkout.lines as CheckoutLine[];
-  const lineItems: LineItem[] =
-    lines.length > 0 ? lines?.map<LineItem>(normalizeLineItem) : [];
+  const lineItems: LineItem[] = lines.length > 0 ? lines?.map<LineItem>(normalizeLineItem) : [];
 
   return {
     id: checkout.id,

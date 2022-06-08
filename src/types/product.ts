@@ -1,3 +1,5 @@
+import { ProductFilterInput } from '@/schema';
+
 export type ProductImage = {
   url: string;
   alt?: string;
@@ -5,6 +7,7 @@ export type ProductImage = {
 
 export type ProductPrice = {
   value: number;
+  discount: number;
   currencyCode?: 'USD' | 'EUR' | 'ARS' | 'GBP' | string;
   retailPrice?: number;
   salePrice?: number;
@@ -47,9 +50,9 @@ export type Product = {
 };
 
 export type SearchProductsBody = {
-  search?: string;
   categoryId?: string | number;
-  brandId?: string | number;
+  first?: number;
+  filter?: ProductFilterInput;
   sort?: string;
   locale?: string;
 };
