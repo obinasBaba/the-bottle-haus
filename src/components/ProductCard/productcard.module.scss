@@ -1,4 +1,5 @@
 @use "@/styles" as s;
+@use "sass:math";
 
 .container{
   position: relative;
@@ -6,31 +7,64 @@
   display: flex;
   flex-flow: column;
 
-  &:hover{
+  &.loading{
+
     & :global{
       .product-img{
-        border: 2px solid s.$clrs-accent;
+        width: 100%;
+        height: 340px;
+      }
+
+      .product-img, .title, .price{
+        position: relative;
+        overflow: hidden;
+
+        &:after{
+          content: '';
+          position: absolute;
+          inset: 0;
+          display: block;
+          background: linear-gradient(to right, #eeeeee 00%, #dddddd 18%, #eeeeee 100%);
+          background-size: 800px 104px;
+          animation: shimmer linear 1.2s infinite forwards;
+
+
+        }
+      }
+
+
+      .loading_bg{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+
+        width: 0;
+        background-color: transparent;
+        //background: darkgray;
+        background: linear-gradient(to right, #eeeeee 00%, #dddddd 18%, #eeeeee 100%);
+        //background-image: linear-gradient(to left, rgba(251,251,251, .05), rgba(251,251,251, .3), rgba(251,251,251, .6), rgba(251,251,251, .3), rgba(251,251,251, .05));
+        //background-size: 800px 104px;
+      }
+
+      .title, .price{
+        background-color: #fff;
+        text-indent: -99999px;
+        border-radius: 30px;
+      }
+
+      .title{
+        width: 80%;
+      }
+
+      .price{
+        width: 40%;
+        height: 21px;
       }
     }
   }
 
-
   & :global{
-
-    .sold-out{
-      position: absolute;
-      z-index: 1;
-      font-family: s.$fonts-auger-500;
-      color: white;
-      font-size: .8rem;
-      background-color: #fe7c22;
-      border-radius: 20px;
-      top: 4%;
-      left: 6%;
-      letter-spacing: .8px;
-
-      @include s.padding(6px, 9px);
-    }
 
     .product-img{
       position: relative;
@@ -43,25 +77,43 @@
 
     .title{
       font-family: s.$fonts-auger-300;
-      margin-bottom: 0;
+      margin-bottom: auto;
+      height: 42px;
     }
 
     .price{
       display: flex;
       align-items: center;
       gap: 1rem;
+      align-self: start;
 
-      margin-top: auto;
+      margin-top: 16px;
       font-family: s.$fonts-auger-900;
       @include s.font-size-text(1rem);
+
+      .value{
+        margin-top: 0;
+      }
 
       .discount{
         text-decoration: line-through;
         font-family: s.$fonts-auger;
         letter-spacing: -2px;
         color: lightgray;
+        margin-top: 0;
+
       }
 
+    }
+  }
+}
+
+.container.loaded{
+  &:hover{
+    & :global{
+      .product-img{
+        border: 2px solid s.$clrs-accent;
+      }
     }
   }
 }
@@ -102,4 +154,19 @@
   &:after{
     transform: translateY(-54%) rotate(90deg);
   }
+}
+
+.sold_out{
+  position: absolute;
+  z-index: 1;
+  font-family: s.$fonts-auger-500;
+  color: white;
+  font-size: .8rem;
+  background-color: #fe7c22;
+  border-radius: 20px;
+  top: 4%;
+  left: 6%;
+  letter-spacing: .8px;
+
+  @include s.padding(6px, 9px);
 }

@@ -16,17 +16,17 @@ export async function getStaticProps({ preview, locale, locales }: GetStaticProp
     ...({ featured: false } as any),
   });
 
-  const { products } = await productsPromise;
+  const { product } = await productsPromise;
 
-  console.log('products: ', products);*/
+  console.log('product: ', product);*/
 
-  /*  const { products } = await productsPromise;
+  /*  const { product } = await productsPromise;
   const { pages } = await pagesPromise;
   const { categories, brands } = await siteInfoPromise;*/
 
   return {
     props: {
-      /* products,
+      /* product,
       pages,
       categories,
       brands,*/

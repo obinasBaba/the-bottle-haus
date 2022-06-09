@@ -4,6 +4,7 @@ import s from './Home.module.scss';
 import Hero from './Hero';
 import VideoAd from '@homepage/VideoAd';
 import FeaturedCollection from '@homepage/FeaturedCollection';
+import RareToFind from '@homepage/RareToFind';
 
 const HomePage = () => {
   return (
@@ -17,6 +18,7 @@ const HomePage = () => {
       <Hero />
       <VideoAd />
       <FeaturedCollection />
+      <RareToFind />
     </div>
   );
 };

@@ -553,7 +553,7 @@ export enum AppSortField {
 }
 
 export type AppSortingInput = {
-  /** Specifies the direction in which to sort products. */
+  /** Specifies the direction in which to sort product. */
   direction: OrderDirection;
   /** Sort apps by the selected field. */
   field: AppSortField;
@@ -644,7 +644,7 @@ export type AssignNavigation = {
   errors: Array<MenuError>;
 };
 
-/** Custom attribute of a product. Attributes can be assigned to products and variants at the product type level. */
+/** Custom attribute of a product. Attributes can be assigned to product and variants at the product type level. */
 export type Attribute = Node &
   ObjectWithMetadata & {
     __typename?: 'Attribute';
@@ -686,7 +686,7 @@ export type Attribute = Node &
     storefrontSearchPosition: Scalars['Int'];
   };
 
-/** Custom attribute of a product. Attributes can be assigned to products and variants at the product type level. */
+/** Custom attribute of a product. Attributes can be assigned to product and variants at the product type level. */
 export type AttributeProductTypesArgs = {
   before?: Maybe<Scalars['String']>;
   after?: Maybe<Scalars['String']>;
@@ -694,7 +694,7 @@ export type AttributeProductTypesArgs = {
   last?: Maybe<Scalars['Int']>;
 };
 
-/** Custom attribute of a product. Attributes can be assigned to products and variants at the product type level. */
+/** Custom attribute of a product. Attributes can be assigned to product and variants at the product type level. */
 export type AttributeProductVariantTypesArgs = {
   before?: Maybe<Scalars['String']>;
   after?: Maybe<Scalars['String']>;
@@ -702,7 +702,7 @@ export type AttributeProductVariantTypesArgs = {
   last?: Maybe<Scalars['Int']>;
 };
 
-/** Custom attribute of a product. Attributes can be assigned to products and variants at the product type level. */
+/** Custom attribute of a product. Attributes can be assigned to product and variants at the product type level. */
 export type AttributeTranslationArgs = {
   languageCode: LanguageCodeEnum;
 };
@@ -877,7 +877,7 @@ export enum AttributeSortField {
 }
 
 export type AttributeSortingInput = {
-  /** Specifies the direction in which to sort products. */
+  /** Specifies the direction in which to sort product. */
   direction: OrderDirection;
   /** Sort attributes by the selected field. */
   field: AttributeSortField;
@@ -1144,7 +1144,7 @@ export type CatalogueInput = {
   collections?: Maybe<Array<Maybe<Scalars['ID']>>>;
 };
 
-/** Represents a single category of products. Categories allow to organize products in a tree-hierarchies which can be used for navigation in the storefront. */
+/** Represents a single category of product. Categories allow to organize product in a tree-hierarchies which can be used for navigation in the storefront. */
 export type Category = Node &
   ObjectWithMetadata & {
     __typename?: 'Category';
@@ -1168,7 +1168,7 @@ export type Category = Node &
     descriptionJson?: Maybe<Scalars['JSONString']>;
     /** List of ancestors of the category. */
     ancestors?: Maybe<CategoryCountableConnection>;
-    /** List of products in the category. */
+    /** List of product in the category. */
     products?: Maybe<ProductCountableConnection>;
     /** List of children of the category. */
     children?: Maybe<CategoryCountableConnection>;
@@ -1177,7 +1177,7 @@ export type Category = Node &
     translation?: Maybe<CategoryTranslation>;
   };
 
-/** Represents a single category of products. Categories allow to organize products in a tree-hierarchies which can be used for navigation in the storefront. */
+/** Represents a single category of product. Categories allow to organize product in a tree-hierarchies which can be used for navigation in the storefront. */
 export type CategoryAncestorsArgs = {
   before?: Maybe<Scalars['String']>;
   after?: Maybe<Scalars['String']>;
@@ -1185,7 +1185,7 @@ export type CategoryAncestorsArgs = {
   last?: Maybe<Scalars['Int']>;
 };
 
-/** Represents a single category of products. Categories allow to organize products in a tree-hierarchies which can be used for navigation in the storefront. */
+/** Represents a single category of product. Categories allow to organize product in a tree-hierarchies which can be used for navigation in the storefront. */
 export type CategoryProductsArgs = {
   channel?: Maybe<Scalars['String']>;
   before?: Maybe<Scalars['String']>;
@@ -1194,7 +1194,7 @@ export type CategoryProductsArgs = {
   last?: Maybe<Scalars['Int']>;
 };
 
-/** Represents a single category of products. Categories allow to organize products in a tree-hierarchies which can be used for navigation in the storefront. */
+/** Represents a single category of product. Categories allow to organize product in a tree-hierarchies which can be used for navigation in the storefront. */
 export type CategoryChildrenArgs = {
   before?: Maybe<Scalars['String']>;
   after?: Maybe<Scalars['String']>;
@@ -1202,12 +1202,12 @@ export type CategoryChildrenArgs = {
   last?: Maybe<Scalars['Int']>;
 };
 
-/** Represents a single category of products. Categories allow to organize products in a tree-hierarchies which can be used for navigation in the storefront. */
+/** Represents a single category of product. Categories allow to organize product in a tree-hierarchies which can be used for navigation in the storefront. */
 export type CategoryBackgroundImageArgs = {
   size?: Maybe<Scalars['Int']>;
 };
 
-/** Represents a single category of products. Categories allow to organize products in a tree-hierarchies which can be used for navigation in the storefront. */
+/** Represents a single category of product. Categories allow to organize product in a tree-hierarchies which can be used for navigation in the storefront. */
 export type CategoryTranslationArgs = {
   languageCode: LanguageCodeEnum;
 };
@@ -1288,7 +1288,7 @@ export enum CategorySortField {
 }
 
 export type CategorySortingInput = {
-  /** Specifies the direction in which to sort products. */
+  /** Specifies the direction in which to sort product. */
   direction: OrderDirection;
   /** Specifies the channel in which to sort the data. */
   channel?: Maybe<Scalars['String']>;
@@ -1311,7 +1311,7 @@ export type CategoryTranslatableContent = Node & {
   descriptionJson?: Maybe<Scalars['JSONString']>;
   /** Returns translated category fields for the given language code. */
   translation?: Maybe<CategoryTranslation>;
-  /** Represents a single category of products. */
+  /** Represents a single category of product. */
   category?: Maybe<Category>;
 };
 
@@ -1793,7 +1793,7 @@ export type ChoiceValue = {
   verbose?: Maybe<Scalars['String']>;
 };
 
-/** Represents a collection of products. */
+/** Represents a collection of product. */
 export type Collection = Node &
   ObjectWithMetadata & {
     __typename?: 'Collection';
@@ -1813,7 +1813,7 @@ export type Collection = Node &
      * @deprecated Will be removed in Saleor 4.0. Use the `description` field instead.
      */
     descriptionJson?: Maybe<Scalars['JSONString']>;
-    /** List of products in this collection. */
+    /** List of product in this collection. */
     products?: Maybe<ProductCountableConnection>;
     backgroundImage?: Maybe<Image>;
     /** Returns translated collection fields for the given language code. */
@@ -1822,7 +1822,7 @@ export type Collection = Node &
     channelListings?: Maybe<Array<CollectionChannelListing>>;
   };
 
-/** Represents a collection of products. */
+/** Represents a collection of product. */
 export type CollectionProductsArgs = {
   filter?: Maybe<ProductFilterInput>;
   sortBy?: Maybe<ProductOrder>;
@@ -1832,20 +1832,20 @@ export type CollectionProductsArgs = {
   last?: Maybe<Scalars['Int']>;
 };
 
-/** Represents a collection of products. */
+/** Represents a collection of product. */
 export type CollectionBackgroundImageArgs = {
   size?: Maybe<Scalars['Int']>;
 };
 
-/** Represents a collection of products. */
+/** Represents a collection of product. */
 export type CollectionTranslationArgs = {
   languageCode: LanguageCodeEnum;
 };
 
-/** Adds products to a collection. */
+/** Adds product to a collection. */
 export type CollectionAddProducts = {
   __typename?: 'CollectionAddProducts';
-  /** Collection to which products will be added. */
+  /** Collection to which product will be added. */
   collection?: Maybe<Collection>;
   /** @deprecated Use errors field instead. This field will be removed in Saleor 4.0. */
   collectionErrors: Array<CollectionError>;
@@ -1948,7 +1948,7 @@ export type CollectionCreateInput = {
   seo?: Maybe<SeoInput>;
   /** Publication date. ISO 8601 standard. */
   publicationDate?: Maybe<Scalars['Date']>;
-  /** List of products to be added to the collection. */
+  /** List of product to be added to the collection. */
   products?: Maybe<Array<Maybe<Scalars['ID']>>>;
 };
 
@@ -1967,7 +1967,7 @@ export type CollectionError = {
   field?: Maybe<Scalars['String']>;
   /** The error message. */
   message?: Maybe<Scalars['String']>;
-  /** List of products IDs which causes the error. */
+  /** List of product IDs which causes the error. */
   products?: Maybe<Array<Scalars['ID']>>;
   /** The error code. */
   code: CollectionErrorCode;
@@ -2017,20 +2017,20 @@ export enum CollectionPublished {
   Hidden = 'HIDDEN',
 }
 
-/** Remove products from a collection. */
+/** Remove product from a collection. */
 export type CollectionRemoveProducts = {
   __typename?: 'CollectionRemoveProducts';
-  /** Collection from which products will be removed. */
+  /** Collection from which product will be removed. */
   collection?: Maybe<Collection>;
   /** @deprecated Use errors field instead. This field will be removed in Saleor 4.0. */
   collectionErrors: Array<CollectionError>;
   errors: Array<CollectionError>;
 };
 
-/** Reorder the products of a collection. */
+/** Reorder the product of a collection. */
 export type CollectionReorderProducts = {
   __typename?: 'CollectionReorderProducts';
-  /** Collection from which products are reordered. */
+  /** Collection from which product are reordered. */
   collection?: Maybe<Collection>;
   /** @deprecated Use errors field instead. This field will be removed in Saleor 4.0. */
   collectionErrors: Array<CollectionError>;
@@ -2049,7 +2049,7 @@ export enum CollectionSortField {
 }
 
 export type CollectionSortingInput = {
-  /** Specifies the direction in which to sort products. */
+  /** Specifies the direction in which to sort product. */
   direction: OrderDirection;
   /** Specifies the channel in which to sort the data. */
   channel?: Maybe<Scalars['String']>;
@@ -2072,7 +2072,7 @@ export type CollectionTranslatableContent = Node & {
   descriptionJson?: Maybe<Scalars['JSONString']>;
   /** Returns translated collection fields for the given language code. */
   translation?: Maybe<CollectionTranslation>;
-  /** Represents a collection of products. */
+  /** Represents a collection of product. */
   collection?: Maybe<Collection>;
 };
 
@@ -2726,7 +2726,7 @@ export type DiscountError = {
   field?: Maybe<Scalars['String']>;
   /** The error message. */
   message?: Maybe<Scalars['String']>;
-  /** List of products IDs which causes the error. */
+  /** List of product IDs which causes the error. */
   products?: Maybe<Array<Scalars['ID']>>;
   /** The error code. */
   code: DiscountErrorCode;
@@ -2827,7 +2827,7 @@ export type DraftOrderCreateInput = {
   channel?: Maybe<Scalars['ID']>;
   /** URL of a view where users should be redirected to see the order details. URL in RFC 1808 format. */
   redirectUrl?: Maybe<Scalars['String']>;
-  /** Variant line input consisting of variant ID and quantity of products. */
+  /** Variant line input consisting of variant ID and quantity of product. */
   lines?: Maybe<Array<Maybe<OrderLineCreateInput>>>;
 };
 
@@ -2982,7 +2982,7 @@ export enum ExportFileSortField {
 }
 
 export type ExportFileSortingInput = {
-  /** Specifies the direction in which to sort products. */
+  /** Specifies the direction in which to sort product. */
   direction: OrderDirection;
   /** Sort export file by the selected field. */
   field: ExportFileSortField;
@@ -2999,7 +2999,7 @@ export type ExportInfoInput = {
   fields?: Maybe<Array<ProductFieldEnum>>;
 };
 
-/** Export products to csv file. */
+/** Export product to csv file. */
 export type ExportProducts = {
   __typename?: 'ExportProducts';
   /** The newly created export file job which is responsible for export data. */
@@ -3010,11 +3010,11 @@ export type ExportProducts = {
 };
 
 export type ExportProductsInput = {
-  /** Determine which products should be exported. */
+  /** Determine which product should be exported. */
   scope: ExportScope;
-  /** Filtering options for products. */
+  /** Filtering options for product. */
   filter?: Maybe<ProductFilterInput>;
-  /** List of products IDS to export. */
+  /** List of product IDS to export. */
   ids?: Maybe<Array<Scalars['ID']>>;
   /** Input with info about fields which should be exported. */
   exportInfo?: Maybe<ExportInfoInput>;
@@ -3023,11 +3023,11 @@ export type ExportProductsInput = {
 };
 
 export enum ExportScope {
-  /** Export all products. */
+  /** Export all product. */
   All = 'ALL',
-  /** Export products with given ids. */
+  /** Export product with given ids. */
   Ids = 'IDS',
-  /** Export the filtered products. */
+  /** Export the filtered product. */
   Filter = 'FILTER',
 }
 
@@ -3176,7 +3176,7 @@ export type FulfillmentLine = Node & {
   orderLine?: Maybe<OrderLine>;
 };
 
-/** Refund products. */
+/** Refund product. */
 export type FulfillmentRefundProducts = {
   __typename?: 'FulfillmentRefundProducts';
   /** A refunded fulfillment. */
@@ -3188,7 +3188,7 @@ export type FulfillmentRefundProducts = {
   errors: Array<OrderError>;
 };
 
-/** Return products. */
+/** Return product. */
 export type FulfillmentReturnProducts = {
   __typename?: 'FulfillmentReturnProducts';
   /** A return fulfillment. */
@@ -3197,7 +3197,7 @@ export type FulfillmentReturnProducts = {
   replaceFulfillment?: Maybe<Fulfillment>;
   /** Order which fulfillment was returned. */
   order?: Maybe<Order>;
-  /** A draft order which was created for products with replace flag. */
+  /** A draft order which was created for product with replace flag. */
   replaceOrder?: Maybe<Order>;
   /** @deprecated Use errors field instead. This field will be removed in Saleor 4.0. */
   orderErrors: Array<OrderError>;
@@ -3911,7 +3911,7 @@ export type MenuItemMoveInput = {
 };
 
 export type MenuItemSortingInput = {
-  /** Specifies the direction in which to sort products. */
+  /** Specifies the direction in which to sort product. */
   direction: OrderDirection;
   /** Sort menu items by the selected field. */
   field: MenuItemsSortField;
@@ -3972,7 +3972,7 @@ export enum MenuSortField {
 }
 
 export type MenuSortingInput = {
-  /** Specifies the direction in which to sort products. */
+  /** Specifies the direction in which to sort product. */
   direction: OrderDirection;
   /** Sort menus by the selected field. */
   field: MenuSortField;
@@ -4093,7 +4093,7 @@ export type Mutation = {
   shippingPriceUpdate?: Maybe<ShippingPriceUpdate>;
   /** Creates/Updates translations for shipping method. */
   shippingPriceTranslate?: Maybe<ShippingPriceTranslate>;
-  /** Exclude products from shipping price. */
+  /** Exclude product from shipping price. */
   shippingPriceExcludeProducts?: Maybe<ShippingPriceExcludeProducts>;
   /** Remove product from excluded list for shipping price. */
   shippingPriceRemoveProductFromExclude?: Maybe<ShippingPriceRemoveProductFromExclude>;
@@ -4119,17 +4119,17 @@ export type Mutation = {
   categoryUpdate?: Maybe<CategoryUpdate>;
   /** Creates/Updates translations for Category. */
   categoryTranslate?: Maybe<CategoryTranslate>;
-  /** Adds products to a collection. */
+  /** Adds product to a collection. */
   collectionAddProducts?: Maybe<CollectionAddProducts>;
   /** Creates a new collection. */
   collectionCreate?: Maybe<CollectionCreate>;
   /** Deletes a collection. */
   collectionDelete?: Maybe<CollectionDelete>;
-  /** Reorder the products of a collection. */
+  /** Reorder the product of a collection. */
   collectionReorderProducts?: Maybe<CollectionReorderProducts>;
   /** Deletes collections. */
   collectionBulkDelete?: Maybe<CollectionBulkDelete>;
-  /** Remove products from a collection. */
+  /** Remove product from a collection. */
   collectionRemoveProducts?: Maybe<CollectionRemoveProducts>;
   /** Updates a collection. */
   collectionUpdate?: Maybe<CollectionUpdate>;
@@ -4141,7 +4141,7 @@ export type Mutation = {
   productCreate?: Maybe<ProductCreate>;
   /** Deletes a product. */
   productDelete?: Maybe<ProductDelete>;
-  /** Deletes products. */
+  /** Deletes product. */
   productBulkDelete?: Maybe<ProductBulkDelete>;
   /** Updates an existing product. */
   productUpdate?: Maybe<ProductUpdate>;
@@ -4271,9 +4271,9 @@ export type Mutation = {
   orderFulfillmentCancel?: Maybe<FulfillmentCancel>;
   /** Updates a fulfillment for an order. */
   orderFulfillmentUpdateTracking?: Maybe<FulfillmentUpdateTracking>;
-  /** Refund products. */
+  /** Refund product. */
   orderFulfillmentRefundProducts?: Maybe<FulfillmentRefundProducts>;
-  /** Return products. */
+  /** Return product. */
   orderFulfillmentReturnProducts?: Maybe<FulfillmentReturnProducts>;
   /** Create order lines for an order. */
   orderLinesCreate?: Maybe<OrderLinesCreate>;
@@ -4363,9 +4363,9 @@ export type Mutation = {
   saleBulkDelete?: Maybe<SaleBulkDelete>;
   /** Updates a sale. */
   saleUpdate?: Maybe<SaleUpdate>;
-  /** Adds products, categories, collections to a voucher. */
+  /** Adds product, categories, collections to a voucher. */
   saleCataloguesAdd?: Maybe<SaleAddCatalogues>;
-  /** Removes products, categories, collections from a sale. */
+  /** Removes product, categories, collections from a sale. */
   saleCataloguesRemove?: Maybe<SaleRemoveCatalogues>;
   /** Creates/updates translations for a sale. */
   saleTranslate?: Maybe<SaleTranslate>;
@@ -4379,15 +4379,15 @@ export type Mutation = {
   voucherBulkDelete?: Maybe<VoucherBulkDelete>;
   /** Updates a voucher. */
   voucherUpdate?: Maybe<VoucherUpdate>;
-  /** Adds products, categories, collections to a voucher. */
+  /** Adds product, categories, collections to a voucher. */
   voucherCataloguesAdd?: Maybe<VoucherAddCatalogues>;
-  /** Removes products, categories, collections from a voucher. */
+  /** Removes product, categories, collections from a voucher. */
   voucherCataloguesRemove?: Maybe<VoucherRemoveCatalogues>;
   /** Creates/Updates translations for Voucher. */
   voucherTranslate?: Maybe<VoucherTranslate>;
   /** Manage voucher's availability in channels. */
   voucherChannelListingUpdate?: Maybe<VoucherChannelListingUpdate>;
-  /** Export products to csv file. */
+  /** Export product to csv file. */
   exportProducts?: Maybe<ExportProducts>;
   /** Upload a file. This mutation must be sent as a `multipart` request. More detailed specs of the upload format can be found here: https://github.com/jaydenseric/graphql-multipart-request-spec */
   fileUpload?: Maybe<FileUpload>;
@@ -6520,7 +6520,7 @@ export enum OrderSortField {
 }
 
 export type OrderSortingInput = {
-  /** Specifies the direction in which to sort products. */
+  /** Specifies the direction in which to sort product. */
   direction: OrderDirection;
   /** Sort orders by the selected field. */
   field: OrderSortField;
@@ -6813,7 +6813,7 @@ export enum PageSortField {
 }
 
 export type PageSortingInput = {
-  /** Specifies the direction in which to sort products. */
+  /** Specifies the direction in which to sort product. */
   direction: OrderDirection;
   /** Sort pages by the selected field. */
   field: PageSortField;
@@ -6980,7 +6980,7 @@ export enum PageTypeSortField {
 }
 
 export type PageTypeSortingInput = {
-  /** Specifies the direction in which to sort products. */
+  /** Specifies the direction in which to sort product. */
   direction: OrderDirection;
   /** Sort page types by the selected field. */
   field: PageTypeSortField;
@@ -7293,7 +7293,7 @@ export enum PermissionGroupSortField {
 }
 
 export type PermissionGroupSortingInput = {
-  /** Specifies the direction in which to sort products. */
+  /** Specifies the direction in which to sort product. */
   direction: OrderDirection;
   /** Sort permission group by the selected field. */
   field: PermissionGroupSortField;
@@ -7401,7 +7401,7 @@ export enum PluginSortField {
 }
 
 export type PluginSortingInput = {
-  /** Specifies the direction in which to sort products. */
+  /** Specifies the direction in which to sort product. */
   direction: OrderDirection;
   /** Sort plugins by the selected field. */
   field: PluginSortField;
@@ -7568,7 +7568,7 @@ export type ProductAttributeUnassign = {
   errors: Array<ProductError>;
 };
 
-/** Deletes products. */
+/** Deletes product. */
 export type ProductBulkDelete = {
   __typename?: 'ProductBulkDelete';
   /** Returns how many objects were affected. */
@@ -7924,7 +7924,7 @@ export type ProductMediaUpdateInput = {
 };
 
 export type ProductOrder = {
-  /** Specifies the direction in which to sort products. */
+  /** Specifies the direction in which to sort product. */
   direction: OrderDirection;
   /** Specifies the channel in which to sort the data. */
   channel?: Maybe<Scalars['String']>;
@@ -7933,30 +7933,30 @@ export type ProductOrder = {
    * Note: this doesn't take translations into account yet.
    */
   attributeId?: Maybe<Scalars['ID']>;
-  /** Sort products by the selected field. */
+  /** Sort product by the selected field. */
   field?: Maybe<ProductOrderField>;
 };
 
 export enum ProductOrderField {
-  /** Sort products by name. */
+  /** Sort product by name. */
   Name = 'NAME',
-  /** Sort products by rank. Note: This option is available only with the `search` filter. */
+  /** Sort product by rank. Note: This option is available only with the `search` filter. */
   Rank = 'RANK',
-  /** Sort products by price. */
+  /** Sort product by price. */
   Price = 'PRICE',
-  /** Sort products by a minimal price of a product's variant. */
+  /** Sort product by a minimal price of a product's variant. */
   MinimalPrice = 'MINIMAL_PRICE',
-  /** Sort products by update date. */
+  /** Sort product by update date. */
   Date = 'DATE',
-  /** Sort products by type. */
+  /** Sort product by type. */
   Type = 'TYPE',
-  /** Sort products by publication status. */
+  /** Sort product by publication status. */
   Published = 'PUBLISHED',
-  /** Sort products by publication date. */
+  /** Sort product by publication date. */
   PublicationDate = 'PUBLICATION_DATE',
-  /** Sort products by collection. Note: This option is available only for the `Collection.products` query. */
+  /** Sort product by collection. Note: This option is available only for the `Collection.product` query. */
   Collection = 'COLLECTION',
-  /** Sort products by rating. */
+  /** Sort product by rating. */
   Rating = 'RATING',
 }
 
@@ -8041,7 +8041,7 @@ export type ProductTranslation = Node & {
   descriptionJson?: Maybe<Scalars['JSONString']>;
 };
 
-/** Represents a type of product. It defines what attributes are available to products of this type. */
+/** Represents a type of product. It defines what attributes are available to product of this type. */
 export type ProductType = Node &
   ObjectWithMetadata & {
     __typename?: 'ProductType';
@@ -8058,8 +8058,8 @@ export type ProductType = Node &
     /** List of public metadata items. Can be accessed without permissions. */
     metadata: Array<Maybe<MetadataItem>>;
     /**
-     * List of products of this type.
-     * @deprecated Will be removed in Saleor 4.0. Use the top-level `products` query with the `productTypes` filter.
+     * List of product of this type.
+     * @deprecated Will be removed in Saleor 4.0. Use the top-level `product` query with the `productTypes` filter.
      */
     products?: Maybe<ProductCountableConnection>;
     /** A type of tax. Assigned by enabled tax gateway */
@@ -8071,7 +8071,7 @@ export type ProductType = Node &
     availableAttributes?: Maybe<AttributeCountableConnection>;
   };
 
-/** Represents a type of product. It defines what attributes are available to products of this type. */
+/** Represents a type of product. It defines what attributes are available to product of this type. */
 export type ProductTypeProductsArgs = {
   channel?: Maybe<Scalars['String']>;
   before?: Maybe<Scalars['String']>;
@@ -8080,12 +8080,12 @@ export type ProductTypeProductsArgs = {
   last?: Maybe<Scalars['Int']>;
 };
 
-/** Represents a type of product. It defines what attributes are available to products of this type. */
+/** Represents a type of product. It defines what attributes are available to product of this type. */
 export type ProductTypeVariantAttributesArgs = {
   variantSelection?: Maybe<VariantAttributeScope>;
 };
 
-/** Represents a type of product. It defines what attributes are available to products of this type. */
+/** Represents a type of product. It defines what attributes are available to product of this type. */
 export type ProductTypeAvailableAttributesArgs = {
   filter?: Maybe<AttributeFilterInput>;
   before?: Maybe<Scalars['String']>;
@@ -8168,9 +8168,9 @@ export type ProductTypeInput = {
   productAttributes?: Maybe<Array<Maybe<Scalars['ID']>>>;
   /** List of attributes used to distinguish between different variants of a product. */
   variantAttributes?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  /** Determines if shipping is required for products of this variant. */
+  /** Determines if shipping is required for product of this variant. */
   isShippingRequired?: Maybe<Scalars['Boolean']>;
-  /** Determines if products are digital. */
+  /** Determines if product are digital. */
   isDigital?: Maybe<Scalars['Boolean']>;
   /** Weight of the ProductType items. */
   weight?: Maybe<Scalars['WeightScalar']>;
@@ -8189,16 +8189,16 @@ export type ProductTypeReorderAttributes = {
 };
 
 export enum ProductTypeSortField {
-  /** Sort products by name. */
+  /** Sort product by name. */
   Name = 'NAME',
-  /** Sort products by type. */
+  /** Sort product by type. */
   Digital = 'DIGITAL',
-  /** Sort products by shipping. */
+  /** Sort product by shipping. */
   ShippingRequired = 'SHIPPING_REQUIRED',
 }
 
 export type ProductTypeSortingInput = {
-  /** Specifies the direction in which to sort products. */
+  /** Specifies the direction in which to sort product. */
   direction: OrderDirection;
   /** Sort product types by the selected field. */
   field: ProductTypeSortField;
@@ -8586,7 +8586,7 @@ export type Query = {
   collections?: Maybe<CollectionCountableConnection>;
   /** Look up a product by ID. */
   product?: Maybe<Product>;
-  /** List of the shop's products. */
+  /** List of the shop's product. */
   products?: Maybe<ProductCountableConnection>;
   /** Look up a product type by ID. */
   productType?: Maybe<ProductType>;
@@ -8596,7 +8596,7 @@ export type Query = {
   productVariant?: Maybe<ProductVariant>;
   /** List of product variants. */
   productVariants?: Maybe<ProductVariantCountableConnection>;
-  /** List of top selling products. */
+  /** List of top selling product. */
   reportProductSales?: Maybe<ProductVariantCountableConnection>;
   /** Look up a payment by ID. */
   payment?: Maybe<Payment>;
@@ -9185,7 +9185,7 @@ export type RequestPasswordReset = {
   errors: Array<AccountError>;
 };
 
-/** Sales allow creating discounts for categories, collections or products and are visible to all the customers. */
+/** Sales allow creating discounts for categories, collections or product and are visible to all the customers. */
 export type Sale = Node & {
   __typename?: 'Sale';
   /** The ID of the object. */
@@ -9198,7 +9198,7 @@ export type Sale = Node & {
   categories?: Maybe<CategoryCountableConnection>;
   /** List of collections this sale applies to. */
   collections?: Maybe<CollectionCountableConnection>;
-  /** List of products this sale applies to. */
+  /** List of product this sale applies to. */
   products?: Maybe<ProductCountableConnection>;
   /** Returns translated sale fields for the given language code. */
   translation?: Maybe<SaleTranslation>;
@@ -9210,7 +9210,7 @@ export type Sale = Node & {
   currency?: Maybe<Scalars['String']>;
 };
 
-/** Sales allow creating discounts for categories, collections or products and are visible to all the customers. */
+/** Sales allow creating discounts for categories, collections or product and are visible to all the customers. */
 export type SaleCategoriesArgs = {
   before?: Maybe<Scalars['String']>;
   after?: Maybe<Scalars['String']>;
@@ -9218,7 +9218,7 @@ export type SaleCategoriesArgs = {
   last?: Maybe<Scalars['Int']>;
 };
 
-/** Sales allow creating discounts for categories, collections or products and are visible to all the customers. */
+/** Sales allow creating discounts for categories, collections or product and are visible to all the customers. */
 export type SaleCollectionsArgs = {
   before?: Maybe<Scalars['String']>;
   after?: Maybe<Scalars['String']>;
@@ -9226,7 +9226,7 @@ export type SaleCollectionsArgs = {
   last?: Maybe<Scalars['Int']>;
 };
 
-/** Sales allow creating discounts for categories, collections or products and are visible to all the customers. */
+/** Sales allow creating discounts for categories, collections or product and are visible to all the customers. */
 export type SaleProductsArgs = {
   before?: Maybe<Scalars['String']>;
   after?: Maybe<Scalars['String']>;
@@ -9234,12 +9234,12 @@ export type SaleProductsArgs = {
   last?: Maybe<Scalars['Int']>;
 };
 
-/** Sales allow creating discounts for categories, collections or products and are visible to all the customers. */
+/** Sales allow creating discounts for categories, collections or product and are visible to all the customers. */
 export type SaleTranslationArgs = {
   languageCode: LanguageCodeEnum;
 };
 
-/** Adds products, categories, collections to a voucher. */
+/** Adds product, categories, collections to a voucher. */
 export type SaleAddCatalogues = {
   __typename?: 'SaleAddCatalogues';
   /** Sale of which catalogue IDs will be modified. */
@@ -9354,7 +9354,7 @@ export type SaleInput = {
   endDate?: Maybe<Scalars['DateTime']>;
 };
 
-/** Removes products, categories, collections from a sale. */
+/** Removes product, categories, collections from a sale. */
 export type SaleRemoveCatalogues = {
   __typename?: 'SaleRemoveCatalogues';
   /** Sale of which catalogue IDs will be modified. */
@@ -9378,7 +9378,7 @@ export enum SaleSortField {
 }
 
 export type SaleSortingInput = {
-  /** Specifies the direction in which to sort products. */
+  /** Specifies the direction in which to sort product. */
   direction: OrderDirection;
   /** Specifies the channel in which to sort the data. */
   channel?: Maybe<Scalars['String']>;
@@ -9393,7 +9393,7 @@ export type SaleTranslatableContent = Node & {
   name: Scalars['String'];
   /** Returns translated sale fields for the given language code. */
   translation?: Maybe<SaleTranslation>;
-  /** Sales allow creating discounts for categories, collections or products and are visible to all the customers. */
+  /** Sales allow creating discounts for categories, collections or product and are visible to all the customers. */
   sale?: Maybe<Sale>;
 };
 
@@ -9524,7 +9524,7 @@ export type ShippingMethod = Node &
     minimumOrderPrice?: Maybe<Money>;
     /** Postal code ranges rule of exclusion or inclusion of the shipping method. */
     postalCodeRules?: Maybe<Array<Maybe<ShippingMethodPostalCodeRule>>>;
-    /** List of excluded products for the shipping method. */
+    /** List of excluded product for the shipping method. */
     excludedProducts?: Maybe<ProductCountableConnection>;
   };
 
@@ -9665,10 +9665,10 @@ export type ShippingPriceDelete = {
   errors: Array<ShippingError>;
 };
 
-/** Exclude products from shipping price. */
+/** Exclude product from shipping price. */
 export type ShippingPriceExcludeProducts = {
   __typename?: 'ShippingPriceExcludeProducts';
-  /** A shipping method with new list of excluded products. */
+  /** A shipping method with new list of excluded product. */
   shippingMethod?: Maybe<ShippingMethod>;
   /** @deprecated Use errors field instead. This field will be removed in Saleor 4.0. */
   shippingErrors: Array<ShippingError>;
@@ -9676,7 +9676,7 @@ export type ShippingPriceExcludeProducts = {
 };
 
 export type ShippingPriceExcludeProductsInput = {
-  /** List of products which will be excluded. */
+  /** List of product which will be excluded. */
   products: Array<Maybe<Scalars['ID']>>;
 };
 
@@ -9708,7 +9708,7 @@ export type ShippingPriceInput = {
 /** Remove product from excluded list for shipping price. */
 export type ShippingPriceRemoveProductFromExclude = {
   __typename?: 'ShippingPriceRemoveProductFromExclude';
-  /** A shipping method with new list of excluded products. */
+  /** A shipping method with new list of excluded product. */
   shippingMethod?: Maybe<ShippingMethod>;
   /** @deprecated Use errors field instead. This field will be removed in Saleor 4.0. */
   shippingErrors: Array<ShippingError>;
@@ -9903,7 +9903,7 @@ export type Shop = {
   defaultWeightUnit?: Maybe<WeightUnitsEnum>;
   /** Returns translated shop fields for the given language code. */
   translation?: Maybe<ShopTranslation>;
-  /** Enable automatic fulfillment for all digital products. */
+  /** Enable automatic fulfillment for all digital product. */
   automaticFulfillmentDigitalProducts?: Maybe<Scalars['Boolean']>;
   /** Default number of max downloads per digital content URL. */
   defaultDigitalMaxDownloads?: Maybe<Scalars['Int']>;
@@ -10009,7 +10009,7 @@ export type ShopSettingsInput = {
   trackInventoryByDefault?: Maybe<Scalars['Boolean']>;
   /** Default weight unit. */
   defaultWeightUnit?: Maybe<WeightUnitsEnum>;
-  /** Enable automatic fulfillment for all digital products. */
+  /** Enable automatic fulfillment for all digital product. */
   automaticFulfillmentDigitalProducts?: Maybe<Scalars['Boolean']>;
   /** Default number of max downloads per digital content URL. */
   defaultDigitalMaxDownloads?: Maybe<Scalars['Int']>;
@@ -10666,7 +10666,7 @@ export enum UserSortField {
 }
 
 export type UserSortingInput = {
-  /** Specifies the direction in which to sort products. */
+  /** Specifies the direction in which to sort product. */
   direction: OrderDirection;
   /** Sort users by the selected field. */
   field: UserSortField;
@@ -10757,7 +10757,7 @@ export enum VolumeUnitsEnum {
   AcreFt = 'ACRE_FT',
 }
 
-/** Vouchers allow giving discounts to particular customers on categories, collections or specific products. They can be used during checkout by providing valid voucher codes. */
+/** Vouchers allow giving discounts to particular customers on categories, collections or specific product. They can be used during checkout by providing valid voucher codes. */
 export type Voucher = Node & {
   __typename?: 'Voucher';
   /** The ID of the object. */
@@ -10779,7 +10779,7 @@ export type Voucher = Node & {
   categories?: Maybe<CategoryCountableConnection>;
   /** List of collections this voucher applies to. */
   collections?: Maybe<CollectionCountableConnection>;
-  /** List of products this voucher applies to. */
+  /** List of product this voucher applies to. */
   products?: Maybe<ProductCountableConnection>;
   /** List of countries available for the shipping voucher. */
   countries?: Maybe<Array<Maybe<CountryDisplay>>>;
@@ -10795,7 +10795,7 @@ export type Voucher = Node & {
   channelListings?: Maybe<Array<VoucherChannelListing>>;
 };
 
-/** Vouchers allow giving discounts to particular customers on categories, collections or specific products. They can be used during checkout by providing valid voucher codes. */
+/** Vouchers allow giving discounts to particular customers on categories, collections or specific product. They can be used during checkout by providing valid voucher codes. */
 export type VoucherCategoriesArgs = {
   before?: Maybe<Scalars['String']>;
   after?: Maybe<Scalars['String']>;
@@ -10803,7 +10803,7 @@ export type VoucherCategoriesArgs = {
   last?: Maybe<Scalars['Int']>;
 };
 
-/** Vouchers allow giving discounts to particular customers on categories, collections or specific products. They can be used during checkout by providing valid voucher codes. */
+/** Vouchers allow giving discounts to particular customers on categories, collections or specific product. They can be used during checkout by providing valid voucher codes. */
 export type VoucherCollectionsArgs = {
   before?: Maybe<Scalars['String']>;
   after?: Maybe<Scalars['String']>;
@@ -10811,7 +10811,7 @@ export type VoucherCollectionsArgs = {
   last?: Maybe<Scalars['Int']>;
 };
 
-/** Vouchers allow giving discounts to particular customers on categories, collections or specific products. They can be used during checkout by providing valid voucher codes. */
+/** Vouchers allow giving discounts to particular customers on categories, collections or specific product. They can be used during checkout by providing valid voucher codes. */
 export type VoucherProductsArgs = {
   before?: Maybe<Scalars['String']>;
   after?: Maybe<Scalars['String']>;
@@ -10819,12 +10819,12 @@ export type VoucherProductsArgs = {
   last?: Maybe<Scalars['Int']>;
 };
 
-/** Vouchers allow giving discounts to particular customers on categories, collections or specific products. They can be used during checkout by providing valid voucher codes. */
+/** Vouchers allow giving discounts to particular customers on categories, collections or specific product. They can be used during checkout by providing valid voucher codes. */
 export type VoucherTranslationArgs = {
   languageCode: LanguageCodeEnum;
 };
 
-/** Adds products, categories, collections to a voucher. */
+/** Adds product, categories, collections to a voucher. */
 export type VoucherAddCatalogues = {
   __typename?: 'VoucherAddCatalogues';
   /** Voucher of which catalogue IDs will be modified. */
@@ -10961,7 +10961,7 @@ export type VoucherInput = {
   usageLimit?: Maybe<Scalars['Int']>;
 };
 
-/** Removes products, categories, collections from a voucher. */
+/** Removes product, categories, collections from a voucher. */
 export type VoucherRemoveCatalogues = {
   __typename?: 'VoucherRemoveCatalogues';
   /** Voucher of which catalogue IDs will be modified. */
@@ -10989,7 +10989,7 @@ export enum VoucherSortField {
 }
 
 export type VoucherSortingInput = {
-  /** Specifies the direction in which to sort products. */
+  /** Specifies the direction in which to sort product. */
   direction: OrderDirection;
   /** Specifies the channel in which to sort the data. */
   channel?: Maybe<Scalars['String']>;
@@ -11004,7 +11004,7 @@ export type VoucherTranslatableContent = Node & {
   name?: Maybe<Scalars['String']>;
   /** Returns translated voucher fields for the given language code. */
   translation?: Maybe<VoucherTranslation>;
-  /** Vouchers allow giving discounts to particular customers on categories, collections or specific products. They can be used during checkout by providing valid voucher codes. */
+  /** Vouchers allow giving discounts to particular customers on categories, collections or specific product. They can be used during checkout by providing valid voucher codes. */
   voucher?: Maybe<Voucher>;
 };
 
@@ -11189,7 +11189,7 @@ export enum WarehouseSortField {
 }
 
 export type WarehouseSortingInput = {
-  /** Specifies the direction in which to sort products. */
+  /** Specifies the direction in which to sort product. */
   direction: OrderDirection;
   /** Sort warehouses by the selected field. */
   field: WarehouseSortField;

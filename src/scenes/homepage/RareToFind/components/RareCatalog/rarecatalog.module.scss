@@ -1,0 +1,43 @@
+@use '@/styles' as s;
+
+
+.container {
+  background-color: #f6f6f6;
+  border-radius: 10px 10px 0 0;
+  @include s.margin(top, 5rem);
+  @include s.padding(bottom, 8rem);
+
+ display: grid;
+  place-items: center;
+  row-gap: 2.5rem;
+
+  & :global{
+
+    .list{
+      display: grid;
+      grid-template-columns: repeat(4, minmax(s.f-unit(13rem), 1fr) );
+      gap: s.f-unit(2rem);
+      row-gap: s.f-unit(2.9rem);
+      transform: scale(.9);
+      @include s.margin(top, 4rem);
+
+
+
+      .wife{
+        //border: thin solid red;
+        display: grid;
+        place-items: center;
+        padding-bottom: 50px;
+        padding-left: 50px;
+        //justify-content: end;
+      }
+    }
+
+    .say{
+      color: s.$clrs-accent;
+      text-align: center;
+    }
+
+  }
+
+}

@@ -7582,7 +7582,7 @@ type ProductType implements Node & ObjectWithMetadata {
     last: Int
   ): ProductCountableConnection
   @deprecated(
-    reason: "This field will be removed in Saleor 4.0. Use the top-level `products` query with the `productTypes` filter."
+    reason: "This field will be removed in Saleor 4.0. Use the top-level `product` query with the `productTypes` filter."
   )
   taxType: TaxType
   variantAttributes(variantSelection: VariantAttributeScope): [Attribute!]

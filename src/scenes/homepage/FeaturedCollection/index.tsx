@@ -31,8 +31,8 @@ const FeaturedCollection = () => {
       </div>
 
       <div className="whiskey-wrapper">
-        {data?.products.map((product) => (
-          <ProductCard key={product.id} products={product} />
+        {(data?.products ? data.products : Array.from(new Array(12))).map((product, idx) => (
+          <ProductCard key={product?.id || idx} product={product} loading={!data?.found} />
         ))}
       </div>
     </div>

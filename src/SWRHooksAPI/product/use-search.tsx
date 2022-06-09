@@ -1,4 +1,4 @@
-import { HookFetcherFn, SWRHook } from '@/types/SWRHooks';
+import { SWRHook } from '@/types/SWRHooks';
 import { SearchProductsHook } from '@/types/product';
 import * as query from '@/util/queries';
 import getSearchVariables from '@/util/get-search-variables';
@@ -6,7 +6,6 @@ import { ProductCountableEdge } from '@/schema';
 import { normalizeProduct } from '@/util';
 import { useHandlerObject, useSWRHook } from '@/util/use-handler-object';
 import { Provider } from '@/context/SWRHookContext';
-import SWRFetcher from '@/util/default-fetcher';
 
 export const handler: SWRHook<SearchProductsHook> = {
   fetchOptions: {
@@ -39,7 +38,7 @@ export const handler: SWRHook<SearchProductsHook> = {
   useHook:
     ({ fetcherWrapper }) =>
     (input = {}) => {
-      return fetcher({
+      return fetcherWrapper({
         input: [
           ['first', input.first],
           ['filter', input.filter],
@@ -59,11 +58,9 @@ type UseSearchType<H extends SWRHook<SearchProductsHook> = SWRHook<SearchProduct
 
 const fn = (p: Provider) => p.products?.useSearch!;
 
-const fetcher: HookFetcherFn<SearchProductsHook> = SWRFetcher;
-
 const useSearch: UseSearchType = (input) => {
   const options = useHandlerObject(fn);
-  return useSWRHook({ fetcher, ...options })(input);
+  return useSWRHook({ fetcher: options.fetcher!, ...options })(input);
 };
 
 export default useSearch as UseSearchType<typeof handler>;

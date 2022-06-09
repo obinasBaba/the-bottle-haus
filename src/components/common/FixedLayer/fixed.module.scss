@@ -6,6 +6,8 @@
   inset: 0;
   pointer-events: none;
 
+  display: none;
+
     & :global {
 
       & {  // fix this
@@ -14,5 +16,5 @@
     }
 
 
-  border: thick solid tomato;
+  //border: thick solid tomato;
 }
