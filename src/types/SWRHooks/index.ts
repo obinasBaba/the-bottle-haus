@@ -102,7 +102,7 @@ export type SwrOptions<Data, Input = null, Result = any> = SWRConfiguration<
 >;
 
 export type SWRHookContext<H extends SWRHookSchemaBase> = {
-  fetchData(context?: {
+  fetcherWrapper(context?: {
     input?: HookFetchInput | HookSWRInput;
     swrOptions?: SwrOptions<H['data'], H['fetcherInput']>;
   }): ResponseState<H['data']>;

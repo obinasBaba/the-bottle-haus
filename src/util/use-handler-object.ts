@@ -8,7 +8,7 @@ export function useFetcher() {
   return providerRef.current.fetcher ?? fetcherRef.current;
 }
 
-export function useHook<P extends Provider, H extends MutationHook<any> | SWRHook<any>>(
+export function useHandlerObject<P extends Provider, H extends MutationHook<any> | SWRHook<any>>(
   fn: (provider: P) => H,
 ) {
   const { providerRef } = useCommerce<P>();
@@ -20,7 +20,7 @@ export function useSWRHook<H extends SWRHook<any>>(options: PickRequired<H, 'fet
   const fetcher = useFetcher();
 
   return options.useHook({
-    fetchData: function (ctx) {
+    fetcherWrapper: function (ctx) {
       return useSwrCaller(options, ctx?.input ?? [], fetcher, ctx?.swrOptions);
     },
   });

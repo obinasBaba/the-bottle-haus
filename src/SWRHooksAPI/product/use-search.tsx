@@ -4,7 +4,7 @@ import * as query from '@/util/queries';
 import getSearchVariables from '@/util/get-search-variables';
 import { ProductCountableEdge } from '@/schema';
 import { normalizeProduct } from '@/util';
-import { useHook, useSWRHook } from '@/util/use-hook';
+import { useHandlerObject, useSWRHook } from '@/util/use-handler-object';
 import { Provider } from '@/context/SWRHookContext';
 import SWRFetcher from '@/util/default-fetcher';
 
@@ -37,9 +37,9 @@ export const handler: SWRHook<SearchProductsHook> = {
     };
   },
   useHook:
-    ({ fetchData }) =>
+    ({ fetcherWrapper }) =>
     (input = {}) => {
-      return fetchData({
+      return fetcher({
         input: [
           ['first', input.first],
           ['filter', input.filter],
@@ -62,7 +62,7 @@ const fn = (p: Provider) => p.products?.useSearch!;
 const fetcher: HookFetcherFn<SearchProductsHook> = SWRFetcher;
 
 const useSearch: UseSearchType = (input) => {
-  const options = useHook(fn);
+  const options = useHandlerObject(fn);
   return useSWRHook({ fetcher, ...options })(input);
 };
 
