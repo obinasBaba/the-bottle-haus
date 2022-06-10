@@ -26,8 +26,17 @@
           display: block;
           background: linear-gradient(to right, #eeeeee 00%, #dddddd 18%, #eeeeee 100%);
           background-size: 800px 104px;
-          animation: shimmer linear 1.2s infinite forwards;
+          animation: shimmer linear 2.2s infinite forwards;
 
+          @keyframes foo {
+            0% {
+              background-position: -468px 0
+            }
+            100% {
+
+              background-position: 468px 0
+            }
+          }
 
         }
       }

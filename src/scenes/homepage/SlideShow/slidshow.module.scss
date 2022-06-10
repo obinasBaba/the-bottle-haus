@@ -1,0 +1,137 @@
+@use "@/styles" as s;
+
+.container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+
+  //border: thin solid red;
+
+  @include s.margin(bottom, 15rem);
+
+  &:after {
+    content: '';
+    z-index: -1;
+
+    display: block;
+    position: absolute;
+    right: 0;
+    left: 50%;
+    height: 100%;
+    background-color: rgba(16, 91, 89, 0.16);
+  }
+
+  & :global {
+
+    .wrapper {
+      position: relative;
+      max-width: 1300px;
+      width: 100%;
+      display: flex;
+
+      //border: thin solid tomato;
+
+      &:after{
+        content: '';
+        position: absolute;
+        display: block;
+        width: 1px;
+        top: 20%;
+        bottom: 20%;
+        background-color: silver;
+      }
+
+
+      .dots {
+        //margin: 4rem ;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: -7%;
+
+      }
+
+      .text {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        //border: thin solid teal;
+
+
+        .text_wrapper {
+
+          .desc {
+            max-width: 48ch;
+            margin-bottom: 40px;
+          }
+        }
+
+      }
+
+      .bottle {
+        flex: 1;
+
+        //border: thin solid red;
+
+        .bottle_img {
+          display: grid;
+          place-items: center;
+
+        }
+      }
+    }
+  }
+
+}
+
+.controller{
+  position: absolute;
+  right: 8vmin;
+  bottom: 8vmin;
+
+  & :global{
+
+    .slide_info{
+      span{
+        @include s.font-size-text(.7rem);
+        color: gray;
+        margin-bottom: 0;
+      }
+
+      p{
+        margin-top: 0;
+        word-spacing: -3px;
+      }
+    }
+
+    .buttons{
+      position: absolute;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 0 2rem;
+
+      //border: thin solid red;
+
+
+
+      .prev, .next{
+        max-width: s.f-unit(4rem);
+      }
+
+      .prev{
+        margin-top: 5px;
+        //transform: rotate(-90deg);
+      }
+      .next{
+        transform: rotate(180deg);
+      }
+    }
+  }
+}

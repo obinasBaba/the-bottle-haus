@@ -5,6 +5,8 @@ import Hero from './Hero';
 import VideoAd from '@homepage/VideoAd';
 import FeaturedCollection from '@homepage/FeaturedCollection';
 import RareToFind from '@homepage/RareToFind';
+import OtherSaying from '@homepage/OtherSaying';
+import SlideShow from '@homepage/SlideShow';
 
 const HomePage = () => {
   return (
@@ -17,8 +19,10 @@ const HomePage = () => {
 
       <Hero />
       <VideoAd />
-      <FeaturedCollection />
+      {/*<FeaturedCollection />*/}
       <RareToFind />
+      <OtherSaying />
+      <SlideShow />
     </div>
   );
 };

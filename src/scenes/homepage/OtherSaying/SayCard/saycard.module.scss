@@ -1,0 +1,53 @@
+@use '@/styles' as s;
+
+
+.container {
+  margin: 2rem;
+  max-width: 100vmin;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  border-radius: 30px;
+  padding: 2rem 4rem;
+  background-image: linear-gradient(110.72deg, lightgray 6.69%, rgba(2, 2, 30, 0) 85.43%);
+  letter-spacing: -.7px;
+
+  & :global {
+
+    .bottle {
+      display: flex;
+      flex-flow: column;
+      justify-content: flex-start;
+
+      .brand {
+        color: gray;
+        word-spacing: -1px;
+        @include s.font-size-text(.7rem)
+      }
+
+      .bottle_img {
+        max-width: 180px;
+      }
+    }
+
+    .line {
+      height: 200px;
+      width: 1px;
+      background-color: silver;
+      margin-right: 10px;
+    }
+
+    .comment {
+      .quote {
+        @include s.font-size-text(1.3rem);
+        letter-spacing: 0;
+        max-width: 40ch;
+      }
+
+      .name {
+        color: gray;
+      }
+    }
+  }
+
+}
