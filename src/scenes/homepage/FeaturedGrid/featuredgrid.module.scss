@@ -1,0 +1,76 @@
+@use '@/styles' as s;
+
+
+.container {
+  width: 100%;
+
+  & :global {
+
+    .wrapper {
+      max-width: 1300px;
+      width: 100%;
+      margin: 0 auto;
+
+      display: grid;
+      grid-gap: 1rem;
+      grid-template-columns: repeat(5, 1fr);
+
+
+      border: thin solid red;
+
+      & > * {
+        position: relative;
+        border: thin solid red;
+        display: inline-block;
+        vertical-align: top;
+        //float: left;
+        //margin: 21px;
+      }
+
+      .big{
+        //width: 450px;
+        //height: 310px;
+        //grid-column: span ;
+        grid-column: span 2;
+      }
+
+      /*.liqueur{
+        width: 230px;
+        height: 127px;
+      }
+
+      .wine{
+        width: 290px;
+        height: 155px;
+      }
+
+      .vodka{
+        width: 290px;
+        height: 230px;
+
+      }
+
+      .haus{
+        width: 220px;
+        height: 155px;
+
+      }
+
+      .cognac{
+        width: 240px;
+        height: 230px;
+      }
+
+      .rum{
+        width: 190px;
+        height: 230px;
+      }
+
+      .whisky{
+        width: 190px;
+        height: 130px;
+      }*/
+    }
+
+  }
+}

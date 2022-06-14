@@ -34,14 +34,15 @@
 
       //border: thin solid tomato;
 
-      &:after{
+      &:after {
         content: '';
         position: absolute;
         display: block;
         width: 1px;
         top: 20%;
         bottom: 20%;
-        background-color: silver;
+        left: -2%;
+        background-color: orangered;
       }
 
 
@@ -55,19 +56,39 @@
       }
 
       .text {
-        flex: 1;
+        flex: 1.2;
         display: flex;
         align-items: center;
-        justify-content: center;
-
-        //border: thin solid teal;
+        justify-content: flex-start;
+        margin-left: 2rem;
+        //border: thin solid orangered;
 
 
         .text_wrapper {
+          @include s.margin(bottom, 4rem);
+
+          .subtitle {
+            color: gray;
+          }
+
+          .title {
+            @include s.font-size-text(2.6rem);
+            font-family: s.$fonts-auger-900;
+            letter-spacing: -.07vmax;
+            word-spacing: -.3vmax;
+            -webkit-text-stroke: 1px rgba(0, 0, 0, 0.72);
+
+
+            span {
+              display: block;
+              color: transparent;
+              -webkit-text-stroke: 1.1px orangered;
+            }
+          }
 
           .desc {
-            max-width: 48ch;
-            margin-bottom: 40px;
+            max-width: 52ch;
+            @include s.margin(bottom, 1.8rem);
           }
         }
 
@@ -89,27 +110,27 @@
 
 }
 
-.controller{
+.controller {
   position: absolute;
-  right: 8vmin;
-  bottom: 8vmin;
+  right: calc(50% + 3vmin);
+  bottom: 4vmin;
 
-  & :global{
+  & :global {
 
-    .slide_info{
-      span{
+    .slide_info {
+      span {
         @include s.font-size-text(.7rem);
         color: gray;
         margin-bottom: 0;
       }
 
-      p{
+      p {
         margin-top: 0;
-        word-spacing: -3px;
+        word-spacing: -5px;
       }
     }
 
-    .buttons{
+    .buttons {
       position: absolute;
       display: flex;
       justify-content: space-between;
@@ -120,16 +141,16 @@
       //border: thin solid red;
 
 
-
-      .prev, .next{
+      .prev, .next {
         max-width: s.f-unit(4rem);
       }
 
-      .prev{
+      .prev {
         margin-top: 5px;
         //transform: rotate(-90deg);
       }
-      .next{
+
+      .next {
         transform: rotate(180deg);
       }
     }

@@ -1,0 +1,66 @@
+@use '@/styles' as s;
+
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+
+
+  @include s.margin(top, 10rem);
+
+  & :global {
+
+    header {
+      @include s.margin(bottom, 3rem);
+
+      .subtitle{
+        margin-bottom: 0;
+        @include s.font-size-text(1.2rem);
+      }
+
+      .title {
+
+        @include s.font-size-text(3rem);
+        font-family: s.$fonts-auger-900;
+        margin-top: 0;
+      }
+    }
+
+    .review_list {
+      display: flex;
+      justify-content: center;
+
+      gap: s.f-unit(1rem);
+
+      @include s.media-breakpoint-up(s.$br-md) {
+        gap: s.f-unit(3.5rem);
+      }
+
+      @include s.media-breakpoint-up(s.$br-lg) {
+        gap: s.f-unit(4rem);
+      }
+
+      .review_item{
+        flex: 1;
+
+        @include s.padding(1rem);
+
+        .quote {
+          color: gray;
+          margin-bottom: s.f-unit(3rem);
+
+          @include s.font-size-text(.81rem);
+          font-family: s.$fonts-auger-300;
+        }
+
+        .date{
+          color: gray;
+        }
+      }
+
+    }
+  }
+}

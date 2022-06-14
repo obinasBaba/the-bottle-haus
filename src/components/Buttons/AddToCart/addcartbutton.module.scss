@@ -1,0 +1,23 @@
+@use "@/styles" as s;
+
+
+.container{
+  border-radius: 10px;
+  border: none;
+  color: white;
+
+  @include s.padding(.8rem, 2rem);
+  @include s.font-size-text(1rem);
+
+  background-color: #fd7f28;
+
+  display: flex;
+  align-items: center;
+  gap: s.f-unit(.5rem);
+
+  & :global{
+    span{
+      word-spacing: -.5vmin;
+    }
+  }
+}

@@ -3,6 +3,7 @@ import s from './productcard.module.scss';
 import { ProductTypes } from '@/types/product';
 import Image from 'next/image';
 import cs from 'clsx';
+import Link from 'next/link';
 
 type ProductCardProps = {
   product?: ProductTypes['product'];
@@ -26,18 +27,28 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, loading = true }) =>
 
       {ready && <button className={s.add_to_cart} />}
 
-      <div className="product-img">
-        {product && (
-          <Image
-            src={product?.images[0].url!}
-            alt={product?.images[0].alt}
-            width={'240px'}
-            height={'340px'}
-            objectFit={'contain'}
-          />
-        )}
-      </div>
-      <p className={'title'}>{product?.name || 'Loading'}</p>
+      <Link href={`/product/${product?.slug}`}>
+        <a>
+          <div className="product-img">
+            {product && (
+              <Image
+                src={product?.images[0].url!}
+                alt={product?.images[0].alt}
+                width={'240px'}
+                height={'340px'}
+                objectFit={'contain'}
+              />
+            )}
+          </div>
+        </a>
+      </Link>
+
+      <Link href={`/product/${product?.slug}`}>
+        <a>
+          <p className={'title'}>{product?.name || 'Loading'}</p>
+        </a>
+      </Link>
+
       <div className="price">
         <p className="value">
           {(product && `$${product.price.value - product.price.discount}`) || 'Loading'}{' '}

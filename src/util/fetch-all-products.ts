@@ -1,19 +1,21 @@
 import { ProductCountableEdge } from '@/schema';
 import { CommerceAPIConfig } from '@/types/operations';
 
+type Props = {
+  config: CommerceAPIConfig;
+  query: string;
+  acc?: ProductCountableEdge[];
+  variables?: any;
+  cursor?: string;
+};
+
 const fetchAllProducts = async ({
   config,
   query,
   variables,
   acc = [],
   cursor,
-}: {
-  config: CommerceAPIConfig;
-  query: string;
-  acc?: ProductCountableEdge[];
-  variables?: any;
-  cursor?: string;
-}): Promise<ProductCountableEdge[]> => {
+}: Props): Promise<ProductCountableEdge[]> => {
   const { data } = await config.fetch(query, {
     variables: { ...variables, cursor },
   });

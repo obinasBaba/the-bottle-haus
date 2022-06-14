@@ -16,7 +16,7 @@ export type GetAllProductPathsResult = {
 
 export default function getAllProductPathsOperation({ commerce }: OperationContext) {
   async function getAllProductPaths({
-    query,
+    query = getAllProductsPathsQuery,
     config,
     variables,
   }: {
@@ -28,7 +28,7 @@ export default function getAllProductPathsOperation({ commerce }: OperationConte
 
     const products = await fetchAllProducts({
       config,
-      query: getAllProductsPathsQuery,
+      query,
       variables,
     });
 

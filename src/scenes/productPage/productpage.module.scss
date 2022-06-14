@@ -1,0 +1,16 @@
+@use '@/styles' as s;
+
+
+.container {
+  width: 100%;
+
+  @include s.margin(top, 10rem);
+
+  & :global {
+
+    .product_page_wrapper{
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+  }
+}
