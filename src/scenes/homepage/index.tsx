@@ -8,9 +8,15 @@ import OtherSaying from '@homepage/OtherSaying';
 import SlideShow from '@homepage/SlideShow';
 import FeaturedGrid from '@homepage/FeaturedGrid';
 import ProductCardBig from '@/components/ProductCardBig';
+import OurBlog from '@homepage/OurBlog';
+import { ProductTypes } from '@/types/product';
 import FeaturedCollection from '@homepage/FeaturedCollection';
 
-const HomePage = () => {
+type HomepageProps = {
+  featuredProduct: ProductTypes['product'];
+};
+
+const HomePage: React.FC<HomepageProps> = ({ featuredProduct }) => {
   return (
     <div className={s.container}>
       <Head>
@@ -26,7 +32,8 @@ const HomePage = () => {
       <OtherSaying />
       <SlideShow />
       <FeaturedGrid />
-      {/*<ProductCardBig/>*/}
+      <ProductCardBig product={featuredProduct} />
+      <OurBlog />
     </div>
   );
 };

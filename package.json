@@ -27,6 +27,9 @@
     ]
   },
   "dependencies": {
+    "@emotion/react": "11.9.3",
+    "@emotion/styled": "11.9.3",
+    "@mui/material": "5.8.4",
     "@vercel/fetch": "6.2.0",
     "clsx": "1.1.1",
     "framer-motion": "6.3.11",

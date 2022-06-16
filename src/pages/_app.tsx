@@ -6,7 +6,7 @@ import '@global/index.scss';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout pageProps={{}}>
+    <Layout pageProps={pageProps}>
       <Component {...pageProps} />
     </Layout>
   );

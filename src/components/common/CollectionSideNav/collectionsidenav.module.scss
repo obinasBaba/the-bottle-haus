@@ -1,0 +1,29 @@
+@use "@/styles" as s;
+
+
+.container {
+  width: max-content;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  border: thin dashed gray;
+  gap: .5rem;
+  flex: 1;
+
+  // @include s.margin(top, 10rem);
+  // @include s.padding(bottom, 8rem);
+
+  & :global {
+
+    .item {
+      background-color: lightgray;
+      border-radius: 5px;
+
+      @include s.padding(.5rem);
+
+      .col_name {
+        white-space: nowrap;
+      }
+    }
+  }
+}

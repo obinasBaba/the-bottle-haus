@@ -9,7 +9,7 @@
   @include s.padding(.8rem, 2rem);
   @include s.font-size-text(1rem);
 
-  background-color: #fd7f28;
+  background-color: s.$clrs-orange;
 
   display: flex;
   align-items: center;

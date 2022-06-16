@@ -1,4 +1,4 @@
-import { GetStaticPropsContext } from 'next';
+import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import commerce from '@lib/api/commerce';
 import HomePage from '@homepage';
 
@@ -7,6 +7,10 @@ export async function getStaticProps({ preview, locale, locales }: GetStaticProp
 
   // const pagesPromise = commerce.getAllPages({ config, preview });
   // const siteInfoPromise = commerce.getSiteInfo({ config, preview });
+
+  const { product: featuredProduct } = await commerce.getProduct({
+    variables: { slug: 'don-julio-primavera-tequila' },
+  });
 
   /*const productsPromise = commerce.getAllProducts({
     variables: { first: 6 },
@@ -26,6 +30,7 @@ export async function getStaticProps({ preview, locale, locales }: GetStaticProp
 
   return {
     props: {
+      featuredProduct,
       /* product,
       pages,
       categories,
@@ -35,6 +40,6 @@ export async function getStaticProps({ preview, locale, locales }: GetStaticProp
   };
 }
 
-export default function Home() {
-  return <HomePage />;
+export default function Home({ featuredProduct }: InferGetStaticPropsType<typeof getStaticProps>) {
+  return <HomePage featuredProduct={featuredProduct!} />;
 }

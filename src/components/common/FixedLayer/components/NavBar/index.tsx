@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import s from './navbar.module.scss';
+import { Slide, useScrollTrigger } from '@mui/material';
 
 type NavBarProps = Record<string, unknown>;
 
@@ -34,7 +35,7 @@ const NavBar: React.FC = ({}) => {
         <div className={s.others}>
           <div className="account">
             <div className="login">Login</div>
-            <div className="create"> Create account </div>
+            <div className="create"> Create account</div>
           </div>
 
           <div className="icons">

@@ -1,3 +1,5 @@
+@use "@/styles" as s;
+
 .root {
   position: relative;
   width: 100%;
@@ -8,8 +10,35 @@
 
 
   .main {
+    width: 100%;
+    min-height: 100vh - 10vh;
     flex: 1;
+
   }
 
 
+  main.with_sidenav {
+    border: thick solid red;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: flex;
+    gap: s.f-unit(2rem);
+
+    @include s.padding(top, 12rem);
+
+    & :global {
+
+      .main_content_wrapper{
+        width: 100%;
+        height: 500px;
+        border: thin solid thistle;
+        //flex: 4;
+      }
+
+    }
+  }
 }
+
+

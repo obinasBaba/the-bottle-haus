@@ -1,0 +1,82 @@
+@use '@/styles' as s;
+
+
+.container {
+  background-color: s.$clrs-accent-light;
+  width: 100%;
+  @include s.padding(top, 4rem);
+  //@include s.margin(top, 5rem);
+  @include s.padding(bottom, 2rem);
+
+  & :global {
+    .wrapper {
+      max-width: 1300px;
+      margin: 0 auto;
+      color: white;
+
+      display: flex;
+      gap: s.f-unit(2rem);
+
+      & > * {
+        flex: 1;
+      }
+
+      p, a {
+        font-size: .85rem;
+        word-spacing: -.1vmax;
+        color: lighten(silver, 30);
+      }
+
+      .proposition {
+
+        .warning {
+          max-width: 40ch;
+          font-family: s.$fonts-auger-300;
+          font-size: .8rem;
+          word-spacing: -.1vmax;
+        }
+      }
+
+      .newsletter {
+        align-items: center;
+        text-align: center;
+
+        .subscribe {
+          font-size: .8rem;
+          word-spacing: -.1vmax;
+        }
+
+        .payments {
+          margin-top: s.f-unit(3rem);
+
+          .methods {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+          }
+        }
+
+        .responsible {
+          margin-top: s.f-unit(3rem);
+          word-spacing: -.1vmax;
+          color: s.$clrs-orange;
+
+        }
+      }
+
+      .resources {
+        text-align: right;
+
+        .links {
+          display: flex;
+          flex-flow: column;
+          text-align: right;
+          gap: s.f-unit(.2rem);
+          text-decoration: underline;
+        }
+      }
+
+    }
+  }
+
+}

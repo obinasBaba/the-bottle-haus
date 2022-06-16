@@ -9,7 +9,8 @@
   align-items: center;
 
 
-  @include s.margin(top, 10rem);
+  @include s.margin(top, 8rem);
+  @include s.margin(bottom, 6rem);
 
   & :global {
 

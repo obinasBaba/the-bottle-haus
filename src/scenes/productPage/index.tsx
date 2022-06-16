@@ -8,7 +8,7 @@ type ProductPageProps = {
   product: any;
 };
 
-const ProductPage: React.FC<ProductPageProps> = ({ children, product }) => {
+const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
   return (
     <div className={s.container}>
       <ProductCardBig product={product} />

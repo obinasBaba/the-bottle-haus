@@ -5,7 +5,7 @@ import { GetProductOperation } from '@/types/product';
 
 type Variables = {
   slug: string;
-};
+} & Record<string, string | number>;
 
 type ReturnType = {
   product: any;

@@ -17,7 +17,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <div className="wrapper">
         <div className="product_img">
           <div className="img_wrapper">
-            <Image src={product?.images[0]?.url} alt="gin img" width={400} height={600} />
+            <Image
+              src={product?.images[0]?.url}
+              alt="gin img"
+              width={400}
+              height={600}
+              objectFit="cover"
+            />
           </div>
         </div>
 
