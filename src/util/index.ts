@@ -3,7 +3,7 @@
 export { default as handleFetchResponse } from './handle-fetch-response';
 // export { default as getSearchVariables } from './get-search-variables'
 export { default as getVendors } from './get-vendors';
-export { default as getCategories } from './get-categories';
+export { default as getCollection } from './get-collection';
 // export { default as getCheckoutId } from './get-checkout-id'
 
 // export { default as checkoutCreate } from './checkout-create'

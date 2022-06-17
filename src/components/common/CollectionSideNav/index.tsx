@@ -1,23 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import s from './collectionsidenav.module.scss';
+import { Collection } from '@/schema';
+import Image from 'next/image';
 
-const CollectionSideNav = () => {
-  const [data, setData] = useState([
-    'All Product',
-    'Whiskey',
-    'Alcohol',
-    'Wine',
-    'Celebrity Spirits',
-    'Haus Bundles',
-    'Barrel Picks',
-    'Corporate Gifting',
-  ]);
+type CollectionSideNavProps = {
+  collections: Collection[];
+};
 
+const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections }) => {
   return (
     <div className={s.container}>
-      {data.map((name, idx) => (
+      {collections.map(({ name, backgroundImage }, idx) => (
         <div className="item" key={name}>
           <p className="col_name">{name}</p>
+          <div className="collection_img">
+            {backgroundImage?.url && (
+              <Image
+                src={backgroundImage.url}
+                alt={backgroundImage?.alt || 'collection image'}
+                width="100%"
+                height="100%"
+                objectFit="contain"
+                unoptimized
+                layout={'fill'}
+              />
+            )}
+          </div>
         </div>
       ))}
     </div>

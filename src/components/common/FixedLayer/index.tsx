@@ -27,7 +27,7 @@ const FixedLayer = () => {
   return (
     <div className={s.container}>
       <HideOnScroll>
-        <div>
+        <div style={{ pointerEvents: 'auto' }}>
           <NavBar />
           <SecondaryNavBar />
         </div>

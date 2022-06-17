@@ -5,8 +5,9 @@
   border-width: 1px;
   border-radius: 10px;
   //align-self: end;
-  font-family: s.$fonts-auger-700;
   color: s.$clrs-accent-light;
   @include s.padding(.8rem, 1.3rem);
-  @include s.font-size-text(.8rem);
+  
+  font-size: .9rem;
+  font-family: s.$fonts-auger-300;
 }

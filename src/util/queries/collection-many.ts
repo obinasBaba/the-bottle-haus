@@ -6,6 +6,10 @@ export const CollectionMany = /* GraphQL */ `
           id
           name
           slug
+          backgroundImage {
+            url
+            alt
+          }
         }
       }
     }

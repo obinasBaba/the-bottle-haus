@@ -2,13 +2,17 @@
 
 
 .container {
-  width: max-content;
+
   height: 100%;
   display: flex;
   flex-flow: column;
-  border: thin dashed gray;
-  gap: .5rem;
-  flex: 1;
+  gap: s.f-unit(.6rem);
+
+  //border: thin dashed gray;
+
+  width: 350px;
+  flex: 1 350px;
+
 
   // @include s.margin(top, 10rem);
   // @include s.padding(bottom, 8rem);
@@ -16,13 +20,28 @@
   & :global {
 
     .item {
-      background-color: lightgray;
-      border-radius: 5px;
+      position: relative;
+      background-color: s.$clrs-gray-light;
+      border-radius: 10px;
+      width: 100%;
 
       @include s.padding(.5rem);
 
       .col_name {
         white-space: nowrap;
+        word-spacing: -.2vmax;
+        letter-spacing: -.01vmax;
+        font-family: s.$fonts-auger-500;
+        font-size: .91rem;
+      }
+
+      .collection_img{
+        position: absolute;
+        inset: 0;
+
+        img{
+          //border: thin solid black !important;
+        }
       }
     }
   }

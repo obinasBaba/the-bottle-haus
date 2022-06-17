@@ -20,10 +20,10 @@ const ContactUsPage = () => {
               to you as soon as possible.
             </header>
 
-            <TextField id="outlined-basic" label="name" variant="outlined" />
-            <TextField id="outlined-basic" label="email" variant="outlined" />
-            <TextField id="outlined-basic" label="phone" variant="outlined" />
-            <TextField id="outlined-basic" label="message" variant="outlined" multiline rows={7} />
+            <TextField id="name" label="name" variant="outlined" />
+            <TextField id="email" label="email" variant="outlined" />
+            <TextField id="phone" label="phone" variant="outlined" />
+            <TextField id="message" label="message" variant="outlined" multiline rows={7} />
 
             <Button text="Send Message" />
           </div>

@@ -3,14 +3,37 @@
 .container {
   width: 100%;
 
+  display: flex;
+  flex-flow: column;
+  gap: s.f-unit(2.5rem);
+
 
   //@include s.margin(top, 15rem);
-  // @include s.padding(bottom, 8rem);
+   @include s.padding(bottom, 12rem);
 
 
   & :global {
 
-    .wrapper {
+    header {
+      display: flex;
+
+      .title{
+        color: s.$clrs-accent-light;
+        font-family: s.$fonts-auger-500;
+      }
+
+      .filter {
+        margin-left: auto;
+        display: flex;
+        gap: s.f-unit(2rem);
+        align-items: center;
+      }
+    }
+
+    .list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: s.f-unit(1.5rem);
 
     }
   }

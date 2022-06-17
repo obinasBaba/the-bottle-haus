@@ -1,3 +1,5 @@
+import { Collection } from '@/schema';
+
 export type Category = {
   id: string;
   name: string;
@@ -14,7 +16,7 @@ export type SiteTypes = {
 
 export type GetSiteInfoOperation<T extends SiteTypes = SiteTypes> = {
   data: {
+    collections: Collection[];
     categories: T['category'][];
-    brands: T['brand'][];
   };
 };

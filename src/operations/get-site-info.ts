@@ -1,7 +1,7 @@
 import { Category, GetSiteInfoOperation } from '@/types/site';
 
-import { getCategories, getVendors } from '@/util';
-import { CommerceAPIConfig, OperationContext, Provider } from '@/types/operations';
+import { getCollection } from '@/util';
+import { CommerceAPIConfig, OperationContext } from '@/types/operations';
 
 interface GetSiteInfoResult {
   categories: Category[];
@@ -21,12 +21,11 @@ export default function getSiteInfoOperation({ commerce }: OperationContext) {
   } = {}): Promise<GetSiteInfoOperation['data']> {
     const cfg = commerce.getConfig(config);
 
-    const categories = await getCategories(cfg);
-    const brands = await getVendors(cfg);
+    const collections = await getCollection(cfg);
 
     return {
-      categories,
-      brands,
+      collections,
+      categories: [],
     };
   }
 
