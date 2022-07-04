@@ -8,7 +8,7 @@
   flex-flow: column;
   gap: s.f-unit(.6rem);
 
-  //border: thin dashed gray;
+  //border: thin dashed red;
 
   width: 350px;
   flex: 1 350px;
@@ -24,14 +24,14 @@
       background-color: s.$clrs-gray-light;
       border-radius: 10px;
       width: 100%;
+      max-width: 100%;
+
 
       @include s.padding(.5rem);
+      @include s.padding(hor, 1rem);
 
       .col_name {
         white-space: nowrap;
-        word-spacing: -.2vmax;
-        letter-spacing: -.01vmax;
-        font-family: s.$fonts-auger-500;
         font-size: .91rem;
       }
 

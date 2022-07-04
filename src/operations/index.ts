@@ -41,7 +41,7 @@ if (!Const.API_CHANNEL) {
 }
 
 // this is the main config object
-const config: CommerceAPIConfig = {
+export const config: CommerceAPIConfig = {
   locale: 'en-US',
   commerceUrl: Const.API_URL,
   apiToken: Const.SALEOR_TOKEN,

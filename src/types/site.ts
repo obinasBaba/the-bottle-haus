@@ -15,6 +15,8 @@ export type SiteTypes = {
 };
 
 export type GetSiteInfoOperation<T extends SiteTypes = SiteTypes> = {
+  variables: Record<string, any>;
+
   data: {
     collections: Collection[];
     categories: T['category'][];

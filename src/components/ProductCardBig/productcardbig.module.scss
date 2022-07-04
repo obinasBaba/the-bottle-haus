@@ -64,7 +64,6 @@
           }
 
           .title{
-            word-spacing: -1vmin;
             margin-top: 0;
           }
 
@@ -90,7 +89,6 @@
             display: flex;
             align-items: center;
             gap: s.f-unit(1rem);
-            font-family: s.$fonts-auger-300;
 
 
 
@@ -121,7 +119,6 @@
             color: gray;
             padding-right: s.f-unit(1rem);
 
-            font-family: s.$fonts-auger-300;
           }
 
           .cart_controllers{

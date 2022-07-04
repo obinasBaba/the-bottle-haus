@@ -1,71 +1,85 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import s from './navbar.module.scss';
-import { Slide, useScrollTrigger } from '@mui/material';
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useTransform,
+  useViewportScroll,
+} from 'framer-motion';
+import Link from 'next/link';
 
 type NavBarProps = Record<string, unknown>;
 
 const NavBar: React.FC = ({}) => {
-  const [logoWidth, setLogoWidth] = useState('150px');
+  const [logoWidth, setLogoWidth] = useState('120px');
+
+  const { scrollY } = useViewportScroll();
+  const padding1 = useMotionValue(0);
+  useTransform(scrollY, (input) => {
+    if (input >= 50) return padding1.set(1);
+    else return padding1.set(2);
+  });
+
+  const padding = useMotionTemplate`${padding1}rem 0`;
 
   return (
     <nav className={s.container}>
-      <div className={s.wrapper}>
-        <div className={`${s.menu} toggle-button`}>
-          <Image
-            src="/menu-btn.png"
-            alt="menu-toggle-button"
-            layout="fixed"
-            width={'22px'}
-            height="9px"
-            objectFit="contain"
-          />
-        </div>
-
+      <motion.div className={s.wrapper} style={{ padding }}>
         <div className={s.logo}>
-          <Image
-            src="/logo.png"
-            alt="app-logo"
-            width={logoWidth}
-            height="100%"
-            objectFit="contain"
-          />
+          <Link href="/">
+            <a>
+              <Image src="/logo.png" alt="app-logo" objectFit="contain" layout="fill" />
+            </a>
+          </Link>
         </div>
 
         <div className={s.others}>
           <div className="account">
             <div className="login">Login</div>
-            <div className="create"> Create account</div>
+            <div className="create"> Create Account</div>
           </div>
 
           <div className="icons">
-            <div className="search search-icon">
+            <button className="search search-icon">
               <Image
                 src="/search.png"
-                width={'15px'}
-                height={'15px'}
+                width="15px"
+                height="15px"
                 alt="search-icon"
                 layout="fixed"
                 objectFit="contain"
               />
-            </div>
+            </button>
 
-            <div className="cart">
+            <button className="cart">
               <div className="cart-icon">
                 <Image
                   src="/cart.png"
                   alt="cart-icon"
                   layout="fixed"
-                  width={'15px'}
-                  height={'15px'}
+                  width="15px"
+                  height="15px"
                   objectFit="contain"
                 />
               </div>
               <span className="cart-count">0.020$</span>
-            </div>
+            </button>
+
+            <button className="menu toggle-button">
+              <Image
+                src="/menu-btn.png"
+                alt="menu-toggle-button"
+                layout="fixed"
+                width="22px"
+                height="9px"
+                objectFit="contain"
+              />
+            </button>
           </div>
         </div>
-      </div>
+      </motion.div>
     </nav>
   );
 };

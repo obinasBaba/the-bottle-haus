@@ -30,7 +30,6 @@
         @include s.margin(bottom, 3.5rem);
         @include s.font-size-text(1rem);
         color: #105b59;
-        letter-spacing: -.05vmax;
 
       }
 
@@ -56,11 +55,9 @@
         flex: 1;
 
         .title {
-          font-family: s.$fonts-auger-900;
-          letter-spacing: 0;
-          word-spacing: -4px;
           margin-bottom: 0;
           @include s.font-size-text(1.1rem);
+          font-weight: 900;
 
           &:after {
             content: '';
@@ -75,7 +72,6 @@
 
         span {
           display: inline-block;
-          word-spacing: -.2vmax;
           font-size: initial;
           margin-top: 10px;
         }
@@ -99,9 +95,7 @@
   & :global {
 
     h1 {
-      font-family: s.$fonts-auger-900;
-      letter-spacing: -.3vmax;
-      word-spacing: -2.7vmax;
+      font-weight: 900;
       color: transparent;
       -webkit-text-stroke-width: 1px;
       -webkit-text-stroke-color: white;

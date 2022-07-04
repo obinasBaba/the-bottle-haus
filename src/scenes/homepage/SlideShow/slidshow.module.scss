@@ -73,9 +73,7 @@
 
           .title {
             @include s.font-size-text(2.6rem);
-            font-family: s.$fonts-auger-900;
-            letter-spacing: -.07vmax;
-            word-spacing: -.3vmax;
+            font-weight: bolder;
             -webkit-text-stroke: 1px rgba(0, 0, 0, 0.72);
 
 
@@ -126,7 +124,6 @@
 
       p {
         margin-top: 0;
-        word-spacing: -5px;
       }
     }
 

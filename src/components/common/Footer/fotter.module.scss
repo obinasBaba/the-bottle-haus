@@ -23,7 +23,6 @@
 
       p, a {
         font-size: .85rem;
-        word-spacing: -.1vmax;
         color: lighten(silver, 30);
       }
 
@@ -31,9 +30,7 @@
 
         .warning {
           max-width: 40ch;
-          font-family: s.$fonts-auger-300;
           font-size: .8rem;
-          word-spacing: -.1vmax;
         }
       }
 
@@ -43,7 +40,6 @@
 
         .subscribe {
           font-size: .8rem;
-          word-spacing: -.1vmax;
         }
 
         .payments {
@@ -58,7 +54,6 @@
 
         .responsible {
           margin-top: s.f-unit(3rem);
-          word-spacing: -.1vmax;
           color: s.$clrs-orange;
 
         }

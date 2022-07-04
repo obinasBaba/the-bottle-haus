@@ -25,7 +25,7 @@ export default function getAllProductsOperation({ commerce }: OperationContext) 
     const { fetch, locale } = commerce.getConfig(config);
 
     if (featured) {
-      variables = { ...variables, categoryId: 'Q2F0ZWdvcnk6MTA=' };
+      variables = { categoryId: 'Q2F0ZWdvcnk6MTA=', ...variables };
       query = Query.CollectionOne;
     }
 

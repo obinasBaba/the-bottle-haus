@@ -7,28 +7,13 @@
   flex-flow: column;
   gap: s.f-unit(2.5rem);
 
+  //border: thin solid teal;
 
   //@include s.margin(top, 15rem);
    @include s.padding(bottom, 12rem);
 
 
   & :global {
-
-    header {
-      display: flex;
-
-      .title{
-        color: s.$clrs-accent-light;
-        font-family: s.$fonts-auger-500;
-      }
-
-      .filter {
-        margin-left: auto;
-        display: flex;
-        gap: s.f-unit(2rem);
-        align-items: center;
-      }
-    }
 
     .list {
       display: grid;

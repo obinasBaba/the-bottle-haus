@@ -1,27 +1,23 @@
 import React, { useEffect } from 'react';
 import s from './collectionpage.module.scss';
 import { useRouter } from 'next/router';
-import Button from '@/components/Button';
 import ProductCard from '@/components/ProductCard';
+import { Product } from '@/types/product';
 
-const CollectionPage = () => {
-  const router = useRouter();
-  const { collection, filter } = router.query;
+type CollectionPageArgs = {
+  products: Product[];
+};
+
+const CollectionPage: React.FC<CollectionPageArgs> = ({ products = [] }) => {
+  useEffect(() => {
+    console.log('collections: <', products);
+  }, [products]);
 
   return (
     <div className={s.container}>
-      <header>
-        <h1 className="title">Tequila</h1>
-        <div className="filter">
-          <Button text="Price" />
-          <Button text="Best Selling" />
-          <Button text="Sort by" />
-        </div>
-      </header>
-
       <div className="list">
-        {Array.from(new Array(12)).map((_, idx) => (
-          <ProductCard loading={true} key={idx} />
+        {products.map((product, idx) => (
+          <ProductCard loading={false} product={product} key={idx} />
         ))}
       </div>
     </div>

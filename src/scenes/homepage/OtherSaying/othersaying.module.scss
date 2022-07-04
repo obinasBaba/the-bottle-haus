@@ -13,7 +13,6 @@
       margin: 0 auto;
       .title {
         @include s.font-size-text(4rem);
-        font-family: s.$fonts-auger-500 ;
 
         span {
           display: block;

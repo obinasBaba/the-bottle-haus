@@ -11,6 +11,7 @@
     "react/no-unused-prop-types": "off",
     "react/require-default-props": "off",
     "react-hooks/rules-of-hooks": "off",
+    "@next/next/no-document-import-in-page": "off",
     "import/extensions": [
       "error",
       "ignorePackages",

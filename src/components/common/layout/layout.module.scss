@@ -7,14 +7,38 @@
   height: 100%;
   display: flex;
   flex-flow: column;
+  overflow: hidden;
 
 
   .main {
     width: 100%;
     min-height: 100vh - 10vh;
+
     flex: 1;
 
     & :global{
+      .content_wrapper{
+        width: 100%;
+        display: flex;
+        flex-flow: column;
+        gap: 2rem;
+
+        header {
+          display: flex;
+
+          .title{
+            color: s.$clrs-accent-light;
+          }
+
+          .filter {
+            margin-left: auto;
+            display: flex;
+            gap: s.f-unit(2rem);
+            align-items: center;
+          }
+        }
+      }
+
       .main_content_wrapper{
         width: 100%;
       }

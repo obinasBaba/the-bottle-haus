@@ -36,6 +36,18 @@ export const defaultOperations = OPERATIONS.reduce((ops, k) => {
 
 export type OperationOptions = { query?: string; url?: string };
 
+export interface CommerceAPIConfig {
+  locale?: string;
+  locales?: string[];
+  commerceUrl: string;
+  apiToken: string;
+  cartCookie: string;
+  cartCookieMaxAge: number;
+  customerCookie: string;
+  fetch: GraphQLFetcher; // fetcher for operations
+  storeChannel: string;
+}
+
 // the main operations types
 export type Operations<P extends APIProvider = APIProvider> = {
   login: {
@@ -70,6 +82,7 @@ export type Operations<P extends APIProvider = APIProvider> = {
   getSiteInfo: {
     <T extends GetSiteInfoOperation>(
       opts: {
+        variables?: T['variables'];
         config?: P['config'];
         preview?: boolean;
       } & OperationOptions,
@@ -116,7 +129,7 @@ export type Operations<P extends APIProvider = APIProvider> = {
   };
 };
 
-// mapping every operation key with a wrapper function that have 'ctx' arg which return the value of each operation key ( function )
+// mapping every operation key with a wrapper function that have 'ctx' arg which return an operation ( function )
 export type APIOperations<P extends APIProvider = APIProvider> = {
   [K in keyof Operations<P>]: (ctx: OperationContext) => Operations<P>[K];
 };
@@ -130,18 +143,6 @@ export type AllOperations<P extends APIProvider> = {
     ? ReturnType<P['operations'][K]>
     : typeof noop;
 };
-
-export interface CommerceAPIConfig {
-  locale?: string;
-  locales?: string[];
-  commerceUrl: string;
-  apiToken: string;
-  cartCookie: string;
-  cartCookieMaxAge: number;
-  customerCookie: string;
-  fetch: GraphQLFetcher; // fetcher for operations
-  storeChannel: string;
-}
 
 export type APIProvider = {
   config: CommerceAPIConfig;

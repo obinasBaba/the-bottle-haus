@@ -93,7 +93,7 @@ export type GetAllProductsOperation<T extends ProductTypes = ProductTypes> = {
     relevance?: 'featured' | 'best_selling' | 'newest';
     ids?: string[];
     first?: number;
-  };
+  } & Record<string, any>;
 };
 
 export type GetProductOperation<T extends ProductTypes = ProductTypes> = {

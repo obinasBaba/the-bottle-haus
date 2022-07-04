@@ -16,11 +16,10 @@
       header {
         h1 {
           @include s.font-size-text(3rem);
-          font-family: s.$fonts-auger-500;
 
           span {
             display: block;
-            font-family: s.$fonts-auger-900;
+            font-weight: bolder;
             color: transparent;
             -webkit-text-stroke: 1px s.$clrs-accent-light;
           }
@@ -53,8 +52,6 @@
 
           header {
             color: gray;
-            font-family: s.$fonts-auger-500;
-            word-spacing: -.1vmax;
           }
         }
 
@@ -72,7 +69,7 @@
 
           span {
             color: black;
-            font-family: s.$fonts-auger-700;
+            font-weight: 600;
           }
 
           h5{

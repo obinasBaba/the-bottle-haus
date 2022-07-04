@@ -85,7 +85,6 @@
     }
 
     .title{
-      font-family: s.$fonts-auger-300;
       margin-bottom: auto;
       height: 42px;
     }
@@ -97,7 +96,7 @@
       align-self: start;
 
       margin-top: 16px;
-      font-family: s.$fonts-auger-900;
+      font-weight: bolder;
       @include s.font-size-text(1rem);
 
       .value{
@@ -106,8 +105,6 @@
 
       .discount{
         text-decoration: line-through;
-        font-family: s.$fonts-auger;
-        letter-spacing: -2px;
         color: lightgray;
         margin-top: 0;
 
@@ -168,14 +165,12 @@
 .sold_out{
   position: absolute;
   z-index: 1;
-  font-family: s.$fonts-auger-500;
   color: white;
   font-size: .8rem;
   background-color: #fe7c22;
   border-radius: 20px;
   top: 4%;
   left: 6%;
-  letter-spacing: .8px;
 
   @include s.padding(6px, 9px);
 }

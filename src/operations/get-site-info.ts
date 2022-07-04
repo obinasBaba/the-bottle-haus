@@ -1,33 +1,24 @@
-import { Category, GetSiteInfoOperation } from '@/types/site';
+import { Category } from '@/types/site';
 
 import { getCollection } from '@/util';
-import { CommerceAPIConfig, OperationContext } from '@/types/operations';
+import { OperationContext, Operations } from '@/types/operations';
 
 interface GetSiteInfoResult {
   categories: Category[];
   brands: any[];
 }
 
-export default function getSiteInfoOperation({ commerce }: OperationContext) {
-  async function getSiteInfo({
-    query,
-    config,
-    variables,
-  }: {
-    query?: string;
-    config?: Partial<CommerceAPIConfig>;
-    preview?: boolean;
-    variables?: any;
-  } = {}): Promise<GetSiteInfoOperation['data']> {
+export default function getSiteInfoOperation({
+  commerce,
+}: OperationContext): Operations['getSiteInfo'] {
+  return async ({ query, config, variables }) => {
     const cfg = commerce.getConfig(config);
 
-    const collections = await getCollection(cfg);
+    const collections = await getCollection(cfg, variables || {});
 
     return {
       collections,
       categories: [],
     };
-  }
-
-  return getSiteInfo;
+  };
 }

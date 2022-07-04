@@ -62,7 +62,7 @@ const normalizeProductOptions = (options: ProductVariant[]) => {
 const normalizeProductVariants = (variants: ProductVariant[]) => {
   return variants?.map((variant) => {
     const { id, sku, name, pricing, quantityAvailable } = variant;
-    const price = pricing?.price?.net && money(pricing.price.net)?.value;
+    const price = (pricing?.price?.net && money(pricing.price.net)?.value) || null;
 
     return {
       id,
