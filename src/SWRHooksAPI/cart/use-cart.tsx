@@ -8,6 +8,7 @@ import { useMemo } from 'react';
 import { useHandlerObject, useSWRHook } from '@/util/use-handler-object';
 import { Provider, useCommerce } from '@/context/SWRHookContext';
 import Cookies from 'js-cookie';
+import { func } from 'prop-types';
 
 export const handler: SWRHook<GetCartHook> = {
   fetchOptions: {
@@ -63,11 +64,11 @@ const useCart: UseCart = (input) => {
   const { cartCookieKey } = useCommerce().providerRef.current;
   const fetcherFn = handler.fetcher!;
 
-  const wrapper: typeof fetcherFn = (context) => {
+  const wrapperWithDefaultCartId: typeof fetcherFn = (context) => {
     context.input.cartId = Cookies.get(cartCookieKey);
     return fetcherFn(context);
   };
-  return useSWRHook({ ...handler, fetcher: wrapper })(input);
+  return useSWRHook({ ...handler, fetcher: wrapperWithDefaultCartId })(input);
 };
 
 export default useCart as UseCart<typeof handler>;

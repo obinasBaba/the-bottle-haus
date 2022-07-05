@@ -14,7 +14,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, loading = true }) =>
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    if (!loading && product && Array.isArray(product)) setReady(true);
+    if (!loading && product) setReady(true);
   }, [loading, product]);
 
   return (

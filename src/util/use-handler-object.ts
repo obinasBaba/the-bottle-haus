@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { Provider, useCommerce } from '@/context/SWRHookContext';
 import type { MutationHook, PickRequired, SWRHook } from '@/types/SWRHooks';
+import { SWRHookSchemaBase } from '@/types/SWRHooks';
 import useSwrCaller from './use-swr';
 
 export function useFetcher() {
@@ -16,12 +17,14 @@ export function useHandlerObject<P extends Provider, H extends MutationHook<any>
   return fn(provider);
 }
 
-export function useSWRHook<H extends SWRHook<any>>(options: PickRequired<H, 'fetcher'>) {
-  const fetcher = useFetcher();
+export function useSWRHook<B extends SWRHookSchemaBase, H extends SWRHook<B>>(
+  options: PickRequired<H, 'fetcher'>,
+) {
+  const globalFetcher = useFetcher(); // global common fetcher
 
   return options.useHook({
     fetcherWrapper: function (ctx) {
-      return useSwrCaller(options, ctx?.input ?? [], fetcher, ctx?.swrOptions);
+      return useSwrCaller<B>(options, ctx?.input ?? [], globalFetcher, ctx?.swrOptions);
     },
   });
 }

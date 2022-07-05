@@ -31,7 +31,7 @@ export const handler: SWRHook<SearchProductsHook> = {
     }
 
     return {
-      products: edges.map(({ node }: ProductCountableEdge) => normalizeProduct(node)),
+      products: edges?.map(({ node }: ProductCountableEdge) => normalizeProduct(node)) || [],
       found: !!edges.length, // converting to truthy
     };
   },
@@ -60,7 +60,9 @@ const fn = (p: Provider) => p.products?.useSearch!;
 
 const useSearch: UseSearchType = (input) => {
   const options = useHandlerObject(fn);
-  return useSWRHook({ fetcher: options.fetcher!, ...options })(input);
+  return useSWRHook<SearchProductsHook, typeof handler>({ fetcher: options.fetcher!, ...options })(
+    input,
+  );
 };
 
-export default useSearch as UseSearchType<typeof handler>;
+export default useSearch;

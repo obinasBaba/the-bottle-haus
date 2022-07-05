@@ -9,6 +9,7 @@ import {
   useViewportScroll,
 } from 'framer-motion';
 import Link from 'next/link';
+import CartButton from '@fixedLayer/components/NavBar/components/CartButton';
 
 type NavBarProps = Record<string, unknown>;
 
@@ -53,19 +54,7 @@ const NavBar: React.FC = ({}) => {
               />
             </button>
 
-            <button className="cart">
-              <div className="cart-icon">
-                <Image
-                  src="/cart.png"
-                  alt="cart-icon"
-                  layout="fixed"
-                  width="15px"
-                  height="15px"
-                  objectFit="contain"
-                />
-              </div>
-              <span className="cart-count">0.020$</span>
-            </button>
+            <CartButton />
 
             <button className="menu toggle-button">
               <Image

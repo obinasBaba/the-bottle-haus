@@ -5,6 +5,8 @@ import Layout from '@/components/common/layout';
 import '@global/index.scss';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import NProgress from 'nprogress';
 import '@/public/nprogress.css';
 

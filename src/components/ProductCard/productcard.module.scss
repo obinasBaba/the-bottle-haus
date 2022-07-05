@@ -1,25 +1,25 @@
 @use "@/styles" as s;
 @use "sass:math";
 
-.container{
+.container {
   position: relative;
   z-index: 1;
   display: flex;
   flex-flow: column;
 
-  &.loading{
+  &.loading {
 
-    & :global{
-      .product-img{
+    & :global {
+      .product-img {
         width: 100%;
         height: 340px;
       }
 
-      .product-img, .title, .price{
+      .product-img, .title, .price {
         position: relative;
         overflow: hidden;
 
-        &:after{
+        &:after {
           content: '';
           position: absolute;
           inset: 0;
@@ -42,7 +42,7 @@
       }
 
 
-      .loading_bg{
+      .loading_bg {
         position: absolute;
         width: 100%;
         height: 100%;
@@ -56,26 +56,26 @@
         //background-size: 800px 104px;
       }
 
-      .title, .price{
+      .title, .price {
         background-color: #fff;
         text-indent: -99999px;
         border-radius: 30px;
       }
 
-      .title{
+      .title {
         width: 80%;
       }
 
-      .price{
+      .price {
         width: 40%;
         height: 21px;
       }
     }
   }
 
-  & :global{
+  & :global {
 
-    .product-img{
+    .product-img {
       position: relative;
       display: grid;
       place-items: center;
@@ -84,12 +84,12 @@
       border: 2px solid transparent;
     }
 
-    .title{
+    .title {
       margin-bottom: auto;
       height: 42px;
     }
 
-    .price{
+    .price {
       display: flex;
       align-items: center;
       gap: 1rem;
@@ -99,11 +99,11 @@
       font-weight: bolder;
       @include s.font-size-text(1rem);
 
-      .value{
+      .value {
         margin-top: 0;
       }
 
-      .discount{
+      .discount {
         text-decoration: line-through;
         color: lightgray;
         margin-top: 0;
@@ -114,17 +114,17 @@
   }
 }
 
-.container.loaded{
-  &:hover{
-    & :global{
-      .product-img{
+.container.loaded {
+  &:hover {
+    & :global {
+      .product-img {
         border: 2px solid s.$clrs-accent;
       }
     }
   }
 }
 
-.add_to_cart{
+.add_to_cart {
   position: absolute;
   z-index: 2;
   top: 4%;
@@ -137,15 +137,15 @@
   height: 30px;
   width: 30px;
 
-  &:hover{
+  &:hover {
     background-color: s.$clrs-accent;
 
-    &:after, &:before{
+    &:after, &:before {
       background-color: white;
     }
   }
 
-  &:after, &:before{
+  &:after, &:before {
     content: '';
     position: absolute;
     top: 50%;
@@ -157,12 +157,12 @@
     height: 25%;
   }
 
-  &:after{
+  &:after {
     transform: translateY(-54%) rotate(90deg);
   }
 }
 
-.sold_out{
+.sold_out {
   position: absolute;
   z-index: 1;
   color: white;

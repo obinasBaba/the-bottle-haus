@@ -20,10 +20,10 @@ export type HookSchemaBase = {
   data: any;
   // Input expected by the hook
   input?: Record<string, any>;
-  // Input expected before doing a fetch operation (aka fetch handler)
-  fetcherInput?: Record<string, any>;
   // Body object expected by the fetch operation
   body?: Record<string, any>;
+  // Input expected before doing a fetch operation (aka fetch handler)
+  fetcherInput?: Record<string, any>;
   // Data returned by the fetch operation
   fetchData?: any;
 };
@@ -73,7 +73,7 @@ export type HookFetcherContext<H extends HookSchemaBase> = {
   input: H['fetcherInput'];
   fetch: <
     B = H['body'],
-    // if fetchData exist that is the type if not( is unknown ) the type is any
+    // if fetchData exist, then that is the type, if not( is 'unknown' ) the type is 'any'
     T = H['fetchData'] extends Record<string, any> | null ? H['fetchData'] : any,
   >(
     options: FetcherOptions<B>,
@@ -87,7 +87,7 @@ export type HookSWRInput = [string, HookInputValue][];
 export type HookFetchInput = { [k: string]: HookInputValue };
 
 export type HookFunction<
-  Input extends { [k: string]: unknown } | undefined,
+  Input extends Record<string, unknown> | undefined,
   T,
 > = keyof Input extends never
   ? () => T
@@ -114,7 +114,7 @@ export type SWRHookContext<H extends SWRHookSchemaBase> = {
 export type SWRHook<H extends SWRHookSchemaBase> = {
   fetchOptions: HookFetcherOptions;
   fetcher?: HookFetcherFn<H>;
-  useHook(
+  useHook( // a wrapper around the above fetcher
     context: SWRHookContext<H>,
   ): HookFunction<
     H['input'] & { swrOptions?: SwrOptions<H['data'], H['fetcherInput']> },

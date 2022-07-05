@@ -3,7 +3,7 @@
 .container{
   border-color: s.$clrs-accent;
   border-width: 1px;
-  border-radius: 10px;
+  border-radius: s.f-unit-light(6px);
   //align-self: end;
   color: s.$clrs-accent-light;
   @include s.padding(.8rem, 1.3rem);

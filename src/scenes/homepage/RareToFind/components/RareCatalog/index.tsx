@@ -15,7 +15,7 @@ const RareCatalog = () => {
       <div className="list">
         {data.map((product, idx) =>
           idx == 3 ? (
-            <div className="wife">
+            <div className="wife" key={idx}>
               <Image
                 src={MyWife}
                 objectFit="contain"
@@ -24,7 +24,7 @@ const RareCatalog = () => {
               />
             </div>
           ) : (
-            <ProductCard loading={true} />
+            <ProductCard loading={true} key={idx} />
           ),
         )}
       </div>

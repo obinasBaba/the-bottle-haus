@@ -8,7 +8,12 @@ import { GraphQLFetcher } from '@/types/fetcher';
 
 const _fetch = zeitFetch();
 
-const fetchGraphqlApi: GraphQLFetcher = async (query: string, { variables } = {}, fetchOptions) => {
+const fetchGraphqlApi: GraphQLFetcher = async (
+  query: string,
+  { variables } = {},
+  fetchOptions,
+  fetcher?: any,
+) => {
   const config = getApiOperations().getConfig();
   const token = getToken(); // accessing the cookie via js-cookie
 

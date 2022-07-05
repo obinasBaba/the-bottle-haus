@@ -25,7 +25,7 @@ export type UseSwr = <H extends SWRHookSchemaBase>(
   swrOptions?: SwrOptions<H['data'], H['fetcherInput']>,
 ) => ResponseState<H['data']>;
 
-const useSwrCaller: UseSwr = (options, input, fetcherFn, swrOptions) => {
+const useSwrCaller: UseSwr = (options, input, globalFetcher, swrOptions) => {
   const hookInput = Array.isArray(input) ? input : Object.entries(input);
   const fetcher = async (url: string, query?: string, method?: string, ...args: any[]) => {
     try {
@@ -36,7 +36,7 @@ const useSwrCaller: UseSwr = (options, input, fetcherFn, swrOptions) => {
           obj[hookInput[i][0]!] = val;
           return obj;
         }, {}),
-        fetch: fetcherFn,
+        fetch: globalFetcher,
       });
     } catch (error) {
       // SWR will not log errors, but any error that's not an instance
