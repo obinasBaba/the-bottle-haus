@@ -38,7 +38,7 @@ const checkoutToCart = (checkoutPayload?: Maybe<CheckoutPayload>): Cart.Cart => 
 
   if (!checkout) {
     throw new CommerceError({
-      message: 'Missing checkout object from response',
+      message: 'Missing checkout object from response ----- >',
     });
   }
 

@@ -4,7 +4,7 @@
   position: relative;
   width: 100%;
 
-  $round: 18px;
+  $round: s.f-unit-light(8px);
   display: flex;
 
   // @include s.margin(top, 10rem);
@@ -40,6 +40,94 @@
           p {
             margin-top: 0;
           }
+        }
+
+        .cart_list_wrapper{
+          position: relative;
+          width: calc(100% + 1.5rem);
+          transform: translateX(-.8rem);
+
+          //border: thin solid red;
+
+          & > :first-child{
+            .price{
+              margin-top: 0;
+            }
+          }
+
+
+          .cart_list{
+            position: relative;
+            max-height: 10vmax;
+            overflow-y: scroll;
+            padding-right: .2rem;
+            //border: thin solid red;
+
+            /* width */
+            &::-webkit-scrollbar {
+              width: 3px;
+            }
+
+            /* Track */
+            &::-webkit-scrollbar-track {
+              background: #f1f1f1;
+            }
+
+            /* Handle */
+            &::-webkit-scrollbar-thumb {
+              background: #ababab;
+            }
+
+            /* Handle on hover */
+            &::-webkit-scrollbar-thumb:hover {
+              background: #555;
+            }
+          }
+
+          .cart_list_bottom_gradient{
+            position: absolute;
+            z-index: 1;
+            height: 25px;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-image: linear-gradient( to top, white, rgba(255, 255, 255, 0));
+          }
+
+        }
+
+        .cart_list_item {
+          width: 100%;
+          display: flex;
+          align-items: flex-start;
+          gap: s.f-unit-light(1rem);
+
+          &:not(:first-child){
+           margin-top: .5rem;
+          }
+
+          .ver {
+            flex: 1;
+            display: flex;
+            flex-flow: column;
+            justify-content: flex-start;
+            //gap: s.f-unit-light(.3rem);
+
+
+            .price{
+              font-weight: bolder;
+              margin-bottom: .2rem;
+              margin-top: 0;
+            }
+
+            p{
+              margin-top: 0;
+              font-size: s.f-unit-light(.8rem);
+              color: gray;
+            }
+          }
+
         }
 
         .count_text {

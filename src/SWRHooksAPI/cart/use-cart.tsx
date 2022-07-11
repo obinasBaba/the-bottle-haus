@@ -19,6 +19,9 @@ export const handler: SWRHook<GetCartHook> = {
 
     if (checkoutId) {
       const checkoutId = getCheckoutId().checkoutToken;
+
+      console.log('checkoutId: ', checkoutId);
+
       checkout = await fetch({
         ...options,
         variables: { checkoutId },
@@ -68,7 +71,7 @@ const useCart: UseCart = (input) => {
     context.input.cartId = Cookies.get(cartCookieKey);
     return fetcherFn(context);
   };
-  return useSWRHook({ ...handler, fetcher: wrapperWithDefaultCartId })(input);
+  return useSWRHook<GetCartHook>({ ...handler, fetcher: wrapperWithDefaultCartId })(input);
 };
 
 export default useCart as UseCart<typeof handler>;

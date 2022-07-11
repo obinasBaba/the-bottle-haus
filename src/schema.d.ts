@@ -1505,7 +1505,7 @@ export type Checkout = Node &
     /** The number of items purchased. */
     quantity: Scalars['Int'];
     /** A list of checkout lines, each containing information about an item in the checkout. */
-    lines?: Maybe<Array<Maybe<CheckoutLine>>>;
+    lines?: Array<CheckoutLine>;
     /** The price of the shipping, with all the taxes included. */
     shippingPrice?: Maybe<TaxedMoney>;
     /** The shipping method related with checkout. */

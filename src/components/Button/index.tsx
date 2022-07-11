@@ -7,7 +7,7 @@ type ButtonProps = {
   className?: string;
 };
 
-const Button: React.FC<ButtonProps> = ({ text = 'button', className, ...props }) => {
+const Button: React.FC<any> = ({ text = 'button', className, ...props }: any) => {
   return (
     <button className={clsx([s.container, className])} {...props}>
       {text}

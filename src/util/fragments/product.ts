@@ -30,6 +30,10 @@ export const ProductConnection = /* GraphQL */ `
           sku
           quantityAvailable
         }
+        defaultVariant {
+          id
+          name
+        }
 
         attributes {
           attribute {

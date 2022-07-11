@@ -72,9 +72,9 @@ export type HookFetcherContext<H extends HookSchemaBase> = {
   options: HookFetcherOptions;
   input: H['fetcherInput'];
   fetch: <
-    B = H['body'],
     // if fetchData exist, then that is the type, if not( is 'unknown' ) the type is 'any'
     T = H['fetchData'] extends Record<string, any> | null ? H['fetchData'] : any,
+    B = H['body'],
   >(
     options: FetcherOptions<B>,
   ) => Promise<T>;
@@ -111,7 +111,7 @@ export type SWRHookContext<H extends SWRHookSchemaBase> = {
 /**
  * Generates a SWR hook handler based on the schema of a hook
  */
-export type SWRHook<H extends SWRHookSchemaBase> = {
+export type SWRHook<H extends SWRHookSchemaBase = SWRHookSchemaBase> = {
   fetchOptions: HookFetcherOptions;
   fetcher?: HookFetcherFn<H>;
   useHook( // a wrapper around the above fetcher
@@ -123,17 +123,19 @@ export type SWRHook<H extends SWRHookSchemaBase> = {
 };
 
 export type MutationHookContext<H extends MutationSchemaBase> = {
-  fetch: keyof H['fetcherInput'] extends never
-    ? () => H['data'] | Promise<H['data']>
-    : Partial<H['fetcherInput']> extends H['fetcherInput']
-    ? (context?: { input?: H['fetcherInput'] }) => H['data'] | Promise<H['data']>
-    : (context: { input: H['fetcherInput'] }) => H['data'] | Promise<H['data']>;
+  fetcherWrapper: // keyof H['fetcherInput'] extends never
+  // ?
+  // () => H['data'] | Promise<H['data']>
+  // : Partial<H['fetcherInput']> extends H['fetcherInput']?
+  // (context?: { input?: H['fetcherInput'] }) => H['data'] | Promise<H['data']>
+  // :
+  (context: { input: H['fetcherInput'] }) => H['data'] | Promise<H['data']>;
 };
 
 /**
  * Generates a mutation hook handler based on the schema of a hook
  */
-export type MutationHook<H extends MutationSchemaBase> = {
+export type MutationHook<H extends MutationSchemaBase = MutationSchemaBase> = {
   useHook(
     context: MutationHookContext<H>,
   ): HookFunction<H['input'], HookFunction<H['actionInput'], H['data'] | Promise<H['data']>>>;

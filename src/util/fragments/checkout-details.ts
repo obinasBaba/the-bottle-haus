@@ -25,6 +25,15 @@ export const CheckoutDetails = /* GraphQL */ `
         product {
           name
           slug
+          media {
+            id
+            url
+            alt
+          }
+          images {
+            id
+            url
+          }
         }
         media {
           url

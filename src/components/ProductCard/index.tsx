@@ -4,6 +4,7 @@ import { ProductTypes } from '@/types/product';
 import Image from 'next/image';
 import cs from 'clsx';
 import Link from 'next/link';
+import useAddItem from '@/SWRHooksAPI/cart/use-add-item';
 
 type ProductCardProps = {
   product?: ProductTypes['product'];
@@ -12,6 +13,7 @@ type ProductCardProps = {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, loading = true }) => {
   const [ready, setReady] = useState(false);
+  const addItem = useAddItem();
 
   useEffect(() => {
     if (!loading && product) setReady(true);
@@ -25,7 +27,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, loading = true }) =>
 
       <div className="loading_bg" />
 
-      {ready && <button className={s.add_to_cart} />}
+      {ready && (
+        <button
+          className={s.add_to_cart}
+          onClick={() => {
+            addItem({
+              productId: product?.id,
+              quantity: 1,
+              variantId: product!.variants[0].id.toString(),
+            });
+          }}
+        />
+      )}
 
       <Link href={`/product/${product?.slug}`}>
         <a>

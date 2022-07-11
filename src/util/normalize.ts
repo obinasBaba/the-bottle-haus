@@ -116,6 +116,7 @@ function normalizeLineItem({ id, variant, quantity }: CheckoutLine): LineItem {
     quantity,
     variant: {
       id: String(variant?.id),
+      product: variant.product,
       sku: variant?.sku ?? '',
       name: variant?.name!,
       image: {

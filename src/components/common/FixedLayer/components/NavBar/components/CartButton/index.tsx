@@ -6,6 +6,7 @@ import { useCart } from '@/SWRHooksAPI';
 import { AnimatePresence, Variants } from 'framer-motion';
 import MotionWrapper from '@/components/common/MotionWrapper';
 import Button from '@/components/Button';
+import Link from 'next/link';
 
 const popupVariants: Variants = {
   initial: {
@@ -43,7 +44,7 @@ const CartButton = () => {
   const cart = useCart();
 
   useEffect(() => {
-    // console.log('cart-changed ---> : ', cart);
+    console.log('cart-changed ---> : ', cart);
   }, [cart]);
 
   useEffect(() => {
@@ -63,7 +64,7 @@ const CartButton = () => {
             objectFit="contain"
           />
         </div>
-        <span className="cart-count">0.020$</span>
+        <span className="cart-count"> {cart?.data?.totalPrice || 0} $ </span>
       </button>
 
       <AnimatePresence exitBeforeEnter custom={{ globalObj: {} }}>
@@ -74,14 +75,46 @@ const CartButton = () => {
             tabIndex={0}
             ref={containerRef}
             onBlur={(e: FocusEvent) => {
-              if (e.relatedTarget === null) setShow(false);
+              // if (e.relatedTarget === null) setShow(false);
             }}>
             <div className="pop_wrapper">
               <header>
                 <p>Added to Cart</p>
               </header>
+
+              <div className="cart_list_wrapper">
+                <div className="cart_list_bottom_gradient" />
+                <div className="cart_list">
+                  {cart.data?.lineItems.map(
+                    ({
+                      id,
+                      name,
+                      variant: {
+                        price,
+                        product: { media },
+                      },
+                    }) => (
+                      <div className="cart_list_item" key={id}>
+                        <Image
+                          src={(media && media[0]?.url) || ''}
+                          alt="cart-icon"
+                          layout="fixed"
+                          width="55px"
+                          height="55px"
+                          objectFit="contain"
+                        />
+                        <div className="ver">
+                          <h3 className="price">${price}</h3>
+                          <p className="name">{name}</p>
+                        </div>
+                      </div>
+                    ),
+                  )}
+                </div>
+              </div>
+
               <p className="count_text">
-                You have <span>0</span> items in your cart
+                You have <span>{cart.data?.lineItems.length || 0}</span> items in your cart
               </p>
               <footer>
                 <div className="hor">
@@ -89,8 +122,16 @@ const CartButton = () => {
                   <p>$122.90</p>
                 </div>
                 <div className="hor">
-                  <Button text="Continue Shopping" className="cart_btn" />
-                  <Button text="Check Out" className="cart_btn" />
+                  <Button
+                    text="Continue Shopping"
+                    className="cart_btn"
+                    onClick={() => setShow(false)}
+                  />
+                  <Link href={'/cart'}>
+                    <a>
+                      <Button text="Check Out" className="cart_btn" />
+                    </a>
+                  </Link>
                 </div>
               </footer>
             </div>

@@ -49,6 +49,7 @@ const useSwrCaller: UseSwr = (options, input, globalFetcher, swrOptions) => {
   };
 
   const response = useSWR(
+    // using conditional fetching with SWR
     () => {
       const opts = options.fetchOptions;
       return opts ? [opts.url, opts.query, opts.method, ...hookInput.map((e) => e[1])] : null;
