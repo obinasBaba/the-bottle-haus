@@ -75,7 +75,7 @@ const CartButton = () => {
             tabIndex={0}
             ref={containerRef}
             onBlur={(e: FocusEvent) => {
-              // if (e.relatedTarget === null) setShow(false);
+              if (e.relatedTarget === null) setShow(false);
             }}>
             <div className="pop_wrapper">
               <header>
@@ -127,7 +127,7 @@ const CartButton = () => {
                     className="cart_btn"
                     onClick={() => setShow(false)}
                   />
-                  <Link href={'/cart'}>
+                  <Link href={'/cart'} onClick={() => setShow(false)}>
                     <a>
                       <Button text="Check Out" className="cart_btn" />
                     </a>

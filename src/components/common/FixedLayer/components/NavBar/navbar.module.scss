@@ -69,7 +69,8 @@
 
         & > * {
           @include s.padding(hor, .7rem);
-          @include s.font-size-text(.7rem);
+          //@include s.font-size-text(.7rem);
+          font-size: .83rem;
         }
 
         & > :first-child {
