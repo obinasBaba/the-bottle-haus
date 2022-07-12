@@ -17,11 +17,9 @@ interface Props {
   };
 }
 
-const CommerceProvider = getCommerceProvider();
-
 const Layout: React.FC<Props> = ({ children, pageProps }) => {
   return (
-    <CommerceProvider>
+    <>
       <div className={s.root}>
         <FixedLayer />
         <main className={cs([s.main, { [s.with_sidenav]: pageProps.sideNav }])}>
@@ -43,7 +41,7 @@ const Layout: React.FC<Props> = ({ children, pageProps }) => {
         </main>
         <Footer />
       </div>
-    </CommerceProvider>
+    </>
   );
 };
 

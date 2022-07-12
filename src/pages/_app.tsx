@@ -9,8 +9,26 @@ import { useRouter } from 'next/router';
 // @ts-ignore
 import NProgress from 'nprogress';
 import '@/public/nprogress.css';
+import Head from 'next/head';
+import { CacheProvider, EmotionCache } from '@emotion/react';
+import { ThemeProvider } from '@mui/system';
+import { CssBaseline } from '@mui/material';
+import ContextWrapper from '@/context';
+import createEmotionCache from '@/createEmotoinCache';
+import theme from '@/theme';
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+// Client-side cache, shared for the whole session of the user in the browser.
+const clientSideEmotionCache = createEmotionCache();
+
+interface MyAppProps extends AppProps {
+  emotionCache?: EmotionCache;
+}
+
+export default function MyApp({
+  Component,
+  pageProps,
+  emotionCache = clientSideEmotionCache,
+}: MyAppProps) {
   const router = useRouter();
 
   useEffect(() => {
@@ -36,8 +54,20 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   }, [router]);
 
   return (
-    <Layout pageProps={pageProps}>
-      <Component {...pageProps} />
-    </Layout>
+    <ContextWrapper>
+      <CacheProvider value={emotionCache}>
+        <Head>
+          <meta name="viewport" content="initial-scale=1, width=device-width" />
+          <title>This is a Layout</title>
+        </Head>
+        <ThemeProvider theme={theme}>
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <CssBaseline />
+          <Layout pageProps={pageProps}>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
+      </CacheProvider>
+    </ContextWrapper>
   );
 }

@@ -34,6 +34,7 @@
     "@vercel/fetch": "6.2.0",
     "body-scroll-lock": "4.0.0-beta.0",
     "clsx": "1.1.1",
+    "formik": "2.2.9",
     "framer-motion": "6.3.11",
     "gsap": "3.10.4",
     "js-cookie": "3.0.1",
