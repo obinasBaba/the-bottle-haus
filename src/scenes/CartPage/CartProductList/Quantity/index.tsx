@@ -1,13 +1,39 @@
 import React from 'react';
 import s from './quantity.module.scss';
+import { useRemoveItem, useUpdateItem } from '@/SWRHooksAPI';
 
-const Quantity = ({ value }: any) => {
+const Quantity = ({ value, item, setLoading }: any) => {
+  const removeItem = useRemoveItem();
+  const updateItem = useUpdateItem();
+
   return (
     <div className={s.container}>
-      <button>-</button>
+      <button
+        onClick={() => {
+          setLoading(true);
+          updateItem({ quantity: value - 1, id: item.id, variantId: item.variant.id }).then((dat) =>
+            setLoading(false),
+          );
+        }}>
+        -
+      </button>
       <h3 className="value">{value}</h3>
-      <button className="plus">+</button>
-      <button className="delete">
+      <button
+        className="plus"
+        onClick={() => {
+          setLoading(true);
+          updateItem({ quantity: value + 1, id: item.id, variantId: item.variant.id }).then((dat) =>
+            setLoading(false),
+          );
+        }}>
+        +
+      </button>
+      <button
+        className="delete"
+        onClick={async () => {
+          setLoading(true);
+          const res = removeItem({ id: item.id }).then((r) => setLoading(false));
+        }}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 16 16"

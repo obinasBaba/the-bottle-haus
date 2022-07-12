@@ -1,4 +1,4 @@
-@use '@/styles' as s;
+@use '@styles' as s;
 
 .container {
   width: 100%;
@@ -38,6 +38,7 @@
       table.cart_product_list {
         width: 90%;
         margin: 3rem auto 0;
+        padding-bottom: 4rem;
 
         thead {
           th {
@@ -70,6 +71,14 @@
 
           td.total {
             text-align: right;
+
+            .loader{
+              margin-left: auto;
+              max-width: 30px;
+              //border: thin solid red;
+              animation: rotate .3ms ease-in-out infinite;
+
+            }
           }
 
           td.image {

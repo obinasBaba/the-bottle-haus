@@ -33,7 +33,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, loading = true }) =>
           onClick={() => {
             addItem({
               productId: product?.id,
-              quantity: 1,
+              // quantity: 1,
               variantId: product!.variants[0].id.toString(),
             });
           }}

@@ -129,7 +129,7 @@ export type MutationHookContext<H extends MutationSchemaBase> = {
   // : Partial<H['fetcherInput']> extends H['fetcherInput']?
   // (context?: { input?: H['fetcherInput'] }) => H['data'] | Promise<H['data']>
   // :
-  (context: { input: H['fetcherInput'] }) => H['data'] | Promise<H['data']>;
+  (context: { input: H['fetcherInput'] }) => Promise<H['data']>;
 };
 
 /**
@@ -138,7 +138,7 @@ export type MutationHookContext<H extends MutationSchemaBase> = {
 export type MutationHook<H extends MutationSchemaBase = MutationSchemaBase> = {
   useHook(
     context: MutationHookContext<H>,
-  ): HookFunction<H['input'], HookFunction<H['actionInput'], H['data'] | Promise<H['data']>>>;
+  ): HookFunction<H['input'], HookFunction<H['actionInput'], Promise<H['data']>>>;
 
   fetchOptions: HookFetcherOptions;
   fetcher?: HookFetcherFn<H>;
