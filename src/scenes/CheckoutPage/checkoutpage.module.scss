@@ -1,15 +1,232 @@
 @use '@/styles' as s;
 
-.container{
+.container {
   width: 100%;
 
-  // @include s.margin(top, 10rem);
+  @include s.margin(top, 13rem);
   // @include s.padding(bottom, 8rem);
 
-  & :global{
+  & :global {
 
-    .wrapper{
+    .wrapper {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      @include s.margin(bottom, 10rem);
+
+
+      display: flex;
+      justify-content: space-evenly;
+      gap: 5vmax;
+
+      //border: thin solid red;
+
+      & > * {
+        flex: 1;
+      }
+
+      .checkout_form {
+        max-width: 25rem;
+
+        h1 {
+          line-height: 120%;
+          margin-top: 0;
+          @include s.font-size-title(2.7rem);
+
+          span {
+            display: block;
+            color: transparent;
+            -webkit-text-stroke: 2px s.$clrs-orange-light;
+          }
+        }
+      }
+
+      .checkout_detail {
+        max-width: 25rem;
+
+        .step_info {
+          display: flex;
+          flex-flow: column;
+          gap: 1.5rem;
+          border: thin solid lightgray;
+          border-radius: s.f-unit-light(50px);
+
+          @include s.padding(2rem);
+
+
+          .completed_step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            //border: thin solid red;
+
+            .step_indicator {
+
+              button.step_no {
+                display: flex;
+                background-color: rgba(243, 214, 195, 0.25);
+                border-radius: 50%;
+                width: 30px;
+                height: 30px;
+                min-width: initial;
+              }
+            }
+
+            .text {
+              white-space: nowrap;
+
+              small {
+                color: gray;
+              }
+
+              & > :first-child {
+                margin: 0;
+              }
+            }
+          }
+        }
+
+        .cart_info {
+          background-color: white;
+          border-radius: s.f-unit-light(50px);
+          //@include s.padding(2rem);
+          //@include s.padding(hor, 1.7rem);
+
+          padding: 2rem 2rem;
+          margin-top: 3rem;
+
+          header {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+
+          .list {
+            width: 100%;
+
+            .item {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              gap: 2.5rem;
+
+              .img {
+                .img_wrapper {
+                  max-width: 75px;
+                }
+
+                .img_wrapper + * {
+                  color: white;
+                }
+              }
+
+              .ver {
+                .price {
+                  margin: 0;
+                }
+
+                .name {
+                  margin: 0 0 1rem 0;
+                  font-size: .91rem;
+                  line-height: 120%;
+                  color: gray;
+                }
+              }
+            }
+          }
+
+
+          .input {
+            position: relative;
+            display: flex;
+            width: 100%;
+            max-width: 95%;
+            margin: 1rem auto 1rem;
+
+            label {
+              font-size: .91rem;
+            }
+
+
+            .MuiInputBase-root {
+              border-radius: 5000px;
+              padding-right: 0;
+            }
+
+            .MuiInputAdornment-root {
+              max-height: 100%;
+              height: 100%;
+              inset: 0;
+            }
+
+            button {
+              height: 100%;
+              //margin-right: -1px;
+              z-index: 1;
+              color: white;
+              padding-left: 1.8rem;
+              padding-right: 1.8rem;
+            }
+          }
+
+          .detail {
+            .item {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+
+              & > * {
+                margin-bottom: 0;
+              }
+            }
+          }
+
+        }
+      }
 
     }
+  }
+}
+
+
+.scaffold {
+  width: 100%;
+  border: thin solid lightgray;
+  border-radius: 50px;
+  padding: 2.5rem;
+  background-color: white;
+
+  & :global {
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+
+      button {
+        color: white;
+      }
+    }
+
+    .hor {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      & > * {
+        flex: 1;
+      }
+    }
+
+    .bottom_controller {
+      margin-top: 1.5rem;
+
+      & > :last-child {
+        color: white;
+      }
+    }
+
   }
 }

@@ -1,0 +1,28 @@
+@use '@/styles' as s;
+
+.container {
+  width: 100%;
+
+  display: flex;
+  flex-flow: column;
+  gap: 1.3rem;
+
+  // @include s.margin(top, 10rem);
+  // @include s.padding(bottom, 8rem);
+
+  & :global {
+
+    label.MuiInputLabel-formControl.MuiInputLabel-animated {
+      font-size: .91rem;
+    }
+
+    .MuiInputBase-root {
+      border-radius: 5000px;
+      //padding-right: 0;
+    }
+
+
+
+  }
+}
+

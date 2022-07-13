@@ -1,0 +1,29 @@
+@use '@/styles' as s;
+
+.container{
+  width: 100%;
+
+  // @include s.margin(top, 10rem);
+  // @include s.padding(bottom, 8rem);
+
+  & :global{
+
+    .ver{
+      display: flex;
+      flex-flow: column;
+      gap: 1rem;
+    }
+
+    .title{
+      margin-top: 2rem;
+      h4{
+        margin-bottom: .3rem;
+      }
+      small{
+        display: block;
+        line-height: 120%;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

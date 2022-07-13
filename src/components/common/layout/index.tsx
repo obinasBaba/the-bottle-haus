@@ -1,6 +1,5 @@
 import React from 'react';
 import s from './layout.module.scss';
-import { getCommerceProvider } from '@/context/SWRHookContext';
 import FixedLayer from '@fixedLayer/index';
 import Footer from '@/components/common/Footer';
 import cs from 'clsx';
