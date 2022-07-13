@@ -1,7 +1,7 @@
 import React, { FC, useCallback, useMemo } from 'react';
 
 export interface State {
-  displaySidebar: boolean;
+  navMenu: boolean;
   displayDropdown: boolean;
   displayModal: boolean;
   sidebarView: string;
@@ -10,7 +10,7 @@ export interface State {
 }
 
 const initialState = {
-  displaySidebar: false,
+  navMenu: false,
   displayDropdown: false,
   displayModal: false,
   modalView: 'LOGIN_VIEW',
@@ -20,10 +20,10 @@ const initialState = {
 
 type Action =
   | {
-      type: 'OPEN_SIDEBAR';
+      type: 'OPEN_NAV_MENU';
     }
   | {
-      type: 'CLOSE_SIDEBAR';
+      type: 'CLOSE_NAV_MENU';
     }
   | {
       type: 'OPEN_DROPDOWN';
@@ -65,16 +65,16 @@ UIContext.displayName = 'UIContext';
 
 function uiReducer(state: State, action: Action) {
   switch (action.type) {
-    case 'OPEN_SIDEBAR': {
+    case 'OPEN_NAV_MENU': {
       return {
         ...state,
-        displaySidebar: true,
+        navMenu: true,
       };
     }
-    case 'CLOSE_SIDEBAR': {
+    case 'CLOSE_NAV_MENU': {
       return {
         ...state,
-        displaySidebar: false,
+        navMenu: false,
       };
     }
     case 'OPEN_DROPDOWN': {
@@ -93,7 +93,7 @@ function uiReducer(state: State, action: Action) {
       return {
         ...state,
         displayModal: true,
-        displaySidebar: false,
+        navMenu: false,
       };
     }
     case 'CLOSE_MODAL': {
@@ -126,24 +126,18 @@ function uiReducer(state: State, action: Action) {
 export const UIProvider: FC<{ children: React.ReactElement }> = (props) => {
   const [state, dispatch] = React.useReducer(uiReducer, initialState);
 
-  const openSidebar = useCallback(() => dispatch({ type: 'OPEN_SIDEBAR' }), [dispatch]);
-  const closeSidebar = useCallback(() => dispatch({ type: 'CLOSE_SIDEBAR' }), [dispatch]);
-  const toggleSidebar = useCallback(
+  const openNavMenu = useCallback(() => dispatch({ type: 'OPEN_NAV_MENU' }), [dispatch]);
+  const closeNavMenu = useCallback(() => dispatch({ type: 'CLOSE_NAV_MENU' }), [dispatch]);
+  const toggleNavMenu = useCallback(
     () =>
-      state.displaySidebar
-        ? dispatch({ type: 'CLOSE_SIDEBAR' })
-        : dispatch({ type: 'OPEN_SIDEBAR' }),
-    [dispatch, state.displaySidebar],
+      state.navMenu ? dispatch({ type: 'CLOSE_NAV_MENU' }) : dispatch({ type: 'OPEN_NAV_MENU' }),
+    [dispatch, state.navMenu],
   );
 
   const toggleModal = useCallback(
     () =>
       state.displayModal ? dispatch({ type: 'CLOSE_MODAL' }) : dispatch({ type: 'OPEN_MODAL' }),
     [state.displayModal, dispatch],
-  );
-  const closeSidebarIfPresent = useCallback(
-    () => state.displaySidebar && dispatch({ type: 'CLOSE_SIDEBAR' }),
-    [dispatch, state.displaySidebar],
   );
 
   const openDropdown = useCallback(() => dispatch({ type: 'OPEN_DROPDOWN' }), [dispatch]);
@@ -170,11 +164,10 @@ export const UIProvider: FC<{ children: React.ReactElement }> = (props) => {
   const value = useMemo(
     () => ({
       ...state,
-      openSidebar,
-      closeSidebar,
-      toggleSidebar,
+      openNavMenu,
+      closeNavMenu,
+      toggleNavMenu,
       toggleModal,
-      closeSidebarIfPresent,
       openDropdown,
       closeDropdown,
       openModal,
@@ -194,8 +187,10 @@ export const UIProvider: FC<{ children: React.ReactElement }> = (props) => {
 };
 
 type UiType = {
-  toggleSidebar: () => void;
+  toggleNavMenu: () => void;
   openModal: () => void;
+  openNavMenu: () => void;
+  closeNavMenu: () => void;
   closeModal: () => void;
   toggleModal: () => void;
 } & State;

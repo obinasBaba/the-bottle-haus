@@ -1,0 +1,123 @@
+@use '@/styles' as s;
+
+.container{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  //background: rgba(52, 103, 102, 0.22);
+  //background: rgba(253, 170, 113, 0.17);
+  backdrop-filter: blur(3.5px);
+  z-index: 20;
+  pointer-events: auto;
+
+  // @include s.margin(top, 10rem);
+  // @include s.padding(bottom, 8rem);
+
+  & :global{
+
+    .menu_wrapper{
+      position: absolute;
+      background-color: white;
+      height: 100%;
+      right: 0;
+      width: 75%;
+      //max-width: 600px;
+      display: flex;
+      flex-flow: column;
+      padding: s.f-unit(2rem);
+      z-index: 1;
+      //white-space: ;
+
+
+      @include s.media-breakpoint-up(sm){
+        white-space: nowrap;
+        width: s.f-unit-light(75vmin);
+      }
+
+      .close_cross{
+        position: absolute;
+        z-index: 2;
+        right: 8%;
+        top: 6%;
+        max-width: 1.5rem;
+        background: none;
+        padding: 0;
+        border: none;
+        cursor: pointer;
+
+      }
+
+      .link_list{
+        margin: auto 0 auto 0;
+
+
+        @include s.media-breakpoint-up(sm){
+          & > :nth-child(even){
+            margin-left: s.f-unit-light(5rem);
+          }
+        }
+
+        @include s.media-breakpoint-up(sm){
+          margin: auto 0 auto 6rem;
+
+          & > :nth-child(even){
+            margin-left: s.f-unit-light(7rem);
+          }
+
+        }
+
+        .item{
+          display: flex;
+          align-items: center;
+          gap: s.f-unit(2rem);
+          //white-space: nowrap;
+
+          h1{
+            @include s.font-size-title(4rem);
+            margin-bottom: 0;
+            margin-top: 1rem;
+          }
+
+        }
+
+
+      }
+
+      footer{
+        width: 100%;
+        height: max-content;
+        margin-top: auto;
+        //border: thin solid red;
+        display: flex;
+        justify-content: space-between;
+
+        .hor{
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          @include s.media-breakpoint-down(sm){
+            flex-wrap: wrap;
+          }
+
+          //border: thin solid black;
+
+          button{
+            background-color: rgba(253, 127, 40, 0.04);
+          }
+        }
+      }
+
+      .bottom_gradient{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        //height: 100px;
+        width: 100%;
+        //background-color: rgba(253, 127, 40, 0.08);
+        background-image: linear-gradient(to bottom, rgba(253, 127, 40, 0.09), rgba(253, 127, 40, 0));
+      }
+    }
+  }
+}

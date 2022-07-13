@@ -10,11 +10,12 @@ import {
 } from 'framer-motion';
 import Link from 'next/link';
 import CartButton from '@fixedLayer/components/NavBar/components/CartButton';
+import { useUI } from '@/context/ui/context';
 
 type NavBarProps = Record<string, unknown>;
 
 const NavBar: React.FC = ({}) => {
-  const [logoWidth, setLogoWidth] = useState('120px');
+  const { openNavMenu } = useUI();
 
   const { scrollY } = useViewportScroll();
   const padding1 = useMotionValue(0);
@@ -56,7 +57,7 @@ const NavBar: React.FC = ({}) => {
 
             <CartButton />
 
-            <button className="menu toggle-button">
+            <button className="menu toggle-button" onClick={() => openNavMenu()}>
               <Image
                 src="/menu-btn.png"
                 alt="menu-toggle-button"
