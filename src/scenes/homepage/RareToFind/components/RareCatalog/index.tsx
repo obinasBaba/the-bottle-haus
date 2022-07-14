@@ -4,18 +4,19 @@ import { Button } from '@mui/material';
 import ProductCard from '@/components/ProductCard';
 import MyWife from '@/public/tell-my-wife.png';
 import Image from 'next/image';
+import { Product } from '@/types/product';
 
 const MyWifeImg = <Image src={MyWife} alt="i tell here investiment" />;
 
-const RareCatalog = () => {
-  const data = Array.from(new Array(12));
+const RareCatalog = ({ data }: { data: Product[] }) => {
+  // const data = Array.from(new Array(12));
 
   return (
     <div className={s.container}>
       <div className="list">
         {data.map((product, idx) =>
           idx == 3 ? (
-            <div className="wife" key={idx}>
+            <div className="wife" key={product.id}>
               <Image
                 src={MyWife}
                 objectFit="contain"
@@ -24,7 +25,7 @@ const RareCatalog = () => {
               />
             </div>
           ) : (
-            <ProductCard loading={true} key={idx} />
+            <ProductCard product={product} loading={!data} key={product.id} />
           ),
         )}
       </div>

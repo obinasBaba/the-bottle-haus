@@ -4,12 +4,13 @@ import Image from 'next/image';
 import RareImage from '@/public/rare.png';
 import TextCrown from '@/public/text-crown.png';
 import RareCatalog from './components/RareCatalog';
+import { Product } from '@/types/product';
 
-const RareToFind = () => {
+const RareToFind = ({ data }: { data: Product[] }) => {
   return (
     <div className={s.container}>
       <div className={s.wrapper}>
-        <header>
+        <div className="rare_head">
           <div className={s.bg_txt}>
             <h1>RARE & HARD TO FIND</h1>
             <div className="crown">
@@ -30,9 +31,9 @@ const RareToFind = () => {
             <p className="title">Louis XIII Cognac</p>
             <span>The oldest being over 100 years old</span>
           </div>
-        </header>
+        </div>
 
-        <RareCatalog />
+        <RareCatalog data={data} />
       </div>
     </div>
   );

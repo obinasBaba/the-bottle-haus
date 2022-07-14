@@ -16,9 +16,14 @@ import { MotionParent } from '@/components/common/MotionItems';
 type HomepageProps = {
   featuredProduct: ProductTypes['product'];
   featuredCollections: Product[];
+  rareToFind: Product[];
 };
 
-const HomePage: React.FC<HomepageProps> = ({ featuredProduct, featuredCollections }) => {
+const HomePage: React.FC<HomepageProps> = ({
+  featuredProduct,
+  featuredCollections,
+  rareToFind,
+}) => {
   return (
     <MotionParent className={s.container}>
       <Head>
@@ -30,7 +35,7 @@ const HomePage: React.FC<HomepageProps> = ({ featuredProduct, featuredCollection
       <Hero />
       <VideoAd />
       <FeaturedCollection data={featuredCollections} />
-      <RareToFind />
+      <RareToFind data={rareToFind} />
       <OtherSaying />
       <SlideShow />
       <FeaturedGrid />

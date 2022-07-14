@@ -17,6 +17,13 @@ export async function getStaticProps({ preview, locale, locales }: GetStaticProp
     config,
     preview,
   });
+
+  const rareToFind = await commerce.getAllProducts({
+    variables: { first: 12, filter: { collections: ['Q29sbGVjdGlvbjoxMA=='] } },
+    config,
+    preview,
+  });
+
   /*
 
   const { product } = await productsPromise;
@@ -31,6 +38,7 @@ export async function getStaticProps({ preview, locale, locales }: GetStaticProp
     props: {
       featuredProduct,
       featuredCollections,
+      rareToFind,
       /* product,
       pages,
       categories,
@@ -43,6 +51,13 @@ export async function getStaticProps({ preview, locale, locales }: GetStaticProp
 export default function Home({
   featuredProduct,
   featuredCollections,
+  rareToFind,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  return <HomePage featuredProduct={featuredProduct!} featuredCollections={featuredCollections} />;
+  return (
+    <HomePage
+      featuredProduct={featuredProduct!}
+      featuredCollections={featuredCollections}
+      rareToFind={rareToFind}
+    />
+  );
 }

@@ -14,8 +14,6 @@ export default function getAllProductsOperation({ commerce }: OperationContext) 
   async function getAllProducts({
     query = Query.ProductMany,
     variables,
-    config,
-    featured,
   }: {
     query?: string;
     variables?: any;
@@ -23,18 +21,12 @@ export default function getAllProductsOperation({ commerce }: OperationContext) 
     preview?: boolean;
     featured?: boolean;
   } = {}): Promise<GetAllProductsOperation['data']> {
-    const { fetch, locale } = commerce.getConfig(config);
-
-    console.log('variables: ', variables);
-
     // variables = getSearchVariables(variables);
 
     const data = await fetcher({
       variables,
       query,
     });
-
-    console.log('data: ', data);
 
     return (
       data?.products?.edges?.map(({ node: p }: ProductCountableEdge) => normalizeProduct(p)) ?? []
