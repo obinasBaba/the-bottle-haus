@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import s from './slidshow.module.scss';
 import Weller from './weller.png';
-import Button from '@/components/Button';
+import { Button } from '@mui/material';
 import Image from 'next/image';
 import Dots from '@/public//dots.svg';
 import Bottle from '@/public/bottle-left.png';
@@ -36,7 +36,7 @@ const SlideShow = () => {
             <p className="subtitle">{slide.subTitle}</p>
             <h1 className="title" dangerouslySetInnerHTML={{ __html: slide.title! }} />
             <p className="desc">{slide.desc}</p>
-            <Button text="Shop Now" />
+            <Button>Shop Now</Button>
           </div>
         </div>
 

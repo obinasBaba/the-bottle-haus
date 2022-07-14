@@ -15,11 +15,16 @@
       justify-content: space-between;
       align-items: center;
       color: s.$clrs-accent;
-      @include s.font-size-text(1.3rem);
 
+      h1{
+        font-weight: 900;
+        @include s.font-size-text(3rem);
+        line-height: 140%;
+      }
       //border: thin solid red;
 
       span{
+        display: block;
         color: transparent;
         -webkit-text-stroke-width: 1px;
         -webkit-text-stroke-color: s.$clrs-accent;

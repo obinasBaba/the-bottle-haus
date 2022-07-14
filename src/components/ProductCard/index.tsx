@@ -5,6 +5,8 @@ import Image from 'next/image';
 import cs from 'clsx';
 import Link from 'next/link';
 import useAddItem from '@/SWRHooksAPI/cart/use-add-item';
+import { Button } from '@mui/material';
+import { AddRounded } from '@mui/icons-material';
 
 type ProductCardProps = {
   product?: ProductTypes['product'];
@@ -21,14 +23,24 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, loading = true }) =>
 
   return (
     <div className={cs(s.container, { [s.loading]: loading, [s.loaded]: !loading || product })}>
-      {ready && product?.variants[0]?.availableForSale && (
-        <div className={s.sold_out}>SOLD OUT</div>
+      {ready && !product?.isAvailable && (
+        <Button
+          disableRipple
+          unselectable={'on'}
+          variant="outlined"
+          size="small"
+          className={s.sold_out}>
+          SOLD OUT
+        </Button>
       )}
 
       <div className="loading_bg" />
 
-      {ready && (
-        <button
+      {ready && product?.isAvailable && (
+        <Button
+          variant="outlined"
+          // size='small'
+          color="primary"
           className={s.add_to_cart}
           onClick={() => {
             addItem({
@@ -36,8 +48,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, loading = true }) =>
               // quantity: 1,
               variantId: product!.variants[0].id.toString(),
             });
-          }}
-        />
+          }}>
+          <AddRounded />
+        </Button>
       )}
 
       <Link href={`/product/${product?.slug}`}>

@@ -1,7 +1,6 @@
 import React from 'react';
 import s from './contactus.module.scss';
-import Button from '@/components/Button';
-import { TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 
 const ContactUsPage = () => {
   return (
@@ -25,7 +24,7 @@ const ContactUsPage = () => {
             <TextField id="phone" label="phone" variant="outlined" />
             <TextField id="message" label="message" variant="outlined" multiline rows={7} />
 
-            <Button text="Send Message" />
+            <Button>Send Message</Button>
           </div>
 
           <div className="contact_detail">

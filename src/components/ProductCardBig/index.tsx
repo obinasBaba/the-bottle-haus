@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import s from './productcardbig.module.scss';
 import cs from 'clsx';
 import Image from 'next/image';
-import Button from '@/components/Button';
-import AddToCart from '@/components/Buttons/AddToCart';
+import { Button } from '@mui/material';
 
 type ProductCardProps = {
   product: any;
@@ -53,8 +52,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <p className="desc">{product?.description}</p>
 
             <div className="cart_controllers">
-              <AddToCart text="ADD TO CART" />
-              <Button text="Add personalized Gift Note" />
+              <Button>Add to cart</Button>
+              <Button>Add personalized Gift Note</Button>
             </div>
           </div>
         </div>

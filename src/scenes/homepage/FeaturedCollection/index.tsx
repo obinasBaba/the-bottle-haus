@@ -1,38 +1,26 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import s from './featuredcollection.module.scss';
-import Button from '@/components/Button';
+import { Button } from '@mui/material';
 import ProductCard from '@/components/ProductCard';
-import { useSearch } from '@/SWRHooksAPI';
+import { Product } from '@/types/product';
 
-const FeaturedCollection = () => {
-  const { data, error, isLoading } = useSearch({
-    first: 12,
-    filter: { collections: ['Q29sbGVjdGlvbjoz'] },
-  });
-
-  useEffect(() => {
-    console.log('data: ', data, 'error: ', error, isLoading);
-  }, [data, error, isLoading]);
-
-  useEffect(() => {
-    if (data?.found) {
-    }
-  }, [data]);
-
+const FeaturedCollection = ({ data }: { data: Product[] }) => {
   return (
     <div className={s.container}>
       <div className="header">
         <h1>
-          Shop <br />
+          Shop
           <span>Whiskey</span>
         </h1>
 
-        <Button text="Show All" />
+        <Button variant="contained" size="large">
+          Show All
+        </Button>
       </div>
 
       <div className="whiskey-wrapper">
-        {(data?.products ? data.products : Array.from(new Array(12))).map((product, idx) => (
-          <ProductCard key={product?.id || idx} product={product} loading={!data?.found} />
+        {data.map((product, idx) => (
+          <ProductCard key={product?.id || idx} product={product} loading={!data} />
         ))}
       </div>
     </div>

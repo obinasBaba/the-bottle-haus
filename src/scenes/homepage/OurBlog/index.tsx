@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './ourblog.module.scss';
-import Button from '@/components/Button';
+import { Button } from '@mui/material';
+
 import Image from 'next/image';
 import Cover from './img.png';
 
@@ -14,12 +15,12 @@ const OurBlog = () => {
             To create this extraordinary <br /> blend, crown blender and <br />
             infused with the juicy flavor
           </p>
-          <Button text="Read All" />
+          <Button>Read All</Button>
         </div>
 
         <div className="blog_card">
           <div className="cover">
-            <Image src={Cover} />
+            <Image src={Cover} alt="cover image" />
           </div>
           <h4> What’s The Best Gin For Tom Collins? </h4>
           <p className="date">Posted by The Bottle Haus •March 1, 2022</p>
@@ -27,7 +28,7 @@ const OurBlog = () => {
 
         <div className="blog_card">
           <div className="cover">
-            <Image src={Cover} />
+            <Image src={Cover} alt="cover-image" />
           </div>
           <h4> What’s The Best Gin For Tom Collins? </h4>
           <p className="date">Posted by The Bottle Haus •March 1, 2022</p>
@@ -35,7 +36,7 @@ const OurBlog = () => {
 
         <div className="blog_card">
           <div className="cover">
-            <Image src={Cover} />
+            <Image src={Cover} alt="cover-image" />
           </div>
           <h4> What’s The Best Gin For Tom Collins? </h4>
           <p className="date">Posted by The Bottle Haus •March 1, 2022</p>

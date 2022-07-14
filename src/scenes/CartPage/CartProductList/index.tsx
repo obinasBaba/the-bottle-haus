@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import s from './cartproductlist.module.scss';
-import Button from '@/components/Button';
 import useCart from '@/SWRHooksAPI/cart/use-cart';
 import Image from 'next/image';
 import Quantity from '@/scenes/CartPage/CartProductList/Quantity';
 import { motion } from 'framer-motion';
+import { Button } from '@mui/material';
 
 const CartProductList = () => {
   const { data: cart } = useCart();
@@ -17,7 +17,7 @@ const CartProductList = () => {
           <h1>
             My <span>Cart ({cart?.lineItems.length || 0})</span>
           </h1>
-          <Button text="Back" />
+          <Button>Back</Button>
         </header>
 
         <table className="cart_product_list">

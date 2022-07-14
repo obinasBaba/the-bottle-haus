@@ -10,6 +10,7 @@ export const ProductConnection = /* GraphQL */ `
         name
         description
         slug
+        isAvailable
         pricing {
           discount {
             net {
@@ -33,6 +34,7 @@ export const ProductConnection = /* GraphQL */ `
         defaultVariant {
           id
           name
+          quantityAvailable
         }
 
         attributes {

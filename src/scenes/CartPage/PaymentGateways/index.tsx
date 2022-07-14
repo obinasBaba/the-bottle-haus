@@ -1,9 +1,9 @@
 import React from 'react';
 import s from './paymentgateways.module.scss';
-import { TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import ShipmentProtection from './img.png';
 import Image from 'next/image';
-import Button from '@/components/Button';
+
 import Link from 'next/link';
 
 const PaymentGateways = () => {
@@ -49,15 +49,15 @@ const PaymentGateways = () => {
           <div className="payment_btns">
             <Link href="/checkout">
               <a>
-                <Button text="Check Out" />
+                <Button>Check Out</Button>
               </a>
             </Link>
             <hr />
             <div className="methods">
-              <Button text="Paypal" />
-              <Button text="Shop Pay" />
-              <Button text="G Pay" />
-              <Button text="Check Out" />
+              <Button>Paypal</Button>
+              <Button>Shop Pay</Button>
+              <Button>G Pay</Button>
+              <Button>Check Out</Button>
             </div>
           </div>
         </div>

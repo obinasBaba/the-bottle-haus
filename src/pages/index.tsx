@@ -12,13 +12,12 @@ export async function getStaticProps({ preview, locale, locales }: GetStaticProp
     variables: { slug: 'don-julio-primavera-tequila' },
   });
 
-  /*const productsPromise = commerce.getAllProducts({
-    variables: { first: 6 },
+  const featuredCollections = await commerce.getAllProducts({
+    variables: { first: 12, filter: { collections: ['Q29sbGVjdGlvbjoz'] } },
     config,
     preview,
-    // Saleor provider only
-    ...({ featured: false } as any),
   });
+  /*
 
   const { product } = await productsPromise;
 
@@ -31,6 +30,7 @@ export async function getStaticProps({ preview, locale, locales }: GetStaticProp
   return {
     props: {
       featuredProduct,
+      featuredCollections,
       /* product,
       pages,
       categories,
@@ -40,6 +40,9 @@ export async function getStaticProps({ preview, locale, locales }: GetStaticProp
   };
 }
 
-export default function Home({ featuredProduct }: InferGetStaticPropsType<typeof getStaticProps>) {
-  return <HomePage featuredProduct={featuredProduct!} />;
+export default function Home({
+  featuredProduct,
+  featuredCollections,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  return <HomePage featuredProduct={featuredProduct!} featuredCollections={featuredCollections} />;
 }

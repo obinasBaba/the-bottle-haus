@@ -9,16 +9,18 @@ import SlideShow from '@homepage/SlideShow';
 import FeaturedGrid from '@homepage/FeaturedGrid';
 import ProductCardBig from '@/components/ProductCardBig';
 import OurBlog from '@homepage/OurBlog';
-import { ProductTypes } from '@/types/product';
+import { Product, ProductTypes } from '@/types/product';
 import FeaturedCollection from '@homepage/FeaturedCollection';
+import { MotionParent } from '@/components/common/MotionItems';
 
 type HomepageProps = {
   featuredProduct: ProductTypes['product'];
+  featuredCollections: Product[];
 };
 
-const HomePage: React.FC<HomepageProps> = ({ featuredProduct }) => {
+const HomePage: React.FC<HomepageProps> = ({ featuredProduct, featuredCollections }) => {
   return (
-    <div className={s.container}>
+    <MotionParent className={s.container}>
       <Head>
         <title>Homepage</title>
         <meta name="description" content="the bottle haus homepage" />
@@ -27,14 +29,14 @@ const HomePage: React.FC<HomepageProps> = ({ featuredProduct }) => {
 
       <Hero />
       <VideoAd />
-      <FeaturedCollection />
+      <FeaturedCollection data={featuredCollections} />
       <RareToFind />
       <OtherSaying />
       <SlideShow />
       <FeaturedGrid />
       <ProductCardBig product={featuredProduct} />
       <OurBlog />
-    </div>
+    </MotionParent>
   );
 };
 

@@ -3,10 +3,10 @@ import s from './cartbutton.module.scss';
 import Image from 'next/image';
 import { useCart } from '@/SWRHooksAPI';
 import { AnimatePresence, Variants } from 'framer-motion';
-import MotionParent from '@/components/common/MotionItems';
 import Link from 'next/link';
 import { Button } from '@mui/material';
 import { ShoppingCartTwoTone } from '@mui/icons-material';
+import { MotionParent } from '@/components/common/MotionItems';
 
 const popupVariants: Variants = {
   initial: {
@@ -44,7 +44,7 @@ const CartButton = () => {
   const cart = useCart();
 
   useEffect(() => {
-    console.log('cart-changed ---> : ', cart);
+    // console.log('cart-changed ---> : ', cart);
   }, [cart]);
 
   useEffect(() => {
@@ -123,14 +123,12 @@ const CartButton = () => {
                   <p>$122.90</p>
                 </div>
                 <div className="hor">
-                  <Button
-                    text="Continue Shopping"
-                    className="cart_btn"
-                    onClick={() => setShow(false)}
-                  />
+                  <Button className="cart_btn" onClick={() => setShow(false)}>
+                    Continue Shopping
+                  </Button>
                   <Link href={'/cart'} onClick={() => setShow(false)}>
                     <a>
-                      <Button text="Check Out" className="cart_btn" />
+                      <Button className="cart_btn">Check Out</Button>
                     </a>
                   </Link>
                 </div>

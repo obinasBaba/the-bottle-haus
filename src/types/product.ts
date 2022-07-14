@@ -44,6 +44,8 @@ export type Product = {
   path?: string;
   images: ProductImage[];
   variants: ProductVariant[];
+  defaultVariant?: ProductVariant;
+  isAvailable?: boolean;
   price: ProductPrice;
   options: ProductOption[];
   vendor?: string;
@@ -88,7 +90,7 @@ export type GetAllProductPathsOperation<T extends ProductTypes = ProductTypes> =
 };
 
 export type GetAllProductsOperation<T extends ProductTypes = ProductTypes> = {
-  data: { products: T['product'][] };
+  data: T['product'][];
   variables: {
     relevance?: 'featured' | 'best_selling' | 'newest';
     ids?: string[];
