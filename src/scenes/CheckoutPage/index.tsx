@@ -3,7 +3,7 @@ import { Badge, Button, IconButton, InputAdornment, TextField } from '@mui/mater
 
 import Bottle from '@/public/whisky-review/kiss.png';
 import Image from 'next/image';
-import MotionWrapper from '@/components/common/MotionWrapper';
+import MotionParent from '@/components/common/MotionItems';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 import { Form, Formik, FormikProps } from 'formik';
 import ContactInformation from '@/scenes/CheckoutPage/ContactInformation';
@@ -159,7 +159,7 @@ const CheckoutPage = () => {
           <h1>
             Checkout <span>Detail</span>
           </h1>
-          <MotionWrapper className="active_step">
+          <MotionParent className="active_step">
             <Formik
               initialValues={initialValues}
               validateOnMount={false}
@@ -190,7 +190,7 @@ const CheckoutPage = () => {
                 </Form>
               )}
             </Formik>
-          </MotionWrapper>
+          </MotionParent>
         </div>
 
         <div className="checkout_detail">

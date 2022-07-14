@@ -15,6 +15,10 @@ const theme = createTheme({
         sizeLarge: {
           // padding: '.9rem 22px',
         },
+
+        contained: {
+          color: 'white',
+        },
       },
     },
   },

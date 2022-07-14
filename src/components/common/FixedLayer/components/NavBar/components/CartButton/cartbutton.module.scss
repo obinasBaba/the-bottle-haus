@@ -167,18 +167,18 @@
 
     }
 
-    .cart {
+    .cart__ {
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: s.f-unit(.8rem);
+      gap: s.f-unit(.5rem);
       background: white;
       border-radius: $round;
 
       //min-width: 45px;
       //height: 100%;
-      @include s.padding(hor, 1rem);
+      @include s.padding(hor, .7rem);
 
       .cart-icon {
         position: relative;

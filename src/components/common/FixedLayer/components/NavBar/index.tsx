@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import s from './navbar.module.scss';
 import {
@@ -11,11 +11,12 @@ import {
 import Link from 'next/link';
 import CartButton from '@fixedLayer/components/NavBar/components/CartButton';
 import { useUI } from '@/context/ui/context';
+import { Button } from '@mui/material';
 
 type NavBarProps = Record<string, unknown>;
 
 const NavBar: React.FC = ({}) => {
-  const { openNavMenu } = useUI();
+  const { openNavMenu, openModal } = useUI();
 
   const { scrollY } = useViewportScroll();
   const padding1 = useMotionValue(0);
@@ -39,8 +40,12 @@ const NavBar: React.FC = ({}) => {
 
         <div className={s.others}>
           <div className="account">
-            <div className="login">Login</div>
-            <div className="create"> Create Account</div>
+            <Button variant="outlined" className="login" onClick={() => openModal()}>
+              Login
+            </Button>
+            <Button variant="outlined" className="create">
+              Create Account
+            </Button>
           </div>
 
           <div className="icons">

@@ -4,6 +4,34 @@ import data from './data';
 import { Button } from '@mui/material';
 import { Variants } from 'framer-motion';
 import { useUI } from '@/context/ui/context';
+import { basicVariants, MotionChild, MotionParent } from '@/components/common/MotionItems';
+
+const blurBgVariants = Object.setPrototypeOf(
+  {
+    transition: {
+      duration: 0.8,
+      ease: [0.5, 0, 0.75, 0],
+    },
+  },
+  basicVariants,
+);
+
+const menuVariants = {
+  initial: {
+    x: '100%',
+  },
+  animate: {
+    x: 0,
+  },
+  exit: {
+    x: '100%',
+  },
+
+  transition: {
+    duration: 0.8,
+    ease: [1, 0, 0.68, 1],
+  },
+};
 
 const footerContainerVariants: Variants = {
   animate: {
@@ -39,6 +67,7 @@ const linkContainerVariants: Variants = {
     },
   },
 };
+
 const linkItemVariants: Variants = {
   initial: {
     opacity: 0,
@@ -58,11 +87,20 @@ const NavMenu = () => {
   const { closeNavMenu } = useUI();
 
   return (
-    <div className={s.container} onClick={() => closeNavMenu()}>
-      <div className="menu_wrapper" onClick={(e) => e.stopPropagation()}>
+    <MotionParent className={s.container} variants={{}}>
+      <MotionChild
+        className="blur_bg"
+        onClick={() => closeNavMenu()}
+        variants={blurBgVariants}
+        transition={blurBgVariants.transition}
+      />
+
+      <MotionChild
+        className="menu_wrapper"
+        variants={menuVariants}
+        transition={menuVariants.transition}>
         <button
           aria-label="close menu"
-          data-active="link"
           className="close_cross"
           type="button"
           onClick={() => closeNavMenu()}>
@@ -114,8 +152,8 @@ const NavMenu = () => {
         </footer>
 
         <div className="bottom_gradient" />
-      </div>
-    </div>
+      </MotionChild>
+    </MotionParent>
   );
 };
 

@@ -69,6 +69,7 @@ function uiReducer(state: State, action: Action) {
       return {
         ...state,
         navMenu: true,
+        displayModal: false,
       };
     }
     case 'CLOSE_NAV_MENU': {

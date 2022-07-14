@@ -68,14 +68,14 @@
         display: flex;
 
         & > * {
-          @include s.padding(hor, .7rem);
+          //@include s.padding(hor, .7rem);
           //@include s.font-size-text(.7rem);
-          font-size: .83rem;
+          font-size: .91rem;
         }
 
         & > :first-child {
           position: relative;
-          border-right: 1px solid lightgray;
+          //border-right: 1px solid lightgray;
         }
 
       }
@@ -85,11 +85,11 @@
         gap: s.f-unit($gap);
 
         button{ // common style
-          cursor: pointer;
-          border: thin solid transparent;
+          //cursor: pointer;
+          //border: thin solid transparent;
 
           &:hover{
-            border: thin solid s.$clrs-accent-light;
+            //border: thin solid s.$clrs-accent-light;
           }
         }
 

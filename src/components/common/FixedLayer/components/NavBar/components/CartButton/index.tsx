@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import s from './cartbutton.module.scss';
 import Image from 'next/image';
-import CartImg from '@/public/cart.png';
 import { useCart } from '@/SWRHooksAPI';
 import { AnimatePresence, Variants } from 'framer-motion';
-import MotionWrapper from '@/components/common/MotionWrapper';
-import Button from '@/components/Button';
+import MotionParent from '@/components/common/MotionItems';
 import Link from 'next/link';
+import { Button } from '@mui/material';
+import { ShoppingCartTwoTone } from '@mui/icons-material';
 
 const popupVariants: Variants = {
   initial: {
@@ -53,8 +53,8 @@ const CartButton = () => {
 
   return (
     <div className={s.container}>
-      <button className="cart" onClick={() => setShow(!show)}>
-        <div className="cart-icon">
+      <Button variant="outlined" onClick={() => setShow(!show)} startIcon={<ShoppingCartTwoTone />}>
+        {/*<div className="cart-icon">
           <Image
             src={CartImg}
             alt="cart-icon"
@@ -64,12 +64,13 @@ const CartButton = () => {
             objectFit="contain"
           />
         </div>
-        <span className="cart-count"> {cart?.data?.totalPrice || 0} $ </span>
-      </button>
+        <span className="cart-count"> {cart?.data?.totalPrice || 0} $ </span>*/}
+        {cart?.data?.totalPrice || 0} $
+      </Button>
 
       <AnimatePresence exitBeforeEnter custom={{ globalObj: {} }}>
         {show && (
-          <MotionWrapper
+          <MotionParent
             className="popper"
             variants={popupVariants}
             tabIndex={0}
@@ -135,7 +136,7 @@ const CartButton = () => {
                 </div>
               </footer>
             </div>
-          </MotionWrapper>
+          </MotionParent>
         )}
       </AnimatePresence>
     </div>

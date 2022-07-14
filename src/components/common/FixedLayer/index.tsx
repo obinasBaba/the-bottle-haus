@@ -6,6 +6,8 @@ import SecondaryNavBar from '@fixedLayer/components/SecondaryNavBar';
 import { Slide, useScrollTrigger } from '@mui/material';
 import NavMenu from '@fixedLayer/components/NavMenu';
 import { useUI } from '@/context/ui/context';
+import RegistrationModal from '@fixedLayer/components/RegistrationModal';
+import { AnimatePresence } from 'framer-motion';
 
 interface Props {
   window?: () => Window;
@@ -26,7 +28,7 @@ function HideOnScroll(props: Props) {
 }
 
 const FixedLayer = () => {
-  const { navMenu } = useUI();
+  const { navMenu, displayModal } = useUI();
 
   return (
     <div className={s.container}>
@@ -37,7 +39,9 @@ const FixedLayer = () => {
         </div>
       </HideOnScroll>
 
-      {navMenu && <NavMenu />}
+      <AnimatePresence exitBeforeEnter>{navMenu && <NavMenu />}</AnimatePresence>
+
+      {displayModal && <RegistrationModal />}
 
       <ScrollTopBottle />
     </div>

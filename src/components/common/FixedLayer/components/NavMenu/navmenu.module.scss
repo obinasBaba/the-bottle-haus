@@ -6,7 +6,6 @@
   width: 100%;
   //background: rgba(52, 103, 102, 0.22);
   //background: rgba(253, 170, 113, 0.17);
-  backdrop-filter: blur(3.5px);
   z-index: 20;
   pointer-events: auto;
 
@@ -14,6 +13,14 @@
   // @include s.padding(bottom, 8rem);
 
   & :global{
+
+
+    .blur_bg{
+      backdrop-filter: blur(5.5px);
+      position: absolute;
+      inset: 0;
+      width: 100%;
+    }
 
     .menu_wrapper{
       position: absolute;
