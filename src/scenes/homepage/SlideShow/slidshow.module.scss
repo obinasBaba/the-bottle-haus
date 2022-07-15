@@ -76,7 +76,6 @@
             font-weight: bolder;
             -webkit-text-stroke: 1px rgba(0, 0, 0, 0.72);
 
-
             span {
               display: block;
               color: transparent;
@@ -135,20 +134,23 @@
       gap: 1rem;
       padding: 0 2rem;
 
-      //border: thin solid red;
-
 
       .prev, .next {
         max-width: s.f-unit(4rem);
+        cursor: pointer;
+        transition: transform cubic-bezier(0.5, 0, 0.75, 0) 200ms;
       }
 
       .prev {
-        margin-top: 5px;
-        //transform: rotate(-90deg);
+        &:hover{
+          transform: scale(1.1) translateX(-3px);
+        }
       }
 
       .next {
-        transform: rotate(180deg);
+        &:hover{
+          transform: scale(1.1) translateX(3px);
+        }
       }
     }
   }
