@@ -6,39 +6,127 @@
 
   & :global {
 
-    .wrapper {
+    .featured_grid_wrapper {
       max-width: 1300px;
-      width: 100%;
       margin: 0 auto;
 
+    }
+
+    .title {
+      font-weight: 900;
+      @include s.font-size-text(3.2rem);
+      line-height: 140%;
+      color: s.$clrs-accent;
+      -webkit-text-stroke-width: s.f-unit-light(2px);
+      -webkit-text-stroke-color: s.$clrs-accent;
+
+
+      span {
+        display: block;
+        color: transparent;
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: s.$clrs-accent;
+      }
+    }
+
+    .grid_view {
+      width: 100%;
+
       display: grid;
-      grid-gap: 1rem;
+      grid-gap: s.f-unit(1rem);
       grid-template-columns: repeat(5, 1fr);
 
-
-      border: thin solid red;
+      grid-auto-flow: dense;
+      //place-items: center;
+      padding: s.f-unit(15px);
 
       & > * {
         position: relative;
-        border: thin solid red;
-        display: inline-block;
-        vertical-align: top;
-        //float: left;
-        //margin: 21px;
+        border-radius: s.f-unit(21px);
+        overflow: hidden;
+        display: grid;
+        place-items: center;
+        font-weight: 900;
+
+        & > :first-child {
+          display: block !important;
+          width: 100% !important;
+          height: 100% !important;
+        }
       }
 
-      .big{
-        //width: 450px;
-        //height: 310px;
-        //grid-column: span ;
+      a {
+        //display: flex;
+
+      }
+
+      img {
+        //border: thin dashed blue !important;
+      }
+
+      :nth-child(1) {
         grid-column: span 2;
+        grid-row: span 2;
       }
 
-      /*.liqueur{
+      :nth-child(6) {
+        grid-row: span 2;
+      }
+
+      /*
+
+      :nth-child(2) {
+        max-width: 230px;
+      }
+
+      :nth-child(3) {
+        max-width: 190px;
+      }
+
+
+
+      :nth-child(5) {
         width: 230px;
-        height: 127px;
+        height: 160px;
+        margin-top: -25px;
       }
 
+
+
+      :nth-child(7) {
+        max-width: 220px;
+      }
+
+      :nth-child(8) {
+        max-width: 241px;
+        //height: 230px;
+        clear: left;
+        //margin-top: -85px;
+      }
+
+      :nth-child(9) {
+        width: 210px;
+        height: 230px;
+        margin-top: -85px;
+      }
+
+      :nth-child(10) {
+        max-width: 190px;
+        margin-top: -85px;
+      }
+
+      :nth-child(11) {
+        max-width: 190px;
+      }
+
+      :nth-child(12) {
+        width: 220px;
+        height: 210px;
+        margin-top: -65px;
+      }*/
+
+
+      /*
       .wine{
         width: 290px;
         height: 155px;

@@ -18,15 +18,17 @@
 
       h1{
         font-weight: 900;
-        @include s.font-size-text(3rem);
+        @include s.font-size-text(3.2rem);
         line-height: 140%;
+        -webkit-text-stroke-width: s.f-unit-light(2px);
+        -webkit-text-stroke-color: s.$clrs-accent;
       }
       //border: thin solid red;
 
       span{
         display: block;
         color: transparent;
-        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-width: 2px;
         -webkit-text-stroke-color: s.$clrs-accent;
       }
     }
