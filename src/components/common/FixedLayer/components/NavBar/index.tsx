@@ -12,7 +12,9 @@ import Link from 'next/link';
 import CartButton from '@fixedLayer/components/NavBar/components/CartButton';
 import { useUI } from '@/context/ui/context';
 import { Button, IconButton } from '@mui/material';
-import { AccountCircleRounded, NotesTwoTone } from '@mui/icons-material';
+import { AccountCircleRounded, AccountCircleTwoTone, NotesTwoTone } from '@mui/icons-material';
+
+import Logo from '@/public/logo.png';
 
 type NavBarProps = Record<string, unknown>;
 
@@ -22,7 +24,7 @@ const NavBar: React.FC = ({}) => {
   const { scrollY } = useViewportScroll();
   const padding1 = useMotionValue(0);
   useTransform(scrollY, (input) => {
-    if (input >= 50) return padding1.set(1);
+    if (input >= 50) return padding1.set(0.5);
     else return padding1.set(2);
   });
 
@@ -34,7 +36,7 @@ const NavBar: React.FC = ({}) => {
         <div className="logo">
           <Link href="/">
             <a>
-              <Image src="/logo.png" alt="app-logo" objectFit="contain" layout="fill" />
+              <Image src={Logo} alt="app-logo" objectFit="cover" />
             </a>
           </Link>
         </div>
@@ -44,7 +46,7 @@ const NavBar: React.FC = ({}) => {
             className="login"
             onClick={() => openModal()}
             color="inherit"
-            startIcon={<AccountCircleRounded />}>
+            startIcon={<AccountCircleTwoTone />}>
             Login
           </Button>
 

@@ -3,10 +3,10 @@
 
 .container {
   position: relative;
-  padding: .8rem 1rem;
+  padding: .6rem 1rem;
   backdrop-filter: blur(20px);
 
-  &:after{
+  &:after {
     content: '';
     position: absolute;
     inset: 0;
@@ -18,7 +18,7 @@
 
   & :global {
 
-    .wrapper{
+    .wrapper {
       display: flex;
       justify-content: center;
       gap: 2rem;
@@ -28,6 +28,15 @@
     }
 
     .item {
+      margin: 0;
+      font-size: .91rem;
+      transition: all cubic-bezier(1, 0, 0.68, 1) 200ms;
+
+      &:hover {
+        color: s.$clrs-orange;
+        filter: drop-shadow(0, 2px, 5px, 2px, s.$clrs-orange);
+        text-shadow: 2px 2px 18px s.$clrs-orange;
+      }
     }
   }
 }

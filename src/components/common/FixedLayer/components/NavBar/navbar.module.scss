@@ -6,10 +6,12 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  padding: 0 2rem;
   display: flex;
   justify-content: space-between;
   backdrop-filter: blur(35px);
+  padding: 0 2rem;
+
+  //border: thin solid red;
 
   &:after{
     content: '';
@@ -30,8 +32,8 @@
       justify-content: space-between;
       align-items: center;
       margin: 0 auto;
-      padding: 1rem 0;
       transition: all 230ms ease-in-out;
+      padding: .5rem 0;
 
       //border: thin solid rebeccapurple;
 
@@ -40,8 +42,13 @@
         left: 0;
         display: grid;
         place-items: center;
-        width: 120px;
-        height: 250%;
+        max-width: 100px;
+
+        a{
+          & > :first-child{
+            display: block !important;
+          }
+        }
       }
 
       .icons {

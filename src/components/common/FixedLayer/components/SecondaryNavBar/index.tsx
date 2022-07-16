@@ -46,9 +46,9 @@ const SecondaryNavBar = () => {
         {data.map((title) => (
           <Link href="/" key={title}>
             <a>
-              <div key={title} className={'item'}>
+              <p key={title} className="item">
                 {title}
-              </div>
+              </p>
             </a>
           </Link>
         ))}

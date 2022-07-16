@@ -3,31 +3,57 @@
 
 .container {
   width: 100%;
-  @include s.margin(bottom, 15rem);
   background-color: white;
+
+  @include s.padding(ver, 10rem);
 
 
   //background-color: #ededed;
 
   & :global {
+
     header {
       max-width: 1300px;
       margin: 0 auto;
+
       .title {
-        @include s.font-size-text(4rem);
+        font-weight: 900;
+        @include s.font-size-text(3.2rem);
+        line-height: 140%;
+        color: s.$clrs-accent;
+        -webkit-text-stroke-width: s.f-unit-light(2px);
+        -webkit-text-stroke-color: s.$clrs-accent;
+        margin-top: 0;
+
 
         span {
           display: block;
           color: transparent;
-          -webkit-text-stroke-width: 1px;
-          -webkit-text-stroke-color: black;
+          -webkit-text-stroke-width: 2px;
+          -webkit-text-stroke-color: s.$clrs-accent;
         }
       }
     }
 
-    .marquee_wrap{
+    .wrapper{
+      max-width: 1300px;
+      margin: 0 auto;
 
+      .marquee_wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
 
+        margin: 0 auto;
+
+        .btn{
+          border: thin solid s.$clrs-orange;
+        }
+
+      }
     }
+
+
   }
 }
