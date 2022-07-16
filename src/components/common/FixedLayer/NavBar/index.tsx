@@ -9,7 +9,7 @@ import {
   useViewportScroll,
 } from 'framer-motion';
 import Link from 'next/link';
-import CartButton from '@fixedLayer/components/NavBar/components/CartButton';
+import CartButton from '@fixedLayer/NavBar/components/CartButton';
 import { useUI } from '@/context/ui/context';
 import { Button, IconButton } from '@mui/material';
 import { AccountCircleTwoTone, NotesTwoTone } from '@mui/icons-material';
@@ -34,7 +34,7 @@ const NavBar: React.FC = ({}) => {
     <nav className={s.container}>
       <motion.div className={'wrapper'} style={{ padding }}>
         <div className="logo">
-          <Link href="/">
+          <Link href="/src/pages">
             <a>
               <Image src={Logo} alt="app-logo" objectFit="cover" />
             </a>

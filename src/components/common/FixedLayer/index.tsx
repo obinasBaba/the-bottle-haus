@@ -1,14 +1,15 @@
 import React from 'react';
 import s from './fixed.module.scss';
-import NavBar from '@fixedLayer/components/NavBar';
-import ScrollTopBottle from '@fixedLayer/components/ScrollTopBottle';
-import SecondaryNavBar from '@fixedLayer/components/SecondaryNavBar';
+import NavBar from '@fixedLayer/NavBar';
+import ScrollTopBottle from '@fixedLayer/ScrollTopBottle';
+import SecondaryNavBar from '@fixedLayer/SecondaryNavBar';
 import { Slide, useScrollTrigger } from '@mui/material';
-import NavMenu from '@fixedLayer/components/NavMenu';
+import NavMenu from '@fixedLayer/NavMenu';
 import { useUI } from '@/context/ui/context';
-import RegistrationModal from '@fixedLayer/components/RegistrationModal';
+import RegistrationModal from '@fixedLayer/RegistrationModal';
 import { AnimatePresence } from 'framer-motion';
 import { Collection } from '@/schema';
+import AppToolTip from '@fixedLayer/AppToolTip';
 
 interface Props {
   window?: () => Window;
@@ -45,6 +46,8 @@ const FixedLayer = ({ collections }: any) => {
       {displayModal && <RegistrationModal />}
 
       <ScrollTopBottle />
+
+      <AppToolTip />
     </div>
   );
 };

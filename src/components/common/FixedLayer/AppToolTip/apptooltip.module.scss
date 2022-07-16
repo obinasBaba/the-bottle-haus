@@ -1,0 +1,63 @@
+@use '@/styles' as s;
+
+.container{
+  position: absolute;
+  bottom: 6%;
+  left: 4%;
+  user-select: none;
+  border-radius: 500px;
+  overflow: hidden;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.35);
+
+
+
+
+
+  & :global{
+
+    .bg{
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+
+      & > :first-child{
+        display: block !important;
+        height: 100% !important;
+      }
+    }
+
+    .tooltip_wrapper{
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      padding: 1.1rem;
+
+
+      .dot {
+        height: 6px;
+        width: 6px;
+        margin-top: 4px;
+        border-radius: 50%;
+        background-color: #020b16;
+      }
+
+
+      .tip{
+        color: #02021e;
+        //line-height: .9;
+        margin: 0;
+        padding: 0;
+        max-width: 42ch;
+        overflow-wrap: break-word;
+        //word-spacing: -4px;
+
+        text-shadow: 0 3px 3px rgba(0, 0, 0, 0.35);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+    }
+  }
+}
