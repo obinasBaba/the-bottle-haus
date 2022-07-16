@@ -4,7 +4,7 @@ import s from './Home.module.scss';
 import Hero from './Hero';
 import VideoAd from '@homepage/VideoAd';
 import RareToFind from '@homepage/RareToFind';
-import OtherSaying from '@homepage/OtherSaying';
+import Testimonials from '@homepage/OtherSaying';
 import SlideShow from '@homepage/SlideShow';
 import FeaturedGrid from '@homepage/FeaturedGrid';
 import ProductCardBig from '@/components/ProductCardBig';
@@ -12,6 +12,7 @@ import OurBlog from '@homepage/OurBlog';
 import { Product, ProductTypes } from '@/types/product';
 import FeaturedCollection from '@homepage/FeaturedCollection';
 import { MotionParent } from '@/components/common/MotionItems';
+import HorizontalMarquee from '@homepage/HorizontalMarqee';
 
 type HomepageProps = {
   featuredProduct: ProductTypes['product'];
@@ -34,9 +35,10 @@ const HomePage: React.FC<HomepageProps> = ({
 
       <Hero />
       <VideoAd />
+      <HorizontalMarquee />
       <FeaturedCollection data={featuredCollections} />
       <RareToFind data={rareToFind} />
-      <OtherSaying />
+      <Testimonials />
       <SlideShow />
       <ProductCardBig product={featuredProduct} />
       <FeaturedGrid />
