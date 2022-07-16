@@ -3,9 +3,11 @@
 
 .container {
   width: 100%;
-  @include s.margin(top, 5rem);
   @include s.margin(bottom, 15rem);
+  background-color: white;
 
+
+  //background-color: #ededed;
 
   & :global {
     header {

@@ -18,112 +18,45 @@
     z-index: -1;
     opacity: .8;
     //background-image: linear-gradient(s.$clrs-gray-light, rgba(237, 237, 237, 0));
-    background: s.$clrs-gray-light;
+    background: white;
   }
 
-  //border: thin solid red;
+  & :global{
+    .wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1300px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 auto;
+      padding: 1rem 0;
+      transition: all 230ms ease-in-out;
 
-  .wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 1300px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto;
+      //border: thin solid rebeccapurple;
 
-    padding: 1rem 0;
-
-    transition: all 230ms ease-in-out;
-
-    //border: thin solid rebeccapurple;
-  }
-
-
-
-  .logo {
-    position: absolute;
-    left: 0%;
-    //transform: translateX(-50%);
-    display: grid;
-    place-items: center;
-    width: 120px;
-    height: 250%;
-  }
-
-  .others {
-    $gap: .9rem;
-
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: s.f-unit($gap);
-    width: max-content;
-    margin-left: auto;
-
-    //border: thin solid crimson;
-
-    & :global {
-      .account {
-        display: flex;
-
-        & > * {
-          //@include s.padding(hor, .7rem);
-          //@include s.font-size-text(.7rem);
-          font-size: .91rem;
-        }
-
-        & > :first-child {
-          position: relative;
-          //border-right: 1px solid lightgray;
-        }
-
+      .logo {
+        position: absolute;
+        left: 0;
+        display: grid;
+        place-items: center;
+        width: 120px;
+        height: 250%;
       }
 
       .icons {
+        position: relative;
         display: flex;
-        gap: s.f-unit($gap);
-
-        button{ // common style
-          //cursor: pointer;
-          //border: thin solid transparent;
-
-          &:hover{
-            //border: thin solid s.$clrs-accent-light;
-          }
-        }
-
-        .search-icon {
-          position: relative;
-          border-radius: $round;
-          background: white;
-
-          //border: thin solid teal;
-          display: grid;
-          place-items: center;
-          padding: s.f-unit(.5rem) s.f-unit(.7rem);
-          height: 45px;
-          width: 45px;
-        }
-
-
-        .menu {
-          //border: thin solid red;
-
-          position: relative;
-          //border: none;
-          cursor: pointer;
-          border-radius: $round;
-          background: white;
-          padding: s.f-unit(.5rem);
-          height: 45px;
-          width: 45px;
-          display: grid;
-          place-items: center;
-        }
+        align-items: center;
+        gap: s.f-unit(.8rem);
+        margin-left: auto;
       }
     }
+
+
   }
+
+
 
 
 }

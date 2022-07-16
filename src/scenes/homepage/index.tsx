@@ -38,8 +38,8 @@ const HomePage: React.FC<HomepageProps> = ({
       <RareToFind data={rareToFind} />
       <OtherSaying />
       <SlideShow />
-      <FeaturedGrid />
       <ProductCardBig product={featuredProduct} />
+      <FeaturedGrid />
       <OurBlog />
     </MotionParent>
   );

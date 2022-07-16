@@ -3,7 +3,7 @@ import ContactBg from '@/public/contact-bg.svg';
 import GiftIcon from '@/public/gift-set.svg';
 import GiftBg from '@/public/giftbg.svg';
 import LoginBg from '@/public/login-bg.svg';
-import LoginIcon from '@/public/squad_nav-i-1.svg';
+import LoginIcon from '@/public/profile-svg.svg';
 import TermBg from '@/public/term-bg.svg';
 import TermIcon from '@/public/term-service.svg';
 

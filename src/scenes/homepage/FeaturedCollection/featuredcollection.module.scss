@@ -7,6 +7,8 @@
   width: 100%;
   max-width: 1300px;
   @include s.margin(top, 10rem);
+  @include s.margin(bottom, 10rem);
+
 
 
   & :global{

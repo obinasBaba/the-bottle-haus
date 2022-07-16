@@ -44,27 +44,16 @@ const CartButton = () => {
   const cart = useCart();
 
   useEffect(() => {
-    // console.log('cart-changed ---> : ', cart);
-  }, [cart]);
-
-  useEffect(() => {
-    containerRef.current?.focus({ preventScroll: true });
+    show && containerRef.current?.focus({ preventScroll: true });
   }, [show]);
 
   return (
     <div className={s.container}>
-      <Button variant="outlined" onClick={() => setShow(!show)} startIcon={<ShoppingCartTwoTone />}>
-        {/*<div className="cart-icon">
-          <Image
-            src={CartImg}
-            alt="cart-icon"
-            layout="fixed"
-            width="15px"
-            height="15px"
-            objectFit="contain"
-          />
-        </div>
-        <span className="cart-count"> {cart?.data?.totalPrice || 0} $ </span>*/}
+      <Button
+        variant="text"
+        color="inherit"
+        onClick={() => setShow(!show)}
+        startIcon={<ShoppingCartTwoTone />}>
         {cart?.data?.totalPrice || 0} $
       </Button>
 

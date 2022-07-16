@@ -3,7 +3,7 @@ import { Badge, Button, IconButton, InputAdornment, TextField } from '@mui/mater
 
 import Bottle from '@/public/whisky-review/kiss.png';
 import Image from 'next/image';
-import MotionParent from '@/components/common/MotionItems';
+import { MotionParent } from '@/components/common/MotionItems';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 import { Form, Formik, FormikProps } from 'formik';
 import ContactInformation from '@/scenes/CheckoutPage/ContactInformation';
@@ -117,6 +117,30 @@ const CompletedSteps = ({ stepNo, completed, name, subtitle }: any) => {
   );
 };
 
+export const FancyInput = ({ size = 'medium', btnText = 'apply', label = '' }: any) => {
+  return (
+    <div className="input">
+      <TextField
+        fullWidth
+        type="text"
+        size={size}
+        variant="outlined"
+        color="primary"
+        label={label}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <Button variant="contained" size="large">
+                {btnText}
+              </Button>
+            </InputAdornment>
+          ),
+        }}
+      />
+    </div>
+  );
+};
+
 const CheckoutPage = () => {
   const [idx, setIdx] = useState(0);
   const [completed, pushCompleted] = useState<{ completed: boolean; idx: number }[]>([
@@ -223,24 +247,7 @@ const CheckoutPage = () => {
             </div>
 
             <div className="btns">
-              <div className="input">
-                <TextField
-                  fullWidth
-                  type="text"
-                  variant="outlined"
-                  color="primary"
-                  label="Gift card or discount code"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <Button variant="contained" size="large">
-                          Apply
-                        </Button>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </div>
+              <FancyInput label="Gift card or discount code" />
             </div>
 
             <div className="detail">

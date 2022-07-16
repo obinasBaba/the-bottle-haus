@@ -11,7 +11,8 @@ import {
 import Link from 'next/link';
 import CartButton from '@fixedLayer/components/NavBar/components/CartButton';
 import { useUI } from '@/context/ui/context';
-import { Button } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
+import { AccountCircleRounded, NotesTwoTone } from '@mui/icons-material';
 
 type NavBarProps = Record<string, unknown>;
 
@@ -29,8 +30,8 @@ const NavBar: React.FC = ({}) => {
 
   return (
     <nav className={s.container}>
-      <motion.div className={s.wrapper} style={{ padding }}>
-        <div className={s.logo}>
+      <motion.div className={'wrapper'} style={{ padding }}>
+        <div className="logo">
           <Link href="/">
             <a>
               <Image src="/logo.png" alt="app-logo" objectFit="contain" layout="fill" />
@@ -38,41 +39,31 @@ const NavBar: React.FC = ({}) => {
           </Link>
         </div>
 
-        <div className={s.others}>
-          <div className="account">
-            <Button variant="outlined" className="login" onClick={() => openModal()}>
-              Login
-            </Button>
-            <Button variant="outlined" className="create">
-              Create Account
-            </Button>
-          </div>
+        <div className="icons">
+          <Button
+            className="login"
+            onClick={() => openModal()}
+            color="inherit"
+            startIcon={<AccountCircleRounded />}>
+            Login
+          </Button>
 
-          <div className="icons">
-            <button className="search search-icon">
-              <Image
-                src="/search.png"
-                width="15px"
-                height="15px"
-                alt="search-icon"
-                layout="fixed"
-                objectFit="contain"
-              />
-            </button>
+          <CartButton />
 
-            <CartButton />
+          <IconButton>
+            <Image
+              src="/search.png"
+              width="15px"
+              height="15px"
+              alt="search-icon"
+              layout="fixed"
+              objectFit="contain"
+            />
+          </IconButton>
 
-            <button className="menu toggle-button" onClick={() => openNavMenu()}>
-              <Image
-                src="/menu-btn.png"
-                alt="menu-toggle-button"
-                layout="fixed"
-                width="22px"
-                height="9px"
-                objectFit="contain"
-              />
-            </button>
-          </div>
+          <IconButton onClick={() => openNavMenu()}>
+            <NotesTwoTone />
+          </IconButton>
         </div>
       </motion.div>
     </nav>

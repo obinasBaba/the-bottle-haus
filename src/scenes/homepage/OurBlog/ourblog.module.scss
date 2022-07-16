@@ -2,8 +2,9 @@
 
 .container{
   width: 100%;
+  background-color: white;
 
-  @include s.margin(top, 10rem);
+  @include s.padding(top, 9rem);
   @include s.padding( bottom, 8rem);
 
   & :global{

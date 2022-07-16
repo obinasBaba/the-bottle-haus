@@ -1,8 +1,7 @@
 @use '@/styles' as s;
 
 .container {
-  @include s.margin(top, 10rem);
-  @include s.padding(top, 5rem);
+  @include s.padding(top, 7rem);
   background-color: rgba(148, 196, 200, .74);
   width: 100%;
 

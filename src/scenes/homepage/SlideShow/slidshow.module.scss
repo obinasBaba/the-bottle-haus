@@ -10,7 +10,7 @@
 
   //border: thin solid red;
 
-  @include s.margin(bottom, 15rem);
+  @include s.margin(bottom, 5rem);
 
   &:after {
     content: '';

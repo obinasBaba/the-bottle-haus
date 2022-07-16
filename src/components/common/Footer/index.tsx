@@ -5,10 +5,33 @@ import MasterCard from './mastercard.svg';
 import Discover from './discover.svg';
 import Paypal from './paypal.svg';
 import Image from 'next/image';
+import Bg from './footer-bg.png';
+import Sign from './signature.png';
+import Houses from './houses.png';
+import { Button, InputAdornment, TextField } from '@mui/material';
 
 const Footer = () => {
   return (
     <div className={s.container}>
+      <div className="bg">
+        <Image src={Bg} objectFit="cover" />
+      </div>
+
+      <div className="house">
+        <div className="img">
+          <Image src={Houses} objectFit="cover" />
+        </div>
+
+        <p>
+          @2022 <span>bottlehaus.inc</span>, All right reserved,{' '}
+          <small>Please Drink responsibly 😉</small>
+        </p>
+      </div>
+
+      <div className="signature">
+        <Image src={Sign} objectFit="cover" />
+      </div>
+
       <div className="wrapper">
         <div className="proposition">
           <h2 className="title">proposition 65 Warning</h2>
@@ -25,7 +48,48 @@ const Footer = () => {
             <p className="subscribe">
               Subscribe to be the first to hear about our exclusive offers and latest arrivals.
             </p>
-            <input type="text" />
+            <div className="input">
+              <TextField
+                fullWidth
+                type="email"
+                size="small"
+                variant="outlined"
+                color="primary"
+                label="email"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <Button variant="contained" size="large">
+                        subscribe
+                      </Button>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="right">
+          <div className="resources">
+            <h3>Resources</h3>
+            <div className="links">
+              <Link href={'/'}>
+                <a>Terms and Conditions</a>
+              </Link>
+              <Link href={'/'}>
+                <a>Privacy Policy</a>
+              </Link>
+              <Link href={'/'}>
+                <a>Shipping & Return Policy</a>
+              </Link>
+              <Link href={'/'}>
+                <a>Contact Us</a>
+              </Link>
+              <Link href={'/'}>
+                <a>Order Tracking</a>
+              </Link>
+            </div>
           </div>
 
           <div className="payments">
@@ -35,29 +99,6 @@ const Footer = () => {
               <Image src={Discover} />
               <Image src={MasterCard} />
             </div>
-          </div>
-
-          <h2 className="responsible">Please Drink Responsibly</h2>
-        </div>
-
-        <div className="resources">
-          <h3>Resources</h3>
-          <div className="links">
-            <Link href={'/'}>
-              <a>Terms and Conditions</a>
-            </Link>
-            <Link href={'/'}>
-              <a>Privacy Policy</a>
-            </Link>
-            <Link href={'/'}>
-              <a>Shipping & Return Policy</a>
-            </Link>
-            <Link href={'/'}>
-              <a>Contact Us</a>
-            </Link>
-            <Link href={'/'}>
-              <a>Order Tracking</a>
-            </Link>
           </div>
         </div>
       </div>
