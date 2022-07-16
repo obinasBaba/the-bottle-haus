@@ -1,12 +1,10 @@
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import commerce from '@lib/api/commerce';
+import { MotionParent as MotionPage } from '@/components/common/MotionItems';
 import HomePage from '@homepage';
 
 export async function getStaticProps({ preview, locale, locales }: GetStaticPropsContext) {
   const config = { locale, locales };
-
-  // const pagesPromise = commerce.getAllPages({ config, preview });
-  // const siteInfoPromise = commerce.getSiteInfo({ config, preview });
 
   const { product: featuredProduct } = await commerce.getProduct({
     variables: { slug: 'don-julio-primavera-tequila' },
@@ -24,25 +22,14 @@ export async function getStaticProps({ preview, locale, locales }: GetStaticProp
     preview,
   });
 
-  /*
-
-  const { product } = await productsPromise;
-
-  console.log('product: ', product);*/
-
-  /*  const { product } = await productsPromise;
-  const { pages } = await pagesPromise;
-  const { categories, brands } = await siteInfoPromise;*/
+  const allCollections = await commerce.getSiteInfo({});
 
   return {
     props: {
       featuredProduct,
       featuredCollections,
       rareToFind,
-      /* product,
-      pages,
-      categories,
-      brands,*/
+      collections: allCollections.collections,
     },
     revalidate: 60,
   };
@@ -54,10 +41,12 @@ export default function Home({
   rareToFind,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <HomePage
-      featuredProduct={featuredProduct!}
-      featuredCollections={featuredCollections}
-      rareToFind={rareToFind}
-    />
+    <MotionPage>
+      <HomePage
+        featuredProduct={featuredProduct!}
+        featuredCollections={featuredCollections}
+        rareToFind={rareToFind}
+      />
+    </MotionPage>
   );
 }

@@ -20,7 +20,7 @@ const Layout: React.FC<Props> = ({ children, pageProps }) => {
   return (
     <>
       <div className={s.root}>
-        <FixedLayer />
+        <FixedLayer collections={pageProps.collections} />
         <main className={cs([s.main, { [s.with_sidenav]: pageProps.sideNav }])}>
           {pageProps.sideNav && <CollectionSideNav collections={pageProps.collections} />}
 

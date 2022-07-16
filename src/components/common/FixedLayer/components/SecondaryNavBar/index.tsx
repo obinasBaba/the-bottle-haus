@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import s from './secondarynav.module.scss';
 import Link from 'next/link';
 import { getToken } from '@/util';
-import * as query from '@/util/queries';
+import { Collection } from '@/schema';
 
 const token = getToken(); // accessing the cookie via js-cookie
 
@@ -24,7 +24,7 @@ const fetcher = async ({ query, variables }: any) => {
   return res;
 };
 
-const SecondaryNavBar = () => {
+const SecondaryNavBar = ({ collections }: { collections: Collection[] }) => {
   const [data, setData] = useState([
     'All Product',
     'Whiskey',
@@ -36,18 +36,14 @@ const SecondaryNavBar = () => {
     'Corporate Gifting',
   ]);
 
-  /*  useEffect(() => {
-    fetcher({ query: query.CollectionMany, variables: {} }).then((r) => console.log('result: ', r));
-  }, []);*/
-
   return (
     <div className={s.container}>
       <div className="wrapper">
-        {data.map((title) => (
-          <Link href="/" key={title}>
+        {collections.map(({ name, slug }) => (
+          <Link href={`/collection/${slug}`} key={name}>
             <a>
-              <p key={title} className="item">
-                {title}
+              <p key={name} className="item">
+                {name}
               </p>
             </a>
           </Link>

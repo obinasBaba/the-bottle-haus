@@ -8,6 +8,7 @@ import NavMenu from '@fixedLayer/components/NavMenu';
 import { useUI } from '@/context/ui/context';
 import RegistrationModal from '@fixedLayer/components/RegistrationModal';
 import { AnimatePresence } from 'framer-motion';
+import { Collection } from '@/schema';
 
 interface Props {
   window?: () => Window;
@@ -27,7 +28,7 @@ function HideOnScroll(props: Props) {
   );
 }
 
-const FixedLayer = () => {
+const FixedLayer = ({ collections }: any) => {
   const { navMenu, displayModal } = useUI();
 
   return (
@@ -35,7 +36,7 @@ const FixedLayer = () => {
       <HideOnScroll>
         <div style={{ pointerEvents: 'auto' }}>
           <NavBar />
-          <SecondaryNavBar />
+          <SecondaryNavBar collections={collections as Collection[]} />
         </div>
       </HideOnScroll>
 

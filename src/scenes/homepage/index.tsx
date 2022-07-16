@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import s from './Home.module.scss';
+import s from './homepage.module.scss';
 import Hero from './Hero';
 import VideoAd from '@homepage/VideoAd';
 import RareToFind from '@homepage/RareToFind';

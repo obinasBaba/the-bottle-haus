@@ -21,7 +21,7 @@ export async function getStaticProps({
 
   if (!targetCollection) throw new Error('you messed up with the slug: ', params.slug);
 
-  const { products } = await commerce.getAllProducts({
+  const products = await commerce.getAllProducts({
     variables: {
       first: 9,
       filter: {
@@ -29,12 +29,6 @@ export async function getStaticProps({
       },
     },
   });
-
-  /*if (!collections.map(({ slug }) => slug).includes(params.slug)) {
-    return {
-      notFound: true,
-    };
-  }*/
 
   return {
     props: {

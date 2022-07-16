@@ -12,7 +12,7 @@ import Link from 'next/link';
 import CartButton from '@fixedLayer/components/NavBar/components/CartButton';
 import { useUI } from '@/context/ui/context';
 import { Button, IconButton } from '@mui/material';
-import { AccountCircleRounded, AccountCircleTwoTone, NotesTwoTone } from '@mui/icons-material';
+import { AccountCircleTwoTone, NotesTwoTone } from '@mui/icons-material';
 
 import Logo from '@/public/logo.png';
 
@@ -63,7 +63,7 @@ const NavBar: React.FC = ({}) => {
             />
           </IconButton>
 
-          <IconButton onClick={() => openNavMenu()}>
+          <IconButton onClick={() => openNavMenu()} color="inherit">
             <NotesTwoTone />
           </IconButton>
         </div>
