@@ -14,13 +14,14 @@
       margin: 0 auto;
 
       display: flex;
+      //align-items: center;
       //flex-flow: wrap;
       gap: s.f-unit(3rem);
 
       .our_blogs{
         flex: 1;
         min-width: max-content;
-        width: 24%;
+        width: 25%;
 
         h1{
           margin-bottom: 0;
@@ -36,6 +37,20 @@
         flex: 1;
         width: 24%;
 
+        //border: thin solid red;
+
+        a{
+          height: 100%;
+          display: flex;
+          flex-flow: column;
+          justify-content: space-evenly;
+        }
+
+        h4{
+          white-space: nowrap;
+          margin-bottom: 0;
+        }
+
         .cover{
           position: relative;
           max-width: 300px;
@@ -44,6 +59,7 @@
         }
 
         .date{
+          display: block;
           color: gray;
           font-size: s.f-unit(.7rem);
         }

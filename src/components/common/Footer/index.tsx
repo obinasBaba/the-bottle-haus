@@ -24,7 +24,7 @@ const Footer = () => {
 
         <p>
           @2022 <span>bottlehaus.inc</span>, All right reserved,{' '}
-          <small>Please Drink responsibly 😉</small>
+          <small>Please Drink Responsibly 😉</small>
         </p>
       </div>
 
@@ -72,7 +72,7 @@ const Footer = () => {
 
         <div className="right">
           <div className="resources">
-            <h3>Resources</h3>
+            <h2>Resources</h2>
             <div className="links">
               <Link href={'/'}>
                 <a>Terms and Conditions</a>
@@ -83,7 +83,7 @@ const Footer = () => {
               <Link href={'/'}>
                 <a>Shipping & Return Policy</a>
               </Link>
-              <Link href={'/'}>
+              <Link href="/contact-us">
                 <a>Contact Us</a>
               </Link>
               <Link href={'/'}>

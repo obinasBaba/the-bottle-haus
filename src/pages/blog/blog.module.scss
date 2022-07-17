@@ -1,0 +1,76 @@
+@use '@/styles' as s;
+
+.container {
+  width: 100%;
+  @include s.margin(bottom, 10rem);
+
+
+  & :global {
+
+    .blog_wrapper {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+
+
+      .content {
+        max-width: 80ch;
+        margin-top: 3rem;
+      }
+    }
+
+    header {
+      position: relative;
+      display: grid;
+      place-content: center;
+
+      width: 100%;
+      @include s.padding(top, 11rem);
+      @include s.padding(bottom, 5rem);
+
+      .bg{
+        position: absolute;
+        inset: 0;
+        background-color: #ededed;
+        z-index: -1;
+      }
+
+      .wrapper {
+        overflow: hidden;
+
+        .center {
+          flex-flow: column;
+          align-items: flex-start;
+        }
+      }
+
+
+      h1 {
+        max-width: 20ch;
+      }
+
+      .meta {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+
+        p {
+          margin: 0;
+        }
+
+        p + * {
+          color: gray;
+        }
+
+        .col {
+          display: flex;
+          flex-flow: column;
+        }
+      }
+
+    }
+
+
+  }
+
+}

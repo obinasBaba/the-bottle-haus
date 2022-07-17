@@ -39,7 +39,7 @@ const SecondaryNavBar = ({ collections }: { collections: Collection[] }) => {
   return (
     <div className={s.container}>
       <div className="wrapper">
-        {collections.map(({ name, slug }) => (
+        {(collections || data).map(({ name, slug = '/' }) => (
           <Link href={`/collection/${slug}`} key={name}>
             <a>
               <p key={name} className="item">
