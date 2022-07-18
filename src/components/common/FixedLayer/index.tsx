@@ -28,17 +28,15 @@ function HideOnScroll(props: Props) {
   });
 
   useEffect(() => {
-    setTrigger(scrolled);
+    setTrigger(!scrolled);
   }, [scrolled]);
 
   useEffect(() => {
-    console.log('navbar --- ', navBar);
-
-    setTrigger(false);
+    setTrigger(true);
   }, [navBar]);
 
   return (
-    <Slide appear={false} direction="down" in={!trigger}>
+    <Slide appear={false} direction="down" in={trigger}>
       {children}
     </Slide>
   );

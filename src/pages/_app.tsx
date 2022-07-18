@@ -18,18 +18,22 @@ import createEmotionCache from '@/createEmotoinCache';
 import theme from '@/theme';
 import { useMotionValues } from '@/context/MotionValuesContext';
 import RouteChangeEvent from '@/util/helpers/RouteChangeEvent';
+import { Session } from 'next-auth';
+import { SessionProvider } from 'next-auth/react';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
+  session?: Session;
 }
 
 export default function MyApp({
   Component,
   pageProps,
   emotionCache = clientSideEmotionCache,
+  session,
 }: MyAppProps) {
   const router = useRouter();
   const event = RouteChangeEvent.GetInstance();
@@ -59,20 +63,26 @@ export default function MyApp({
   }, [router]);
 
   return (
-    <ContextWrapper>
-      <CacheProvider value={emotionCache}>
-        <Head>
-          <meta name="viewport" content="initial-scale=1, width=device-width" />
-          <title>This is a Layout</title>
-        </Head>
-        <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
-          <Layout pageProps={pageProps}>
-            <Component {...pageProps} />
-          </Layout>
-        </ThemeProvider>
-      </CacheProvider>
-    </ContextWrapper>
+    <SessionProvider session={session} refetchInterval={0}>
+      <ContextWrapper>
+        <CacheProvider value={emotionCache}>
+          <Head>
+            <meta name="viewport" content="initial-scale=1, width=device-width" />
+            <title>This is a Layout</title>
+          </Head>
+          <ThemeProvider theme={theme}>
+            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+            <CssBaseline />
+            {!Component.layout ? (
+              <Layout pageProps={pageProps}>
+                <Component {...pageProps} />
+              </Layout>
+            ) : (
+              <Component {...pageProps} />
+            )}
+          </ThemeProvider>
+        </CacheProvider>
+      </ContextWrapper>
+    </SessionProvider>
   );
 }
