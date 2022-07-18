@@ -31,7 +31,7 @@ export async function getStaticProps({ preview, locale, locales }: GetStaticProp
       rareToFind,
       collections: allCollections.collections,
     },
-    revalidate: 60,
+    revalidate: 600,
   };
 }
 

@@ -3,11 +3,9 @@
 .container {
   width: 100%;
 
-  display: flex;
-  flex-flow: column;
+  display: grid;
+  place-content: center;
   gap: s.f-unit(2.5rem);
-
-  //border: thin solid teal;
 
   //@include s.margin(top, 15rem);
    @include s.padding(bottom, 12rem);
@@ -15,11 +13,23 @@
 
   & :global {
 
+
+
     .list {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: s.f-unit(1.5rem);
 
+      .pagination{
+        grid-column: span 3;
+        margin-top: 4rem;
+      }
+
     }
   }
+}
+
+.empty_container{
+  display: grid;
+  place-items: center;
 }

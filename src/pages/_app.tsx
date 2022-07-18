@@ -16,6 +16,8 @@ import { CssBaseline } from '@mui/material';
 import ContextWrapper from '@/context';
 import createEmotionCache from '@/createEmotoinCache';
 import theme from '@/theme';
+import { useMotionValues } from '@/context/MotionValuesContext';
+import RouteChangeEvent from '@/util/helpers/RouteChangeEvent';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -30,16 +32,19 @@ export default function MyApp({
   emotionCache = clientSideEmotionCache,
 }: MyAppProps) {
   const router = useRouter();
+  const event = RouteChangeEvent.GetInstance();
 
   useEffect(() => {
     const handleStart = (url: any) => {
       // console.log(`Loading: ${url}`);
-      NProgress.start();
+      event.emit('start', url);
     };
+
     const handleStop = (url: any) => {
       // console.log(`finish loading: ${url}`);
 
-      NProgress.done();
+      // NProgress.done();
+      event.emit('end', url);
     };
 
     router.events.on('routeChangeStart', handleStart);

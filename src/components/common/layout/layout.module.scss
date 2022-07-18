@@ -23,20 +23,7 @@
         flex-flow: column;
         gap: 2rem;
 
-        header {
-          display: flex;
 
-          .title{
-            color: s.$clrs-accent-light;
-          }
-
-          .filter {
-            margin-left: auto;
-            display: flex;
-            gap: s.f-unit(2rem);
-            align-items: center;
-          }
-        }
       }
 
       .main_content_wrapper{

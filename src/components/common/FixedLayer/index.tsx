@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './fixed.module.scss';
 import NavBar from '@fixedLayer/NavBar';
 import ScrollTopBottle from '@fixedLayer/ScrollTopBottle';
@@ -10,6 +10,7 @@ import RegistrationModal from '@fixedLayer/RegistrationModal';
 import { AnimatePresence } from 'framer-motion';
 import { Collection } from '@/schema';
 import AppToolTip from '@fixedLayer/AppToolTip';
+import { useAppContext } from '@/context/app';
 
 interface Props {
   window?: () => Window;
@@ -18,9 +19,23 @@ interface Props {
 
 function HideOnScroll(props: Props) {
   const { children, window } = props;
-  const trigger = useScrollTrigger({
+  const { navBar } = useAppContext();
+
+  const [trigger, setTrigger] = useState(true);
+
+  const scrolled = useScrollTrigger({
     target: window ? window() : undefined,
   });
+
+  useEffect(() => {
+    setTrigger(scrolled);
+  }, [scrolled]);
+
+  useEffect(() => {
+    console.log('navbar --- ', navBar);
+
+    setTrigger(false);
+  }, [navBar]);
 
   return (
     <Slide appear={false} direction="down" in={!trigger}>

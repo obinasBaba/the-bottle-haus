@@ -16,25 +16,32 @@ import { AccountCircleTwoTone, NotesTwoTone } from '@mui/icons-material';
 
 import Logo from '@/public/logo.png';
 
-type NavBarProps = Record<string, unknown>;
-
 const NavBar: React.FC = ({}) => {
   const { openNavMenu, openModal } = useUI();
 
   const { scrollY } = useViewportScroll();
-  const padding1 = useMotionValue(0);
+  const paddingValue = useMotionValue(0);
+  const scale = useMotionValue(1);
+
   useTransform(scrollY, (input) => {
-    if (input >= 50) return padding1.set(0.5);
-    else return padding1.set(2);
+    if (input >= 50) {
+      paddingValue.set(0.5);
+      scale.set(1);
+      return;
+    } else {
+      scale.set(1.2);
+      paddingValue.set(1.5);
+      return;
+    }
   });
 
-  const padding = useMotionTemplate`${padding1}rem 0`;
+  const padding = useMotionTemplate`${paddingValue}rem 0`;
 
   return (
     <nav className={s.container}>
-      <motion.div className={'wrapper'} style={{ padding }}>
+      <motion.div className={'wrapper'} style={{ padding, scale }}>
         <div className="logo">
-          <Link href="/src/pages">
+          <Link href="/">
             <a>
               <Image src={Logo} alt="app-logo" objectFit="cover" />
             </a>

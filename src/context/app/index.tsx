@@ -2,14 +2,16 @@ import React, { FC, useMemo } from 'react';
 
 export interface State {
   pathname: string;
+  navBar: boolean;
 }
 
 const initialState = {
   pathname: 'sld',
+  navBar: true,
 };
 
 type Action = {
-  type: 'NOT_IMP';
+  type: 'SHOW_NAV_BAR' | 'HIDE_NAV_BAR';
 };
 
 export const AppContext = React.createContext<State | any>(initialState);
@@ -18,9 +20,17 @@ AppContext.displayName = 'UIContext';
 
 function uiReducer(state: State, action: Action) {
   switch (action.type) {
-    case 'NOT_IMP': {
+    case 'SHOW_NAV_BAR': {
       return {
         ...state,
+        navBar: !state.navBar,
+      };
+    }
+
+    case 'HIDE_NAV_BAR': {
+      return {
+        ...state,
+        navBar: false,
       };
     }
     default:
@@ -31,15 +41,17 @@ function uiReducer(state: State, action: Action) {
 const AppProvider: FC<{ children: React.ReactElement }> = (props) => {
   const [state, dispatch] = React.useReducer(uiReducer, initialState);
 
+  const showNavBar = () => dispatch({ type: 'SHOW_NAV_BAR' });
+  const hideNavBar = () => dispatch({ type: 'HIDE_NAV_BAR' });
+
   const value = useMemo(
     () => ({
       ...state,
     }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [state],
   );
 
-  return <AppContext.Provider value={value} {...props} />;
+  return <AppContext.Provider value={{ ...state, showNavBar, hideNavBar }} {...props} />;
 };
 
 export default AppProvider;

@@ -23,7 +23,7 @@ export async function getStaticProps({
 
   const products = await commerce.getAllProducts({
     variables: {
-      first: 9,
+      first: 100,
       filter: {
         collections: [targetCollection.id],
       },

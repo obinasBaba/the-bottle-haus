@@ -8,7 +8,7 @@ import { Button } from '@mui/material';
 import { ShoppingCartTwoTone } from '@mui/icons-material';
 import { MotionParent } from '@/components/common/MotionItems';
 
-const popupVariants: Variants = {
+export const popupVariants: Variants = {
   initial: {
     scale: 0.8,
     x: 20,
@@ -40,6 +40,7 @@ const popupVariants: Variants = {
 
 const CartButton = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+
   const [show, setShow] = useState<boolean>(false);
   const cart = useCart();
 

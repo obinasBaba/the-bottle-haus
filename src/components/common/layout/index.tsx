@@ -5,7 +5,7 @@ import Footer from '@/components/common/Footer';
 import cs from 'clsx';
 import CollectionSideNav from '@/components/common/CollectionSideNav';
 import { Collection } from '@/schema';
-import { Button } from '@mui/material';
+import CollectionsFilter from '@/components/common/CollectionsFilter';
 
 interface Props {
   children: React.ReactNode;
@@ -25,16 +25,7 @@ const Layout: React.FC<Props> = ({ children, pageProps }) => {
           {pageProps.sideNav && <CollectionSideNav collections={pageProps.collections} />}
 
           <div className="content_wrapper">
-            {pageProps.sideNav && (
-              <header>
-                <h1 className="title">{pageProps.collectionName}</h1>
-                <div className="filter">
-                  <Button>Price</Button>
-                  <Button>Best Selling</Button>
-                  <Button>Sort by</Button>
-                </div>
-              </header>
-            )}
+            {pageProps.sideNav && <CollectionsFilter title={pageProps.collectionName} />}
             <div className="main_content_wrapper">{children}</div>
           </div>
         </main>

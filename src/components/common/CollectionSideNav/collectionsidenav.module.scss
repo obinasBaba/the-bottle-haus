@@ -33,15 +33,12 @@
       .col_name {
         white-space: nowrap;
         font-size: .91rem;
+        font-weight: 900;
       }
 
-      .collection_img{
+      .collection_img {
         position: absolute;
         inset: 0;
-
-        img{
-          //border: thin solid black !important;
-        }
       }
     }
   }

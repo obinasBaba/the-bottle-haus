@@ -10,6 +10,7 @@ import { MotionParent } from '@/components/common/MotionItems';
 import { AnimatePresence } from 'framer-motion';
 import { IconButton } from '@mui/material';
 import { KeyboardArrowLeftTwoTone, KeyboardArrowRightTwoTone } from '@mui/icons-material';
+import LottiLoading from '@/components/LottiLoading';
 
 const images = [Img, Img2, Img3, Img4];
 
