@@ -73,7 +73,6 @@ import {
   GetStaticPropsContext,
   InferGetStaticPropsType,
 } from 'next';
-import { useRouter } from 'next/router';
 import commerce from '@lib/api/commerce';
 import ProductPage from '@/scenes/productPage';
 
@@ -82,12 +81,12 @@ export async function getStaticProps({ params, locale }: GetStaticPropsContext<{
     variables: { slug: params!.slug },
   });
 
-  const { products: relatedProducts } = await commerce.getAllProducts({
+  const products = await commerce.getAllProducts({
     variables: { first: 4 },
     config: {},
   });
 
-  console.log('SLUG :: ', params!.slug);
+  const allCollections = await commerce.getSiteInfo({});
 
   if (!product) {
     return {
@@ -98,7 +97,8 @@ export async function getStaticProps({ params, locale }: GetStaticPropsContext<{
   return {
     props: {
       product,
-      // relatedProducts,
+      relatedProducts: products,
+      collections: allCollections.collections,
     },
     revalidate: 200,
   };

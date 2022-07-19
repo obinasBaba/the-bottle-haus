@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './productpage.module.scss';
-import ProductCardBig from '@/components/ProductCardBig';
+import ProductCardBig from '@/components/ProductDetailCard';
 import ProductReview from './ProductReview';
 
 type ProductPageProps = {

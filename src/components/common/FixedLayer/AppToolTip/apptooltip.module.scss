@@ -8,7 +8,6 @@
   border-radius: 500px;
   overflow: hidden;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.35);
-  background-color: rgba(246, 152, 87, 0.2);
 
   & :global{
 
@@ -16,6 +15,7 @@
       position: absolute;
       inset: 0;
       z-index: -1;
+
 
       & > :first-child{
         display: block !important;
@@ -30,6 +30,8 @@
       align-items: center;
       box-sizing: border-box;
       padding: .5rem 1rem .5rem .8rem;
+      background-color: rgba(246, 152, 87, 0.2);
+
 
       .dot {
         height: 6px;

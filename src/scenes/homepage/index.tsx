@@ -7,12 +7,12 @@ import RareToFind from '@homepage/RareToFind';
 import Testimonials from '@homepage/OtherSaying';
 import SlideShow from '@homepage/SlideShow';
 import FeaturedGrid from '@homepage/FeaturedGrid';
-import ProductCardBig from '@/components/ProductCardBig';
 import OurBlog from '@homepage/OurBlog';
 import { Product, ProductTypes } from '@/types/product';
 import FeaturedCollection from '@homepage/FeaturedCollection';
 import { MotionParent } from '@/components/common/MotionItems';
 import HorizontalMarquee from '@homepage/HorizontalMarqee';
+import FeaturedProduct from '@homepage/FeaturedProduct';
 
 type HomepageProps = {
   featuredProduct: ProductTypes['product'];
@@ -40,7 +40,7 @@ const HomePage: React.FC<HomepageProps> = ({
       <RareToFind data={rareToFind} />
       <Testimonials />
       <SlideShow />
-      <ProductCardBig product={featuredProduct} />
+      <FeaturedProduct featuredProduct={featuredProduct} />
       <FeaturedGrid />
       <OurBlog />
     </MotionParent>

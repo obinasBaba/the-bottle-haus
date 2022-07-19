@@ -1,14 +1,16 @@
 import React from 'react';
-import s from './productcardbig.module.scss';
+import s from './productdetailcard.module.scss';
 import cs from 'clsx';
 import Image from 'next/image';
 import { Button } from '@mui/material';
+import { Adjust } from '@mui/icons-material';
+import WhiteBg from '@/public/white-bg.png';
 
 type ProductCardProps = {
   product: any;
 };
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductDetailCard: React.FC<ProductCardProps> = ({ product }) => {
   const rev = Array.from(new Array(5));
 
   return (
@@ -27,17 +29,25 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
 
         <div className="detail">
+          <div className="bg">
+            <Image src={WhiteBg} alt="white bg" objectFit="cover" />
+          </div>
+
           <div className="detail_wrapper">
-            <span className="sub_title"> subtitle here </span>
+            <span className="sub_title">Don Julio</span>
             <h1 className="title">{product?.name}</h1>
 
             <div className="price_detail">
               <div className="quantity_controller">
-                <button className="plus">+</button>
+                <Button variant="outlined" className="plus">
+                  +
+                </Button>
                 <span className="quantity">1</span>
-                <button className="minus">-</button>
+                <Button variant="outlined" className="minus">
+                  -
+                </Button>
               </div>
-              <div className="price">${product?.price.value} </div>
+              <h1 className="price">${product?.price.value} </h1>
             </div>
 
             <div className="reviews">
@@ -46,14 +56,23 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                   <span key={idx} />
                 ))}
               </div>
-              <p>191 reviews</p>
+              <p>19 reviews</p>
             </div>
 
-            <p className="desc">{product?.description}</p>
+            <div className="desc_wrapper">
+              <div className="desc">
+                <p className="text">{product?.description}</p>
+              </div>
+              <div className="bottom_gradient" />
+            </div>
 
             <div className="cart_controllers">
-              <Button>Add to cart</Button>
-              <Button>Add personalized Gift Note</Button>
+              <Button variant="contained" size="large">
+                Add to cart
+              </Button>
+              <Button variant="outlined" size="large" startIcon={<Adjust />}>
+                Add personalized Gift Note
+              </Button>
             </div>
           </div>
         </div>
@@ -62,4 +81,4 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   );
 };
 
-export default ProductCard;
+export default ProductDetailCard;

@@ -4,8 +4,10 @@
 
 .container {
   width: 100%;
-  max-width: 1300px;
+  //max-width: 1300px;
+
   @include s.margin(top, 10rem);
+
 
 
   & :global{

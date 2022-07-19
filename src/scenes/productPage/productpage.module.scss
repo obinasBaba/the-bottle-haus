@@ -4,7 +4,6 @@
 .container {
   width: 100%;
 
-  @include s.margin(top, 10rem);
 
   & :global {
 
