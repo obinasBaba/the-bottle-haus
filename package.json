@@ -33,6 +33,7 @@
     "@mui/icons-material": "5.8.4",
     "@mui/material": "5.8.4",
     "@vercel/fetch": "6.2.0",
+    "barba": "1.0.0",
     "body-scroll-lock": "4.0.0-beta.0",
     "clsx": "1.1.1",
     "formik": "2.2.9",

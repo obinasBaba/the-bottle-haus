@@ -2,15 +2,21 @@ import React from 'react';
 import s from './navmenu.module.scss';
 import data from './data';
 import { Button } from '@mui/material';
-import { Variants } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { useUI } from '@/context/ui/context';
 import { basicVariants, MotionChild, MotionParent } from '@/components/common/MotionItems';
+import Link from 'next/link';
+
+const transition = {
+  duration: 1.2,
+  ease: [0.165, 0.84, 0.44, 1],
+};
 
 const blurBgVariants = Object.setPrototypeOf(
   {
     transition: {
       duration: 0.8,
-      ease: [0.5, 0, 0.75, 0],
+      ease: [0.165, 0.84, 0.44, 1],
     },
   },
   basicVariants,
@@ -28,34 +34,8 @@ const menuVariants = {
   },
 
   transition: {
-    duration: 0.8,
-    ease: [1, 0, 0.68, 1],
-  },
-};
-
-const footerContainerVariants: Variants = {
-  animate: {
-    transition: {
-      staggerChildren: 0.05,
-    },
-  },
-};
-
-const footBtnVariants: Variants = {
-  initial: {
-    opacity: 0,
-    scale: 0.93,
-    y: '-80%',
-  },
-  animate: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-  },
-  exit: {
-    opacity: 0,
-    scale: 0.93,
-    y: '-80%',
+    duration: 1,
+    ease: [0.6, 0.01, 0, 0.9],
   },
 };
 
@@ -68,20 +48,72 @@ const linkContainerVariants: Variants = {
   },
 };
 
-const linkItemVariants: Variants = {
+const linkItemVariant: any = {
   initial: {
     opacity: 0,
-    y: '-100%',
+    x: '80%',
   },
   animate: {
     opacity: 1,
+    x: 0,
+    transition: {
+      opacity: {
+        delay: 0.2,
+        duration: 1.4,
+        ease: [0.6, 0.01, 0, 0.9],
+      },
+      default: {
+        duration: 1.2,
+        ease: [0.165, 0.84, 0.44, 1],
+      },
+    },
+  },
+  exit: {
+    opacity: 0,
+    x: '20%',
+    transition: {
+      duration: 0.8,
+      ease: [0.6, 0.01, 0, 0.9],
+    },
+  },
+  transition: {
+    duration: 1.2,
+    ease: [0.165, 0.84, 0.44, 1],
+  },
+};
+
+const footerVariant = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const footerItemVariant: any = {
+  initial: {
+    y: '130%',
+  },
+  animate: {
     y: 0,
   },
   exit: {
     opacity: 0,
-    y: '-100%',
+  },
+
+  transition: {
+    duration: 1.2,
+    ease: [0.165, 0.84, 0.44, 1],
   },
 };
+
+const links = [
+  { name: 'Home', link: '/' },
+  { name: 'All Product', link: '/collections/all-product' },
+  { name: 'Blogs', link: '/blog' },
+  { name: 'Contact-us', link: '/' },
+];
 
 const NavMenu = () => {
   const { closeNavMenu } = useUI();
@@ -114,42 +146,37 @@ const NavMenu = () => {
           </svg>
         </button>
 
-        <div className="link_list">
-          <div className="item">
-            <p className="no">(01)</p>
-            <h1>Home</h1>
-          </div>
-          <div className="item">
-            <p className="no">(02)</p>
-            <h1>All Product</h1>
-          </div>
-          <div className="item">
-            <p className="no">(03)</p>
-            <h1>Blogs</h1>
-          </div>
-          <div className="item">
-            <p className="no">(04)</p>
-            <h1>Contact-us</h1>
-          </div>
-        </div>
+        <motion.div className="link_list" variants={linkContainerVariants}>
+          {links.map(({ name, link }, idx) => (
+            <motion.div
+              className="item"
+              key={name}
+              variants={linkItemVariant}
+              transition={transition}>
+              <Link href={link}>
+                <a>
+                  <p className="no">(0{idx + 1})</p>
+                  <h1>{name}</h1>
+                </a>
+              </Link>
+            </motion.div>
+          ))}
+        </motion.div>
 
-        <footer>
+        <motion.footer variants={footerVariant}>
           <div className="hor">
-            {data.slice(0, 2).map(({ icon, bg, text }) => (
-              <Button variant="outlined" size="large" key={text}>
-                {text}
-              </Button>
+            {data.map(({ icon, bg, text }) => (
+              <motion.div
+                key={text}
+                variants={footerItemVariant}
+                transition={footerItemVariant.transition}>
+                <Button variant="outlined" size="small">
+                  {text}
+                </Button>
+              </motion.div>
             ))}
           </div>
-
-          <div className="hor">
-            {data.slice(2, 4).map(({ icon, bg, text }) => (
-              <Button variant="outlined" size="large" key={text}>
-                {text}
-              </Button>
-            ))}
-          </div>
-        </footer>
+        </motion.footer>
 
         <div className="bottom_gradient" />
       </MotionChild>
