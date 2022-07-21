@@ -3,6 +3,7 @@ import s from './collectionpage.module.scss';
 import ProductCard from '@/components/ProductCard';
 import { Product } from '@/types/product';
 import { Pagination } from '@mui/material';
+import { useViewportScroll } from 'framer-motion';
 
 type CollectionPageArgs = {
   products: Product[];
@@ -11,6 +12,8 @@ type CollectionPageArgs = {
 const CollectionPage: React.FC<CollectionPageArgs> = ({ products = [] }) => {
   const [totalPageCount, setTotalPageCount] = React.useState<number>(1);
   const [currentPage, setCurrentPage] = React.useState<number>(0);
+
+  useViewportScroll();
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setCurrentPage(value * 9 - 9);

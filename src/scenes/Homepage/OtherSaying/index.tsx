@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './othersaying.module.scss';
-import SayCard from '@homepage/OtherSaying/SayCard';
+import SayCard from '@/scenes/Homepage/OtherSaying/SayCard';
 import { IconButton } from '@mui/material';
 import { KeyboardArrowLeftTwoTone, KeyboardArrowRightTwoTone } from '@mui/icons-material';
 

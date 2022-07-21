@@ -74,7 +74,7 @@ import {
   InferGetStaticPropsType,
 } from 'next';
 import commerce from '@lib/api/commerce';
-import ProductPage from '@/scenes/productPage';
+import ProductPage from '@/scenes/ProductPage';
 
 export async function getStaticProps({ params, locale }: GetStaticPropsContext<{ slug: string }>) {
   const { product } = await commerce.getProduct({

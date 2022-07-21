@@ -47,7 +47,7 @@ export async function getStaticPaths({}: GetStaticPathsContext): Promise<GetStat
   return {
     paths: collections.map(({ slug }) => ({ params: { slug } })),
     // paths: ['boo'],
-    fallback: false,
+    fallback: true,
   };
 }
 

@@ -8610,7 +8610,7 @@ export type Query = {
   pageType?: Maybe<PageType>;
   /** List of the page types. */
   pageTypes?: Maybe<PageTypeCountableConnection>;
-  /** List of activity events to display on homepage (at the moment it only contains order-events). */
+  /** List of activity events to display on Homepage (at the moment it only contains order-events). */
   homepageEvents?: Maybe<OrderEventCountableConnection>;
   /** Look up an order by ID. */
   order?: Maybe<Order>;

@@ -12,7 +12,7 @@ import { Button, InputAdornment, TextField } from '@mui/material';
 
 const Footer = () => {
   return (
-    <div className={s.container}>
+    <div className={s.container} data-scroll-section={true}>
       <div className="bg">
         <Image src={Bg} objectFit="cover" />
       </div>

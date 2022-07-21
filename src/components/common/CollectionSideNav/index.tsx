@@ -21,11 +21,8 @@ const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections }) =>
                   <Image
                     src={backgroundImage.url}
                     alt={backgroundImage?.alt || 'collection image'}
-                    width="100%"
-                    height="100%"
                     objectFit="contain"
-                    unoptimized
-                    layout={'fill'}
+                    layout="fill"
                   />
                 )}
               </div>

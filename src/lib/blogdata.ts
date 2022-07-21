@@ -1,4 +1,4 @@
-export const blogData = [
+const blogData = [
   {
     content: `<p>
 
@@ -120,3 +120,5 @@ export const blogData = [
     slug: 'what-s-the-best-gin-for-tom-collins',
   },
 ];
+
+export default blogData;

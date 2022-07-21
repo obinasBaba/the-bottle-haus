@@ -11,7 +11,6 @@ type ToolTipType = {
 };
 
 type MotionValueContextType = {
-  locoInstance: MotionValue<typeof LocomotiveScroll>;
   toolTipsData: MotionValue<any>;
 
   mouse?: {
@@ -34,8 +33,6 @@ const MotionValueContext = createContext<MotionValueContextType>({} as MotionVal
 export const MotionValueContextWrapper: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const locoInstance = useMotionValue<LocomotiveScroll>(null);
-
   const toolTipsData = useMotionValue({
     text: '',
     show: false,
@@ -65,7 +62,6 @@ export const MotionValueContextWrapper: React.FC<{ children: React.ReactNode }> 
           mouseY,
         },
         toolTipsData,
-        locoInstance,
       }}>
       {children}
     </MotionValueContext.Provider>

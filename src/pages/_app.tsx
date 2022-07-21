@@ -3,12 +3,10 @@
 import { AppProps } from 'next/app';
 import Layout from '@/components/common/layout';
 import '@global/index.scss';
-import { useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import NProgress from 'nprogress';
-import '@/public/nprogress.css';
 import Head from 'next/head';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { ThemeProvider } from '@mui/system';
@@ -20,6 +18,8 @@ import { useMotionValues } from '@/context/MotionValuesContext';
 import RouteChangeEvent from '@/util/helpers/RouteChangeEvent';
 import { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
+import { LocomotiveScrollProvider } from '@/context/LocoMotive';
+import LocomotiveScroll from 'locomotive-scroll';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -27,6 +27,7 @@ const clientSideEmotionCache = createEmotionCache();
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
   session?: Session;
+  Component: AppProps['Component'] & { layout: boolean };
 }
 
 export default function MyApp({
@@ -36,18 +37,16 @@ export default function MyApp({
   session,
 }: MyAppProps) {
   const router = useRouter();
+  const { asPath } = useRouter();
   const event = RouteChangeEvent.GetInstance();
+  const container = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleStart = (url: any) => {
-      // console.log(`Loading: ${url}`);
       event.emit('start', url);
     };
 
     const handleStop = (url: any) => {
-      // console.log(`finish loading: ${url}`);
-
-      // NProgress.done();
       event.emit('end', url);
     };
 
@@ -62,6 +61,10 @@ export default function MyApp({
     };
   }, [router]);
 
+  useEffect(() => {
+    window.dispatchEvent(new Event('resize'));
+  }, [Component]);
+
   return (
     <SessionProvider session={session} refetchInterval={0}>
       <ContextWrapper>
@@ -73,6 +76,7 @@ export default function MyApp({
           <ThemeProvider theme={theme}>
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
+
             {!Component.layout ? (
               <Layout pageProps={pageProps}>
                 <Component {...pageProps} />

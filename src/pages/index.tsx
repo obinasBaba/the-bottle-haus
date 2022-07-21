@@ -1,7 +1,7 @@
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import commerce from '@lib/api/commerce';
 import { MotionParent as MotionPage } from '@/components/common/MotionItems';
-import HomePage from '@homepage';
+import HomePage from '@/scenes/Homepage';
 
 export async function getStaticProps({ preview, locale, locales }: GetStaticPropsContext) {
   const config = { locale, locales };

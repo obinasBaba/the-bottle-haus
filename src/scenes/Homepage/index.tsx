@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import s from './homepage.module.scss';
 import Hero from './Hero';
-import VideoAd from '@homepage/VideoAd';
-import RareToFind from '@homepage/RareToFind';
-import Testimonials from '@homepage/OtherSaying';
-import SlideShow from '@homepage/SlideShow';
-import FeaturedGrid from '@homepage/FeaturedGrid';
-import OurBlog from '@homepage/OurBlog';
+import VideoAd from './/VideoAd';
+import RareToFind from './/RareToFind';
+import Testimonials from './/OtherSaying';
+import SlideShow from './/SlideShow';
+import FeaturedGrid from './/FeaturedGrid';
+import OurBlog from './/OurBlog';
 import { Product, ProductTypes } from '@/types/product';
-import FeaturedCollection from '@homepage/FeaturedCollection';
+import FeaturedCollection from './/FeaturedCollection';
 import { MotionParent } from '@/components/common/MotionItems';
-import HorizontalMarquee from '@homepage/HorizontalMarqee';
-import FeaturedProduct from '@homepage/FeaturedProduct';
+import HorizontalMarquee from './/HorizontalMarqee';
+import FeaturedProduct from './/FeaturedProduct';
 
 type HomepageProps = {
   featuredProduct: ProductTypes['product'];

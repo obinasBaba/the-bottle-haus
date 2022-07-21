@@ -5,7 +5,7 @@ import {
   GetStaticPropsContext,
   InferGetStaticPropsType,
 } from 'next';
-import { blogData } from './blogdata';
+import blogData from '@lib/blogdata';
 import commerce from '@lib/api/commerce';
 import s from './blog.module.scss';
 import Logo from './img.png';
@@ -34,7 +34,7 @@ export async function getStaticProps({ params }: GetStaticPropsContext<any>) {
 export async function getStaticPaths({}: GetStaticPathsContext): Promise<GetStaticPathsResult> {
   return {
     paths: blogData.map(({ slug }) => ({ params: { slug } })),
-    fallback: false,
+    fallback: true,
   };
 }
 
