@@ -3,7 +3,7 @@ import s from './fixed.module.scss';
 import NavBar from '@fixedLayer/NavBar';
 import ScrollTopBottle from '@fixedLayer/ScrollTopBottle';
 import SecondaryNavBar from '@fixedLayer/SecondaryNavBar';
-import { Slide, useScrollTrigger } from '@mui/material';
+import { debounce, Slide } from '@mui/material';
 import NavMenu from '@fixedLayer/NavMenu';
 import { useUI } from '@/context/ui/context';
 import RegistrationModal from '@fixedLayer/RegistrationModal';
@@ -11,6 +11,7 @@ import { AnimatePresence } from 'framer-motion';
 import { Collection } from '@/schema';
 import AppToolTip from '@fixedLayer/AppToolTip';
 import { useAppContext } from '@/context/app';
+import { useLocomotiveScroll } from '@/context/LocoMotive';
 
 interface Props {
   window?: () => Window;
@@ -23,13 +24,18 @@ function HideOnScroll(props: Props) {
 
   const [trigger, setTrigger] = useState(true);
 
-  const scrolled = useScrollTrigger({
-    target: window ? window() : undefined,
-  });
+  const { scrollDirection } = useLocomotiveScroll();
 
   useEffect(() => {
-    setTrigger(!scrolled);
-  }, [scrolled]);
+    const debouncedResponse = debounce((dir) => {
+      if (!dir) return;
+
+      if (dir === 'up') setTrigger(true);
+      else if (dir === 'down') setTrigger(false);
+    }, 300);
+    scrollDirection.onChange(debouncedResponse);
+    return () => scrollDirection.clearListeners();
+  }, []);
 
   useEffect(() => {
     setTrigger(true);
@@ -55,8 +61,7 @@ const FixedLayer = ({ collections }: any) => {
       </HideOnScroll>
 
       <AnimatePresence exitBeforeEnter>{navMenu && <NavMenu />}</AnimatePresence>
-
-      {displayModal && <RegistrationModal />}
+      <AnimatePresence exitBeforeEnter>{displayModal && <RegistrationModal />}</AnimatePresence>
 
       <ScrollTopBottle />
 

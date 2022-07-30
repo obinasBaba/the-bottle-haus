@@ -13,6 +13,7 @@ import FeaturedCollection from './/FeaturedCollection';
 import { MotionParent } from '@/components/common/MotionItems';
 import HorizontalMarquee from './/HorizontalMarqee';
 import FeaturedProduct from './/FeaturedProduct';
+import { useLocomotiveScroll } from '@/context/LocoMotive';
 
 type HomepageProps = {
   featuredProduct: ProductTypes['product'];
@@ -25,8 +26,10 @@ const HomePage: React.FC<HomepageProps> = ({
   featuredCollections,
   rareToFind,
 }) => {
+  const { scale } = useLocomotiveScroll();
+
   return (
-    <MotionParent className={s.container}>
+    <MotionParent className={s.container} style={{ scale }}>
       <Head>
         <title>Homepage</title>
         <meta name="description" content="the bottle haus homepage" />

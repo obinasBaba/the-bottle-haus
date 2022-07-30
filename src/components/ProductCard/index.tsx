@@ -7,7 +7,7 @@ import Link from 'next/link';
 import useAddItem from '@/SWRHooksAPI/cart/use-add-item';
 import { Button } from '@mui/material';
 import { AddRounded } from '@mui/icons-material';
-import { useMotionValues } from '@/context/MotionValuesContext';
+import { useAppInfo } from '@/context/MotionValuesContext';
 import { useAppContext } from '@/context/app';
 
 type ProductCardProps = {
@@ -19,7 +19,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, loading = true }) =>
   const [ready, setReady] = useState(false);
   const addItem = useAddItem();
 
-  const { toolTipsData } = useMotionValues();
+  const { toolTipsData } = useAppInfo();
   const { showNavBar } = useAppContext();
 
   useEffect(() => {

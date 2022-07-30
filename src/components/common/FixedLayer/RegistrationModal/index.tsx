@@ -3,7 +3,7 @@ import s from './registrationmodal.module.scss';
 
 import SignupBg from '@/public/signup-bg.webp';
 import SignInBg from '@/public/signin-bg.webp';
-import { Button, TextField } from '@mui/material';
+import { Button, IconButton, TextField } from '@mui/material';
 import Image from 'next/image';
 import GG from './google.svg';
 import { useUI } from '@/context/ui/context';
@@ -17,6 +17,8 @@ import {
   Variants,
 } from 'framer-motion';
 import { basicVariants, MotionChild, MotionParent } from '@/components/common/MotionItems';
+import { useFormik } from 'formik';
+import { useAppInfo } from '@/context/MotionValuesContext';
 
 type REG_TYPE = 'sign up' | 'sign in';
 
@@ -66,10 +68,52 @@ const text: Variants = {
   },
 };
 
+const registrationModalVariants = {
+  initial: {
+    opacity: 0,
+    scale: 0.9,
+  },
+  animate: {
+    opacity: 1,
+    scale: 1,
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.9,
+  },
+};
+
+const transition = {
+  duration: 1,
+  ease: [0.6, 0.01, 0, 0.9],
+};
+
+export const blurVariants: Variants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+
+  exit: {
+    opacity: 0,
+    transition: {
+      delay: 0.3,
+      duration: 1.2,
+      ease: [0.6, 0.01, 0, 0.9],
+    },
+  },
+};
+
+const blurTransition = {
+  duration: 1.2,
+  ease: [0.165, 0.84, 0.44, 1],
+};
+
 const RegistrationModal = () => {
-  const [type, setType] = useState<REG_TYPE>('sign in');
   const [signUp, setSignUp] = useState<boolean>(false);
-  const [loading, setLoading] = React.useState(true);
+  const { toolTipsData } = useAppInfo();
   const [values, setValues] = useState<any>({
     email: '',
     password: '',
@@ -78,7 +122,6 @@ const RegistrationModal = () => {
   const { closeModal } = useUI();
   const { data: session } = useSession();
   const control = useAnimation();
-  const signUpImg = useAnimation();
 
   useEffect(() => {
     if (session) {
@@ -87,7 +130,7 @@ const RegistrationModal = () => {
           email: session.user?.email,
           password: session.expires,
         });
-      }, 1500);
+      }, 500);
     }
   }, [session]);
 
@@ -99,6 +142,19 @@ const RegistrationModal = () => {
     const win = window.open('/auth/sign-in', '_blank', config);
   };
 
+  const formic = useFormik({
+    initialValues: {
+      email: values.email,
+      password: values.password,
+    },
+    onSubmit(value) {
+      toolTipsData.set({
+        text: 'Something is Wrong!',
+        duration: 2000,
+      });
+    },
+  });
+
   useLayoutEffect(() => {
     if (signUp) {
       control.start('signUp');
@@ -108,12 +164,21 @@ const RegistrationModal = () => {
   }, [signUp, control]);
 
   return (
-    <motion.div className={s.container}>
-      <div className="blur" onClick={() => closeModal()} />
+    <MotionParent className={s.container} variants={{}}>
+      <motion.div
+        variants={basicVariants}
+        transition={blurTransition}
+        className="blur"
+        onClick={() => closeModal()}
+      />
 
-      <motion.div variants={{}} className="signup_wrapper signin">
-        <>
-          <button
+      <LayoutGroup id="wrap" inherit={false}>
+        <motion.div
+          variants={registrationModalVariants}
+          transition={transition}
+          className="signup_wrapper signin"
+          layout>
+          <IconButton
             aria-label="close menu"
             className="close_cross"
             type="button"
@@ -130,7 +195,7 @@ const RegistrationModal = () => {
                 <path className="_1s9fS" d="M4.5 82.5l39.573-39.427"></path>
               </g>
             </svg>
-          </button>
+          </IconButton>
 
           <MotionParent className="art" variants={{}} layout>
             <MotionConfig
@@ -138,11 +203,11 @@ const RegistrationModal = () => {
                 duration: 1.4,
                 ease: [0.165, 0.84, 0.44, 1],
               }}>
-              <MotionChild className="img" animate={control} variants={signInVariant}>
+              <MotionChild className="img" animate={control} variants={signInVariant} layout>
                 <Image src={SignupBg} alt="signup bg" objectFit="cover" />
               </MotionChild>
 
-              <MotionChild className="signin_bg" animate={control} variants={signOutVariant}>
+              <MotionChild className="img" animate={control} variants={signOutVariant} layout>
                 <Image src={SignInBg} alt="signup bg" objectFit="cover" />
               </MotionChild>
 
@@ -154,14 +219,14 @@ const RegistrationModal = () => {
             </MotionConfig>
           </MotionParent>
 
-          <motion.div className="col" layout>
+          <motion.form className="col" layout onSubmit={formic.handleSubmit}>
             <LayoutGroup>
               <motion.div layout>
                 <h2 className="title"> {signUp ? 'SignUp' : 'Login'}</h2>
                 <small>
                   Don`&apos;t have an account yet?{' '}
                   <Button variant="text" onClick={() => setSignUp(!signUp)}>
-                    {signUp ? 'Login here' : 'SignIn here'}
+                    {signUp ? 'LogIn here' : 'SignUp here'}
                   </Button>
                 </small>
 
@@ -184,6 +249,7 @@ const RegistrationModal = () => {
                 {signUp && (
                   <motion.div
                     variants={basicVariants}
+                    inherit={false}
                     initial="initial"
                     animate="animate"
                     exit="exit"
@@ -212,7 +278,6 @@ const RegistrationModal = () => {
 
               <motion.div layout>
                 <TextField
-                  className="tfield"
                   name="password"
                   label="Password"
                   type="password"
@@ -231,15 +296,15 @@ const RegistrationModal = () => {
               )}
 
               <motion.div layout>
-                <Button size="large" variant="contained" fullWidth>
+                <Button size="large" variant="contained" fullWidth type="submit">
                   {signUp ? 'Sign Up' : 'Sign in'}
                 </Button>
               </motion.div>
             </LayoutGroup>
-          </motion.div>
-        </>
-      </motion.div>
-    </motion.div>
+          </motion.form>
+        </motion.div>
+      </LayoutGroup>
+    </MotionParent>
   );
 };
 

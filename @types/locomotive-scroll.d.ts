@@ -29,7 +29,7 @@ declare module 'locomotive-scroll' {
 
   export type ScrollInstance = {
     scroll: Vector2;
-    limit: number;
+    limit: Vector2;
   };
 
   export class Core implements LocomotiveScrollOptions {

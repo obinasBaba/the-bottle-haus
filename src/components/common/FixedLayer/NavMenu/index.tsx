@@ -12,7 +12,7 @@ const transition = {
   ease: [0.165, 0.84, 0.44, 1],
 };
 
-const blurBgVariants = Object.setPrototypeOf(
+export const blurBgVariants = Object.setPrototypeOf(
   {
     transition: {
       duration: 0.8,

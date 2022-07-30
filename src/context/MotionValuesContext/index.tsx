@@ -43,12 +43,12 @@ export const MotionValueContextWrapper: React.FC<{ children: React.ReactNode }> 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const updateMouseMotionValue = (ev: MouseEvent) => {
-    mouseX.set(ev.clientX);
-    mouseY.set(ev.clientY);
-  };
-
   useLayoutEffect(() => {
+    const updateMouseMotionValue = (ev: MouseEvent) => {
+      mouseX.set(ev.clientX);
+      mouseY.set(ev.clientY);
+    };
+
     window.addEventListener('mousemove', updateMouseMotionValue);
 
     return () => window.removeEventListener('mousemove', updateMouseMotionValue);
@@ -68,6 +68,6 @@ export const MotionValueContextWrapper: React.FC<{ children: React.ReactNode }> 
   );
 };
 
-export function useMotionValues() {
+export function useAppInfo() {
   return useContext(MotionValueContext) as MotionValueContextType;
 }

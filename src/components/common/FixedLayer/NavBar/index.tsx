@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import s from './navbar.module.scss';
 import {
@@ -13,8 +13,10 @@ import CartButton from '@fixedLayer/NavBar/components/CartButton';
 import { useUI } from '@/context/ui/context';
 import { Button, IconButton } from '@mui/material';
 import { AccountCircleTwoTone, NotesTwoTone } from '@mui/icons-material';
+import { debounce } from '@mui/material';
 
 import Logo from '@/public/logo.png';
+import { useLocomotiveScroll } from '@/context/LocoMotive';
 
 const NavBar: React.FC = ({}) => {
   const { openNavMenu, openModal } = useUI();
@@ -39,7 +41,7 @@ const NavBar: React.FC = ({}) => {
 
   return (
     <nav className={s.container}>
-      <motion.div className={'wrapper'} style={{ padding, scale }}>
+      <motion.div className={'wrapper'} style={{ padding }}>
         <div className="logo">
           <Link href="/">
             <a>

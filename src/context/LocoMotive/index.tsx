@@ -4,7 +4,6 @@ import React, {
   MutableRefObject,
   useContext,
   useEffect,
-  useLayoutEffect,
   useRef,
   useState,
 } from 'react';
@@ -14,16 +13,21 @@ import { LocomotiveScrollOptions, Scroll } from 'locomotive-scroll';
 import useResizeObserver from 'use-resize-observer';
 import { useDebounce } from 'use-debounce';
 import 'locomotive-scroll/dist/locomotive-scroll.css';
+import { MotionValue, useMotionValue, useSpring, useTransform, useVelocity } from 'framer-motion';
 
 export interface LocomotiveScrollContextValue {
   scroll: Scroll | null;
   isReady: boolean;
+  scale: MotionValue<number>;
+  scrollDirection: MotionValue<string>;
+  yProgress: MotionValue<number>;
 }
 
 const LocomotiveScrollContext = createContext<LocomotiveScrollContextValue>({
   scroll: null,
   isReady: false,
-});
+  scale: new MotionValue<number>(),
+} as any);
 
 export interface LocomotiveScrollProviderProps {
   options: LocomotiveScrollOptions;
@@ -48,11 +52,18 @@ export function LocomotiveScrollProvider({
   const LocomotiveScrollRef = useRef<Scroll | null>(null);
   const [height] = useDebounce(containerHeight, 100);
 
-  if (!watch) {
-    console.warn(
-      'react-locomotive-scroll: you did not add any props to watch. Scroll may have weird behaviours if the instance is not updated when the route changes',
-    );
-  }
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const yLimit = useMotionValue(0);
+  const xLimit = useMotionValue(0);
+  const scrollDirection = useMotionValue('');
+
+  const yProgress = useTransform(y, [0, yLimit.get()], [0, 1], { clamp: false });
+
+  const ySmooth = useSpring(y, { damping: 50, stiffness: 400 });
+  const velocity = useVelocity(ySmooth);
+
+  const scale = useTransform(velocity, [-3000, 0, 3000], [1.01, 1, 1.01]);
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -61,7 +72,7 @@ export function LocomotiveScrollProvider({
       const dataScrollContainer = document.querySelector('[data-scroll-container]');
 
       if (LocomotiveScrollRef.current?.el) {
-        return console.log('IT IS NOT NULL', LocomotiveScrollRef.current);
+        return console.log('IT IS NOT NULL', LocomotiveScrollRef.current.name);
       }
 
       LocomotiveScrollRef.current = new LocomotiveScroll.default({
@@ -71,21 +82,17 @@ export function LocomotiveScrollProvider({
 
       setIsReady(true);
 
-      console.log('locomotive starting here -----', LocomotiveScrollRef.current);
+      console.log('locomotive starting here -----', LocomotiveScrollRef.current.name);
     });
 
     return () => {
       LocomotiveScrollRef.current?.destroy();
-      console.log('locomotive DYING here -----', LocomotiveScrollRef.current);
+      console.log('locomotive DYING here -----', LocomotiveScrollRef.current?.name);
       LocomotiveScrollRef.current = null;
 
       setIsReady(false);
     };
   }, []);
-
-  useEffect(() => {
-    console.log('isRedy: ', isReady, LocomotiveScrollRef.current);
-  }, [isReady]);
 
   useEffect(() => {
     if (!LocomotiveScrollRef.current) {
@@ -100,6 +107,8 @@ export function LocomotiveScrollProvider({
     );
 
     LocomotiveScrollRef.current.update();
+    yLimit.set(LocomotiveScrollRef.current?.scroll?.instance.limit.y);
+    xLimit.set(LocomotiveScrollRef.current?.scroll?.instance.limit.x);
 
     if (onUpdate) {
       onUpdate(LocomotiveScrollRef.current);
@@ -120,8 +129,20 @@ export function LocomotiveScrollProvider({
     }
   }, [location, onLocationChange]);
 
+  useEffect(() => {
+    if (isReady && LocomotiveScrollRef.current) {
+      LocomotiveScrollRef.current.on('scroll', (arg: any) => {
+        // console.log('scrolled: ', arg);
+        x.set(arg.delta.x);
+        y.set(arg.delta.y);
+        scrollDirection.set(arg.direction);
+      });
+    }
+  }, [isReady]);
+
   return (
-    <LocomotiveScrollContext.Provider value={{ scroll: LocomotiveScrollRef.current, isReady }}>
+    <LocomotiveScrollContext.Provider
+      value={{ scroll: LocomotiveScrollRef.current, isReady, scale, scrollDirection, yProgress }}>
       {children}
     </LocomotiveScrollContext.Provider>
   );

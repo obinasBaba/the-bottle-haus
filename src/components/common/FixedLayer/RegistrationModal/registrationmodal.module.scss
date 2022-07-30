@@ -23,6 +23,7 @@
     .signup_wrapper {
       position: relative;
       display: flex;
+      align-items: center;
       width: 100%;
       margin: auto;
       max-width: 53rem;
@@ -31,12 +32,14 @@
       overflow: hidden;
       border-radius: 1.3rem;
 
+      //border: thin solid yellow;
+
       .close_cross{
         position: absolute;
         z-index: 2;
         right: 5%;
         top: 5%;
-        max-width: 1.2rem;
+        max-width: 1rem;
         background: none;
         padding: 0;
         border: none;
@@ -46,9 +49,12 @@
       .art {
         position: relative;
         width: 51%;
+        height: 100%;
         display: grid;
 
+
         .img{
+          position: relative;
           grid-column: 1 / 1;
           grid-row: 1 / 1;
           max-width: 100%;
@@ -57,24 +63,19 @@
           display: grid;
           place-items: center;
 
+
           & * {
             height: 100% !important;
+            width: 100%;
           }
+
           & > :first-child{
-            height: 100%;
+            height: 100% !important;
+            width: 100% !important;
             display: block !important;
           }
         }
 
-        .signin_bg{
-          grid-column: 1 / 1;
-          grid-row: 1 / 1;
-
-          & > :first-child{
-            height: 100%;
-            display: block !important;
-          }
-        }
 
         .text {
           position: absolute;
@@ -99,15 +100,18 @@
       }
 
 
-      .col {
+      form {
         width: 50%;
         padding: 2rem;
         display: flex;
         flex-flow: column;
         //justify-content: center;
+        align-self: stretch;
         align-items: center;
-        gap: 1rem;
+        gap: 1.5rem;
         text-align: center;
+        overflow: hidden;
+
 
         & > * {
           width: 100%;
@@ -123,10 +127,6 @@
           & > *{
             flex: 1;
           }
-        }
-
-        .tfield{
-          margin-top: .3rem;
         }
 
         button.forgot{
@@ -149,7 +149,7 @@
         .divider {
           display: grid;
           place-items: center;
-          margin: 1rem 0;
+          margin: 2rem 0 1rem;
           width: 105%;
 
           .line {

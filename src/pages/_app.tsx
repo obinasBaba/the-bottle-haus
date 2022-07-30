@@ -14,7 +14,7 @@ import { CssBaseline } from '@mui/material';
 import ContextWrapper from '@/context';
 import createEmotionCache from '@/createEmotoinCache';
 import theme from '@/theme';
-import { useMotionValues } from '@/context/MotionValuesContext';
+import { useAppInfo } from '@/context/MotionValuesContext';
 import RouteChangeEvent from '@/util/helpers/RouteChangeEvent';
 import { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
@@ -37,9 +37,7 @@ export default function MyApp({
   session,
 }: MyAppProps) {
   const router = useRouter();
-  const { asPath } = useRouter();
   const event = RouteChangeEvent.GetInstance();
-  const container = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleStart = (url: any) => {
@@ -60,10 +58,6 @@ export default function MyApp({
       router.events.off('routeChangeError', handleStop);
     };
   }, [router]);
-
-  useEffect(() => {
-    window.dispatchEvent(new Event('resize'));
-  }, [Component]);
 
   return (
     <SessionProvider session={session} refetchInterval={0}>
