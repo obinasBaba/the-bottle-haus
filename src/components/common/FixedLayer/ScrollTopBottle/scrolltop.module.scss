@@ -1,6 +1,6 @@
 @use "@styles" as s;
 
-.container{
+.container {
   position: absolute;
   bottom: 7%;
   right: 5%;
@@ -10,8 +10,8 @@
   z-index: 10;
   pointer-events: auto;
 
-  & :global{
-    .bottle_wrapper{
+  & :global {
+    .bottle_wrapper {
       max-width: s.f-unit(1.5rem);
       transform: rotate(180deg);
     }

@@ -1,26 +1,30 @@
 @use '@/styles' as s;
 
-.container{
+.container {
   width: 100%;
 
-   @include s.margin(top, 12rem);
-  // @include s.padding(bottom, 8rem);
+  margin: 2vmax auto 0;
+
+  @include s.media-breakpoint-up(md) {
+    @include s.margin(top, 9rem);
+  }
 
 
-  & :global{
+  & :local {
 
-    .marquee_wrapper{
+    .marqueeWrapper {
       //display: flex;
       //flex-wrap: wrap;
       //gap: 2rem;
 
       //--gradient-color: rgb(164, 35, 35), rgba(255, 255, 255, 0);
 
-      .illustration{
-        max-width: 24rem;
-        margin: 0 -1rem;
-      }
 
+    }
+
+    .illustration {
+      max-width: 24rem;
+      margin: 0 -1rem;
     }
   }
 }

@@ -63,7 +63,7 @@ export function LocomotiveScrollProvider({
   const ySmooth = useSpring(y, { damping: 50, stiffness: 400 });
   const velocity = useVelocity(ySmooth);
 
-  const scale = useTransform(velocity, [-3000, 0, 3000], [1.01, 1, 1.01]);
+  const scale = useTransform(velocity, [-3000, 0, 3000], [1.01, 1, 1.01], { clamp: true });
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -99,12 +99,12 @@ export function LocomotiveScrollProvider({
       return;
     }
 
-    console.log(
+    /*console.log(
       'dependency change ---- -- - - - -',
       height,
       ' instance: ',
       LocomotiveScrollRef.current,
-    );
+    );*/
 
     LocomotiveScrollRef.current.update();
     yLimit.set(LocomotiveScrollRef.current?.scroll?.instance.limit.y);

@@ -1,6 +1,6 @@
 @use "sass:list";
 
-@mixin margin_padding($property, $args...){
+@mixin margin_padding($property, $args...) {
 
   //@error "bullshit: #{ $property, length($args)}";
 

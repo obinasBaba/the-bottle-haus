@@ -1,25 +1,27 @@
 @use '@/styles' as s;
 
-.container{
+.container {
   width: 100%;
 
   // @include s.margin(top, 10rem);
   // @include s.padding(bottom, 8rem);
 
-  & :global{
+  & :global {
 
-    .ver{
+    .ver {
       display: flex;
       flex-flow: column;
       gap: 1rem;
     }
 
-    .title{
+    .title {
       margin-top: 2rem;
-      h4{
+
+      h4 {
         margin-bottom: .3rem;
       }
-      small{
+
+      small {
         display: block;
         line-height: 120%;
         margin-bottom: 1rem;

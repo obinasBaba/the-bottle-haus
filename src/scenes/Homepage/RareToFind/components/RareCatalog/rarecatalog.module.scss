@@ -7,35 +7,40 @@
   @include s.margin(top, 5rem);
   @include s.padding(bottom, 8rem);
 
- display: grid;
+  display: grid;
   place-items: center;
-  row-gap: 2.5rem;
+  row-gap: 1rem;
 
-  & :global{
+  & :local {
 
-    .list{
+    .list {
       display: grid;
-      grid-template-columns: repeat(4, minmax(s.f-unit(13rem), 1fr) );
+      grid-template-columns: repeat(2, minmax(s.f-unit(13rem), 1fr) );
       gap: s.f-unit(2rem);
       row-gap: s.f-unit(2.9rem);
       transform: scale(.9);
-      @include s.margin(top, 4rem);
 
-
-
-      .wife{
-        //border: thin solid red;
-        display: grid;
-        place-items: center;
-        padding-bottom: 50px;
-        padding-left: 50px;
-        //justify-content: end;
+      @include s.media-breakpoint-up(md) {
+        grid-template-columns: repeat(4, minmax(s.f-unit(13rem), 1fr) );
       }
+
     }
 
-    .say{
+    .wife {
+      //border: thin solid red;
+      display: grid;
+      place-items: center;
+      padding-bottom: 50px;
+      padding-left: 50px;
+      //justify-content: end;
+    }
+
+
+    .say {
       color: s.$clrs-accent;
       text-align: center;
+      padding: 1rem;
+      max-width: 50ch;
     }
 
   }

@@ -1,11 +1,11 @@
-.container{
+.container {
 
-  span{
-    &:not(:first-child){
+  span {
+    &:not(:first-child) {
       margin-left: .4rem;
     }
 
-    &:after{
+    &:after {
       content: '';
       display: inline-block;
       background-image: url("./rev.svg");

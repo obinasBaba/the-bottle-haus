@@ -54,6 +54,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, loading = true }) =>
                 toolTipsData.set({ show: false });
               })
               .catch((e) => {
+                console.error('error: ', JSON.stringify(e, null, 2));
+
                 toolTipsData.set({
                   id: 'error',
                   show: true,

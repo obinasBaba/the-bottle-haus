@@ -18,9 +18,9 @@ const imgs = [Img2, Img3, Img4, Img5, Img6, Img7, Img8, Img9];
 const HorizontalMarquee = () => {
   return (
     <div className={s.container}>
-      <Marquee className="marquee_wrapper" gradientColor={[246, 246, 246]}>
+      <Marquee className={s.marqueeWrapper} gradientColor={[246, 246, 246]}>
         {imgs.map((img) => (
-          <div className="illustration" key={img.src}>
+          <div className={s.illustration} key={img.src}>
             <Image src={img} alt="marquee img" />
           </div>
         ))}

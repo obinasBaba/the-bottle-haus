@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import s from './secondarynav.module.scss';
 import Link from 'next/link';
 import { getToken } from '@/util';
 import { Collection } from '@/schema';
+import s from './secondarynav.module.scss';
 
 const token = getToken(); // accessing the cookie via js-cookie
 
@@ -38,11 +38,11 @@ const SecondaryNavBar = ({ collections }: { collections: Collection[] }) => {
 
   return (
     <div className={s.container}>
-      <div className="wrapper">
+      <div className={s.wrapper}>
         {(collections || data).map(({ name, slug = '/' }) => (
           <Link href={`/collection/${slug}`} key={name}>
             <a>
-              <p key={name} className="item">
+              <p key={name} className={s.linkText}>
                 {name}
               </p>
             </a>

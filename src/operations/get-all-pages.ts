@@ -1,6 +1,6 @@
 import { PageCountableEdge, QueryPagesArgs } from '@/schema';
 import * as Query from '../util/queries';
-import { CommerceAPIConfig, OperationContext, Operations, Provider } from '@/types/operations';
+import { CommerceAPIConfig, OperationContext } from '@/types/operations';
 import { GetAllPagesOperation } from '@/types/page';
 
 export type Page = any;

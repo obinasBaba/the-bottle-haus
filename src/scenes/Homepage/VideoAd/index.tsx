@@ -14,13 +14,13 @@ const data = [
 const VideoAd = () => {
   return (
     <div className={s.container}>
-      <div className="wrapper">
+      <div className={s.wrapper}>
         {data.map(({ title, desc, img }) => (
-          <div className="card" key={title}>
-            <h1 className="title">{title}</h1>
-            <div className="desc" dangerouslySetInnerHTML={{ __html: desc }} />
-            <div className="art">
-              <Image src={img} />
+          <div className={s.card} key={title}>
+            <h1 className={s.title}>{title}</h1>
+            <div className={s.desc} dangerouslySetInnerHTML={{ __html: desc }} />
+            <div className={s.art}>
+              <Image src={img} alt={desc} />
             </div>
           </div>
         ))}

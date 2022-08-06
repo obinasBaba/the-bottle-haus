@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import s from './hero.module.scss';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Img from '@/public/hero-slider/hero.png';
 import Img4 from '@/public/hero-slider/img.png';
@@ -10,7 +9,7 @@ import { MotionParent } from '@/components/common/MotionItems';
 import { AnimatePresence } from 'framer-motion';
 import { IconButton } from '@mui/material';
 import { KeyboardArrowLeftTwoTone, KeyboardArrowRightTwoTone } from '@mui/icons-material';
-import LottiLoading from '@/components/LottiLoading';
+import s from './style.module.scss';
 
 const images = [Img, Img2, Img3, Img4];
 
@@ -22,13 +21,17 @@ const transition = {
 const Hero = () => {
   const [selectedImg, setSelectedImg] = useState(images[0]);
   const [idx, setIdx] = useState(0);
+  const savedCallback = useRef<any>();
 
-  function next() {
-    const nxtIdx = idx + 1 <= images.length - 1 ? idx + 1 : 0;
-    console.log('next: ', nxtIdx);
-    setSelectedImg(images[nxtIdx]);
-    setIdx(nxtIdx);
-  }
+  const next = useCallback(
+    function next() {
+      const nxtIdx = idx + 1 <= images.length - 1 ? idx + 1 : 0;
+      console.log('next: ', nxtIdx);
+      setSelectedImg(images[nxtIdx]);
+      setIdx(nxtIdx);
+    },
+    [idx, setIdx],
+  );
 
   function prev() {
     const prvIdx = idx - 1 >= 0 ? idx - 1 : images.length - 1;
@@ -37,41 +40,44 @@ const Hero = () => {
   }
 
   useEffect(() => {
-    return;
-    const intervalId = setInterval(() => {
-      console.log('calling: next: ', idx);
-      next();
-    }, 4000);
+    console.log('inc changed: --');
+    savedCallback.current = next;
+  }, [next]);
 
-    return () => {
-      console.log('clearing: ---', intervalId);
-      clearInterval(intervalId);
-    };
+  useEffect(() => {
+    function tick() {
+      console.log('inc idx: ', idx);
+      savedCallback.current();
+    }
+
+    const interval = setInterval(tick, 5000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
     <div className={s.container}>
-      <div className="gallery">
+      <div className={s.gallery}>
         <AnimatePresence>
           <MotionParent key={selectedImg.src} transition={transition}>
-            <Image src={selectedImg} objectFit="cover" layout={'fill'} />
+            <Image src={selectedImg} objectFit="cover" layout="fill" alt="hero slider image" />
           </MotionParent>
         </AnimatePresence>
 
         <div className={s.controller}>
-          <h1 className="shop-now">Shop Now</h1>
+          <h1 className={s.shopNow}>Shop Now</h1>
 
-          <div className="slider">
+          <div className={s.slider}>
             <span>0{idx + 1}</span>
             <Image src={Slider} layout={'fixed'} />
             <span>04</span>
           </div>
 
-          <div className="buttons">
-            <IconButton className="btn" onClick={() => prev()}>
+          <div className={s.buttons}>
+            <IconButton onClick={() => prev()}>
               <KeyboardArrowLeftTwoTone sx={{ color: 'white' }} />
             </IconButton>
-            <IconButton className="btn" onClick={() => next()}>
+            <IconButton onClick={() => next()}>
               <KeyboardArrowRightTwoTone sx={{ color: 'white' }} />
             </IconButton>
           </div>

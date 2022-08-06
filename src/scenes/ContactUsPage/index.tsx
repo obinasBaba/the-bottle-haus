@@ -24,7 +24,9 @@ const ContactUsPage = () => {
             <TextField id="phone" label="phone" variant="outlined" />
             <TextField id="message" label="message" variant="outlined" multiline rows={7} />
 
-            <Button>Send Message</Button>
+            <Button size="large" variant="contained">
+              Send Message
+            </Button>
           </div>
 
           <div className="contact_detail">
@@ -40,9 +42,10 @@ const ContactUsPage = () => {
 
             <h5>Monday-Friday 9:00AM - 5:00PM PST</h5>
             <p>
-              Attention: Our Call Center is down due to a power outage! We are working urgently to
-              resolve this issue and process your requests. If you need to reach us, please do so by
-              email & we will do our best to respond within 24 hours. Cheers & Happy Holidays!
+              <span className="attention">Attention :</span> Our Call Center is down due to a power
+              outage! We are working urgently to resolve this issue and process your requests. If
+              you need to reach us, please do so by email & we will do our best to respond within 24
+              hours. Cheers & Happy Holidays!
             </p>
           </div>
         </div>

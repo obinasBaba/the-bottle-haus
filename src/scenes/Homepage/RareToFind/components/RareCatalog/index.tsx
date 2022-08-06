@@ -13,10 +13,10 @@ const RareCatalog = ({ data }: { data: Product[] }) => {
 
   return (
     <div className={s.container}>
-      <div className="list">
+      <div className={s.list}>
         {data.map((product, idx) =>
           idx == 3 ? (
-            <div className="wife" key={product.id}>
+            <div className={s.wife} key={product.id}>
               <Image
                 src={MyWife}
                 objectFit="contain"
@@ -30,12 +30,14 @@ const RareCatalog = ({ data }: { data: Product[] }) => {
         )}
       </div>
 
-      <p className="say">
-        Whether you are sending a gift to someone special or simply just adding <br />
-        to your collection, let The Bottle Haus be your one stop shop for <br /> everything rare.
+      <p className={s.say}>
+        Whether you are sending a gift to someone special or simply just adding to your collection,
+        let The Bottle Haus be your one stop shop for everything rare.
       </p>
 
-      <Button>Show All</Button>
+      <Button size="large" variant="outlined">
+        Show All
+      </Button>
     </div>
   );
 };

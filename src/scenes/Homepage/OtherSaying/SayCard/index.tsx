@@ -9,21 +9,21 @@ import Profile from './img.png';
 const SayCard = () => {
   return (
     <div className={s.container}>
-      <div className="profile">
+      <div className={s.profile}>
         <Avatar alt="Remy Sharp" src={Profile.src} sx={{ width: 106, height: 106 }} />
       </div>
 
-      <div className="comment">
-        <div className="quote_wrapper">
+      <div className={s.comment}>
+        <div className={s.quote_icon}>
           <Image src={Quote} alt="quote pic" />
         </div>
-        <div className="hor">
-          <p className="quote">
-            I like this a lot. It is mild but I am happy with it. I don&apos;t like flavors that are
-            overwhelming or are too strong. I will definitely be buying this again.
-          </p>
-        </div>
-        <p className="name">- Miller Geller</p>
+
+        <p className={s.quote}>
+          I like this a lot. It is mild but I am happy with it. I don&apos;t like flavors that are
+          overwhelming or are too strong. I will definitely be buying this again.
+        </p>
+
+        <p className={s.name}>- Miller Geller</p>
       </div>
     </div>
   );

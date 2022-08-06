@@ -13,7 +13,7 @@
 
   & :global {
 
-    .blur{
+    .blur {
       position: absolute;
       inset: 0;
       backdrop-filter: blur(5.5px);
@@ -34,7 +34,7 @@
 
       //border: thin solid yellow;
 
-      .close_cross{
+      .close_cross {
         position: absolute;
         z-index: 2;
         right: 5%;
@@ -53,7 +53,7 @@
         display: grid;
 
 
-        .img{
+        .img {
           position: relative;
           grid-column: 1 / 1;
           grid-row: 1 / 1;
@@ -69,7 +69,7 @@
             width: 100%;
           }
 
-          & > :first-child{
+          & > :first-child {
             height: 100% !important;
             width: 100% !important;
             display: block !important;
@@ -85,11 +85,11 @@
           color: gray;
           overflow: hidden;
 
-          h3{
+          h3 {
             font-weight: 300;
           }
 
-          span{
+          span {
             font-weight: 900;
             color: s.$clrs-orange;
             display: block;
@@ -121,15 +121,16 @@
           border-radius: 5000px;
         }
 
-        .hor{
+        .hor {
           display: flex;
           gap: 1rem;
-          & > *{
+
+          & > * {
             flex: 1;
           }
         }
 
-        button.forgot{
+        button.forgot {
           background-color: rgba(253, 127, 40, 0.04);
         }
 
@@ -138,11 +139,11 @@
           font-size: .91rem;
         }
 
-        .title{
+        .title {
           margin-bottom: .2rem;
         }
 
-        .title + *{
+        .title + * {
           margin: 0;
         }
 

@@ -1,6 +1,6 @@
 @use '@styles' as s;
 
-.container{
+.container {
   width: 100%;
   display: flex;
   align-items: center;
@@ -9,13 +9,13 @@
 
   //border: thin solid red;
 
-  & :global{
+  & :global {
 
-    .value{
+    .value {
       margin: 0;
     }
 
-    button{
+    button {
       border: none;
       background: #fff7ec;
       box-sizing: border-box;
@@ -28,7 +28,7 @@
       cursor: pointer;
     }
 
-    .delete{
+    .delete {
       width: 20px;
       height: 20px;
       padding: 0;

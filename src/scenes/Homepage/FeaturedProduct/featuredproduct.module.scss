@@ -1,7 +1,6 @@
 @use '@/styles' as s;
 
 
-
 .container {
   width: 100%;
   //max-width: 1300px;
@@ -9,8 +8,7 @@
   @include s.margin(top, 10rem);
 
 
-
-  & :global{
+  & :global {
 
   }
 }

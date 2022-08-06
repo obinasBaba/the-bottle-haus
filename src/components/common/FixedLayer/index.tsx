@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import s from './fixed.module.scss';
 import NavBar from '@fixedLayer/NavBar';
 import ScrollTopBottle from '@fixedLayer/ScrollTopBottle';
 import SecondaryNavBar from '@fixedLayer/SecondaryNavBar';
@@ -12,6 +11,8 @@ import { Collection } from '@/schema';
 import AppToolTip from '@fixedLayer/AppToolTip';
 import { useAppContext } from '@/context/app';
 import { useLocomotiveScroll } from '@/context/LocoMotive';
+import { useRouter } from 'next/router';
+import s from './fixed.module.scss';
 
 interface Props {
   window?: () => Window;
@@ -21,6 +22,7 @@ interface Props {
 function HideOnScroll(props: Props) {
   const { children, window } = props;
   const { navBar } = useAppContext();
+  const router = useRouter();
 
   const [trigger, setTrigger] = useState(true);
 
@@ -35,11 +37,11 @@ function HideOnScroll(props: Props) {
     }, 300);
     scrollDirection.onChange(debouncedResponse);
     return () => scrollDirection.clearListeners();
-  }, []);
+  }, [scrollDirection]);
 
   useEffect(() => {
     setTrigger(true);
-  }, [navBar]);
+  }, [navBar, router]);
 
   return (
     <Slide appear={false} direction="down" in={trigger}>

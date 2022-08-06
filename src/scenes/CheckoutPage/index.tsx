@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
-import { Badge, Button, IconButton, InputAdornment, TextField } from '@mui/material';
-
-import Bottle from '@/public/whisky-review/kiss.png';
-import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
+import { Button, IconButton, InputAdornment, TextField } from '@mui/material';
 import { MotionParent } from '@/components/common/MotionItems';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 import { Form, Formik, FormikProps } from 'formik';
@@ -12,6 +9,10 @@ import ShippingAddress from '@/scenes/CheckoutPage/ShippingAddress';
 import Payment from '@/scenes/CheckoutPage/Payment';
 import s from './checkoutpage.module.scss';
 import { CheckCircle } from '@mui/icons-material';
+import { useRouter } from 'next/router';
+import { useAppInfo } from '@/context/MotionValuesContext';
+import { FormikHelpers } from 'formik/dist/types';
+import { CartInfo } from '@/scenes/CheckoutPage/cartInfo';
 
 const wrapperVariants = {
   initial: {
@@ -32,39 +33,27 @@ const wrapperVariants = {
 
 const steps = [
   {
-    name: 'account-info',
+    name: 'Account Info',
     component: (props: any) => <ContactInformation {...props} />,
   },
   {
-    name: 'shipping-address',
+    name: 'Shipping Address',
     component: (props: any) => <ShippingAddress {...props} />,
   },
   {
-    name: 'shipping-method',
+    name: 'Shipping Method',
     component: (props: any) => <ShippingMethod {...props} />,
   },
   {
-    name: 'payment',
+    name: 'Payment',
     component: (props: any) => <Payment {...props} />,
   },
 ];
 
-const initialValues = {
-  first_name: '',
-  last_name: '',
-  email: '',
-  shipment: '',
-  address: '',
-};
+export const StepScaffold = ({ children, prevStep, idx }: any) => {
+  const router = useRouter();
+  const [disable, setDisable] = useState(false);
 
-type CheckoutFormStepArgType = {
-  children?: React.ReactNode;
-  formikProps: FormikProps<typeof initialValues>;
-} & Record<string, any>;
-
-export type CheckoutFormStepComponent = React.FC<CheckoutFormStepArgType>;
-
-export const StepScaffold = ({ children, prevStep }: any) => {
   return (
     <div className={s.scaffold}>
       {children}
@@ -75,7 +64,8 @@ export const StepScaffold = ({ children, prevStep }: any) => {
           className="in_btn"
           size="large"
           color="primary"
-          onClick={() => prevStep()}>
+          disabled={disable}
+          onClick={() => (idx == 0 ? router.push('/cart') : prevStep())}>
           Back
         </Button>
 
@@ -83,36 +73,41 @@ export const StepScaffold = ({ children, prevStep }: any) => {
           variant="contained"
           size="large"
           // className={clsx([{ [s.alone]: idx === 0 }])}
+          disabled={disable}
           type="submit"
-          // onClick={() => nextStep()}
-        >
-          Continue
+          onClick={() => {
+            if (idx == 3) {
+              setTimeout(() => setDisable(true), 200);
+            }
+          }}>
+          {idx == 3 ? 'Pay Now' : 'Continue'}
         </Button>
       </div>
     </div>
   );
 };
 
-const CompletedSteps = ({ stepNo, completed, name, subtitle }: any) => {
-  console.log('completd: ', completed);
+const CompletedSteps = ({ stepNo, completed, name, data, idx }: any) => {
   return (
     <div className="completed_step">
       <div className="step_indicator">
-        {!completed ? (
-          <Button color="secondary" variant="text" className="step_no">
-            1
-          </Button>
-        ) : (
+        {completed && data ? (
           <IconButton color="primary">
             <CheckCircle />
           </IconButton>
+        ) : (
+          <Button color="secondary" variant="text" className="step_no">
+            {idx}
+          </Button>
         )}
       </div>
       <div className="text">
-        <h3>Contact information</h3>
-        <small className="sub_title">John Clayes (acount@gmail.com)</small>
+        <h3>{name}</h3>
+        <small className="sub_title"> {data || ' --'} </small>
       </div>
-      <Button variant="outlined">EDIT</Button>
+      <Button size="small" variant="outlined">
+        EDIT
+      </Button>
     </div>
   );
 };
@@ -141,40 +136,100 @@ export const FancyInput = ({ size = 'medium', btnText = 'apply', label = '' }: a
   );
 };
 
+const initialValues = {
+  first_name: '',
+  last_name: '',
+  email: '',
+  shipment: '',
+  address: '',
+  card_name: '',
+  card_number: '',
+};
+
+type CheckoutFormStepArgType = {
+  children?: React.ReactNode;
+  formikProps: FormikProps<typeof initialValues>;
+} & Record<string, any>;
+
+export type CheckoutFormStepComponent = React.FC<CheckoutFormStepArgType>;
+
 const CheckoutPage = () => {
   const [idx, setIdx] = useState(0);
-  const [completed, pushCompleted] = useState<{ completed: boolean; idx: number }[]>([
-    { completed: false, idx: 0 },
+  const [activeStep, setActiveStep] = useState<typeof steps[number]>(steps[idx]);
+  const { toolTipsData } = useAppInfo();
+  const [completed, pushCompleted] = useState<
+    { completed: boolean; idx: number; name: string; data: string | null }[]
+  >([
+    {
+      completed: false,
+      idx: 0,
+      name: activeStep.name,
+      data: null,
+    },
   ]);
-  const [activeStep, setActiveStep] = useState<typeof steps[number]>({
-    ...steps[idx],
-  });
 
-  const nextStep = (arg: any) => {
-    console.log('next step', arg);
+  const getFormData = (idx: number, value: typeof initialValues) => {
+    switch (idx) {
+      case 0:
+        return `${value.first_name} ${value.last_name} (${value.email}) `;
+      case 1:
+        return `${value.address} `;
+      case 2:
+        return `${value.shipment} `;
+      default:
+        return '';
+    }
+  };
 
-    if (!arg) return;
+  const nextStep = (value: typeof initialValues, helper: FormikHelpers<typeof initialValues>) => {
+    if (!value) return;
 
-    setActiveStep(steps[idx + 1]);
+    if (idx == steps.length - 1) {
+      toolTipsData.set({
+        closable: false,
+        text: 'Processing Payment ....',
+      });
+    }
+
+    const nextStep = steps[idx + 1];
+
+    // push if not exist or update if exist
+    if (completed.map(({ name }) => name).includes(nextStep.name)) {
+      pushCompleted(
+        completed.map((c, idx) => ({
+          ...c,
+          completed: c.name != nextStep.name && c.idx <= idx + 1,
+        })),
+      );
+    } else {
+      pushCompleted([
+        ...completed.map((c, idx) => ({ ...c, data: getFormData(idx, value), completed: true })),
+        {
+          completed: false,
+          idx: idx + 1,
+          name: nextStep.name,
+          data: null,
+        },
+      ]);
+    }
+
     setIdx(idx + 1);
-    pushCompleted([
-      ...completed.slice(0, completed.length - 1),
-      { completed: true, idx },
-      { completed: false, idx: idx + 1 },
-    ]);
+    setActiveStep(nextStep);
   };
 
   const prevStep = () => {
+    if (idx === 0) return;
     setActiveStep(steps[idx - 1]);
     setIdx(idx - 1);
-    pushCompleted((prev) =>
-      prev.map((item) => (item.idx == idx - 1 ? { ...item, completed: false } : item)),
-    );
   };
 
   const setStep = (n: number) => {
     setActiveStep(steps[n]);
   };
+
+  useEffect(() => {
+    console.log('idsx :', idx);
+  }, [idx]);
 
   return (
     <div className={s.container}>
@@ -205,7 +260,7 @@ const CheckoutPage = () => {
                         key={activeStep.name}
                         layout>
                         {activeStep.component({
-                          controller: { nextStep, prevStep, setStep },
+                          controller: { nextStep, prevStep, setStep, currentIdx: idx },
                           formikProps,
                         })}
                       </motion.div>
@@ -219,57 +274,18 @@ const CheckoutPage = () => {
 
         <div className="checkout_detail">
           <div className="step_info">
-            {completed.map(({ completed }, idx) => (
-              <CompletedSteps key={idx} completed={completed} />
+            {completed.map(({ completed, name, data, idx }) => (
+              <CompletedSteps
+                key={idx}
+                completed={completed}
+                name={name}
+                data={data}
+                idx={idx + 1}
+              />
             ))}
           </div>
 
-          <div className="cart_info">
-            <header className="hor">
-              <h2>1 item</h2>
-              <Button>EDIT</Button>
-            </header>
-
-            <div className="list">
-              <div className="item">
-                <div className="img">
-                  <Badge badgeContent={4} color="primary">
-                    <div className="img_wrapper">
-                      <Image src={Bottle} alt="bottle" />
-                    </div>
-                  </Badge>
-                </div>
-                <div className="ver">
-                  <h2 className="price">$23.43</h2>
-                  <p className="name">Balcone brimsone textas scrub oak smoked whisky 323ml</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="btns">
-              <FancyInput label="Gift card or discount code" />
-            </div>
-
-            <div className="detail">
-              <div className="item">
-                <p>Subtotal</p>
-                <h4>$23.2</h4>
-              </div>
-              <div className="item">
-                <p>Shipping</p>
-                <h4>$3.2</h4>
-              </div>
-              <div className="item">
-                <p>Taxes</p>
-                <h4>$3.2</h4>
-              </div>
-
-              <div className="item">
-                <h4>Total to pay</h4>
-                <h1>$113.2</h1>
-              </div>
-            </div>
-          </div>
+          <CartInfo />
         </div>
       </div>
     </div>

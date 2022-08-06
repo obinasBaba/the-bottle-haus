@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import s from './homepage.module.scss';
 import Hero from './Hero';

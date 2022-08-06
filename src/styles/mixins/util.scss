@@ -13,13 +13,12 @@
 
 
 @mixin margin($args...) {
-  @include p.margin_padding( 'margin', $args... )
+  @include p.margin_padding('margin', $args...)
 }
 
 @mixin padding($args...) {
-  @include p.margin_padding( 'padding', $args... )
+  @include p.margin_padding('padding', $args...)
 }
-
 
 
 @mixin width($size) {
@@ -30,11 +29,11 @@
   height: calc(#{$size} * var(--coef-size));
 }
 
-@mixin height_width($height, $width){
-  @if($height and $width){
+@mixin height_width($height, $width) {
+  @if ($height and $width) {
     height: calc(#{$height} * var(--coef-size));
     width: calc(#{$width} * var(--coef-size));
-  }@else{
+  } @else {
     @error 'invalid argument for -> height_width( #{$height, $width} ) '
   }
 }

@@ -10,7 +10,7 @@ const Quantity = ({ value, item, setLoading }: any) => {
     <div className={s.container}>
       <button
         onClick={() => {
-          setLoading(true);
+          setLoading(item.id);
           updateItem({ quantity: value - 1, id: item.id, variantId: item.variant.id }).then((dat) =>
             setLoading(false),
           );
@@ -21,7 +21,7 @@ const Quantity = ({ value, item, setLoading }: any) => {
       <button
         className="plus"
         onClick={() => {
-          setLoading(true);
+          setLoading(item.id);
           updateItem({ quantity: value + 1, id: item.id, variantId: item.variant.id }).then((dat) =>
             setLoading(false),
           );
@@ -31,7 +31,7 @@ const Quantity = ({ value, item, setLoading }: any) => {
       <button
         className="delete"
         onClick={async () => {
-          setLoading(true);
+          setLoading(item.id);
           const res = removeItem({ id: item.id }).then((r) => setLoading(false));
         }}>
         <svg

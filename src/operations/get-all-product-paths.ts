@@ -1,10 +1,4 @@
-import {
-  AllOperations,
-  APIOperations,
-  CommerceAPIConfig,
-  OperationContext,
-  Operations,
-} from '@/types/operations';
+import { CommerceAPIConfig, OperationContext } from '@/types/operations';
 import { getAllProductsPathsQuery } from '@/util/queries';
 import fetchAllProducts from '@/util/fetch-all-products';
 import { ProductCountableEdge } from '@/schema';

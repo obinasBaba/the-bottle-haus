@@ -1,14 +1,14 @@
 @use '@/styles' as s;
 
-.container{
+.container {
   width: 100%;
 
   // @include s.margin(top, 10rem);
   // @include s.padding(bottom, 8rem);
 
-  & :global{
+  & :global {
 
-    .wrapper{
+    .wrapper {
 
     }
   }

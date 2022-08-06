@@ -18,7 +18,7 @@
       gap: s.f-unit(1rem);
       align-items: center;
 
-      .popup{
+      .popup {
         position: absolute;
         top: 80%;
         z-index: 11;
@@ -28,7 +28,7 @@
         //border: thin solid red;
       }
 
-      .price_popup{
+      .price_popup {
         display: flex;
         flex-flow: column;
         padding: 1.5rem;
@@ -37,31 +37,31 @@
         background-color: white;
 
 
-        & > :first-child{
+        & > :first-child {
           margin: 0;
           font-weight: 900;
         }
 
-        & > :last-child{
+        & > :last-child {
           margin-top: 1.2rem;
         }
 
-        .hor{
+        .hor {
           display: flex;
           width: 100%;
           justify-content: space-between;
         }
 
-        .meta{
+        .meta {
           display: flex;
           flex-flow: column;
           margin-bottom: 1rem;
 
-          & > :first-child{
+          & > :first-child {
             margin-bottom: 0;
           }
 
-          small{
+          small {
             color: silver;
           }
         }

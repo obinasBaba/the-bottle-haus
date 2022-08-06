@@ -28,6 +28,14 @@
       .checkout_form {
         max-width: 25rem;
 
+        .active_step {
+          .MuiInputBase-root {
+            border-radius: 5000px;
+            //padding-right: 0;
+          }
+
+        }
+
         h1 {
           line-height: 120%;
           margin-top: 0;
@@ -48,7 +56,7 @@
           display: flex;
           flex-flow: column;
           gap: 1.5rem;
-          border: thin solid lightgray;
+          border: thin solid rgba(211, 211, 211, 0.68);
           border-radius: s.f-unit-light(50px);
 
           @include s.padding(2rem);
@@ -60,6 +68,11 @@
             justify-content: center;
             gap: 1rem;
             //border: thin solid red;
+
+            & > :last-child {
+              margin-left: auto;
+              text-transform: lowercase;
+            }
 
             .step_indicator {
 
@@ -90,6 +103,8 @@
         .cart_info {
           background-color: white;
           border-radius: s.f-unit-light(50px);
+          border: thin solid rgba(211, 211, 211, 0.68);
+
           //@include s.padding(2rem);
           //@include s.padding(hor, 1.7rem);
 
@@ -103,14 +118,58 @@
             justify-content: space-between;
           }
 
-          .list {
-            width: 100%;
+          .cart_list_wrapper {
+            position: relative;
+            //width: calc(100% + 1.5rem);
+
+            .cart_list {
+              position: relative;
+
+              overflow-y: scroll;
+              padding-top: .5rem;
+              width: 100%;
+              max-height: 10vmax;
+              max-width: 100%;
+
+
+              /* width */
+              &::-webkit-scrollbar {
+                width: 3px;
+              }
+
+              /* Track */
+              &::-webkit-scrollbar-track {
+                background: #f1f1f1;
+              }
+
+              /* Handle */
+              &::-webkit-scrollbar-thumb {
+                background: #ababab;
+              }
+
+              /* Handle on hover */
+              &::-webkit-scrollbar-thumb:hover {
+                background: #555;
+              }
+            }
+
+            .cart_list_bottom_gradient {
+              position: absolute;
+              z-index: 1;
+              height: 25px;
+              width: 100%;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              background-image: linear-gradient(to top, white, rgba(255, 255, 255, 0));
+            }
 
             .item {
               width: 100%;
               display: flex;
               align-items: center;
               gap: 2.5rem;
+              margin-top: .2rem;
 
               .img {
                 .img_wrapper {
@@ -135,8 +194,9 @@
                 }
               }
             }
-          }
 
+
+          }
 
           .input {
             position: relative;

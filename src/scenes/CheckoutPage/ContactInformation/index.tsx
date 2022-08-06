@@ -14,8 +14,14 @@ const ContactInformation: CheckoutFormStepComponent = ({ controller }) => {
         </header>
 
         <div className="hor">
-          <TextField name="first_name" label="first name" type="text" variant="outlined" />
-          <TextField name="Last-name" label="last name" type="text" variant="outlined" />
+          <Field
+            as={TextField}
+            name="first_name"
+            label="first name"
+            type="text"
+            variant="outlined"
+          />
+          <Field as={TextField} name="last_name" label="last name" type="text" variant="outlined" />
         </div>
 
         <Field as={TextField} required name="email" label="Email" type="text" variant="outlined" />

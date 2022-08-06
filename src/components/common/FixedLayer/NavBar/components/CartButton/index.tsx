@@ -113,12 +113,22 @@ const CartButton = () => {
                   <p>$122.90</p>
                 </div>
                 <div className="hor">
-                  <Button className="cart_btn" onClick={() => setShow(false)}>
+                  <Button
+                    className="cart_btn"
+                    onClick={() => setShow(false)}
+                    variant="outlined"
+                    size="small">
                     Continue Shopping
                   </Button>
-                  <Link href={'/cart'} onClick={() => setShow(false)}>
+                  <Link href={'/cart'}>
                     <a>
-                      <Button className="cart_btn">Check Out</Button>
+                      <Button
+                        onClick={() => setShow(false)}
+                        className="cart_btn"
+                        variant="outlined"
+                        size="small">
+                        Check Out
+                      </Button>
                     </a>
                   </Link>
                 </div>

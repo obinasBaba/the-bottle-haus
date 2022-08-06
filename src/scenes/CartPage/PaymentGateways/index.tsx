@@ -1,12 +1,14 @@
 import React from 'react';
 import s from './paymentgateways.module.scss';
-import { Button, TextField } from '@mui/material';
+import { Button, Checkbox, TextField } from '@mui/material';
 import ShipmentProtection from './img.png';
 import Image from 'next/image';
 
 import Link from 'next/link';
 
 const PaymentGateways = () => {
+  const [checked, setChecked] = React.useState(false);
+
   return (
     <div className={s.container}>
       <div className="payment_wrapper">
@@ -22,8 +24,11 @@ const PaymentGateways = () => {
 
           <p>Taxes And Shipping Are Calculated At Checkout</p>
 
-          <div className="hor">
-            <input type="checkbox" />
+          <div className="hor" onClick={() => setChecked(!checked)}>
+            <Checkbox
+              checked={checked}
+              // onChange={handleChange1}
+            />
 
             <div className="protect">
               <div className="shipment_img">
@@ -32,7 +37,7 @@ const PaymentGateways = () => {
               <div className="ver">
                 <h4>Shipping Protection</h4>
                 <small>from Damage, Loss & Theft $4.44</small>
-                <Link href="/">
+                <Link href="/cart">
                   <a>
                     <small className="detail">View Detail</small>
                   </a>
@@ -49,15 +54,25 @@ const PaymentGateways = () => {
           <div className="payment_btns">
             <Link href="/checkout">
               <a>
-                <Button>Check Out</Button>
+                <Button size="large" variant="contained">
+                  Check Out
+                </Button>
               </a>
             </Link>
             <hr />
             <div className="methods">
-              <Button>Paypal</Button>
-              <Button>Shop Pay</Button>
-              <Button>G Pay</Button>
-              <Button>Check Out</Button>
+              <Button size="large" variant="outlined">
+                Paypal
+              </Button>
+              <Button size="large" variant="outlined">
+                Shop Pay
+              </Button>
+              <Button size="large" variant="outlined">
+                G Pay
+              </Button>
+              <Button size="large" variant="outlined">
+                Check Out
+              </Button>
             </div>
           </div>
         </div>

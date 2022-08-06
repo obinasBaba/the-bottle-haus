@@ -1,10 +1,8 @@
 import {
-  AllOperations,
   APIProvider,
   CommerceAPI,
   CommerceAPIConfig,
   CommerceAPICore,
-  defaultOperations,
   OPERATIONS,
 } from '@/types/operations';
 import * as Const from '@/const';

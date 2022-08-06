@@ -2,32 +2,33 @@
 @import "keyframes.css";
 
 
-
 .container {
   width: 100%;
   max-width: 1300px;
-  @include s.margin(top, 10rem);
+  @include s.margin(top, 3rem);
   @include s.margin(bottom, 10rem);
+  padding: 1rem;
 
+  //border: thin solid red;
 
-
-  & :global{
-    .header{
+  & :local {
+    .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       color: s.$clrs-accent;
 
-      h1{
+      h1 {
         font-weight: 900;
         @include s.font-size-text(3.2rem);
         line-height: 140%;
         -webkit-text-stroke-width: s.f-unit-light(2px);
         -webkit-text-stroke-color: s.$clrs-accent;
       }
+
       //border: thin solid red;
 
-      span{
+      span {
         display: block;
         color: transparent;
         -webkit-text-stroke-width: 2px;
@@ -35,17 +36,19 @@
       }
     }
 
-    .whiskey-wrapper{
+    .whiskeyWrapper {
+      padding: 1rem;
       display: grid;
-      //grid-template-columns: repeat(auto-fit, minmax(s.f-unit(15rem), 1fr) );
-      grid-template-columns: repeat(4, minmax(s.f-unit(13rem), 1fr) );
-      //flex-flow: wrap;
-      gap: s.f-unit(2rem);
+      grid-template-columns: repeat(2, minmax(s.f-unit(13rem), 1fr) );
+      gap: s.f-unit(2.3rem);
       row-gap: s.f-unit(2.9rem);
       @include s.margin(top, 4rem);
 
-      //border: thin solid red;
 
+      @include s.media-breakpoint-up(md) {
+        grid-template-columns: repeat(4, minmax(s.f-unit(13rem), 1fr) );
+
+      }
 
     }
   }

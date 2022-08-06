@@ -16,7 +16,11 @@ const OurBlog = () => {
             To create this extraordinary <br /> blend, crown blender and <br />
             infused with the juicy flavor
           </p>
-          <Button>Read All</Button>
+          <Link href="./blog/best-tequila-under-100">
+            <a>
+              <Button variant="outlined">Read All</Button>
+            </a>
+          </Link>
         </div>
 
         <div className="blog_card">
@@ -26,7 +30,9 @@ const OurBlog = () => {
                 <Image src={Cover} alt="cover image" />
               </div>
               <h4> What’s The Best Gin For Tom Collins? </h4>
-              <p className="date">Posted by The Bottle Haus • Tue, Sep 21, 22</p>
+              <p className="date">
+                Posted by The Bottle Haus <br /> • Tue, Sep 21, 22
+              </p>
             </a>
           </Link>
         </div>
@@ -38,7 +44,9 @@ const OurBlog = () => {
                 <Image src={Cover} alt="cover-image" />
               </div>
               <h4> Best Tequila Under $100</h4>
-              <p className="date">Posted by The Bottle Haus • Fri, Jun 11, 19</p>
+              <p className="date">
+                Posted by The Bottle Haus <br /> • Fri, Jun 11, 19
+              </p>
             </a>
           </Link>
         </div>
@@ -50,7 +58,9 @@ const OurBlog = () => {
                 <Image src={Cover} alt="cover-image" />
               </div>
               <h4> What is the best gin for a French 75? </h4>
-              <p className="date">Posted by The Bottle Haus • Mon, Mar 01, 21</p>
+              <p className="date">
+                Posted by The Bottle Haus <br /> • Mon, Mar 01, 21
+              </p>
             </a>
           </Link>
         </div>

@@ -1,6 +1,6 @@
 @use '@/styles' as s;
 
-.container{
+.container {
   position: absolute;
   bottom: 7%;
   left: 4%;
@@ -10,21 +10,21 @@
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.35);
   z-index: 100;
 
-  & :global{
+  & :global {
 
-    .bg{
+    .bg {
       position: absolute;
       inset: 0;
       z-index: -1;
 
 
-      & > :first-child{
+      & > :first-child {
         display: block !important;
         height: 100% !important;
       }
     }
 
-    .tooltip_wrapper{
+    .tooltip_wrapper {
       display: flex;
       gap: 1rem;
       justify-content: center;
@@ -43,7 +43,7 @@
       }
 
 
-      .tip{
+      .tip {
         color: black;
         font-weight: 900;
         margin: 0;

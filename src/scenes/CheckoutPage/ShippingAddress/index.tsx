@@ -2,6 +2,7 @@ import React from 'react';
 import s from './shippingaddress.module.scss';
 import { Button, TextField } from '@mui/material';
 import { CheckoutFormStepComponent, StepScaffold } from '@/scenes/CheckoutPage';
+import { Field } from 'formik';
 
 const ShippingAddress: CheckoutFormStepComponent = ({ controller }) => {
   return (
@@ -17,7 +18,14 @@ const ShippingAddress: CheckoutFormStepComponent = ({ controller }) => {
           <TextField name="Last-name" label="last name" type="text" variant="outlined" />
         </div>
 
-        <TextField name="address" label="Address" type="text" variant="outlined" />
+        <Field
+          as={TextField}
+          name="address"
+          required
+          label="Address"
+          type="text"
+          variant="outlined"
+        />
 
         <TextField
           name="apartment"

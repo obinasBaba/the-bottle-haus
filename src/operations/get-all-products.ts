@@ -3,7 +3,6 @@ import { CommerceAPIConfig, OperationContext } from '@/types/operations';
 import * as Query from '@/util/queries';
 import { ProductCountableEdge } from '@/schema';
 import { normalizeProduct } from '@/util/normalize';
-import { GraphQLFetcherResult } from '@/types/fetcher';
 import fetcher from '@/util/fetcher';
 
 type ReturnType = {

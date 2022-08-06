@@ -111,8 +111,8 @@ const footerItemVariant: any = {
 const links = [
   { name: 'Home', link: '/' },
   { name: 'All Product', link: '/collections/all-product' },
-  { name: 'Blogs', link: '/blog' },
-  { name: 'Contact-us', link: '/' },
+  { name: 'Cart', link: '/cart' },
+  { name: 'Contact-us', link: '/contact-us' },
 ];
 
 const NavMenu = () => {
@@ -152,7 +152,8 @@ const NavMenu = () => {
               className="item"
               key={name}
               variants={linkItemVariant}
-              transition={transition}>
+              transition={transition}
+              onClick={() => setTimeout(() => closeNavMenu(), 400)}>
               <Link href={link}>
                 <a>
                   <p className="no">(0{idx + 1})</p>

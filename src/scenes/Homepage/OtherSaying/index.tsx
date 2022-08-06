@@ -7,22 +7,22 @@ import { KeyboardArrowLeftTwoTone, KeyboardArrowRightTwoTone } from '@mui/icons-
 const OtherSaying = () => {
   return (
     <div className={s.container}>
-      <div className="wrapper">
+      <div className={s.wrapper}>
         <header>
-          <h1 className="title">
+          <h1 className={s.title}>
             What Others
             <span>Are Saying?</span>
           </h1>
         </header>
 
-        <div className="marquee_wrap">
-          <IconButton className="btn" color="primary" size="large">
+        <div className={s.marquee_wrap}>
+          <IconButton className={s.btn} color="primary" size="large">
             <KeyboardArrowLeftTwoTone />
           </IconButton>
 
           <SayCard />
 
-          <IconButton className="btn" color="primary" size="large">
+          <IconButton className={s.btn} color="primary" size="large">
             <KeyboardArrowRightTwoTone />
           </IconButton>
         </div>

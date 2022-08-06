@@ -2,7 +2,7 @@ import type { ServerResponse } from 'http';
 import { throwUserErrors } from '@/util';
 
 import * as Mutation from '@/util/mutations';
-import { CommerceAPIConfig, OperationContext, Provider } from '@/types/operations';
+import { CommerceAPIConfig, OperationContext } from '@/types/operations';
 import { LoginOperation } from '@/types/login';
 
 export default function loginOperation({ commerce }: OperationContext) {

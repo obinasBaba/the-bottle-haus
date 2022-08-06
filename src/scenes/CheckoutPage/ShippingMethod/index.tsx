@@ -12,7 +12,7 @@ const methods = [
   { name: 'Pickup', days: '0 days', price: '$0' },
 ];
 
-const ShippingMethod: CheckoutFormStepComponent = ({ controller }) => {
+const ShippingMethod: CheckoutFormStepComponent = ({ controller, formikProps }) => {
   const [selected, setSelected] = useState<number>(5);
 
   return (
@@ -25,9 +25,17 @@ const ShippingMethod: CheckoutFormStepComponent = ({ controller }) => {
 
         {methods.map(({ name, days, price }, idx) => (
           <div className="methods" key={idx}>
-            <Radio color="primary" checked={selected == idx} />
+            <Radio
+              color="primary"
+              checked={selected == idx || name == formikProps.values.shipment}
+            />
 
-            <div className="protect" onClick={() => setSelected(idx)}>
+            <div
+              className="protect"
+              onClick={() => {
+                formikProps.setFieldValue('shipment', name);
+                setSelected(idx);
+              }}>
               <div className="shipment_img">
                 <Image src={idx == 2 ? NoShip : ShipmentProtection} alt="shipment-icon" />
               </div>

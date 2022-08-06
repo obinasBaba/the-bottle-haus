@@ -17,7 +17,7 @@
     header {
       @include s.margin(bottom, 3rem);
 
-      .subtitle{
+      .subtitle {
         margin-bottom: 0;
         @include s.font-size-text(1.2rem);
       }
@@ -44,7 +44,7 @@
         gap: s.f-unit(4rem);
       }
 
-      .review_item{
+      .review_item {
         flex: 1;
 
         @include s.padding(1rem);
@@ -56,7 +56,7 @@
           @include s.font-size-text(.81rem);
         }
 
-        .date{
+        .date {
           color: gray;
         }
       }

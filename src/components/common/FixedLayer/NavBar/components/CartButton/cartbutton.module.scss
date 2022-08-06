@@ -43,21 +43,21 @@
           }
         }
 
-        .cart_list_wrapper{
+        .cart_list_wrapper {
           position: relative;
           width: calc(100% + 1.5rem);
           transform: translateX(-.8rem);
 
           //border: thin solid red;
 
-          & > :first-child{
-            .price{
+          & > :first-child {
+            .price {
               margin-top: 0;
             }
           }
 
 
-          .cart_list{
+          .cart_list {
             position: relative;
             max-height: 10vmax;
             overflow-y: scroll;
@@ -85,7 +85,7 @@
             }
           }
 
-          .cart_list_bottom_gradient{
+          .cart_list_bottom_gradient {
             position: absolute;
             z-index: 1;
             height: 25px;
@@ -93,7 +93,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background-image: linear-gradient( to top, white, rgba(255, 255, 255, 0));
+            background-image: linear-gradient(to top, white, rgba(255, 255, 255, 0));
           }
 
         }
@@ -104,8 +104,8 @@
           align-items: flex-start;
           gap: s.f-unit-light(1rem);
 
-          &:not(:first-child){
-           margin-top: .5rem;
+          &:not(:first-child) {
+            margin-top: .5rem;
           }
 
           .ver {
@@ -116,15 +116,16 @@
             //gap: s.f-unit-light(.3rem);
 
 
-            .price{
+            .price {
               font-weight: bolder;
               margin-bottom: .2rem;
               margin-top: 0;
             }
 
-            p{
+            p {
               margin-top: 0;
-              font-size: s.f-unit-light(.8rem);
+              font-size: s.f-unit-light(.7rem);
+              padding-left: .2rem;
               color: gray;
             }
           }
@@ -136,6 +137,8 @@
           background-color: rgba(253, 127, 40, 0.06);
           padding: s.f-unit(1rem);
           border-radius: 10px;
+          font-size: s.f-unit-light(.8rem);
+
 
           span {
             color: s.$clrs-orange-light;

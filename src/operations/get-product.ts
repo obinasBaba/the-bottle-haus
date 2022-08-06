@@ -1,5 +1,5 @@
 import * as Query from '@/util/queries';
-import { CommerceAPIConfig, OperationContext, Provider } from '@/types/operations';
+import { CommerceAPIConfig, OperationContext } from '@/types/operations';
 import { normalizeProduct } from '@/util/normalize';
 import { GetProductOperation } from '@/types/product';
 

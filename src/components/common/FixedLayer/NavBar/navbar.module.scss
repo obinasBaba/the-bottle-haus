@@ -13,7 +13,7 @@
 
   //border: thin solid red;
 
-  &:after{
+  &:after {
     content: '';
     position: absolute;
     inset: 0;
@@ -23,7 +23,7 @@
     background: white;
   }
 
-  & :global{
+  & :global {
     .wrapper {
       position: relative;
       width: 100%;
@@ -44,8 +44,8 @@
         place-items: center;
         max-width: 100px;
 
-        a{
-          & > :first-child{
+        a {
+          & > :first-child {
             display: block !important;
           }
         }
@@ -62,8 +62,6 @@
 
 
   }
-
-
 
 
 }

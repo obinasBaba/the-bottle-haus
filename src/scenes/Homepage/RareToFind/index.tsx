@@ -1,24 +1,25 @@
 import React from 'react';
-import s from './raretofind.module.scss';
 import Image from 'next/image';
 import RareImage from '@/public/rare.png';
 import TextCrown from '@/public/text-crown.png';
-import RareCatalog from './components/RareCatalog';
 import { Product } from '@/types/product';
+import s from './raretofind.module.scss';
+import RareCatalog from '@/scenes/Homepage/RareToFind/components/RareCatalog';
 
 const RareToFind = ({ data }: { data: Product[] }) => {
   return (
     <div className={s.container}>
       <div className={s.wrapper}>
-        <div className="rare_head">
+        <header className={s.header}>
           <div className={s.bg_txt}>
             <h1>RARE & HARD TO FIND</h1>
-            <div className="crown">
+
+            <div className={s.crown}>
               <Image src={TextCrown} alt="crown" />
             </div>
           </div>
 
-          <p className="txt_left">
+          <p className={s.txt_left}>
             The Bottle Haus&apos;s team of
             <br />
             connoisseurs have done all the hard
@@ -27,11 +28,11 @@ const RareToFind = ({ data }: { data: Product[] }) => {
 
           <Image src={RareImage} alt="rare to find drink image" />
 
-          <div className="txt_right">
-            <p className="title">Louis XIII Cognac</p>
+          <div className={s.txt_right}>
+            <p className={s.title}>Louis XIII Cognac</p>
             <span>The oldest being over 100 years old</span>
           </div>
-        </div>
+        </header>
 
         <RareCatalog data={data} />
       </div>

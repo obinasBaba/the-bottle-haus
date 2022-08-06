@@ -6,10 +6,11 @@ import Paypal from '@/components/common/Footer/paypal.svg';
 import Discover from '@/components/common/Footer/discover.svg';
 import MasterCard from '@/components/common/Footer/mastercard.svg';
 import { CheckoutFormStepComponent, StepScaffold } from '@/scenes/CheckoutPage';
+import { Field } from 'formik';
 
-const Payment: CheckoutFormStepComponent = ({ controller }) => {
+const Payment: CheckoutFormStepComponent = ({ controller, controller: { currentIdx } }) => {
   return (
-    <StepScaffold prevStep={controller.prevStep}>
+    <StepScaffold prevStep={controller.prevStep} idx={currentIdx}>
       <div className={s.container}>
         <header>
           <Button variant="contained">4</Button>
@@ -29,19 +30,47 @@ const Payment: CheckoutFormStepComponent = ({ controller }) => {
             </div>
           </div>
 
-          <TextField name="card number" label="Card number" type="number" variant="outlined" />
-          <TextField name="name" label="Name on card" type="text" variant="outlined" />
+          <Field
+            as={TextField}
+            required
+            name="card_number"
+            label="Card number"
+            type="number"
+            variant="outlined"
+          />
+          <Field
+            as={TextField}
+            required
+            name="card_name"
+            label="Name on card"
+            type="text"
+            variant="outlined"
+          />
 
           <div className="hor">
-            <TextField name="expire" label="expire date" type="number" variant="outlined" />
-            <TextField name="code" label="Security code" type="number" variant="outlined" />
+            <Field
+              as={TextField}
+              required
+              name="card_expire"
+              label="expire date"
+              type="number"
+              variant="outlined"
+            />
+            <Field
+              as={TextField}
+              required
+              name="card_code"
+              label="Security code"
+              type="number"
+              variant="outlined"
+            />
           </div>
         </div>
 
         <div className="title">
           <h3>Billing address</h3>
           <small>
-            <sup>*</sup>Select the address that matches you card ofr payment method
+            <sup>*</sup>Select the address that matches you card for payment method
           </small>
         </div>
 

@@ -3,7 +3,7 @@ import s from './scrolltop.module.scss';
 import Bottle from '@/public/scroll-top.png';
 import Image from 'next/image';
 import { useLocomotiveScroll } from '@/context/LocoMotive';
-import { motion, useAnimationControls, useTransform } from 'framer-motion';
+import { motion, useAnimationControls } from 'framer-motion';
 
 const bottleVariants = {
   initial: {
@@ -44,11 +44,8 @@ const ScrollTopBottle = () => {
   const { scroll, yProgress } = useLocomotiveScroll();
   const control = useAnimationControls();
 
-  const hideOnScroll = useTransform(yProgress, [0, 0.2], [0, 0.2]);
-
   useEffect(() => {
     yProgress.onChange((y) => {
-      console.log('y: ', y);
       if (y > 0.17) {
         if (show) return;
         show = true;
@@ -61,7 +58,7 @@ const ScrollTopBottle = () => {
     });
 
     return () => yProgress.clearListeners();
-  }, []);
+  }, [control, yProgress]);
 
   return (
     <motion.button

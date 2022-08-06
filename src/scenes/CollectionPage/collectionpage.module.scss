@@ -8,11 +8,10 @@
   gap: s.f-unit(2.5rem);
 
   //@include s.margin(top, 15rem);
-   @include s.padding(bottom, 12rem);
+  @include s.padding(bottom, 12rem);
 
 
   & :global {
-
 
 
     .list {
@@ -20,7 +19,7 @@
       grid-template-columns: repeat(3, 1fr);
       gap: s.f-unit(1.5rem);
 
-      .pagination{
+      .pagination {
         grid-column: span 3;
         margin-top: 4rem;
       }
@@ -29,7 +28,7 @@
   }
 }
 
-.empty_container{
+.empty_container {
   display: grid;
   place-items: center;
 }

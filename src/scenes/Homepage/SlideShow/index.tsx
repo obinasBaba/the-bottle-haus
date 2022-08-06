@@ -85,6 +85,7 @@ const SlideShow = () => {
           </div>
         </div>
       </div>
+
       <div className={s.controller}>
         <div className="slide_info">
           <span>Next Slide</span>

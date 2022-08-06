@@ -8,7 +8,6 @@ import { useMemo } from 'react';
 import { useHandlerObject, useSWRHook } from '@/util/use-handler-object';
 import { Provider, useCommerce } from '@/context/SWRHookContext';
 import Cookies from 'js-cookie';
-import { func } from 'prop-types';
 
 export const handler: SWRHook<GetCartHook> = {
   fetchOptions: {

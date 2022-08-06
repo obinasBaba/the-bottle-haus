@@ -16,8 +16,8 @@
 
     flex: 1;
 
-    & :global{
-      .content_wrapper{
+    & :global {
+      .content_wrapper {
         width: 100%;
         display: flex;
         flex-flow: column;
@@ -26,7 +26,7 @@
 
       }
 
-      .main_content_wrapper{
+      .main_content_wrapper {
         width: 100%;
       }
     }
@@ -46,7 +46,7 @@
 
     & :global {
 
-      .main_content_wrapper{
+      .main_content_wrapper {
 
         //border: thin solid thistle;
         //flex: 4;

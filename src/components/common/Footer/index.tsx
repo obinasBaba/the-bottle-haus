@@ -1,5 +1,4 @@
 import React from 'react';
-import s from './fotter.module.scss';
 import Link from 'next/link';
 import MasterCard from './mastercard.svg';
 import Discover from './discover.svg';
@@ -9,17 +8,18 @@ import Bg from './footer-bg.png';
 import Sign from './signature.png';
 import Houses from './houses.png';
 import { Button, InputAdornment, TextField } from '@mui/material';
+import s from './style.module.scss';
 
 const Footer = () => {
   return (
     <div className={s.container} data-scroll-section={true}>
       <div className="bg">
-        <Image src={Bg} objectFit="cover" />
+        <Image src={Bg} objectFit="cover" alt="footer background image" />
       </div>
 
       <div className="house">
         <div className="img">
-          <Image src={Houses} objectFit="cover" />
+          <Image src={Houses} objectFit="cover" alt="old house image" />
         </div>
 
         <p>
@@ -29,7 +29,7 @@ const Footer = () => {
       </div>
 
       <div className="signature">
-        <Image src={Sign} objectFit="cover" />
+        <Image src={Sign} objectFit="cover" alt="signature logo" />
       </div>
 
       <div className="wrapper">
@@ -83,7 +83,7 @@ const Footer = () => {
               <Link href={'/'}>
                 <a>Shipping & Return Policy</a>
               </Link>
-              <Link href="/contact-us">
+              <Link href="/src/pages/contact-us">
                 <a>Contact Us</a>
               </Link>
               <Link href={'/'}>
@@ -95,9 +95,9 @@ const Footer = () => {
           <div className="payments">
             <h3>Accepted Payments</h3>
             <div className="methods">
-              <Image src={Paypal} />
-              <Image src={Discover} />
-              <Image src={MasterCard} />
+              <Image src={Paypal} alt="paypal icon" />
+              <Image src={Discover} alt="discover icon" />
+              <Image src={MasterCard} alt="master icon" />
             </div>
           </div>
         </div>

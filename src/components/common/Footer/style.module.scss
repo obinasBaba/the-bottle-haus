@@ -7,19 +7,19 @@
 
   & :global {
 
-    .bg{
+    .bg {
       position: absolute;
       inset: 0;
       width: 100%;
       //z-index: -1;
 
-      & > :first-child{
+      & > :first-child {
         display: block !important;
         height: 100% !important;
       }
     }
 
-    .house{
+    .house {
       position: absolute;
       bottom: 0;
       left: 50%;
@@ -27,19 +27,29 @@
       text-align: center;
 
 
-      p{
+      p {
         color: gray;
-        small{
+
+        small {
           display: block;
           color: s.$clrs-orange;
         }
       }
     }
 
-    .signature{
+    .signature {
       position: absolute;
-      bottom: 5%;
-      left: 10%;
+      bottom: 15%;
+      left: 1%;
+      max-width: 150px;
+
+
+      @include s.media-breakpoint-up(md) {
+        max-width: initial;
+        left: 10%;
+        bottom: 5%;
+
+      }
     }
 
     .wrapper {
@@ -47,11 +57,15 @@
       max-width: 1300px;
       //color: white;
       display: flex;
+      flex-flow: column;
+      flex-wrap: wrap;
+      align-items: center;
+      text-align: center;
+
       gap: s.f-unit(2rem);
       margin: 8rem auto 15rem;
 
       //border: thin solid red;
-
 
       & > * {
         flex: 1;
@@ -117,7 +131,7 @@
         }
       }
 
-      .right{
+      .right {
         display: flex;
         flex-flow: column;
         align-items: flex-end;
@@ -132,7 +146,7 @@
           .links {
             display: flex;
             flex-flow: column;
-            text-align: right;
+            text-align: center;
             gap: s.f-unit(.2rem);
             text-decoration: underline;
           }
@@ -151,7 +165,21 @@
 
       }
 
+      @include s.media-breakpoint-up(md) {
+        flex-flow: row;
+        flex-wrap: nowrap;
+        text-align: initial;
+
+        .resources {
+          .links {
+            text-align: right;
+          }
+        }
+
+      }
+
     }
   }
 
 }
+

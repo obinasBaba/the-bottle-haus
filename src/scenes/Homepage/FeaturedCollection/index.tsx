@@ -7,7 +7,7 @@ import { Product } from '@/types/product';
 const FeaturedCollection = ({ data }: { data: Product[] }) => {
   return (
     <div className={s.container}>
-      <div className="header">
+      <div className={s.header}>
         <h1>
           Shop
           <span>Whiskey</span>
@@ -18,7 +18,7 @@ const FeaturedCollection = ({ data }: { data: Product[] }) => {
         </Button>
       </div>
 
-      <div className="whiskey-wrapper">
+      <div className={s.whiskeyWrapper}>
         {data.map((product, idx) => (
           <ProductCard key={product?.id || idx} product={product} loading={!data} />
         ))}
