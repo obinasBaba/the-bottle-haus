@@ -41,7 +41,7 @@ const CartProductList = () => {
         </header>
 
         <table className="cart_product_list">
-          <thead className="product_list_item">
+          <thead>
             <tr>
               <th scope="col" colSpan={2}>
                 Product
@@ -57,7 +57,8 @@ const CartProductList = () => {
               </th>
             </tr>
           </thead>
-          <motion.tbody variants={{}} initial="initial" animate="animate" exit="exit">
+
+          <tbody>
             <AnimatePresence exitBeforeEnter>
               {cart?.lineItems.map(
                 (
@@ -93,8 +94,9 @@ const CartProductList = () => {
                     <td className="name">
                       <p>{name}</p>
                     </td>
-                    <td>
-                      <h3 className="price">${price}</h3>
+
+                    <td className="price">
+                      <h3>${price}</h3>
                     </td>
                     <td className="quantity">
                       <Quantity
@@ -103,6 +105,7 @@ const CartProductList = () => {
                         setLoading={setLoading}
                       />
                     </td>
+
                     <td className="total">
                       {loading == id ? (
                         <div className="loader" />
@@ -114,7 +117,7 @@ const CartProductList = () => {
                 ),
               )}
             </AnimatePresence>
-          </motion.tbody>
+          </tbody>
         </table>
 
         {cart?.lineItems.length == 0 && (
