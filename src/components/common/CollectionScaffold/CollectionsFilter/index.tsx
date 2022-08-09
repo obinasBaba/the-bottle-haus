@@ -100,7 +100,7 @@ function SortBySelect() {
 
   return (
     <div>
-      <FormControl sx={{ width: 200 }} size="small" color="primary">
+      <FormControl className={s.form_control} size="small" color="primary">
         <InputLabel id="demo-multiple-name-label">Sort By</InputLabel>
         <Select
           labelId="demo-multiple-name-label"

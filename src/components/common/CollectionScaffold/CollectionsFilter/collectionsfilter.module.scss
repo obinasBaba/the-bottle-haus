@@ -3,21 +3,29 @@
 .container {
   width: 100%;
   display: flex;
+  align-items: center;
   //border: thin solid red;
+  padding: 0 1rem 0;
 
 
   & :global {
 
     .title {
       color: s.$clrs-accent-light;
+      @include s.font-size-title(2rem);
+
+      @include s.media-breakpoint-up(md){
+        margin: 0;
+        -webkit-text-stroke: 1px s.$clrs-accent-light;
+      }
     }
 
     .filter {
       position: relative;
       margin-left: auto;
       display: flex;
-      gap: s.f-unit(1rem);
       align-items: center;
+      gap: s.f-unit(1rem);
 
       #demo-multiple-name {
         color: s.$clrs-orange;
@@ -50,6 +58,15 @@
 
 
     }
+  }
+}
+
+.form_control {
+  max-width: 14rem;
+  width: 100%;
+
+  @include s.media-breakpoint-up(md) {
+    width: s.f-unit(17rem);
   }
 }
 

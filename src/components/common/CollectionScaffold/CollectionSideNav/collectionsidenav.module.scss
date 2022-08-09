@@ -2,13 +2,14 @@
 
 
 .container {
-  //position: sticky;
-  //top: 100px;
-
-
+  display: none;
   height: 100%;
   width: 350px;
   flex: 1 350px;
+
+  @include s.media-breakpoint-up(md){
+    display: block;
+  }
 
 
   & :local {

@@ -29,10 +29,12 @@ const CollectionPage: React.FC<CollectionPageArgs> = ({ products = [] }) => {
   return (
     <div className={s.container}>
       {products.length > 0 ? (
-        <div className="list">
-          {products.slice(currentPage, currentPage + 9).map((product, idx) => (
-            <ProductCard loading={false} product={product} key={idx} />
-          ))}
+        <div className={s.wrapper}>
+          <div className={s.list}>
+            {products.slice(currentPage, currentPage + 9).map((product, idx) => (
+              <ProductCard loading={false} product={product} key={idx} />
+            ))}
+          </div>
 
           <Pagination
             count={totalPageCount}
@@ -40,7 +42,7 @@ const CollectionPage: React.FC<CollectionPageArgs> = ({ products = [] }) => {
             siblingCount={0}
             color="primary"
             size="large"
-            className="pagination"
+            className={s.pagination}
             onChange={handleChange}
           />
         </div>
