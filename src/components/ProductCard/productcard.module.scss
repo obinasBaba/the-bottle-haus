@@ -130,20 +130,25 @@
   z-index: 2;
   top: 4%;
   right: 6%;
-  min-width: initial;
+  min-width: initial !important;
+  min-height: initial !important;
+  padding: 0;
+  font-size: .5rem;
 
-  border-radius: 50%;
+
+  //border-radius: 50%;
   //border: 1px solid #cdcdcd;
   background-color: rgba(253, 127, 40, 0.04);
 
   //cursor: pointer;
 
-  height: 30px;
-  width: 30px;
+  height: 1.6rem !important;
+  width: 1.6rem !important;
+
 
   svg {
     color: rgba(253, 127, 40, 0.84);
-    transform: scale(.91);
+    transform: scale(.8);
   }
 
   /*&:hover {
@@ -178,7 +183,8 @@
   left: 6%;
   background-color: rgba(253, 127, 40, 0.04);
 
-  @include s.padding(6px, 9px);
+  //@include s.padding(6px, 9px);
+  font-size: .6rem;
 
   cursor: default;
 }

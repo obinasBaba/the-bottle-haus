@@ -6,7 +6,7 @@ import { debounce, Slide } from '@mui/material';
 import NavMenu from '@fixedLayer/NavMenu';
 import { useUI } from '@/context/ui/context';
 import RegistrationModal from '@fixedLayer/RegistrationModal';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, useTransform } from 'framer-motion';
 import { Collection } from '@/schema';
 import AppToolTip from '@fixedLayer/AppToolTip';
 import { useAppContext } from '@/context/app';
@@ -26,9 +26,19 @@ function HideOnScroll(props: Props) {
 
   const [trigger, setTrigger] = useState(true);
 
+  const dd = debounce((dir) => {
+    // console.log('boooo : ', dir);
+    // if (dir === 'up') setTrigger(true);
+    // else if (dir === 'down') setTrigger(false);
+  }, 5400);
   const { scrollDirection } = useLocomotiveScroll();
+  const transform = useTransform(scrollDirection, dd);
 
   useEffect(() => {
+    transform.onChange((dir) => {
+      console.log('direction: ', dir);
+    });
+
     const debouncedResponse = debounce((dir) => {
       if (!dir) return;
 
@@ -36,7 +46,10 @@ function HideOnScroll(props: Props) {
       else if (dir === 'down') setTrigger(false);
     }, 300);
     scrollDirection.onChange(debouncedResponse);
-    return () => scrollDirection.clearListeners();
+    return () => {
+      scrollDirection.clearListeners();
+      transform.clearListeners();
+    };
   }, [scrollDirection]);
 
   useEffect(() => {

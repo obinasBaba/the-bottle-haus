@@ -12,7 +12,7 @@ import {
   Slider,
 } from '@mui/material';
 import { Variants } from 'framer-motion';
-import { ExpandMore } from '@mui/icons-material';
+import { ArrowDropDown } from '@mui/icons-material';
 import { Theme, useTheme } from '@mui/material/styles';
 
 function valuetext(value: number) {
@@ -165,7 +165,7 @@ const CollectionsFilter = ({ title }: any) => {
           variant="outlined"
           size="medium"
           aria-describedby={id}
-          endIcon={<ExpandMore />}
+          endIcon={<ArrowDropDown />}
           onClick={handlePopperClick}>
           Price
         </Button>

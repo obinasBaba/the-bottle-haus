@@ -3,9 +3,9 @@ import s from './layout.module.scss';
 import FixedLayer from '@fixedLayer/index';
 import Footer from '@/components/common/Footer';
 import cs from 'clsx';
-import CollectionSideNav from '@/components/common/CollectionSideNav';
+import CollectionSideNav from '@/components/common/CollectionScaffold/CollectionSideNav';
 import { Collection } from '@/schema';
-import CollectionsFilter from '@/components/common/CollectionsFilter';
+import CollectionsFilter from '@/components/common/CollectionScaffold/CollectionsFilter';
 import { useRouter } from 'next/router';
 import { LocomotiveScrollProvider } from '@/context/LocoMotive';
 import LocomotiveScroll from 'locomotive-scroll';
@@ -49,7 +49,7 @@ const Layout: React.FC<Props> = ({ children, pageProps }) => {
           id="main-container">
           {pageProps.sideNav && <CollectionSideNav collections={pageProps.collections} />}
 
-          <div className="content_wrapper">
+          <div className="content_wrapper" id="fixed-target">
             {pageProps.sideNav && <CollectionsFilter title={pageProps.collectionName} />}
             <div className="main_content_wrapper">{children}</div>
           </div>

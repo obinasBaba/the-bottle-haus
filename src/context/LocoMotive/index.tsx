@@ -56,7 +56,7 @@ export function LocomotiveScrollProvider({
   const y = useMotionValue(0);
   const yLimit = useMotionValue(0);
   const xLimit = useMotionValue(0);
-  const scrollDirection = useMotionValue('');
+  const scrollDirection = useMotionValue('down');
 
   const yProgress = useTransform(y, [0, yLimit.get()], [0, 1], { clamp: false });
 
