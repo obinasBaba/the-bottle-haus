@@ -9,13 +9,13 @@
   align-items: center;
 
 
-  @include s.margin(top, 8rem);
-  @include s.margin(bottom, 6rem);
+  @include s.padding(top, 8rem);
+  @include s.padding(bottom, 8rem);
 
   & :global {
 
     header {
-      @include s.margin(bottom, 3rem);
+      @include s.margin(bottom, 2rem);
 
       .subtitle {
         margin-bottom: 0;
@@ -34,13 +34,13 @@
       display: flex;
       justify-content: center;
 
-      gap: s.f-unit(1rem);
+      //gap: s.f-unit(1rem);
 
-      @include s.media-breakpoint-up(s.$br-md) {
+      @include s.media-breakpoint-up(md) {
         gap: s.f-unit(3.5rem);
       }
 
-      @include s.media-breakpoint-up(s.$br-lg) {
+      @include s.media-breakpoint-up(lg) {
         gap: s.f-unit(4rem);
       }
 

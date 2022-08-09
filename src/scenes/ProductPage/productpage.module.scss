@@ -3,6 +3,12 @@
 
 .container {
   width: 100%;
+  background-color: white;
+  padding-top: 10vmin;
+
+  @include s.media-breakpoint-up(md){
+    padding-top: 0vmin;
+  }
 
 
   & :global {
