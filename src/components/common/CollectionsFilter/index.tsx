@@ -1,8 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 import s from './collectionsfilter.module.scss';
-import { Button, Paper, Slider } from '@mui/material';
-import { AnimatePresence, Variants } from 'framer-motion';
-import { MotionParent } from '@/components/common/MotionItems';
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  OutlinedInput,
+  Popover,
+  Select,
+  SelectChangeEvent,
+  Slider,
+} from '@mui/material';
+import { Variants } from 'framer-motion';
+import { ExpandMore } from '@mui/icons-material';
+import { Theme, useTheme } from '@mui/material/styles';
 
 function valuetext(value: number) {
   return `${value}°C`;
@@ -38,10 +49,101 @@ const popupVariants: Variants = {
   },
 };
 
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    className: s.menu_popup,
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+      borderRadius: '10px',
+    },
+  },
+};
+
+const names = [
+  'Oliver Hansen',
+  'Van Henry',
+  'April Tucker',
+  'Ralph Hubbard',
+  'Omar Alexander',
+  'Carlos Abbott',
+  'Miriam Wagner',
+  'Bradley Wilkerson',
+  'Virginia Andrews',
+  'Kelly Snyder',
+];
+
+function getStyles(name: string, personName: string[], theme: Theme) {
+  return {
+    fontWeight:
+      personName.indexOf(name) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium,
+  };
+}
+
+function SortBySelect() {
+  const theme = useTheme();
+  const [personName, setPersonName] = React.useState<string[]>([]);
+
+  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
+    const {
+      target: { value },
+    } = event;
+    setPersonName(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(' , ') : value,
+    );
+  };
+
+  return (
+    <div>
+      <FormControl sx={{ width: 200 }} size="small" color="primary">
+        <InputLabel id="demo-multiple-name-label">Sort By</InputLabel>
+        <Select
+          labelId="demo-multiple-name-label"
+          id="demo-multiple-name"
+          multiple
+          variant="outlined"
+          color="primary"
+          value={personName}
+          onChange={handleChange}
+          input={<OutlinedInput label="Sort By" />}
+          MenuProps={MenuProps}>
+          {names.map((name) => (
+            <MenuItem
+              key={name}
+              value={name}
+              className={s.menu_item}
+              style={getStyles(name, personName, theme)}>
+              {name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </div>
+  );
+}
+
 const CollectionsFilter = ({ title }: any) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [value, setValue] = React.useState<number[]>([320, 1037]);
   const [show, setShow] = useState<boolean>(false);
+
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+
+  const handlePopperClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setShow((prevState) => !prevState);
@@ -59,58 +161,65 @@ const CollectionsFilter = ({ title }: any) => {
     <header className={s.container}>
       <h1 className="title">{title}</h1>
       <div className="filter">
-        <Button variant="outlined" size="small" onClick={handleClick}>
+        <Button
+          variant="outlined"
+          size="medium"
+          aria-describedby={id}
+          endIcon={<ExpandMore />}
+          onClick={handlePopperClick}>
           Price
         </Button>
 
-        <AnimatePresence>
-          {show && (
-            <MotionParent
-              variants={popupVariants}
-              tabIndex={0}
-              ref={containerRef}
-              className="popup"
-              onBlur={(e: FocusEvent) => {
-                if (e.relatedTarget === null) setShow(false);
-              }}>
-              <Paper elevation={5} className="price_popup">
-                <p>Price Range</p>
-                <div className="meta">
-                  <p>$34 - $15000</p>
-                  <small>Maximum price: $15,000</small>
-                </div>
-                <Slider
-                  getAriaLabel={() => 'Temperature range'}
-                  value={value}
-                  onChange={handleChange}
-                  max={1500}
-                  min={30}
-                  valueLabelDisplay="auto"
-                  getAriaValueText={valuetext}
-                />
-                <div className="hor">
-                  <Button variant="text" size="small" disabled>
-                    ${value[0]}
-                  </Button>
-                  -
-                  <Button variant="text" size="small" disabled>
-                    ${value[1]}
-                  </Button>
-                </div>
-                <Button aria-selected={true} variant="outlined" size="large" fullWidth>
-                  Apply Filter
+        <Popover
+          id={id}
+          open={open}
+          anchorEl={anchorEl}
+          onClose={handleClose}
+          PaperProps={{
+            elevation: 5,
+            className: s.popup,
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}>
+          <>
+            <div className={s.price_popup} ref={containerRef}>
+              <p>Price Range</p>
+              <div className={s.meta}>
+                <p>$34 - $15000</p>
+                <small>Maximum price: $15,000</small>
+              </div>
+              <Slider
+                getAriaLabel={() => 'Temperature range'}
+                value={value}
+                onChange={handleChange}
+                max={1500}
+                min={30}
+                valueLabelDisplay="auto"
+                getAriaValueText={valuetext}
+              />
+              <div className={s.hor}>
+                <Button variant="text" size="small" disabled>
+                  ${value[0]}
                 </Button>
-              </Paper>
-            </MotionParent>
-          )}
-        </AnimatePresence>
+                -
+                <Button variant="text" size="small" disabled>
+                  ${value[1]}
+                </Button>
+              </div>
+              <Button aria-selected={true} variant="outlined" size="small" fullWidth>
+                Apply Filter
+              </Button>
+            </div>
+          </>
+        </Popover>
 
-        <Button variant="outlined" size="small">
-          Best Selling
-        </Button>
-        <Button variant="outlined" size="small">
-          Sort by
-        </Button>
+        <SortBySelect />
       </div>
     </header>
   );

@@ -4,26 +4,6 @@ import { getToken } from '@/util';
 import { Collection } from '@/schema';
 import s from './secondarynav.module.scss';
 
-const token = getToken(); // accessing the cookie via js-cookie
-
-const fetcher = async ({ query, variables }: any) => {
-  const res = await fetch('https://bottlehaus.saleor.cloud/graphql/', {
-    method: 'POST',
-    headers: {
-      ...(token && {
-        Authorization: `Bearer ${token}`,
-      }),
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
-  });
-
-  return res;
-};
-
 const SecondaryNavBar = ({ collections }: { collections: Collection[] }) => {
   const [data, setData] = useState([
     'All Product',
