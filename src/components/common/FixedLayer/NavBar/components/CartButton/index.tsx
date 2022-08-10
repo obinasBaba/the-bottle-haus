@@ -7,6 +7,8 @@ import Link from 'next/link';
 import { Button } from '@mui/material';
 import { ShoppingCartTwoTone } from '@mui/icons-material';
 import { MotionParent } from '@/components/common/MotionItems';
+import Badge, { BadgeProps } from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
 
 export const popupVariants: Variants = {
   initial: {
@@ -38,6 +40,15 @@ export const popupVariants: Variants = {
   },
 };
 
+const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    // right: 3,
+    top: 10,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: '0 4px',
+  },
+}));
+
 const CartButton = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -50,13 +61,22 @@ const CartButton = () => {
 
   return (
     <div className={s.container}>
-      <Button
-        variant="text"
-        color="inherit"
-        onClick={() => setShow(!show)}
-        startIcon={<ShoppingCartTwoTone />}>
-        {cart?.data?.totalPrice || 0} $
-      </Button>
+      <StyledBadge
+        badgeContent={cart?.data?.lineItems?.length}
+        showZero={false}
+        color="primary"
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}>
+        <Button
+          variant="text"
+          color="inherit"
+          onClick={() => setShow(!show)}
+          startIcon={<ShoppingCartTwoTone />}>
+          {cart?.data?.totalPrice || 0} $
+        </Button>
+      </StyledBadge>
 
       <AnimatePresence exitBeforeEnter custom={{ globalObj: {} }}>
         {show && (

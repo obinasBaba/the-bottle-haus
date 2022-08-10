@@ -39,8 +39,8 @@ const NavBar: React.FC = ({}) => {
 
   return (
     <nav className={s.container}>
-      <motion.div className={'wrapper'} style={{ padding }}>
-        <div className="logo">
+      <motion.div className={s.wrapper} style={{ padding }}>
+        <div className={s.logo}>
           <Link href="/">
             <a>
               <Image src={Logo} alt="app-logo" objectFit="cover" />
@@ -48,9 +48,9 @@ const NavBar: React.FC = ({}) => {
           </Link>
         </div>
 
-        <div className="icons">
+        <div className={s.icons}>
           <Button
-            className="login"
+            className={s.login}
             onClick={() => openModal()}
             color="inherit"
             startIcon={<AccountCircleTwoTone />}>
@@ -59,7 +59,7 @@ const NavBar: React.FC = ({}) => {
 
           <CartButton />
 
-          <IconButton>
+          <IconButton className={s.search}>
             <Image
               src="/search.png"
               width="15px"

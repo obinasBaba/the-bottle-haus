@@ -106,9 +106,7 @@ const AppToolTip = () => {
       initial="initial"
       animate={controller}
       exit="exit">
-      <div className="bg">
-        <Image src={Bg} objectFit="cover" alt="cover image" />
-      </div>
+      <div className="bg">{/*<Image src={Bg} objectFit="cover" alt="cover image" />*/}</div>
 
       <div className="tooltip_wrapper">
         {showLoading && <LottiLoading />}

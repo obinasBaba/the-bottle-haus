@@ -3,8 +3,11 @@
 .container {
   width: 100%;
 
-  @include s.margin(top, 13rem);
-  // @include s.padding(bottom, 8rem);
+  margin-top: 15vmax;
+
+  @include s.media-breakpoint-up(md) {
+    @include s.margin(top, 13rem);
+  }
 
   & :global {
 
@@ -12,21 +15,33 @@
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      @include s.margin(bottom, 10rem);
-
-
       display: flex;
+      flex-flow: column;
       justify-content: space-evenly;
+      align-items: center;
       gap: 5vmax;
 
-      //border: thin solid red;
+      @include s.margin(bottom, 10rem);
+
+      @include s.media-breakpoint-up(md) {
+        flex-flow: row;
+        align-items: initial;
+      }
+
 
       & > * {
         flex: 1;
       }
 
       .checkout_form {
-        max-width: 25rem;
+        max-width: 28rem;
+        order: 2;
+
+
+        @include s.media-breakpoint-up(md) {
+          max-width: 25rem;
+          order: 1;
+        }
 
         .active_step {
           .MuiInputBase-root {
@@ -39,7 +54,11 @@
         h1 {
           line-height: 120%;
           margin-top: 0;
-          @include s.font-size-title(2.7rem);
+
+          @include s.media-breakpoint-up(md) {
+            @include s.font-size-title(2.7rem);
+
+          }
 
           span {
             display: block;
@@ -51,6 +70,14 @@
 
       .checkout_detail {
         max-width: 25rem;
+        order: 1;
+
+        @include s.media-breakpoint-up(md) {
+          max-width: 25rem;
+          order: 2;
+
+        }
+
 
         .step_info {
           display: flex;

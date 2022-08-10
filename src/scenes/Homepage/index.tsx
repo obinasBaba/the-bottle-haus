@@ -36,7 +36,7 @@ const HomePage: React.FC<HomepageProps> = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Hero />
+      {/* <Hero />
       <VideoAd />
       <HorizontalMarquee />
       <FeaturedCollection data={featuredCollections} />
@@ -45,7 +45,7 @@ const HomePage: React.FC<HomepageProps> = ({
       <SlideShow />
       <FeaturedProduct featuredProduct={featuredProduct} />
       <FeaturedGrid />
-      <OurBlog />
+      <OurBlog />*/}
     </MotionParent>
   );
 };
