@@ -13,6 +13,7 @@ import { useAppContext } from '@/context/app';
 import { useLocomotiveScroll } from '@/context/LocoMotive';
 import { useRouter } from 'next/router';
 import s from './fixed.module.scss';
+import SearchModal from '@fixedLayer/SearchModal';
 
 interface Props {
   window?: () => Window;
@@ -64,7 +65,7 @@ function HideOnScroll(props: Props) {
 }
 
 const FixedLayer = ({ collections }: any) => {
-  const { navMenu, displayModal } = useUI();
+  const { navMenu, displayModal, searchModal } = useUI();
 
   return (
     <div className={s.container}>
@@ -77,6 +78,8 @@ const FixedLayer = ({ collections }: any) => {
 
       <AnimatePresence exitBeforeEnter>{navMenu && <NavMenu />}</AnimatePresence>
       <AnimatePresence exitBeforeEnter>{displayModal && <RegistrationModal />}</AnimatePresence>
+
+      <AnimatePresence exitBeforeEnter>{searchModal && <SearchModal />}</AnimatePresence>
 
       <ScrollTopBottle />
 

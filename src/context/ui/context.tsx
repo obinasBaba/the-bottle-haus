@@ -4,6 +4,7 @@ export interface State {
   navMenu: boolean;
   displayDropdown: boolean;
   displayModal: boolean;
+  searchModal: boolean;
   sidebarView: string;
   modalView: string;
   userAvatar: string;
@@ -13,12 +14,15 @@ const initialState = {
   navMenu: false,
   displayDropdown: false,
   displayModal: false,
+  searchModal: false,
   modalView: 'LOGIN_VIEW',
   sidebarView: 'CART_VIEW',
   userAvatar: '',
 };
 
 type Action =
+  | { type: 'OPEN_SEARCH_MODAL' }
+  | { type: 'CLOSE_SEARCH_MODAL' }
   | {
       type: 'OPEN_NAV_MENU';
     }
@@ -65,6 +69,19 @@ UIContext.displayName = 'UIContext';
 
 function uiReducer(state: State, action: Action) {
   switch (action.type) {
+    case 'OPEN_SEARCH_MODAL': {
+      return {
+        ...state,
+        searchModal: true,
+      };
+    }
+    case 'CLOSE_SEARCH_MODAL': {
+      return {
+        ...state,
+        searchModal: false,
+        displayModal: false,
+      };
+    }
     case 'OPEN_NAV_MENU': {
       return {
         ...state,
@@ -128,6 +145,8 @@ export const UIProvider: FC<{ children: React.ReactElement }> = (props) => {
   const [state, dispatch] = React.useReducer(uiReducer, initialState);
 
   const openNavMenu = useCallback(() => dispatch({ type: 'OPEN_NAV_MENU' }), [dispatch]);
+  const openSearchModal = useCallback(() => dispatch({ type: 'OPEN_SEARCH_MODAL' }), [dispatch]);
+  const closeSearchModal = useCallback(() => dispatch({ type: 'CLOSE_SEARCH_MODAL' }), [dispatch]);
   const closeNavMenu = useCallback(() => dispatch({ type: 'CLOSE_NAV_MENU' }), [dispatch]);
   const toggleNavMenu = useCallback(
     () =>
@@ -176,9 +195,8 @@ export const UIProvider: FC<{ children: React.ReactElement }> = (props) => {
       setModalView,
       setSidebarView,
       setUserAvatar,
-      boo: function () {
-        return false;
-      },
+      openSearchModal,
+      closeSearchModal,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [state],
@@ -194,6 +212,8 @@ type UiType = {
   closeNavMenu: () => void;
   closeModal: () => void;
   toggleModal: () => void;
+  closeSearchModal: () => void;
+  openSearchModal: () => void;
 } & State;
 
 export const useUI = () => {

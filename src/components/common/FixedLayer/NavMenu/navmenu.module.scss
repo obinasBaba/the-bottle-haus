@@ -16,7 +16,7 @@
 
 
     .blur_bg {
-      backdrop-filter: blur(5.5px);
+      backdrop-filter: blur(10.5px);
       position: absolute;
       inset: 0;
       width: 100%;
@@ -145,12 +145,6 @@
       }
     }
   }
-
-
-  //background: none;
-  //padding: 0;
-  //border: none;
-  //cursor: pointer;
 
   & :local{
 

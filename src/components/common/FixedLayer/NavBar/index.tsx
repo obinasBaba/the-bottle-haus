@@ -17,7 +17,7 @@ import { AccountCircleTwoTone, NotesTwoTone } from '@mui/icons-material';
 import Logo from '@/public/logo.png';
 
 const NavBar: React.FC = ({}) => {
-  const { openNavMenu, openModal } = useUI();
+  const { openNavMenu, openModal, openSearchModal } = useUI();
 
   const { scrollY } = useViewportScroll();
   const paddingValue = useMotionValue(0);
@@ -59,7 +59,7 @@ const NavBar: React.FC = ({}) => {
 
           <CartButton />
 
-          <IconButton className={s.search}>
+          <IconButton className={s.search} onClick={() => openSearchModal()}>
             <Image
               src="/search.png"
               width="15px"
