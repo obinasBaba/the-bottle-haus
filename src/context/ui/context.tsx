@@ -8,6 +8,7 @@ export interface State {
   sidebarView: string;
   modalView: string;
   userAvatar: string;
+  loadingModal: boolean;
 }
 
 const initialState = {
@@ -15,6 +16,7 @@ const initialState = {
   displayDropdown: false,
   displayModal: false,
   searchModal: false,
+  loadingModal: true,
   modalView: 'LOGIN_VIEW',
   sidebarView: 'CART_VIEW',
   userAvatar: '',
@@ -23,6 +25,8 @@ const initialState = {
 type Action =
   | { type: 'OPEN_SEARCH_MODAL' }
   | { type: 'CLOSE_SEARCH_MODAL' }
+  | { type: 'OPEN_LOADING_MODAL' }
+  | { type: 'CLOSE_LOADING_MODAL' }
   | {
       type: 'OPEN_NAV_MENU';
     }
@@ -69,6 +73,18 @@ UIContext.displayName = 'UIContext';
 
 function uiReducer(state: State, action: Action) {
   switch (action.type) {
+    case 'OPEN_LOADING_MODAL': {
+      return {
+        ...state,
+        loadingModal: true,
+      };
+    }
+    case 'CLOSE_LOADING_MODAL': {
+      return {
+        ...state,
+        loadingModal: false,
+      };
+    }
     case 'OPEN_SEARCH_MODAL': {
       return {
         ...state,
@@ -146,6 +162,11 @@ export const UIProvider: FC<{ children: React.ReactElement }> = (props) => {
 
   const openNavMenu = useCallback(() => dispatch({ type: 'OPEN_NAV_MENU' }), [dispatch]);
   const openSearchModal = useCallback(() => dispatch({ type: 'OPEN_SEARCH_MODAL' }), [dispatch]);
+  const openLoadingModal = useCallback(() => dispatch({ type: 'OPEN_LOADING_MODAL' }), [dispatch]);
+  const closeLoadingModal = useCallback(
+    () => dispatch({ type: 'CLOSE_LOADING_MODAL' }),
+    [dispatch],
+  );
   const closeSearchModal = useCallback(() => dispatch({ type: 'CLOSE_SEARCH_MODAL' }), [dispatch]);
   const closeNavMenu = useCallback(() => dispatch({ type: 'CLOSE_NAV_MENU' }), [dispatch]);
   const toggleNavMenu = useCallback(
@@ -197,6 +218,8 @@ export const UIProvider: FC<{ children: React.ReactElement }> = (props) => {
       setUserAvatar,
       openSearchModal,
       closeSearchModal,
+      openLoadingModal,
+      closeLoadingModal,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [state],
@@ -214,6 +237,8 @@ type UiType = {
   toggleModal: () => void;
   closeSearchModal: () => void;
   openSearchModal: () => void;
+  closeLoadingModal: () => void;
+  openLoadingModal: () => void;
 } & State;
 
 export const useUI = () => {

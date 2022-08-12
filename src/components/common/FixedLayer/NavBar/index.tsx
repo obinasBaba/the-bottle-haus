@@ -1,4 +1,4 @@
-import React, { startTransition, useTransition } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import s from './navbar.module.scss';
 import {
@@ -14,10 +14,15 @@ import { useUI } from '@/context/ui/context';
 import { Button, IconButton } from '@mui/material';
 import { AccountCircleTwoTone, NotesTwoTone, Search } from '@mui/icons-material';
 
-import Logo from '@/public/logo.png';
+import Logo from '@/public/logo-2.png';
+import { useAppContext } from '@/context/app';
+import clsx from 'clsx';
+import SecondaryNavBar from '@fixedLayer/SecondaryNavBar';
+import { Collection } from '@/schema';
 
-const NavBar: React.FC = ({}) => {
+const NavBar = (props: { collections: any[] }) => {
   const { openNavMenu, openModal, openSearchModal } = useUI();
+  const { darkNavBar } = useAppContext();
   const { scrollY } = useViewportScroll();
   const paddingValue = useMotionValue(0);
   const scale = useMotionValue(1);
@@ -37,7 +42,7 @@ const NavBar: React.FC = ({}) => {
   const padding = useMotionTemplate`${paddingValue}rem 0`;
 
   return (
-    <nav className={s.container}>
+    <nav className={clsx([s.container, darkNavBar && s.darken])}>
       <motion.div className={s.wrapper} style={{ padding }}>
         <div className={s.logo}>
           <Link href="/">
@@ -67,6 +72,8 @@ const NavBar: React.FC = ({}) => {
           </IconButton>
         </div>
       </motion.div>
+
+      <SecondaryNavBar collections={props.collections as Collection[]} />
     </nav>
   );
 };

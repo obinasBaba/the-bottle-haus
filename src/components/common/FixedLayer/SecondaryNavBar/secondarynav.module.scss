@@ -6,6 +6,8 @@
   padding: .6rem 1rem;
   backdrop-filter: blur(20px);
 
+  display: none;
+
   &:after {
     content: '';
     position: absolute;
