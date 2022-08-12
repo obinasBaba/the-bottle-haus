@@ -5,11 +5,36 @@ import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
-import { motion } from 'framer-motion';
 import { useLocomotiveScroll } from '@/context/LocoMotive';
+import { MotionParent } from '@/components/common/MotionItems';
+import { motion, Variants } from 'framer-motion';
 
 type CollectionSideNavProps = {
   collections: Collection[];
+};
+
+const containerVariants: Variants = {
+  initial: {},
+  animate: {
+    transition: {
+      staggerChildren: 0.05,
+    },
+  },
+};
+const itemVariants = {
+  initial: {
+    opacity: 0,
+    x: '-10%',
+  },
+  animate: {
+    opacity: 1,
+    x: 0,
+  },
+};
+
+const transition = {
+  duration: 0.8,
+  ease: [0.6, 0.01, 0, 0.9],
 };
 
 const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections }) => {
@@ -23,27 +48,33 @@ const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections }) =>
       data-scroll={true}
       data-scroll-target="#fixed-target"
       data-scroll-offset="-%10, %20">
-      <motion.div className={s.wrapper}>
+      <MotionParent className={s.wrapper} variants={containerVariants}>
         {collections.map(({ name, backgroundImage, slug }, idx) => (
-          <Link href={`/collection/${slug}`} key={name}>
-            <a>
-              <div className={clsx(s.item, router.asPath.endsWith(slug) && [s.active])} key={name}>
-                <p className={s.col_name}>{name} </p>
-                <div className={s.collection_img}>
-                  {backgroundImage?.url && (
-                    <Image
-                      src={backgroundImage.url}
-                      alt={backgroundImage?.alt || 'collection image'}
-                      objectFit="contain"
-                      layout="fill"
-                    />
-                  )}
+          <motion.div key={name} variants={itemVariants} transition={transition}>
+            <Link href={`/collection/${slug}`}>
+              <a>
+                {router.asPath.endsWith(slug) && (
+                  <motion.div className={s.active} layoutId="active-bg" />
+                )}
+
+                <div className={clsx(s.item)} key={name}>
+                  <p className={s.col_name}>{name} </p>
+                  <div className={s.collection_img}>
+                    {backgroundImage?.url && (
+                      <Image
+                        src={backgroundImage.url}
+                        alt={backgroundImage?.alt || 'collection image'}
+                        objectFit="contain"
+                        layout="fill"
+                      />
+                    )}
+                  </div>
                 </div>
-              </div>
-            </a>
-          </Link>
+              </a>
+            </Link>
+          </motion.div>
         ))}
-      </motion.div>
+      </MotionParent>
     </div>
   );
 };

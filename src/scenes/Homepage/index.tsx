@@ -32,10 +32,8 @@ const HomePage: React.FC<HomepageProps> = ({
     <MotionParent className={s.container} style={{ scale }}>
       <Head>
         <title>Homepage</title>
-        <meta name="description" content="the bottle haus homepage" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta name="homepage" />
       </Head>
-
       <Hero />
       <VideoAd />
       <HorizontalMarquee />

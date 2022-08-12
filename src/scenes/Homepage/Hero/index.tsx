@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Img from '@/public/hero-slider/img_8.png'; // todo -- change
 import Img4 from '@/public/hero-slider/img_7.png';
@@ -171,6 +171,12 @@ const Hero = () => {
     };
   }, []);
 
+  useLayoutEffect(() => {
+    return () => {
+      darkenNavBar();
+    };
+  }, []);
+
   return (
     <div className={s.container}>
       <motion.div
@@ -201,7 +207,7 @@ const Hero = () => {
               touched = true;
               prev();
             }}>
-            <KeyboardArrowLeftTwoTone sx={{ color: 'white' }} />
+            <KeyboardArrowLeftTwoTone />
           </IconButton>
 
           <AnimatePresence exitBeforeEnter>
@@ -228,7 +234,7 @@ const Hero = () => {
               touched = true;
               next();
             }}>
-            <KeyboardArrowRightTwoTone sx={{ color: 'white' }} />
+            <KeyboardArrowRightTwoTone />
           </IconButton>
         </div>
       </motion.div>

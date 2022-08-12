@@ -9,7 +9,7 @@ export interface State {
 const initialState = {
   pathname: 'sld',
   navBar: true,
-  darkNavBar: true,
+  darkNavBar: false,
 };
 
 type Action = {

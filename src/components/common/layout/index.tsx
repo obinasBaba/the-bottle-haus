@@ -9,6 +9,7 @@ import CollectionsFilter from '@/components/common/CollectionScaffold/Collection
 import { useRouter } from 'next/router';
 import { LocomotiveScrollProvider } from '@/context/LocoMotive';
 import LocomotiveScroll from 'locomotive-scroll';
+import { AnimatePresence } from 'framer-motion';
 
 interface Props {
   children: React.ReactNode;
@@ -47,11 +48,17 @@ const Layout: React.FC<Props> = ({ children, pageProps }) => {
           className={cs([s.main, { [s.with_sidenav]: pageProps.sideNav }])}
           data-scroll-section={true}
           id="main-container">
-          {pageProps.sideNav && <CollectionSideNav collections={pageProps.collections} />}
+          <AnimatePresence exitBeforeEnter custom={{}}>
+            {pageProps.sideNav && <CollectionSideNav collections={pageProps.collections} />}
+          </AnimatePresence>
 
           <div className="content_wrapper" id="fixed-target">
             {pageProps.sideNav && <CollectionsFilter title={pageProps.collectionName} />}
-            <div className="main_content_wrapper">{children}</div>
+            <div className="main_content_wrapper">
+              <AnimatePresence exitBeforeEnter custom={{}}>
+                {children}
+              </AnimatePresence>
+            </div>
           </div>
         </main>
         <Footer />

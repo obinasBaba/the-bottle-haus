@@ -8,6 +8,8 @@ import {
 } from 'next';
 import commerce from '@lib/api/commerce';
 import { MotionParent } from '@/components/common/MotionItems';
+import Head from 'next/head';
+import { Variants } from 'framer-motion';
 
 export async function getStaticProps({
   params,
@@ -52,10 +54,22 @@ export async function getStaticPaths({}: GetStaticPathsContext): Promise<GetStat
   };
 }
 
+const containerVariants: Variants = {
+  initial: {},
+  animate: {},
+};
+
 const Collections: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ products }) => {
   return (
-    <MotionParent>
-      <CollectionPage products={products} />{' '}
+    <MotionParent
+      transition={{
+        duration: 2,
+      }}>
+      <Head>
+        <title>collections</title>
+        <meta name="collections page" />
+      </Head>
+      <CollectionPage products={products} />
     </MotionParent>
   );
 };

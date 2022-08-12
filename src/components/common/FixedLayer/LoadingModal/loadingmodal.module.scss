@@ -21,6 +21,16 @@
       display: grid;
       place-items: center;
 
+      & > :not(:first-child) {
+        transform: scale(.8);
+      }
+
+      @include s.media-breakpoint-up(md) {
+        & > :not(:first-child) {
+          transform: scale(1);
+        }
+      }
+
       svg{
         position: absolute;
       }

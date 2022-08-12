@@ -111,7 +111,7 @@ const footerItemVariant: any = {
 
 const links = [
   { name: 'Home', link: '/' },
-  { name: 'All Product', link: '/collection/all-product' },
+  { name: 'All Product', link: '/collection/all-products' },
   { name: 'Cart', link: '/cart' },
   { name: 'Contact-us', link: '/contact-us' },
 ];

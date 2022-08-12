@@ -3,12 +3,10 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import s from './apptooltip.module.scss';
 import { useAppInfo } from '@/context/MotionValuesContext';
-import Bg from './img.png';
-import Image from 'next/image';
 import { motion, useAnimation } from 'framer-motion';
 import { useRouter } from 'next/router';
 import RouteChangeEvent from '@/util/helpers/RouteChangeEvent';
-import LottiLoading from '@/components/LottiLoading';
+import dynamic from 'next/dynamic';
 
 const containerVariant = {
   initial: {
@@ -37,6 +35,10 @@ const containerVariant = {
     },
   },
 };
+
+const LottiLoading = dynamic(() => import('@/components/LottiLoading'), {
+  suspense: false,
+});
 
 const AppToolTip = () => {
   const { toolTipsData } = useAppInfo();

@@ -3,34 +3,14 @@
 
 .container {
   width: 100%;
+  position: relative;
+  z-index: 1;
 
   @include s.media-breakpoint-up(md) {
     //margin: 13vmax auto 0;
   }
 
   & :local {
-
-    .inline_nav_bar {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      //border: 2px solid red;
-      z-index: 20;
-
-      & > :first-child {
-        backdrop-filter: blur(0);
-
-        &:after {
-          background-color: transparent;
-          background-image: linear-gradient(rgba(31, 31, 31, 0.73), rgba(237, 237, 237, 0));
-        }
-      }
-
-      & :global {
-
-
-      }
-    }
 
     .gallery {
       position: relative;
@@ -76,14 +56,17 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  padding: 0 3rem;
   color: white;
   display: flex;
   align-items: center;
-  gap: 4rem;
+  gap: s.f-unit(4rem);
   z-index: 100;
+  padding: 0 .7rem;
 
   @include s.media-breakpoint-up(md) {
+    padding: 0 1.5rem;
+    //gap: 4rem;
+
     //left: 2rem;
   }
 
@@ -103,7 +86,11 @@
       }
 
       big {
-        max-width: 40ch;
+        width: 100%;
+
+        @include s.media-breakpoint-up(md) {
+          max-width: 40ch;
+        }
 
       }
 
@@ -133,9 +120,8 @@
     }
 
     .next, .prev {
-      background: none;
-      outline: none;
-      border: 2px solid white;
+      border: 2px solid rgba(253, 127, 40, 0.66);
+      color: s.$clrs-orange;
 
       border-radius: 50%;
       height: 2.5rem;

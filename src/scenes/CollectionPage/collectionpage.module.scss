@@ -7,10 +7,9 @@
   place-content: center;
   gap: s.f-unit(2.5rem);
   padding: 1.2rem;
-
-
-  //@include s.margin(top, 15rem);
   @include s.padding(bottom, 12rem);
+
+  //border: 1px solid #000;
 
 
   & :local {
