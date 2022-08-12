@@ -11,7 +11,7 @@ import s from './blog.module.scss';
 import Logo from './img.png';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { basicVariants } from '@/components/common/MotionItems';
+import { basicVariants, MotionParent } from '@/components/common/MotionItems';
 
 export async function getStaticProps({ params }: GetStaticPropsContext<any>) {
   const blog = blogData.find(({ slug }) => slug === params.slug);
@@ -57,12 +57,7 @@ export const Blog: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   blog: { date, title, content },
 }) => {
   return (
-    <motion.div
-      className={s.container}
-      variants={{ exit: { opacity: 0 } }}
-      initial="initial"
-      animate="animate"
-      exit="exit">
+    <MotionParent>
       <div className="blog_wrapper">
         <motion.header>
           <motion.div className="bg" variants={bgVariants} transition={transition} />
@@ -87,7 +82,7 @@ export const Blog: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
           dangerouslySetInnerHTML={{ __html: content }}
         />
       </div>
-    </motion.div>
+    </MotionParent>
   );
 };
 

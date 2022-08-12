@@ -68,7 +68,7 @@ const FixedLayer = ({ collections }: any) => {
 
   useEffect(() => {
     setTimeout(() => {
-      closeLoadingModal();
+      // closeLoadingModal();
     }, 2000);
   }, []);
 

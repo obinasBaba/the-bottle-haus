@@ -7,6 +7,7 @@ import {
   InferGetStaticPropsType,
 } from 'next';
 import commerce from '@lib/api/commerce';
+import { MotionParent } from '@/components/common/MotionItems';
 
 export async function getStaticProps({
   params,
@@ -52,7 +53,11 @@ export async function getStaticPaths({}: GetStaticPathsContext): Promise<GetStat
 }
 
 const Collections: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ products }) => {
-  return <CollectionPage products={products} />;
+  return (
+    <MotionParent>
+      <CollectionPage products={products} />{' '}
+    </MotionParent>
+  );
 };
 
 export default Collections;

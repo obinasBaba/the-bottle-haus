@@ -165,7 +165,10 @@ const Hero = () => {
 
     const interval = setInterval(tick, 7000);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      lightenNavBar();
+    };
   }, []);
 
   return (

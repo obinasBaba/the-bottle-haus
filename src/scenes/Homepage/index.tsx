@@ -39,12 +39,12 @@ const HomePage: React.FC<HomepageProps> = ({
       <Hero />
       <VideoAd />
       <HorizontalMarquee />
-      {/*<FeaturedCollection data={featuredCollections} />
+      <FeaturedCollection data={featuredCollections} />
       <RareToFind data={rareToFind} />
       <Testimonials />
       <SlideShow />
       <FeaturedProduct featuredProduct={featuredProduct} />
-      <FeaturedGrid />*/}
+      <FeaturedGrid />
       <OurBlog />
     </MotionParent>
   );

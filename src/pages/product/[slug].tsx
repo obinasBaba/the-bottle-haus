@@ -6,6 +6,7 @@ import {
 } from 'next';
 import commerce from '@lib/api/commerce';
 import ProductPage from '@/scenes/ProductPage';
+import { MotionParent } from '@/components/common/MotionItems';
 
 export async function getStaticProps({ params, locale }: GetStaticPropsContext<{ slug: string }>) {
   const { product } = await commerce.getProduct({
@@ -45,7 +46,11 @@ export async function getStaticPaths({}: GetStaticPathsContext): Promise<GetStat
 }
 
 const Product = ({ product }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  return <ProductPage product={product} />;
+  return (
+    <MotionParent>
+      <ProductPage product={product} />
+    </MotionParent>
+  );
 };
 
 export default Product;

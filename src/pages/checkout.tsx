@@ -2,6 +2,7 @@ import React from 'react';
 import CheckoutPage from '@/scenes/CheckoutPage';
 import { GetStaticPropsContext } from 'next';
 import commerce from '@lib/api/commerce';
+import { MotionParent } from '@/components/common/MotionItems';
 
 export async function getStaticProps(arg: GetStaticPropsContext) {
   const allCollections = await commerce.getSiteInfo({});
@@ -15,7 +16,11 @@ export async function getStaticProps(arg: GetStaticPropsContext) {
 }
 
 const Checkout = () => {
-  return <CheckoutPage />;
+  return (
+    <MotionParent>
+      <CheckoutPage />
+    </MotionParent>
+  );
 };
 
 export default Checkout;

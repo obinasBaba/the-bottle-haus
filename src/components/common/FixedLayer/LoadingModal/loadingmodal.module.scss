@@ -21,6 +21,10 @@
       display: grid;
       place-items: center;
 
+      svg{
+        position: absolute;
+      }
+
     }
   }
 }

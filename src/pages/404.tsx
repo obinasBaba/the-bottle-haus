@@ -1,11 +1,12 @@
 import React from 'react';
 import NotFoundPage from '@/scenes/NotFoundPage';
+import { MotionParent } from '@/components/common/MotionItems';
 
 const PageNotFound = () => {
   return (
-    <div>
+    <MotionParent>
       <NotFoundPage />
-    </div>
+    </MotionParent>
   );
 };
 
