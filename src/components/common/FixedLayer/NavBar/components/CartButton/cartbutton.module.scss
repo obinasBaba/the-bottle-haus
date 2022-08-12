@@ -11,6 +11,29 @@
   // @include s.margin(top, 10rem);
   // @include s.padding(bottom, 8rem);
 
+  & :local{
+    .badge{
+
+      & :global{
+        .MuiBadge-badge{
+          top: 10%;
+          padding: 0 .3rem;
+          border: 2px solid;
+          border-color: inherit;
+        }
+      }
+
+
+    /*'& .MuiBadge-badge': {
+      // right: 3,
+      top: 10,
+      border: `2px solid inherit`,
+      padding: '0 4px',
+    },*/
+
+    }
+  }
+
   & :global {
 
     .popper {

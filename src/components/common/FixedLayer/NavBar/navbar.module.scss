@@ -9,6 +9,8 @@
   backdrop-filter: blur(35px);
   padding: 0 1.5rem;
 
+  color: white;
+
   @include s.media-breakpoint-up(md){
     padding: 0 5rem;
   }
@@ -21,8 +23,8 @@
     inset: 0;
     z-index: -1;
     opacity: .8;
-    //background-image: linear-gradient(s.$clrs-gray-light, rgba(237, 237, 237, 0));
-    background: white;
+    background-image: linear-gradient(rgba(84, 84, 84, 0.73), rgba(237, 237, 237, 0));
+    //background: white;
   }
 
   & :local {

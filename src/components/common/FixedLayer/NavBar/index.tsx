@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { startTransition, useTransition } from 'react';
 import Image from 'next/image';
 import s from './navbar.module.scss';
 import {
@@ -12,13 +12,12 @@ import Link from 'next/link';
 import CartButton from '@fixedLayer/NavBar/components/CartButton';
 import { useUI } from '@/context/ui/context';
 import { Button, IconButton } from '@mui/material';
-import { AccountCircleTwoTone, NotesTwoTone } from '@mui/icons-material';
+import { AccountCircleTwoTone, NotesTwoTone, Search } from '@mui/icons-material';
 
 import Logo from '@/public/logo.png';
 
 const NavBar: React.FC = ({}) => {
   const { openNavMenu, openModal, openSearchModal } = useUI();
-
   const { scrollY } = useViewportScroll();
   const paddingValue = useMotionValue(0);
   const scale = useMotionValue(1);
@@ -59,15 +58,8 @@ const NavBar: React.FC = ({}) => {
 
           <CartButton />
 
-          <IconButton className={s.search} onClick={() => openSearchModal()}>
-            <Image
-              src="/search.png"
-              width="15px"
-              height="15px"
-              alt="search-icon"
-              layout="fixed"
-              objectFit="contain"
-            />
+          <IconButton color="inherit" className={s.search} onClick={() => openSearchModal()}>
+            <Search />
           </IconButton>
 
           <IconButton onClick={() => openNavMenu()} color="inherit">

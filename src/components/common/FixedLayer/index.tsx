@@ -58,7 +58,7 @@ function HideOnScroll(props: Props) {
   }, [navBar, router]);
 
   return (
-    <Slide appear={false} direction="down" in={trigger}>
+    <Slide appear={false} direction="down" in={trigger} timeout={500}>
       {children}
     </Slide>
   );

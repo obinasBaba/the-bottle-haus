@@ -37,7 +37,7 @@ const HomePage: React.FC<HomepageProps> = ({
       </Head>
 
       <Hero />
-      <VideoAd />
+      {/* <VideoAd />
       <HorizontalMarquee />
       <FeaturedCollection data={featuredCollections} />
       <RareToFind data={rareToFind} />
@@ -45,7 +45,7 @@ const HomePage: React.FC<HomepageProps> = ({
       <SlideShow />
       <FeaturedProduct featuredProduct={featuredProduct} />
       <FeaturedGrid />
-      <OurBlog />
+      <OurBlog />*/}
     </MotionParent>
   );
 };

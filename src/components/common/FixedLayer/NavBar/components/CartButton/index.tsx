@@ -44,7 +44,7 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   '& .MuiBadge-badge': {
     // right: 3,
     top: 10,
-    border: `2px solid ${theme.palette.background.paper}`,
+    border: '2px solid inherit',
     padding: '0 4px',
   },
 }));
@@ -61,10 +61,11 @@ const CartButton = () => {
 
   return (
     <div className={s.container}>
-      <StyledBadge
+      <Badge
+        className={s.badge}
         badgeContent={cart?.data?.lineItems?.length}
         showZero={false}
-        color="primary"
+        // color="primary"
         anchorOrigin={{
           vertical: 'top',
           horizontal: 'left',
@@ -76,7 +77,7 @@ const CartButton = () => {
           startIcon={<ShoppingCartTwoTone />}>
           {cart?.data?.totalPrice || 0} $
         </Button>
-      </StyledBadge>
+      </Badge>
 
       <AnimatePresence exitBeforeEnter custom={{ globalObj: {} }}>
         {show && (
