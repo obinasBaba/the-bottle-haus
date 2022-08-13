@@ -14,27 +14,24 @@ import { motion } from 'framer-motion';
 import { basicVariants, MotionParent } from '@/components/common/MotionItems';
 
 export async function getStaticProps({ params }: GetStaticPropsContext<any>) {
-  const blog = blogData.find(({ slug }) => slug === params.slug);
-  const allCollections = await commerce.getSiteInfo({});
+  const blog = blogData.find(({ slug }) => slug === params.slug)!;
 
-  if (!blog)
-    return {
-      notFound: true,
-    };
+  console.log('blog-slug---------------- : ', blog);
 
   return {
     props: {
       blog,
-      collections: allCollections.collections,
     },
     revalidate: 60,
   };
 }
 
 export async function getStaticPaths({}: GetStaticPathsContext): Promise<GetStaticPathsResult> {
+  const paths = blogData.map(({ slug }) => ({ params: { slug } }));
+
   return {
-    paths: blogData.map(({ slug }) => ({ params: { slug } })),
-    fallback: true,
+    paths,
+    fallback: false,
   };
 }
 
@@ -53,9 +50,7 @@ const transition = {
   ease: [1, 0, 0.68, 1],
 };
 
-export const Blog: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
-  blog: { date, title, content },
-}) => {
+export const Blog: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ blog }) => {
   return (
     <MotionParent>
       <div className="blog_wrapper">
@@ -64,12 +59,12 @@ export const Blog: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
           <div className="wrapper">
             <motion.div className="center" variants={titleVariants} transition={transition}>
-              <h1>{title}</h1>
+              <h1>{blog?.title}</h1>
               <div className="meta">
                 <Image src={Logo} alt="logo" />
                 <div className="col">
                   <p>Posted by The Bottle Haus</p>
-                  <small>Created: {date}</small>
+                  <small>Created: {blog?.date}</small>
                 </div>
               </div>
             </motion.div>
@@ -79,7 +74,7 @@ export const Blog: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
           variants={basicVariants}
           transition={{ ...transition, delay: 0.2 }}
           className="content"
-          dangerouslySetInnerHTML={{ __html: content }}
+          dangerouslySetInnerHTML={{ __html: blog?.content }}
         />
       </div>
     </MotionParent>

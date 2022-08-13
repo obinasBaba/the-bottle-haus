@@ -5,8 +5,9 @@
   position: relative;
   padding: .6rem 1rem;
   backdrop-filter: blur(20px);
+  width: 100%;
 
-  //display: none;
+  //border: 1px solid #000;
 
   &:after {
     content: '';
@@ -24,7 +25,6 @@
       display: flex;
       justify-content: center;
       gap: 2rem;
-      max-width: 1500px;
       margin: 0 auto;
       //overflow-y: scroll;
 

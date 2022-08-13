@@ -7,7 +7,8 @@ import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import { useLocomotiveScroll } from '@/context/LocoMotive';
 import { MotionParent } from '@/components/common/MotionItems';
-import { motion, Variants } from 'framer-motion';
+import { motion, useAnimation, useTransform, Variants } from 'framer-motion';
+import { debounce } from '@mui/material';
 
 type CollectionSideNavProps = {
   collections: Collection[];
@@ -32,6 +33,15 @@ const itemVariants = {
   },
 };
 
+const wrapperVariants = {
+  up: {
+    y: '0%',
+  },
+  down: {
+    y: '-15%',
+  },
+};
+
 const transition = {
   duration: 0.8,
   ease: [0.6, 0.01, 0, 0.9],
@@ -39,7 +49,19 @@ const transition = {
 
 const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections }) => {
   const router = useRouter();
+  const control = useAnimation();
   const { scrollDirection } = useLocomotiveScroll();
+
+  useTransform(
+    scrollDirection,
+    debounce((v) => {
+      if (v == 'up') {
+        control.start('up');
+      } else {
+        control.start('down');
+      }
+    }, 1000),
+  );
 
   return (
     <div
@@ -47,34 +69,36 @@ const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections }) =>
       data-scroll-sticky={true}
       data-scroll={true}
       data-scroll-target="#fixed-target"
-      data-scroll-offset="-%10, %20">
-      <MotionParent className={s.wrapper} variants={containerVariants}>
-        {collections.map(({ name, backgroundImage, slug }, idx) => (
-          <motion.div key={name} variants={itemVariants} transition={transition}>
-            <Link href={`/collection/${slug}`}>
-              <a>
-                {router.asPath.endsWith(slug) && (
-                  <motion.div className={s.active} layoutId="active-bg" />
-                )}
+      data-scroll-offset="-%15, %20">
+      <motion.div variants={wrapperVariants} animate={control} transition={transition}>
+        <MotionParent className={s.wrapper} variants={containerVariants}>
+          {collections.map(({ name, backgroundImage, slug }, idx) => (
+            <motion.div key={name} variants={itemVariants} transition={transition}>
+              <Link href={`/collection/${slug}`}>
+                <a>
+                  {router.asPath.endsWith(slug) && (
+                    <motion.div className={s.active} layoutId="active-bg" />
+                  )}
 
-                <div className={clsx(s.item)} key={name}>
-                  <p className={s.col_name}>{name} </p>
-                  <div className={s.collection_img}>
-                    {backgroundImage?.url && (
-                      <Image
-                        src={backgroundImage.url}
-                        alt={backgroundImage?.alt || 'collection image'}
-                        objectFit="contain"
-                        layout="fill"
-                      />
-                    )}
+                  <div className={clsx(s.item)} key={name}>
+                    <p className={s.col_name}>{name} </p>
+                    <div className={s.collection_img}>
+                      {backgroundImage?.url && (
+                        <Image
+                          src={backgroundImage.url}
+                          alt={backgroundImage?.alt || 'collection image'}
+                          objectFit="contain"
+                          layout="fill"
+                        />
+                      )}
+                    </div>
                   </div>
-                </div>
-              </a>
-            </Link>
-          </motion.div>
-        ))}
-      </MotionParent>
+                </a>
+              </Link>
+            </motion.div>
+          ))}
+        </MotionParent>
+      </motion.div>
     </div>
   );
 };

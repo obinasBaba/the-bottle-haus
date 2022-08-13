@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { getToken } from '@/util';
 import { Collection } from '@/schema';
 import s from './secondarynav.module.scss';
 
@@ -19,7 +18,7 @@ const SecondaryNavBar = ({ collections }: { collections: Collection[] }) => {
   return (
     <div className={s.container}>
       <div className={s.wrapper}>
-        {(collections || data).map(({ name, slug = '/' }) => (
+        {(collections || data).map(({ name, slug }) => (
           <Link href={`/collection/${slug}`} key={name}>
             <a>
               <p key={name} className={s.linkText}>

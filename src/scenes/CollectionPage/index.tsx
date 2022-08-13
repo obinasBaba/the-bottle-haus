@@ -13,7 +13,7 @@ const containerVariants: Variants = {
   initial: {},
   animate: {
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.06,
     },
   },
 };
@@ -25,6 +25,10 @@ const itemVariants = {
   animate: {
     opacity: 1,
     y: 0,
+  },
+
+  exit: {
+    opacity: 0,
   },
 };
 
@@ -47,7 +51,7 @@ const CollectionPage: React.FC<CollectionPageArgs> = ({ products = [] }) => {
     <div className={s.container}>
       {products.length > 0 ? (
         <div className={s.wrapper}>
-          <motion.div className={s.list} variants={containerVariants}>
+          <motion.div className={s.list} variants={containerVariants} key={products as any}>
             <MotionConfig
               transition={{
                 duration: 0.8,

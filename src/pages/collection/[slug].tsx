@@ -50,7 +50,7 @@ export async function getStaticPaths({}: GetStaticPathsContext): Promise<GetStat
   return {
     paths: collections.map(({ slug }) => ({ params: { slug } })),
     // paths: ['boo'],
-    fallback: true,
+    fallback: false,
   };
 }
 
@@ -61,10 +61,7 @@ const containerVariants: Variants = {
 
 const Collections: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ products }) => {
   return (
-    <MotionParent
-      transition={{
-        duration: 2,
-      }}>
+    <MotionParent>
       <Head>
         <title>collections</title>
         <meta name="collections page" />

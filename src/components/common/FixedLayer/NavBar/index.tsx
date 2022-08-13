@@ -1,13 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import s from './navbar.module.scss';
-import {
-  motion,
-  useMotionTemplate,
-  useMotionValue,
-  useTransform,
-  useViewportScroll,
-} from 'framer-motion';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import CartButton from '@fixedLayer/NavBar/components/CartButton';
 import { useUI } from '@/context/ui/context';
@@ -23,27 +17,10 @@ import { Collection } from '@/schema';
 const NavBar = (props: { collections: any[] }) => {
   const { openNavMenu, openModal, openSearchModal } = useUI();
   const { darkNavBar } = useAppContext();
-  const { scrollY } = useViewportScroll();
-  const paddingValue = useMotionValue(0);
-  const scale = useMotionValue(1);
-
-  useTransform(scrollY, (input) => {
-    if (input >= 50) {
-      paddingValue.set(0.5);
-      scale.set(1);
-      return;
-    } else {
-      scale.set(1.2);
-      paddingValue.set(1.5);
-      return;
-    }
-  });
-
-  const padding = useMotionTemplate`${paddingValue}rem 0`;
 
   return (
     <nav className={clsx([s.container, darkNavBar && s.darken])}>
-      <motion.div className={s.wrapper} style={{ padding }}>
+      <motion.div className={s.wrapper}>
         <div className={s.logo}>
           <Link href="/">
             <a>

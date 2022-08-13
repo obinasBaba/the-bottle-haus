@@ -23,9 +23,10 @@ export async function getStaticProps({ params, locale }: GetStaticPropsContext<{
   const allCollections = await commerce.getSiteInfo({});
 
   if (!product) {
-    return {
-      notFound: true,
-    };
+    console.log('product not found ----- ', params);
+    // return {
+    //   notFound: true,
+    // };
   }
 
   return {
@@ -43,7 +44,7 @@ export async function getStaticPaths({}: GetStaticPathsContext): Promise<GetStat
 
   return {
     paths: products.map((product: any) => `/product${product.path}`),
-    fallback: 'blocking',
+    fallback: true,
   };
 }
 
