@@ -47,6 +47,11 @@ const transition = {
   ease: [0.6, 0.01, 0, 0.9],
 };
 
+const wrapperTrans = {
+  duration: 0.65,
+  ease: [0.6, 0.01, 0, 0.9],
+};
+
 const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections }) => {
   const router = useRouter();
   const control = useAnimation();
@@ -57,10 +62,10 @@ const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections }) =>
     debounce((v) => {
       if (v == 'up') {
         control.start('up');
-      } else {
+      } else if (v == 'down') {
         control.start('down');
       }
-    }, 1000),
+    }, 600),
   );
 
   return (
@@ -70,7 +75,7 @@ const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections }) =>
       data-scroll={true}
       data-scroll-target="#fixed-target"
       data-scroll-offset="-%15, %20">
-      <motion.div variants={wrapperVariants} animate={control} transition={transition}>
+      <motion.div variants={wrapperVariants} animate={control} transition={wrapperTrans}>
         <MotionParent className={s.wrapper} variants={containerVariants}>
           {collections.map(({ name, backgroundImage, slug }, idx) => (
             <motion.div key={name} variants={itemVariants} transition={transition}>

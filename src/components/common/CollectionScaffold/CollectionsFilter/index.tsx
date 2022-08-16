@@ -11,9 +11,10 @@ import {
   SelectChangeEvent,
   Slider,
 } from '@mui/material';
-import { Variants } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { ArrowDropDown } from '@mui/icons-material';
 import { Theme, useTheme } from '@mui/material/styles';
+import { MotionParent } from '@/components/common/MotionItems';
 
 function valuetext(value: number) {
   return `${value}°C`;
@@ -127,6 +128,24 @@ function SortBySelect() {
   );
 }
 
+const titleVariants = {
+  initial: {
+    y: '100%',
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+  },
+
+  exit: {
+    opacity: 0,
+    y: '-100%',
+  },
+
+  transition: { duration: 1, easing: [0.6, 0.01, 0, 0.9] },
+};
+
 const CollectionsFilter = ({ title }: any) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [value, setValue] = React.useState<number[]>([320, 1037]);
@@ -158,8 +177,13 @@ const CollectionsFilter = ({ title }: any) => {
   }, [show]);
 
   return (
-    <header className={s.container}>
-      <h1 className="title">{title}</h1>
+    <MotionParent className={s.container} key={title} variants={{}}>
+      <motion.h1
+        className="title"
+        variants={titleVariants as any}
+        transition={titleVariants.transition}>
+        {title}
+      </motion.h1>
       <div className="filter">
         <Button
           variant="outlined"
@@ -221,7 +245,7 @@ const CollectionsFilter = ({ title }: any) => {
 
         <SortBySelect />
       </div>
-    </header>
+    </MotionParent>
   );
 };
 

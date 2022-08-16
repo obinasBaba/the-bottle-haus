@@ -22,13 +22,13 @@ export async function getStaticProps({
   const { collections } = await commerce.getSiteInfo({ config, preview });
   const targetCollection = collections.find((coll) => coll.slug === params.slug);
 
-  if (!targetCollection) throw new Error('you messed up with the slug: ', params.slug);
+  // if (!targetCollection) throw new Error('you messed up with the slug: ', params.slug);
 
   const products = await commerce.getAllProducts({
     variables: {
       first: 100,
       filter: {
-        collections: [targetCollection.id],
+        collections: [targetCollection!.id],
       },
     },
   });
@@ -37,7 +37,7 @@ export async function getStaticProps({
     props: {
       sideNav: true,
       collections,
-      collectionName: targetCollection.name,
+      collectionName: targetCollection!.name,
       products,
     },
     revalidate: 200,
@@ -59,7 +59,9 @@ const containerVariants: Variants = {
   animate: {},
 };
 
-const Collections: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ products }) => {
+const Collections: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  products = [],
+}) => {
   return (
     <MotionParent>
       <Head>

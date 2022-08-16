@@ -11,7 +11,7 @@ type ProductPageProps = {
 const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
   return (
     <div className={s.container}>
-      <ProductCardBig product={product} />
+      {product && <ProductCardBig product={product} />}
       <div className="product_page_wrapper">
         <ProductReview />
       </div>

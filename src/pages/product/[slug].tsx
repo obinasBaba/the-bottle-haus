@@ -22,8 +22,9 @@ export async function getStaticProps({ params, locale }: GetStaticPropsContext<{
 
   const allCollections = await commerce.getSiteInfo({});
 
+  console.log('product not found ----- ', params);
+
   if (!product) {
-    console.log('product not found ----- ', params);
     // return {
     //   notFound: true,
     // };
@@ -35,7 +36,7 @@ export async function getStaticProps({ params, locale }: GetStaticPropsContext<{
       relatedProducts: products,
       collections: allCollections.collections,
     },
-    revalidate: 200,
+    revalidate: 11200,
   };
 }
 
@@ -44,7 +45,7 @@ export async function getStaticPaths({}: GetStaticPathsContext): Promise<GetStat
 
   return {
     paths: products.map((product: any) => `/product${product.path}`),
-    fallback: true,
+    fallback: false,
   };
 }
 
@@ -55,7 +56,8 @@ const Product = ({ product }: InferGetStaticPropsType<typeof getStaticProps>) =>
         <title>product detail</title>
         <meta name="product detail page" />
       </Head>
-      <ProductPage product={product} />
+
+      {product && <ProductPage product={product} />}
     </MotionParent>
   );
 };

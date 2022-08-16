@@ -5,7 +5,7 @@ import Footer from '@/components/common/Footer';
 import cs from 'clsx';
 import CollectionSideNav from '@/components/common/CollectionScaffold/CollectionSideNav';
 import { Collection } from '@/schema';
-import CollectionsFilter from '@/components/common/CollectionScaffold/CollectionsFilter';
+import CollectionsFilterHeader from '@/components/common/CollectionScaffold/CollectionsFilter';
 import { useRouter } from 'next/router';
 import { LocomotiveScrollProvider } from '@/context/LocoMotive';
 import LocomotiveScroll from 'locomotive-scroll';
@@ -53,7 +53,15 @@ const Layout: React.FC<Props> = ({ children, pageProps }) => {
           </AnimatePresence>
 
           <div className="content_wrapper" id="fixed-target">
-            {pageProps.sideNav && <CollectionsFilter title={pageProps.collectionName} />}
+            <AnimatePresence exitBeforeEnter custom={{}}>
+              {pageProps.sideNav && (
+                <CollectionsFilterHeader
+                  title={pageProps.collectionName}
+                  key={pageProps.collectionName}
+                />
+              )}
+            </AnimatePresence>
+
             <div className="main_content_wrapper">
               <AnimatePresence exitBeforeEnter custom={{}}>
                 {children}
