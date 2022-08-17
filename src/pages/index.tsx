@@ -1,13 +1,13 @@
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import commerce from '@lib/api/commerce';
 import { MotionParent as MotionPage } from '@/components/common/MotionItems';
-import HomePage from '@/scenes/Homepage';
+import HomePage, { pageTransition } from '@/scenes/Homepage';
 
 export async function getStaticProps({ preview, locale, locales }: GetStaticPropsContext) {
   const config = { locale, locales };
-  /*  return {
+  return {
     props: {},
-  };*/
+  };
 
   const { product: featuredProduct } = await commerce.getProduct({
     variables: { slug: 'don-julio-primavera-tequila' },
@@ -44,7 +44,7 @@ export default function Home({
   rareToFind,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <MotionPage>
+    <MotionPage transition={pageTransition}>
       <HomePage
         featuredProduct={featuredProduct!}
         featuredCollections={featuredCollections}

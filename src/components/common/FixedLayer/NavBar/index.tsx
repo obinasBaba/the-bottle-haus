@@ -8,7 +8,7 @@ import { useUI } from '@/context/ui/context';
 import { Button, IconButton } from '@mui/material';
 import { AccountCircleTwoTone, NotesTwoTone, Search } from '@mui/icons-material';
 
-import Logo from '@/public/logo-2.png';
+import Logo from '@/public/logo-3.png';
 import { useAppContext } from '@/context/app';
 import clsx from 'clsx';
 import SecondaryNavBar from '@fixedLayer/SecondaryNavBar';

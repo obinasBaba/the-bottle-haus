@@ -9,6 +9,7 @@ import ProductPage from '@/scenes/ProductPage';
 import { MotionParent } from '@/components/common/MotionItems';
 import Head from 'next/head';
 import React from 'react';
+import { pageTransition } from '@/scenes/Homepage';
 
 export async function getStaticProps({ params, locale }: GetStaticPropsContext<{ slug: string }>) {
   const { product } = await commerce.getProduct({
@@ -44,14 +45,14 @@ export async function getStaticPaths({}: GetStaticPathsContext): Promise<GetStat
   const { products } = await commerce.getAllProductPaths({});
 
   return {
-    paths: products.map((product: any) => `/product${product.path}`),
-    fallback: false,
+    paths: products?.slice(0, 1).map((product: any) => `/product${product.path}`),
+    fallback: 'blocking',
   };
 }
 
 const Product = ({ product }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
-    <MotionParent>
+    <MotionParent transition={pageTransition}>
       <Head>
         <title>product detail</title>
         <meta name="product detail page" />

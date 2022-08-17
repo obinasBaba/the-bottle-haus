@@ -22,11 +22,14 @@
   & :local {
 
     .wrapper {
+      position: relative;
       display: flex;
       justify-content: center;
       gap: 2rem;
       margin: 0 auto;
       //overflow-y: scroll;
+
+      //border: 1px solid blue;
 
 
       @include s.media-breakpoint-up(md) {
@@ -34,14 +37,29 @@
       }
     }
 
+    a {
+      position: relative;
+      cursor: pointer;
+      //border: 1px solid red;
+      //overflow: hidden;
+
+      & > :last-child{
+        position: absolute;
+      }
+    }
+
     .linkText {
+      display: block;
       margin: 0;
       font-size: .91rem;
-      transition: all cubic-bezier(0.6, 0.01, 0, 0.9) 430ms;
+      transition: color cubic-bezier(0.6, 0.01, 0, 0.9) 430ms 110ms, text-shadow cubic-bezier(0.6, 0.01, 0, 0.9) 430ms 110ms;
       overflow: hidden;
       max-width: 8ch;
       white-space: nowrap;
       text-overflow: ellipsis;
+      user-select: none;
+
+      //border: 1px solid #000;
 
       @include s.media-breakpoint-up(md) {
         max-width: min-content;

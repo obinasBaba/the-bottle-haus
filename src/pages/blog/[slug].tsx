@@ -16,8 +16,6 @@ import { basicVariants, MotionParent } from '@/components/common/MotionItems';
 export async function getStaticProps({ params }: GetStaticPropsContext<any>) {
   const blog = blogData.find(({ slug }) => slug === params.slug)!;
 
-  console.log('blog-slug---------------- : ', blog);
-
   return {
     props: {
       blog,
@@ -52,7 +50,7 @@ const transition = {
 
 export const Blog: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ blog }) => {
   return (
-    <MotionParent>
+    <MotionParent className={s.container}>
       <div className="blog_wrapper">
         <motion.header>
           <motion.div className="bg" variants={bgVariants} transition={transition} />

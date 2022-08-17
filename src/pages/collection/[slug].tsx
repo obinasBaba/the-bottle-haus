@@ -10,6 +10,7 @@ import commerce from '@lib/api/commerce';
 import { MotionParent } from '@/components/common/MotionItems';
 import Head from 'next/head';
 import { Variants } from 'framer-motion';
+import { pageTransition } from '@/scenes/Homepage';
 
 export async function getStaticProps({
   params,
@@ -63,7 +64,7 @@ const Collections: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   products = [],
 }) => {
   return (
-    <MotionParent>
+    <MotionParent transition={pageTransition}>
       <Head>
         <title>collections</title>
         <meta name="collections page" />

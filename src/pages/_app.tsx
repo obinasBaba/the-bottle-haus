@@ -20,6 +20,7 @@ import { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
 import { LocomotiveScrollProvider } from '@/context/LocoMotive';
 import LocomotiveScroll from 'locomotive-scroll';
+import { AnimatePresence } from 'framer-motion';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -73,7 +74,9 @@ export default function MyApp({
 
             {!Component.layout ? (
               <Layout pageProps={pageProps}>
-                <Component {...pageProps} />
+                <AnimatePresence exitBeforeEnter custom={{}}>
+                  <Component {...pageProps} />
+                </AnimatePresence>
               </Layout>
             ) : (
               <Component {...pageProps} />

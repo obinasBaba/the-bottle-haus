@@ -51,7 +51,7 @@
 
 
       @include s.media-breakpoint-up(md) {
-        padding: 1.5rem 6.5rem;
+        padding: .5rem 6.5rem;
       }
 
     }
@@ -78,7 +78,7 @@
       //border: 1px solid white;
 
       @include s.media-breakpoint-up(md) {
-        max-width: s.f-unit(40px);
+        max-width: s.f-unit(65px);
       }
 
       a {

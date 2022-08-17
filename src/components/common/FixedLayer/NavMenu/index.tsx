@@ -134,10 +134,10 @@ const NavMenu = () => {
         transition={menuVariants.transition}>
         <CloseMenuButton onClick={() => closeNavMenu()} />
 
-        <motion.div className="link_list" variants={linkContainerVariants}>
+        <motion.div className={s.link_list} variants={linkContainerVariants}>
           {links.map(({ name, link }, idx) => (
             <motion.div
-              className="item"
+              className={s.item}
               key={name}
               variants={linkItemVariant}
               transition={transition}
@@ -145,7 +145,10 @@ const NavMenu = () => {
               <Link href={link}>
                 <a>
                   <p className="no">(0{idx + 1})</p>
-                  <h1>{name}</h1>
+                  <div className={s.link_name}>
+                    <h1>{name}</h1>
+                    <h1>{name}</h1>
+                  </div>
                 </a>
               </Link>
             </motion.div>

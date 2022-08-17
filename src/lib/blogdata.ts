@@ -117,7 +117,7 @@ const blogData = [
         gins for Tom Collins (all available at The Bottle Haus of course).</p>`,
     title: 'What’s The Best Gin For Tom Collins?',
     date: 'Mon, Mar 01, 21',
-    slug: 'whats-the-best-gin-for-tom-collins',
+    slug: 'what-s-the-best-gin-for-tom-collins',
   },
 ];
 

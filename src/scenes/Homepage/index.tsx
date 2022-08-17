@@ -21,6 +21,11 @@ type HomepageProps = {
   rareToFind: Product[];
 };
 
+export const pageTransition = {
+  duration: 1.5,
+  ease: [0.6, 0.01, 0, 0.9],
+};
+
 const HomePage: React.FC<HomepageProps> = ({
   featuredProduct,
   featuredCollections,
@@ -29,7 +34,7 @@ const HomePage: React.FC<HomepageProps> = ({
   const { scale } = useLocomotiveScroll();
 
   return (
-    <MotionParent className={s.container} style={{ scale }}>
+    <MotionParent transition={pageTransition} className={s.container} style={{ scale }}>
       <Head>
         <title>Homepage</title>
         <meta name="homepage" />
@@ -37,13 +42,13 @@ const HomePage: React.FC<HomepageProps> = ({
       <Hero />
       <VideoAd />
       <HorizontalMarquee />
-      <FeaturedCollection data={featuredCollections} />
+      {/* <FeaturedCollection data={featuredCollections} />
       <RareToFind data={rareToFind} />
       <Testimonials />
       <SlideShow />
       <FeaturedProduct featuredProduct={featuredProduct} />
       <FeaturedGrid />
-      <OurBlog />
+      <OurBlog />*/}
     </MotionParent>
   );
 };
