@@ -14,7 +14,7 @@
 
   & :local {
 
-    .wrapper{
+    .wrapper {
 
     }
 
@@ -24,7 +24,7 @@
       gap: s.f-unit(1.5rem);
       column-gap: s.f-unit(3rem);
 
-      @include s.media-breakpoint-up(md){
+      @include s.media-breakpoint-up(md) {
         grid-template-columns: repeat(3, 1fr);
         gap: s.f-unit(1.5rem);
 
@@ -44,4 +44,38 @@
 .empty_container {
   display: grid;
   place-items: center;
+}
+
+.layout_container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: s.f-unit(3rem);
+  display: flex;
+
+  //border: thin solid red;
+
+  padding-top: 19vmax;
+
+  @include s.media-breakpoint-up(md) {
+    padding-top: 11vmax;
+  }
+
+
+  & :local {
+
+    aside {
+      //max-width: 300px;
+    }
+
+    .main {
+      position: relative;
+      width: 100%;
+      display: flex;
+      flex-flow: column;
+
+      //border: 1px solid #000;
+    }
+  }
+
 }

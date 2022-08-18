@@ -106,7 +106,7 @@ export function LocomotiveScrollProvider({
       LocomotiveScrollRef.current,
     );*/
 
-    LocomotiveScrollRef.current.update();
+    LocomotiveScrollRef?.current?.update();
     yLimit.set(LocomotiveScrollRef.current?.scroll?.instance.limit.y);
     xLimit.set(LocomotiveScrollRef.current?.scroll?.instance.limit.x);
 

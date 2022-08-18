@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, useState } from 'react';
 import CollectionPage from '@/scenes/CollectionPage';
 import {
   GetStaticPathsContext,
@@ -9,8 +9,19 @@ import {
 import commerce from '@lib/api/commerce';
 import { MotionParent } from '@/components/common/MotionItems';
 import Head from 'next/head';
-import { Variants } from 'framer-motion';
+import { MotionValue } from 'framer-motion';
 import { pageTransition } from '@/scenes/Homepage';
+import s from '@/scenes/CollectionPage/collectionpage.module.scss';
+import CollectionSideNav from '@/components/common/CollectionScaffold/CollectionSideNav';
+import CollectionsFilterHeader from '@/components/common/CollectionScaffold/CollectionsFilter';
+
+export const CollectionsContext = React.createContext<any>({});
+
+const CollectionsProvider: FC<{ children: React.ReactElement }> = (props) => {
+  const [sortInfo, setSortInfo] = useState<any>({ refreshId: 0 });
+
+  return <CollectionsContext.Provider value={{ sortInfo, setSortInfo }} {...props} />;
+};
 
 export async function getStaticProps({
   params,
@@ -55,10 +66,7 @@ export async function getStaticPaths({}: GetStaticPathsContext): Promise<GetStat
   };
 }
 
-const containerVariants: Variants = {
-  initial: {},
-  animate: {},
-};
+const rf = new MotionValue<Record<string, any>>();
 
 const Collections: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   products = [],
@@ -69,9 +77,31 @@ const Collections: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
         <title>collections</title>
         <meta name="collections page" />
       </Head>
-      <CollectionPage products={products} />
+      <CollectionPage products={products} rf={rf} />
     </MotionParent>
   );
 };
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+Collections.Layout = ({ children, collections, collectionName }: any) => {
+  return (
+    <CollectionsProvider>
+      <div className={s.layout_container}>
+        <CollectionSideNav collections={collections} />
+
+        <main className={s.main} id="fixed-target">
+          <CollectionsFilterHeader title={collectionName} key={collectionName} rf={rf} />
+
+          {children}
+        </main>
+      </div>
+    </CollectionsProvider>
+  );
+};
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+Collections.Layout.displayName = 'Layout';
 
 export default Collections;

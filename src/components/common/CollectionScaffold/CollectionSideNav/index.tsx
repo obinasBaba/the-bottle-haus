@@ -7,8 +7,15 @@ import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import { useLocomotiveScroll } from '@/context/LocoMotive';
 import { MotionParent } from '@/components/common/MotionItems';
-import { motion, useAnimation, useTransform, Variants } from 'framer-motion';
+import { motion, MotionValue, useAnimation, useTransform, Variants } from 'framer-motion';
 import { debounce } from '@mui/material';
+import Img from '@/public/drink-img.png';
+
+const fallback = [
+  { name: 'one', backgroundImage: { url: Img.src } },
+  { name: 'two', backgroundImage: { url: Img.src } },
+  { name: 'three', backgroundImage: { url: Img.src } },
+];
 
 type CollectionSideNavProps = {
   collections: Collection[];
@@ -17,6 +24,12 @@ type CollectionSideNavProps = {
 const containerVariants: Variants = {
   initial: {},
   animate: {
+    transition: {
+      staggerChildren: 0.05,
+    },
+  },
+
+  exit: {
     transition: {
       staggerChildren: 0.05,
     },
@@ -31,14 +44,18 @@ const itemVariants = {
     opacity: 1,
     x: 0,
   },
+  exit: {
+    opacity: 0,
+    x: '-10%',
+  },
 };
 
 const wrapperVariants = {
   up: {
-    y: '0%',
+    y: '13%',
   },
   down: {
-    y: '-15%',
+    y: '0%',
   },
 };
 
@@ -55,26 +72,29 @@ const wrapperTrans = {
 const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections }) => {
   const router = useRouter();
   const control = useAnimation();
-  const { scrollDirection } = useLocomotiveScroll();
+  const { scrollDirection, yProgress } = useLocomotiveScroll();
 
   useTransform(
-    scrollDirection,
+    yProgress,
     debounce((v) => {
-      if (v == 'up') {
+      if (0.11 > yProgress.get()) return control.start('down');
+
+      if (scrollDirection.get() == 'up') {
         control.start('up');
-      } else if (v == 'down') {
+      } else if (scrollDirection.get() == 'down') {
         control.start('down');
       }
-    }, 600),
+    }, 500),
   );
 
   return (
-    <div
+    <MotionParent
       className={s.container}
       data-scroll-sticky={true}
       data-scroll={true}
       data-scroll-target="#fixed-target"
-      data-scroll-offset="-%15, %20">
+      data-scroll-offset="%-5, 0%"
+      variants={{}}>
       <motion.div variants={wrapperVariants} animate={control} transition={wrapperTrans}>
         <MotionParent className={s.wrapper} variants={containerVariants}>
           {collections.map(({ name, backgroundImage, slug }, idx) => (
@@ -104,7 +124,7 @@ const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections }) =>
           ))}
         </MotionParent>
       </motion.div>
-    </div>
+    </MotionParent>
   );
 };
 

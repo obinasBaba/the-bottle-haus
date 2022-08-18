@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import s from './collectionsfilter.module.scss';
 import {
   Button,
@@ -11,10 +11,11 @@ import {
   SelectChangeEvent,
   Slider,
 } from '@mui/material';
-import { motion, Variants } from 'framer-motion';
+import { AnimatePresence, motion, Variants } from 'framer-motion';
 import { ArrowDropDown } from '@mui/icons-material';
 import { Theme, useTheme } from '@mui/material/styles';
 import { MotionParent } from '@/components/common/MotionItems';
+import { CollectionsContext } from '@/pages/collection/[slug]';
 
 function valuetext(value: number) {
   return `${value}°C`;
@@ -64,16 +65,13 @@ const MenuProps = {
 };
 
 const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
+  'Featured',
+  'Best Selling',
+  'A-Z',
+  'Z-A',
+  'Price, Low to High',
+  'Date, Old to New',
+  'Price, New to Old',
 ];
 
 function getStyles(name: string, personName: string[], theme: Theme) {
@@ -146,12 +144,14 @@ const titleVariants = {
   transition: { duration: 1, easing: [0.6, 0.01, 0, 0.9] },
 };
 
-const CollectionsFilter = ({ title }: any) => {
+const CollectionsFilter = ({ title, rf }: any) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [value, setValue] = React.useState<number[]>([320, 1037]);
   const [show, setShow] = useState<boolean>(false);
 
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+
+  const { setSortInfo } = useContext(CollectionsContext);
 
   const handlePopperClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -159,6 +159,9 @@ const CollectionsFilter = ({ title }: any) => {
 
   const handleClose = () => {
     setAnchorEl(null);
+    setSortInfo({
+      priceRange: value,
+    });
   };
 
   const open = Boolean(anchorEl);
@@ -177,13 +180,18 @@ const CollectionsFilter = ({ title }: any) => {
   }, [show]);
 
   return (
-    <MotionParent className={s.container} key={title} variants={{}}>
-      <motion.h1
-        className="title"
-        variants={titleVariants as any}
-        transition={titleVariants.transition}>
-        {title}
-      </motion.h1>
+    <MotionParent className={s.container}>
+      <AnimatePresence exitBeforeEnter>
+        <MotionParent key={title}>
+          <motion.h1
+            className="title"
+            variants={titleVariants as any}
+            transition={titleVariants.transition}>
+            {title}
+          </motion.h1>
+        </MotionParent>
+      </AnimatePresence>
+
       <div className="filter">
         <Button
           variant="outlined"
@@ -236,7 +244,12 @@ const CollectionsFilter = ({ title }: any) => {
                   ${value[1]}
                 </Button>
               </div>
-              <Button aria-selected={true} variant="outlined" size="small" fullWidth>
+              <Button
+                aria-selected={true}
+                variant="outlined"
+                size="small"
+                fullWidth
+                onClick={() => handleClose()}>
                 Apply Filter
               </Button>
             </div>

@@ -1,15 +1,12 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import s from './layout.module.scss';
 import FixedLayer from '@fixedLayer/index';
 import Footer from '@/components/common/Footer';
 import cs from 'clsx';
-import CollectionSideNav from '@/components/common/CollectionScaffold/CollectionSideNav';
 import { Collection } from '@/schema';
-import CollectionsFilterHeader from '@/components/common/CollectionScaffold/CollectionsFilter';
 import { useRouter } from 'next/router';
 import { LocomotiveScrollProvider } from '@/context/LocoMotive';
 import LocomotiveScroll from 'locomotive-scroll';
-import { AnimatePresence } from 'framer-motion';
 
 interface Props {
   children: React.ReactNode;
@@ -22,7 +19,8 @@ interface Props {
 
 const Layout: React.FC<Props> = ({ children, pageProps }) => {
   const container = useRef<HTMLDivElement | null>(null);
-  const { asPath } = useRouter();
+  const { asPath, pathname } = useRouter();
+  const [sideBar, setSideBar] = useState(false);
 
   return (
     <LocomotiveScrollProvider
@@ -44,29 +42,9 @@ const Layout: React.FC<Props> = ({ children, pageProps }) => {
       location={asPath}>
       <FixedLayer collections={pageProps.collections} />
       <div className={s.root} ref={container} data-scroll-container={true}>
-        <main
-          className={cs([s.main, { [s.with_sidenav]: pageProps.sideNav }])}
-          data-scroll-section={true}
-          id="main-container">
-          <AnimatePresence exitBeforeEnter custom={{}}>
-            {pageProps.sideNav && <CollectionSideNav collections={pageProps.collections} />}
-          </AnimatePresence>
-
-          <div className="content_wrapper" id="fixed-target">
-            <AnimatePresence exitBeforeEnter custom={{}}>
-              {pageProps.sideNav && (
-                <CollectionsFilterHeader
-                  title={pageProps.collectionName}
-                  key={pageProps.collectionName}
-                />
-              )}
-            </AnimatePresence>
-
-            <div className="main_content_wrapper">
-              <AnimatePresence exitBeforeEnter custom={{}}>
-                {children}
-              </AnimatePresence>
-            </div>
+        <main className={cs([s.main])} data-scroll-section={true} id="main-container">
+          <div className="content_wrapper">
+            <div className="main_content_wrapper">{children}</div>
           </div>
         </main>
         <Footer />

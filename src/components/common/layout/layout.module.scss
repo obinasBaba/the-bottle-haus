@@ -32,35 +32,7 @@
 
 
   main.with_sidenav {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: s.f-unit(3rem);
-    display: flex;
 
-    padding-top: 19vmax;
-
-    @include s.media-breakpoint-up(md){
-      padding-top: 11vmax;
-    }
-
-
-
-    //border: thick solid red;
-
-    & :global {
-
-      .content_wrapper{
-        gap: s.f-unit-light(1.5rem);
-      }
-
-      .main_content_wrapper {
-
-        //border: thin solid thistle;
-        //flex: 4;
-      }
-
-    }
   }
 }
 

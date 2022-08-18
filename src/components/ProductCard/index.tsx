@@ -29,7 +29,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, loading = true }) =>
   return (
     <div className={cs(s.container, { [s.loading]: loading, [s.loaded]: !loading || product })}>
       {ready && !product?.isAvailable && (
-        <Button disabled unselectable={'on'} variant="outlined" size="small" className={s.sold_out}>
+        <Button disabled unselectable="on" variant="outlined" size="small" className={s.sold_out}>
           SOLD OUT
         </Button>
       )}

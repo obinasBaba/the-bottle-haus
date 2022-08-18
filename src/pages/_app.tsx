@@ -3,7 +3,7 @@
 import { AppProps } from 'next/app';
 import Layout from '@/components/common/layout';
 import '@global/index.scss';
-import { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -25,10 +25,15 @@ import { AnimatePresence } from 'framer-motion';
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
+const DefaultLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => <>{children}</>;
+
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
   session?: Session;
-  Component: AppProps['Component'] & { layout: boolean };
+  Component: AppProps['Component'] & {
+    Layout: React.FC<{ children: React.ReactNode }>;
+    withLayout: boolean;
+  };
 }
 
 export default function MyApp({
@@ -38,6 +43,7 @@ export default function MyApp({
   session,
 }: MyAppProps) {
   const router = useRouter();
+  const { pathname } = useRouter();
   const event = RouteChangeEvent.GetInstance();
 
   useEffect(() => {
@@ -60,6 +66,8 @@ export default function MyApp({
     };
   }, [router]);
 
+  const NestedLayout = Component.Layout || DefaultLayout;
+
   return (
     <SessionProvider session={session} refetchInterval={0}>
       <ContextWrapper>
@@ -72,10 +80,12 @@ export default function MyApp({
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
 
-            {!Component.layout ? (
+            {!Component.withLayout ? (
               <Layout pageProps={pageProps}>
                 <AnimatePresence exitBeforeEnter custom={{}}>
-                  <Component {...pageProps} />
+                  <NestedLayout {...pageProps} key={pathname}>
+                    <Component {...pageProps} />
+                  </NestedLayout>
                 </AnimatePresence>
               </Layout>
             ) : (
