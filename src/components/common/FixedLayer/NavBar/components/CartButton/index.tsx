@@ -9,6 +9,7 @@ import { ShoppingCartTwoTone } from '@mui/icons-material';
 import { MotionParent } from '@/components/common/MotionItems';
 import Badge, { BadgeProps } from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
+import { ClickAwayListener } from '@mui/base';
 
 export const popupVariants: Variants = {
   initial: {
@@ -81,81 +82,83 @@ const CartButton = () => {
 
       <AnimatePresence exitBeforeEnter custom={{ globalObj: {} }}>
         {show && (
-          <MotionParent
-            className="popper"
-            variants={popupVariants}
-            tabIndex={0}
-            ref={containerRef}
-            onBlur={(e: FocusEvent) => {
-              if (e.relatedTarget === null) setShow(false);
-            }}>
-            <div className="pop_wrapper">
-              <header>
-                <p>Added to Cart</p>
-              </header>
+          <ClickAwayListener onClickAway={() => setShow(false)}>
+            <MotionParent
+              className="popper"
+              variants={popupVariants}
+              tabIndex={0}
+              ref={containerRef}
+              onBlur={(e: FocusEvent) => {
+                if (e.relatedTarget === null) setShow(false);
+              }}>
+              <div className="pop_wrapper">
+                <header>
+                  <p>Added to Cart</p>
+                </header>
 
-              <div className="cart_list_wrapper">
-                <div className="cart_list_bottom_gradient" />
-                <div className="cart_list">
-                  {cart.data?.lineItems.map(
-                    ({
-                      id,
-                      name,
-                      variant: {
-                        price,
-                        product: { media },
-                      },
-                    }) => (
-                      <div className="cart_list_item" key={id}>
-                        <Image
-                          src={(media && media[0]?.url) || ''}
-                          alt="cart-icon"
-                          layout="fixed"
-                          width="55px"
-                          height="55px"
-                          objectFit="contain"
-                        />
-                        <div className="ver">
-                          <h3 className="price">${price}</h3>
-                          <p className="name">{name}</p>
+                <div className="cart_list_wrapper">
+                  <div className="cart_list_bottom_gradient" />
+                  <div className="cart_list">
+                    {cart.data?.lineItems.map(
+                      ({
+                        id,
+                        name,
+                        variant: {
+                          price,
+                          product: { media },
+                        },
+                      }) => (
+                        <div className="cart_list_item" key={id}>
+                          <Image
+                            src={(media && media[0]?.url) || ''}
+                            alt="cart-icon"
+                            layout="fixed"
+                            width="55px"
+                            height="55px"
+                            objectFit="contain"
+                          />
+                          <div className="ver">
+                            <h3 className="price">${price}</h3>
+                            <p className="name">{name}</p>
+                          </div>
                         </div>
-                      </div>
-                    ),
-                  )}
+                      ),
+                    )}
+                  </div>
                 </div>
-              </div>
 
-              <p className="count_text">
-                You have <span>{cart.data?.lineItems.length || 0}</span> items in your cart
-              </p>
-              <footer>
-                <div className="hor">
-                  <p>Total</p>
-                  <p>$122.90</p>
-                </div>
-                <div className="hor">
-                  <Button
-                    className="cart_btn"
-                    onClick={() => setShow(false)}
-                    variant="outlined"
-                    size="small">
-                    Continue Shopping
-                  </Button>
-                  <Link href={'/cart'}>
-                    <a>
-                      <Button
-                        onClick={() => setShow(false)}
-                        className="cart_btn"
-                        variant="outlined"
-                        size="small">
-                        Check Out
-                      </Button>
-                    </a>
-                  </Link>
-                </div>
-              </footer>
-            </div>
-          </MotionParent>
+                <p className="count_text">
+                  You have <span>{cart.data?.lineItems.length || 0}</span> items in your cart
+                </p>
+                <footer>
+                  <div className="hor">
+                    <p>Total</p>
+                    <p>$122.90</p>
+                  </div>
+                  <div className="hor">
+                    <Button
+                      className="cart_btn"
+                      onClick={() => setShow(false)}
+                      variant="outlined"
+                      size="small">
+                      Continue Shopping
+                    </Button>
+                    <Link href={'/cart'}>
+                      <a>
+                        <Button
+                          onClick={() => setShow(false)}
+                          className="cart_btn"
+                          variant="outlined"
+                          size="small">
+                          Check Out
+                        </Button>
+                      </a>
+                    </Link>
+                  </div>
+                </footer>
+              </div>
+            </MotionParent>
+          </ClickAwayListener>
         )}
       </AnimatePresence>
     </div>

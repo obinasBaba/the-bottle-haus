@@ -6,16 +6,21 @@
   background-color: white;
   padding-top: 10vmin;
 
+
   @include s.media-breakpoint-up(md){
     padding-top: 0vmin;
   }
 
 
-  & :global {
+  & :local {
 
-    .product_page_wrapper {
+    .segest {
       max-width: 1300px;
       margin: 0 auto;
+
+      border: 1px solid #000;
+
     }
   }
 }
+

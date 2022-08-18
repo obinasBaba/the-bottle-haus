@@ -45,6 +45,11 @@
 
       & > :last-child{
         position: absolute;
+        display: none;
+
+        @include s.media-breakpoint-up(md){
+          display: block;
+        }
       }
     }
 

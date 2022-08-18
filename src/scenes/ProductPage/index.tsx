@@ -12,7 +12,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
   return (
     <div className={s.container}>
       {product && <ProductCardBig product={product} />}
-      <div className="product_page_wrapper">
+      <div className={s.segest}>
         <ProductReview />
       </div>
     </div>

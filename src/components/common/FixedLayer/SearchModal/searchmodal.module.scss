@@ -59,8 +59,33 @@
     }
 
     .field{
+      position: relative;
       max-width: 70%;
       margin: 9rem auto 14rem;
+
+
+      & :global{
+        .line{
+          position: absolute;
+          bottom: 0;
+          height: 2px;
+          width: 100%;
+          background: #000;
+          transform-origin: left;
+        }
+
+        .MuiInput-root{
+          position: relative;
+          //display: none;
+          //border: 1px solid #000;
+
+          &::before{
+            //display: none;
+            border-bottom-color: transparent;
+          }
+
+        }
+      }
     }
 
     ::-webkit-input-placeholder { /* Edge */

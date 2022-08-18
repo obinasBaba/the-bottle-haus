@@ -7,7 +7,7 @@ import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import { useLocomotiveScroll } from '@/context/LocoMotive';
 import { MotionParent } from '@/components/common/MotionItems';
-import { motion, MotionValue, useAnimation, useTransform, Variants } from 'framer-motion';
+import { motion, useAnimation, useTransform, Variants } from 'framer-motion';
 import { debounce } from '@mui/material';
 import Img from '@/public/drink-img.png';
 
@@ -46,7 +46,6 @@ const itemVariants = {
   },
   exit: {
     opacity: 0,
-    x: '-10%',
   },
 };
 
