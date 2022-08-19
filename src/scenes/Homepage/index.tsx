@@ -14,6 +14,7 @@ import { MotionParent } from '@/components/common/MotionItems';
 import HorizontalMarquee from './/HorizontalMarqee';
 import FeaturedProduct from './/FeaturedProduct';
 import { useLocomotiveScroll } from '@/context/LocoMotive';
+import GlassView from '@/scenes/Homepage/GlassView';
 
 type HomepageProps = {
   featuredProduct: ProductTypes['product'];
@@ -40,8 +41,8 @@ const HomePage: React.FC<HomepageProps> = ({
         <meta name="homepage" />
       </Head>
       <Hero />
-      <VideoAd />
       <HorizontalMarquee />
+      <GlassView />
       {/* <FeaturedCollection data={featuredCollections} />
       <RareToFind data={rareToFind} />
       <Testimonials />

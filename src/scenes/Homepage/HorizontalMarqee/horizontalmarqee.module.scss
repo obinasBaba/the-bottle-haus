@@ -6,7 +6,7 @@
   margin: 2vmax auto 0;
 
   @include s.media-breakpoint-up(md) {
-    @include s.margin(top, 9rem);
+    @include s.margin(ver, 9rem);
   }
 
 
