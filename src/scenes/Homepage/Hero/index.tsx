@@ -1,137 +1,21 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import Img from '@/public/hero-slider/img_8.png'; // todo -- change
-import Img4 from '@/public/hero-slider/img_7.png';
-import Img2 from '@/public/hero-slider/img_3.png';
-import Img3 from '@/public/hero-slider/img_4.png';
 import { MotionParent } from '@/components/common/MotionItems';
-import { AnimatePresence, motion, MotionConfig, Transition, Variants } from 'framer-motion';
+import { AnimatePresence, motion, MotionConfig } from 'framer-motion';
 import { Button, debounce, IconButton } from '@mui/material';
 import { KeyboardArrowLeftTwoTone, KeyboardArrowRightTwoTone } from '@mui/icons-material';
 import s from './hero.module.scss';
 import clsx from 'clsx';
 import { useAppContext } from '@/context/app';
-
-const images = [
-  {
-    img: Img,
-    text: {
-      title: 'A COLD DELIGHT',
-      subtitle: 'Grab Chilled',
-      desc: 'Let your emotions come out with whiskey in your hand, The taste makes you feel awesome',
-    },
-  },
-  {
-    img: Img2,
-    text: {
-      title: 'SPECIAL RELEASE',
-      subtitle: 'Exclusive Offer',
-      desc: 'Let your emotions come out with whiskey in your hand, The taste makes you feel awesome',
-    },
-  },
-  {
-    img: Img3,
-    text: {
-      title: 'AUTHENTIC TASTE',
-      subtitle: 'Timeless flavor',
-      desc: 'Let your emotions come out with whiskey in your hand, The taste makes you feel awesome',
-    },
-  },
-  {
-    img: Img4,
-    text: {
-      title: 'WHISKEY PLEASURE',
-      subtitle: 'Taste the Excellence',
-      desc: 'All you need is a Glass. First, it needs  to be chilled, and second, it needs to be ours. You deserve to relax',
-    },
-  },
-];
-
-const containerVariants: Variants = {
-  initial: {
-    filter: 'grayscale(100%) sepia(20%) brightness(80%)',
-    // scale: 0.65,
-    opacity: 0.7,
-    zIndex: 0,
-  },
-  animate: {
-    filter: 'grayscale(0%) sepia(0%) brightness(100%)',
-    scale: 1,
-    opacity: 1,
-    transitionEnd: {
-      zIndex: 1,
-    },
-
-    transition: {
-      filter: {
-        delay: 0.5,
-        duration: 1.3,
-        ease: [0.6, 0.01, 0, 0.9],
-      },
-      duration: 1.3,
-      ease: [0.165, 0.84, 0.44, 1],
-    },
-  },
-
-  exit: {
-    opacity: 0,
-    scale: 1.2,
-    // x: '100%',
-  },
-};
-
-const imageVariants = {
-  animate: {
-    scale: 2,
-    transition: {
-      delay: 0.5,
-      duration: 100,
-      ease: 'linear',
-    },
-  },
-};
-
-const textContainerVariants: Variants = {
-  initial: {},
-  animate: {
-    transition: {
-      staggerChildren: 0.04,
-    },
-  },
-
-  exit: {
-    opacity: 0,
-  },
-};
-
-const textItemVariants = {
-  initial: {
-    opacity: 0,
-    x: '-150%',
-  },
-
-  animate: {
-    opacity: 1,
-    x: 0,
-  },
-  exit: {
-    opacity: 0,
-    transition: {
-      duration: 1,
-      ease: [0.6, 0.01, 0, 0.9],
-    },
-  },
-};
-
-const textTransition = {
-  duration: 2,
-  ease: [0.6, 0.01, 0, 0.9],
-};
-
-const transition: Transition = {
-  duration: 1,
-  ease: 'easeInOut',
-};
+import {
+  containerVariants,
+  images,
+  imageVariants,
+  textContainerVariants,
+  textItemVariants,
+  textTransition,
+  transition,
+} from '@/scenes/Homepage/Hero/resources';
 
 let touched = false;
 
@@ -158,6 +42,7 @@ const Hero = () => {
   });
 
   useEffect(() => {
+    return;
     function tick() {
       if (!touched) savedCallback.current();
       touched = false;
@@ -167,13 +52,13 @@ const Hero = () => {
 
     return () => {
       clearInterval(interval);
-      lightenNavBar();
+      // lightenNavBar();
     };
   }, []);
 
   useLayoutEffect(() => {
     return () => {
-      darkenNavBar();
+      // darkenNavBar();
     };
   }, []);
 
@@ -181,8 +66,9 @@ const Hero = () => {
     <div className={s.container}>
       <motion.div
         className={s.gallery}
-        onViewportLeave={debounce(lightenNavBar, 500)}
-        onViewportEnter={debounce(darkenNavBar, 500)}>
+        // onViewportLeave={debounce(lightenNavBar, 500)}
+        // onViewportEnter={debounce(darkenNavBar, 500)}
+      >
         <AnimatePresence>
           <MotionParent
             key={selectedImg.img.src}

@@ -1,0 +1,13 @@
+/* ultra-regular - latin */
+@font-face {
+  font-family: 'Ultra';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/ultra/ultra-v19-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+  url('./fonts/ultra/ultra-v19-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('./fonts/ultra/ultra-v19-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+  url('./fonts/ultra/ultra-v19-latin-regular.woff') format('woff'), /* Modern Browsers */
+  url('./fonts/ultra/ultra-v19-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+  url('./fonts/ultra/ultra-v19-latin-regular.svg#Ultra') format('svg'); /* Legacy iOS */
+}
