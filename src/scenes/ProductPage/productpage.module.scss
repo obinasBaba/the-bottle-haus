@@ -8,17 +8,15 @@
 
 
   @include s.media-breakpoint-up(md){
-    padding-top: 0vmin;
+    padding-top: 0;
   }
 
 
   & :local {
 
-    .segest {
+    .suggest {
       max-width: 1300px;
       margin: 0 auto;
-
-      border: 1px solid #000;
 
     }
   }

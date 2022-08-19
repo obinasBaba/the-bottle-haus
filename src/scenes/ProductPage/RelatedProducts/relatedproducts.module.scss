@@ -1,0 +1,64 @@
+@use '@/styles' as s;
+
+.container{
+  position: relative;
+  width: 100%;
+
+  background-color: #f6f6f6 !important;
+
+  // @include s.margin(top, 10rem);
+   @include s.padding(ver, 4rem);
+
+  & :local{
+
+    .bg{
+      display: none;
+      position: absolute;
+      inset: 0;
+    }
+
+    .wrapper{
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: s.$clrs-accent;
+
+      h1 {
+        font-weight: 900;
+        @include s.font-size-text(3.2rem);
+        line-height: 140%;
+        -webkit-text-stroke-width: s.f-unit-light(2px);
+        -webkit-text-stroke-color: s.$clrs-accent;
+      }
+
+      //border: thin solid red;
+
+      span {
+        display: block;
+        color: transparent;
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: s.$clrs-accent;
+      }
+    }
+
+    .list{
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(s.f-unit(13rem), 1fr) );
+      gap: s.f-unit(2.3rem);
+      row-gap: s.f-unit(2.9rem);
+      @include s.margin(top, 4rem);
+
+
+      @include s.media-breakpoint-up(md) {
+        grid-template-columns: repeat(4, minmax(s.f-unit(13rem), 1fr) );
+
+      }
+    }
+  }
+}

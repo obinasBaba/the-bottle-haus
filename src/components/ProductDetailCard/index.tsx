@@ -10,20 +10,46 @@ import Storage from '@/public/storage-stack.png';
 import { pageTransition } from '@/scenes/Homepage';
 import { motion, MotionConfig, Variants } from 'framer-motion';
 import { MotionChild, MotionParent } from '@/components/common/MotionItems';
+import { Product } from '@/types/product';
+
+import Bottle from '@/public/whisky-review/kiss.png';
+import { useRouter } from 'next/router';
 
 type ProductCardProps = {
   product: any;
 };
 
+const returnButtonVariants = {
+  initial: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+  },
+  hover: {
+    scale: 1.5,
+    opacity: [null, 1, 0, 0, 1],
+    x: [null, '-100%', '-100%', '100%', '0%'],
+  },
+
+  transition: {
+    duration: 0.5,
+    ease: [0.6, 0.01, 0, 0.9],
+    times: [0, 0.45, 0.45, 0.5, 1],
+  },
+};
+
 function ReturnButton() {
+  const router = useRouter();
+
   return (
-    <div className={s.return_btn}>
-      <svg
+    <div className={s.return_btn} onClick={() => router.back()}>
+      <motion.svg
         width="54"
         height="54"
         viewBox="0 0 54 54"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg">
+        initial="initial"
+        whileHover="hover">
         <motion.circle
           initial={{ pathLength: 0 }}
           animate={{ pathLength: 1 }}
@@ -33,12 +59,14 @@ function ReturnButton() {
           stroke="#F69857FF"
           strokeWidth="2"
         />
-        <path
+        <motion.path
+          variants={returnButtonVariants as any}
+          transition={returnButtonVariants.transition}
           className="path1"
           d="M34 28H22.14L25.77 32.36C25.9397 32.5642 26.0214 32.8275 25.997 33.0919C25.9726 33.3564 25.8442 33.6003 25.64 33.77C25.4358 33.9397 25.1725 34.0214 24.9081 33.997C24.6436 33.9726 24.3997 33.8442 24.23 33.64L19.23 27.64C19.1964 27.5923 19.1663 27.5421 19.14 27.49C19.14 27.44 19.14 27.41 19.07 27.36C19.0247 27.2453 19.0009 27.1233 19 27C19.0009 26.8767 19.0247 26.7547 19.07 26.64C19.07 26.59 19.07 26.56 19.14 26.51C19.1663 26.4579 19.1964 26.4077 19.23 26.36L24.23 20.36C24.324 20.2471 24.4418 20.1563 24.5748 20.0941C24.7079 20.0319 24.8531 19.9998 25 20C25.2337 19.9995 25.4601 20.0809 25.64 20.23C25.7413 20.314 25.825 20.4171 25.8863 20.5334C25.9477 20.6497 25.9855 20.7771 25.9975 20.908C26.0096 21.039 25.9957 21.1711 25.9567 21.2967C25.9176 21.4223 25.8542 21.539 25.77 21.64L22.14 26H34C34.2652 26 34.5196 26.1054 34.7071 26.2929C34.8946 26.4804 35 26.7348 35 27C35 27.2652 34.8946 27.5196 34.7071 27.7071C34.5196 27.8946 34.2652 28 34 28Z"
           fill="#FF721F"
         />
-      </svg>
+      </motion.svg>
     </div>
   );
 }
@@ -67,7 +95,7 @@ const signVariants = {
   },
 };
 
-const detailTxtBackgroundVariant = {
+const detailTxtBackgroundVariant: any = {
   initial: {
     x: '100%',
   },
@@ -77,15 +105,30 @@ const detailTxtBackgroundVariant = {
   exit: {
     // opacity: 0,
   },
+
+  transition: {
+    duration: 1,
+    ease: [0.6, 0.01, 0, 0.9],
+    delay: 0.2,
+  },
 };
 
 const titleContainerVariants: Variants = {
   initial: {},
   animate: {
     transition: {
-      delay: 1,
+      delay: 0.8,
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const detailTxtWrapper: Variants = {
+  animate: {
+    transition: {
+      delayChildren: 0.9,
       when: 'beforeChildren',
-      staggerChildren: 3.04,
+      staggerChildren: 0.08,
     },
   },
 };
@@ -100,7 +143,7 @@ const titleWordVariants = {
       transition: {
         duration: 1.5,
         ease: [0.6, 0.01, 0, 0.9],
-        delay: 0.04 * custom.idx,
+        // delay: 0.04 * custom.idx,
       },
     };
   },
@@ -125,18 +168,32 @@ function ProductTitle(props: { name: string }) {
   );
 }
 
+export const dummyProduct: Product = {
+  id: '78asdf',
+  options: [],
+  variants: [],
+  images: [{ url: Bottle.src }],
+  name: 'Buffalo Trace Bourbon Cream Liqueur',
+  price: {
+    value: 99.44,
+    discount: 10,
+  },
+  description:
+    'Situated on the Kentucky River in Frankfort, Kentucky, Buffalo Trace Distillery takes its name from an ancient pathway that migrating buffalo used when traveling westward. The trail was well-known among Native Americans and was eventually used by pioneering settlers who crossed the Ohio River and followed the buffalo trace to the Western frontier.Buffalo Trace Distillery is the oldest continually operating distillery in the United States and includes the rich legacies of master distillers such as E.H. Taylor, Jr, George T. Stagg, Albert B. Blanton, Orville Schupp, and Elmer T. Lee.l',
+};
+
 const ProductDetailCard: React.FC<ProductCardProps> = ({ product }) => {
   const rev = Array.from(new Array(5));
 
   return (
     <div className={cs(s.container)}>
-      <MotionConfig
-        transition={{
-          duration: 1.5,
-          ease: [0.6, 0.01, 0, 0.9],
-          delay: 0.2,
-        }}>
-        <div className="wrapper">
+      <div className="wrapper">
+        <MotionConfig
+          transition={{
+            duration: 1.5,
+            ease: [0.6, 0.01, 0, 0.9],
+            delay: 0.2,
+          }}>
           <div className="product_img">
             <ReturnButton />
             <div className={s.storage}>
@@ -152,72 +209,69 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product }) => {
               />
             </motion.div>
           </div>
-          <div className="detail">
-            <div className={s.signature}>
-              <motion.div variants={signVariants}>
-                <Image src={Sign} alt="juvi signature" />
-              </motion.div>
+        </MotionConfig>
+
+        <div className="detail">
+          <div className={s.signature}>
+            <motion.div variants={signVariants}>
+              <Image src={Sign} alt="juvi signature" />
+            </motion.div>
+          </div>
+
+          <motion.div
+            className="bg"
+            variants={detailTxtBackgroundVariant}
+            transition={detailTxtBackgroundVariant.transition}>
+            <Image src={WhiteBg} alt="white bg" objectFit="cover" />
+          </motion.div>
+
+          <MotionParent className={s.detail_wrapper} variants={detailTxtWrapper}>
+            <div className={s.clip_overflow}>
+              <MotionChild className="sub_title">Don Julio</MotionChild>
+
+              <ProductTitle name={product?.name || 'No Name'} />
             </div>
 
-            <motion.div className="bg" variants={detailTxtBackgroundVariant}>
-              <Image src={WhiteBg} alt="white bg" objectFit="cover" />
-            </motion.div>
+            <MotionChild className="price_detail">
+              <div className="quantity_controller">
+                <Button variant="outlined" className="plus">
+                  +
+                </Button>
+                <span className="quantity">1</span>
+                <Button variant="outlined" className="minus">
+                  -
+                </Button>
+              </div>
+              <h1 className="price">${product?.price.value} </h1>
+            </MotionChild>
 
-            <MotionConfig
-              transition={{
-                duration: 1.5,
-                ease: [0.6, 0.01, 0, 0.9],
-                delay: 0.7,
-              }}>
-              <MotionParent className={s.detail_wrapper} variants={titleContainerVariants}>
-                <div className={s.clip_overflow}>
-                  <MotionChild className="sub_title">Don Julio</MotionChild>
+            <MotionChild className="reviews">
+              <div className="rev_svg">
+                {rev.map((_, idx) => (
+                  <span key={idx} />
+                ))}
+              </div>
+              <p>19 reviews</p>
+            </MotionChild>
 
-                  <ProductTitle name={product?.name || 'No Name'} />
-                </div>
+            <MotionChild className="desc_wrapper">
+              <div className="desc">
+                <p className="text">{product?.description}</p>
+              </div>
+              <div className="bottom_gradient" />
+            </MotionChild>
 
-                <MotionChild className="price_detail">
-                  <div className="quantity_controller">
-                    <Button variant="outlined" className="plus">
-                      +
-                    </Button>
-                    <span className="quantity">1</span>
-                    <Button variant="outlined" className="minus">
-                      -
-                    </Button>
-                  </div>
-                  <h1 className="price">${product?.price.value} </h1>
-                </MotionChild>
-
-                <MotionChild className="reviews">
-                  <div className="rev_svg">
-                    {rev.map((_, idx) => (
-                      <span key={idx} />
-                    ))}
-                  </div>
-                  <p>19 reviews</p>
-                </MotionChild>
-
-                <MotionChild className="desc_wrapper">
-                  <div className="desc">
-                    <p className="text">{product?.description}</p>
-                  </div>
-                  <div className="bottom_gradient" />
-                </MotionChild>
-
-                <MotionChild className="cart_controllers">
-                  <Button variant="contained" size="large">
-                    Add to cart
-                  </Button>
-                  <Button variant="outlined" size="large" startIcon={<Adjust />}>
-                    Add personalized Gift Note
-                  </Button>
-                </MotionChild>
-              </MotionParent>
-            </MotionConfig>
-          </div>
+            <MotionChild className="cart_controllers">
+              <Button variant="contained" size="large">
+                Add to cart
+              </Button>
+              <Button variant="outlined" size="large" startIcon={<Adjust />}>
+                Add personalized Gift Note
+              </Button>
+            </MotionChild>
+          </MotionParent>
         </div>
-      </MotionConfig>
+      </div>
     </div>
   );
 };

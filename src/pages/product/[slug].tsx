@@ -10,8 +10,9 @@ import { MotionParent } from '@/components/common/MotionItems';
 import Head from 'next/head';
 import React from 'react';
 import { pageTransition } from '@/scenes/Homepage';
+import { dummyProduct } from '@/components/ProductDetailCard';
 
-export async function getStaticProps({ params, locale }: GetStaticPropsContext<{ slug: string }>) {
+/*export async function getStaticProps({ params, locale }: GetStaticPropsContext<{ slug: string }>) {
   const { product } = await commerce.getProduct({
     variables: { slug: params!.slug },
   });
@@ -39,18 +40,18 @@ export async function getStaticProps({ params, locale }: GetStaticPropsContext<{
     },
     revalidate: 11200,
   };
-}
+}*/
 
-export async function getStaticPaths({}: GetStaticPathsContext): Promise<GetStaticPathsResult> {
+/*export async function getStaticPaths({}: GetStaticPathsContext): Promise<GetStaticPathsResult> {
   const { products } = await commerce.getAllProductPaths({});
 
   return {
     paths: products?.slice(0, 1).map((product: any) => `/product${product.path}`),
     fallback: 'blocking',
   };
-}
+}*/
 
-const Product = ({ product }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Product = () => {
   return (
     <MotionParent transition={pageTransition}>
       <Head>
@@ -58,7 +59,7 @@ const Product = ({ product }: InferGetStaticPropsType<typeof getStaticProps>) =>
         <meta name="product detail page" />
       </Head>
 
-      {product && <ProductPage product={product} />}
+      {true && <ProductPage product={dummyProduct} />}
     </MotionParent>
   );
 };

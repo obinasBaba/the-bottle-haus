@@ -45,6 +45,8 @@
             top: 10%;
             transform: scale(.8);
             opacity: .9;
+            cursor: pointer;
+
 
 
             @include s.media-breakpoint-up(md) {
