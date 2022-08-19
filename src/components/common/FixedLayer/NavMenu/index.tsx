@@ -8,6 +8,11 @@ import { basicVariants, MotionChild, MotionParent } from '@/components/common/Mo
 import Link from 'next/link';
 import { CloseMenuButton } from '@fixedLayer/NavMenu/closeMenuButton';
 
+import Grape from './grape.png';
+import Image from 'next/image';
+
+import Houses from '@/public/houses.png';
+
 const transition = {
   duration: 1.2,
   ease: [0.165, 0.84, 0.44, 1],
@@ -15,8 +20,15 @@ const transition = {
 
 export const blurBgVariants = Object.setPrototypeOf(
   {
+    exit: {
+      opacity: 0,
+      transition: {
+        duration: 1,
+        ease: [0.6, 0.01, 0, 0.9],
+      },
+    },
     transition: {
-      duration: 0.8,
+      duration: 1,
       ease: [0.165, 0.84, 0.44, 1],
     },
   },
@@ -109,6 +121,53 @@ const footerItemVariant: any = {
   },
 };
 
+const grapeVariants = {
+  initial: {
+    opacity: 0.5,
+    y: '-20%',
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.5,
+      ...transition,
+    },
+  },
+
+  exit: {
+    opacity: 0,
+  },
+
+  transition: {
+    ...transition,
+  },
+};
+
+const houseVariants = {
+  initial: {
+    opacity: 0.4,
+    y: '60%',
+    x: '-50%',
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.5,
+      ...transition,
+    },
+  },
+
+  exit: {
+    opacity: 0,
+  },
+
+  transition: {
+    ...transition,
+  },
+};
+
 const links = [
   { name: 'Home', link: '/' },
   { name: 'All Product', link: '/collection/all-products' },
@@ -134,6 +193,20 @@ const NavMenu = () => {
         transition={menuVariants.transition}>
         <CloseMenuButton onClick={() => closeNavMenu()} />
 
+        <motion.div
+          className={s.grape}
+          variants={grapeVariants}
+          transition={grapeVariants.transition}>
+          <Image src={Grape} alt="nav grapes at the top" />
+        </motion.div>
+
+        <motion.div
+          className={s.house}
+          variants={houseVariants}
+          transition={houseVariants.transition}>
+          <Image src={Houses} alt="nav footer houses image" />
+        </motion.div>
+
         <motion.div className={s.link_list} variants={linkContainerVariants}>
           {links.map(({ name, link }, idx) => (
             <motion.div
@@ -155,8 +228,8 @@ const NavMenu = () => {
           ))}
         </motion.div>
 
-        <motion.footer variants={footerVariant}>
-          <div className="hor">
+        <motion.footer className={s.nav_footer} variants={footerVariant}>
+          <div className={s.hor}>
             {data.map(({ icon, bg, text }) => (
               <motion.div
                 key={text}

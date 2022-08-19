@@ -5,11 +5,11 @@ import clsx from 'clsx';
 import { Button } from '@mui/material';
 import s from './glassview.module.scss';
 
-import Leaf from './side-leaf.png';
-import LeafRight from './right-leaf.png';
-import Bg2 from './image 27.png';
-import Glass from './bott 1.png';
-import Bubble from './bubbles.png';
+import Leaf from './media/side-leaf.png';
+import LeafRight from './media/right-leaf.png';
+import Bg2 from './media/image 27.png';
+import Glass from './media/bott 1.png';
+import Bubble from './media/bubbles.png';
 
 const texture = [
   { name: 'Bone Dry', level: 3 },
@@ -48,9 +48,9 @@ const GlassView = () => {
 
       <div className={s.content}>
         <div className={s.hor}>
-          <div className={s.right_txt}>
+          <div className={s.left_txt}>
             <div>
-              <big> -- Our Legacy </big>
+              <h4> Our Legacy </h4>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci corporis culpa
                 ducimus molestiae necessitatibus nostrum nulla omnis quos reiciendis tempora.
@@ -61,10 +61,12 @@ const GlassView = () => {
               </Button>
             </div>
           </div>
+
           <div className={s.glass}>
             <Image src={Glass} alt="Glass of Whisky" />
           </div>
-          <div className={s.left_txt}>
+
+          <div className={s.right_txt}>
             <h4>The Texture</h4>
 
             <div className={s.texture}>

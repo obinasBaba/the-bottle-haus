@@ -7,8 +7,9 @@
 
   //color: black;
 
-   @include s.padding(top, 10rem);
-   @include s.padding(bottom, 7rem);
+  @include s.padding(top, 10rem);
+  @include s.padding(bottom, 7rem);
+  @include s.padding(hor, 2rem);
 
   & :local {
 
@@ -19,7 +20,7 @@
       inset: 0;
       overflow: hidden;
 
-      .bg, .left_leaf, .right_leaf, .bubble{
+      .bg, .left_leaf, .right_leaf, .bubble {
         position: absolute;
       }
 
@@ -29,18 +30,23 @@
         z-index: -1;
       }
 
-      .bubble{
+      .bubble {
         left: 0;
         top: 10%;
+        display: none;
+
+        @include s.media-breakpoint-up(md) {
+          display: block;
+        }
       }
 
-      .right_leaf{
+      .right_leaf {
         z-index: 1;
         left: 0;
         top: 0%;
       }
 
-      .left_leaf{
+      .left_leaf {
         right: 5%;
         bottom: 5%;
       }
@@ -49,80 +55,120 @@
     .content {
       display: flex;
       flex-flow: column;
-      gap: 7rem;
+      gap: 5rem;
 
       .hor {
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-evenly;
         max-width: 1300px;
         width: 100%;
         margin: 0 auto;
 
+        @include s.media-breakpoint-up(md) {
+          flex-wrap: nowrap;
+        }
+
         //border: 1px solid #000;
 
         & > * {
-          width: 33.333%;
           display: grid;
           place-items: center;
         }
       }
 
-      .right_txt {
+      .glass {
+        //max-width: ;
+        order: 1;
+        width: 80%;
+
+        @include s.media-breakpoint-up(md) {
+          order: 2;
+          width: 33.333%;
+        }
+      }
+
+      .left_txt {
         display: flex;
         flex-flow: column;
         justify-content: center;
         align-items: start;
+        order: 2;
+        width: 50%;
+        text-align: left;
 
-        & > :first-child{
-          //border: 1px solid #000;
-          text-align: center;
+
+        @include s.media-breakpoint-up(md) {
+          order: 1;
+          width: 33.333%;
+
+          & > :first-child {
+            //border: 1px solid #000;
+            text-align: center;
+          }
         }
+
+
+
 
         p {
           max-width: 29ch;
         }
       }
 
-      .left_txt {
-       display: flex;
+      .right_txt {
+        display: flex;
         flex-flow: column;
         gap: 1rem;
-        align-self: center;
-
+        align-self: start;
         margin-left: auto;
-        width: min-content;
+        width: 50%;
 
-        h4{
-          margin: 0;
+        align-items: flex-end;
+
+
+        order: 3;
+
+        h4 {
+          //margin: 0;
           text-transform: uppercase;
         }
 
-        p{
+        @include s.media-breakpoint-up(md) {
+          width: min-content;
+          align-self: center;
+          align-items: initial;
+
+
+          h4{
+            margin: 0;
+          }
+        }
+
+
+
+
+        p {
           font-style: italic;
         }
       }
 
-      .bottom_txt{
+      .bottom_txt {
         display: flex;
         justify-content: center;
         gap: 3rem;
         //border: 1px solid #000;
 
-        div{
+        div {
           display: flex;
           align-items: center;
           gap: 1rem;
         }
 
 
-
       }
 
-      .glass {
-        //max-width: ;
-      }
-
-      .amount{
+      .amount {
         display: grid;
         place-items: center;
         box-sizing: content-box;
@@ -140,8 +186,14 @@
 }
 
 
-.huge_txt{
+.huge_txt {
+  display: none;
   text-align: center;
+
+  @include s.media-breakpoint-up(md) {
+    display: block;
+  }
+
 
   h1 {
     white-space: nowrap;
@@ -155,15 +207,18 @@
   }
 }
 
-.texture{
+.texture {
 
-  //border: 1px solid #000;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  gap: 2rem;
   row-gap: 1rem;
 
-  & :local{
+  @include s.media-breakpoint-up(md) {
+    gap: 3rem;
+  }
+
+  & :local {
 
     .t_item {
       width: min-content;
@@ -179,13 +234,13 @@
 
         span {
           display: block;
-          width: 14px;
-          height: 14px;
+          width: s.f-unit-light(14px);
+          height: s.f-unit-light(14px);
           border: 4px solid s.$clrs-orange-light;
           border-radius: 50%;
         }
 
-        span.thin{
+        span.thin {
           border: 2px solid #C39E71;
         }
       }

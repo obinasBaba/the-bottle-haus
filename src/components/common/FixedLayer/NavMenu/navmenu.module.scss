@@ -38,12 +38,22 @@
 
       }
 
-
     }
 
+    .grape{
+      position: absolute;
+      left: -.5%;
+      top: -1%;
+    }
+
+    .house{
+      position: absolute;
+      bottom: 1%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
     .item {
-      //border: 1px solid tan;
       overflow: hidden;
 
       a {
@@ -51,8 +61,6 @@
         align-items: center;
         gap: s.f-unit(1rem);
       }
-
-
     }
 
     .link_name {
@@ -72,11 +80,42 @@
         @include s.font-size-title(3.3rem);
         margin-bottom: 0;
         margin-top: 0rem;
-
-        //border: 1px solid #000;
       }
-
     }
+
+    .nav_footer {
+      width: 100%;
+      height: max-content;
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+
+
+      .hor {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        overflow: hidden;
+
+
+        & > :nth-child(3n) {
+          margin-left: auto;
+        }
+
+        @include s.media-breakpoint-down(sm) {
+          flex-wrap: wrap;
+        }
+
+        //border: thin solid black;
+
+        button {
+          background-color: rgba(253, 127, 40, 0.04);
+          font-size: .7rem;
+        }
+      }
+    }
+
   }
 
   & :global {
@@ -95,12 +134,11 @@
       height: 100%;
       right: 0;
       width: 75%;
-      //max-width: 600px;
       display: flex;
       flex-flow: column;
-      padding: s.f-unit(2rem);
+      padding: s.f-unit(1rem);
       z-index: 1;
-      //white-space: ;
+      overflow: hidden;
 
 
       @include s.media-breakpoint-up(sm) {
@@ -108,36 +146,6 @@
         width: s.f-unit-light(75vmin);
       }
 
-
-      footer {
-        width: 100%;
-        height: max-content;
-        margin-top: auto;
-        display: flex;
-        justify-content: space-between;
-
-        .hor {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          width: 100%;
-          overflow: hidden;
-
-          & > :nth-child(3n) {
-            margin-left: auto;
-          }
-
-          @include s.media-breakpoint-down(sm) {
-            flex-wrap: wrap;
-          }
-
-          //border: thin solid black;
-
-          button {
-            background-color: rgba(253, 127, 40, 0.04);
-          }
-        }
-      }
 
       .bottom_gradient {
         position: absolute;

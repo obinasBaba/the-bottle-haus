@@ -2,8 +2,8 @@
 
 .container {
   position: absolute;
-  bottom: 7%;
-  right: 5%;
+  bottom: 2vmax;
+  right: 3vmax;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -12,8 +12,13 @@
 
   & :global {
     .bottle_wrapper {
-      max-width: s.f-unit(1.5rem);
+      max-width: s.f-unit(3vmax);
       transform: rotate(180deg);
+
+      @include s.media-breakpoint-up(md) {
+        max-width: s.f-unit(1vmax);
+
+      }
     }
   }
 }
