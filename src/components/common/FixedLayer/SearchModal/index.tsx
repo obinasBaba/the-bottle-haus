@@ -118,7 +118,7 @@ const SearchModal = () => {
         <motion.form
           onSubmit={formic.handleSubmit}
           className={s.field}
-          variants={inputVariant}
+          variants={inputVariant as any}
           transition={inputVariant.transition}>
           <FormControl fullWidth sx={{ m: 1 }} variant="standard">
             <motion.div

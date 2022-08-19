@@ -55,7 +55,7 @@ export function CloseMenuButton(props: { onClick: () => void }) {
       onClick={props.onClick}>
       <IconButton color="primary" className={s.close_cross}>
         <svg width="100%" height="100%" viewBox="0 0 87 87">
-          <g stroke="#171614" strokeWidth="8" fill="none" fillRule="evenodd">
+          <g stroke="#f69857" strokeWidth="8" fill="none" fillRule="evenodd">
             <path className="_1s9fS" d="M4.5 3.5l39.573 39.573"></path>
             <path className="_1s9fS" d="M83.5 3.5L44.073 43.073"></path>
             <path className="_1s9fS" d="M83.5 82.5L44.073 43.073"></path>

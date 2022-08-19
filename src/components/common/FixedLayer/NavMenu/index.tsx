@@ -195,14 +195,14 @@ const NavMenu = () => {
 
         <motion.div
           className={s.grape}
-          variants={grapeVariants}
+          variants={grapeVariants as any}
           transition={grapeVariants.transition}>
           <Image src={Grape} alt="nav grapes at the top" />
         </motion.div>
 
         <motion.div
           className={s.house}
-          variants={houseVariants}
+          variants={houseVariants as any}
           transition={houseVariants.transition}>
           <Image src={Houses} alt="nav footer houses image" />
         </motion.div>

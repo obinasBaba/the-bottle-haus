@@ -13,6 +13,7 @@ import { useRouter } from 'next/router';
 import s from './fixed.module.scss';
 import SearchModal from '@fixedLayer/SearchModal';
 import LoadingModal from '@fixedLayer/LoadingModal';
+import SubscribeEmailModal from '@fixedLayer/SubscribeEmailModal';
 
 interface Props {
   window?: () => Window;
@@ -79,6 +80,8 @@ const FixedLayer = ({ collections }: any) => {
       <AnimatePresence exitBeforeEnter>{displayModal && <RegistrationModal />}</AnimatePresence>
 
       <AnimatePresence exitBeforeEnter>{searchModal && <SearchModal />}</AnimatePresence>
+
+      {/*<SubscribeEmailModal />*/}
 
       <ScrollTopBottle />
 
