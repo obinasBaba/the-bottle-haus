@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import s from './layout.module.scss';
 import FixedLayer from '@fixedLayer/index';
 import Footer from '@/components/common/Footer';
@@ -7,6 +7,10 @@ import { Collection } from '@/schema';
 import { useRouter } from 'next/router';
 import { LocomotiveScrollProvider } from '@/context/LocoMotive';
 import LocomotiveScroll from 'locomotive-scroll';
+import MouseFollower from 'mouse-follower';
+import gsap from 'gsap';
+
+MouseFollower.registerGSAP(gsap);
 
 interface Props {
   children: React.ReactNode;
@@ -21,6 +25,16 @@ const Layout: React.FC<Props> = ({ children, pageProps }) => {
   const container = useRef<HTMLDivElement | null>(null);
   const { asPath, pathname } = useRouter();
   const [sideBar, setSideBar] = useState(false);
+
+  useEffect(() => {
+    const cursor = new MouseFollower({
+      stickDelta: 12,
+    });
+
+    return () => {
+      // cursor.destroy()
+    };
+  }, []);
 
   return (
     <LocomotiveScrollProvider

@@ -2,11 +2,10 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { MotionParent } from '@/components/common/MotionItems';
 import { AnimatePresence, motion, MotionConfig } from 'framer-motion';
-import { Button, debounce, IconButton } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import { KeyboardArrowLeftTwoTone, KeyboardArrowRightTwoTone } from '@mui/icons-material';
 import s from './hero.module.scss';
 import clsx from 'clsx';
-import { useAppContext } from '@/context/app';
 import {
   containerVariants,
   images,
@@ -16,14 +15,14 @@ import {
   textTransition,
   transition,
 } from '@/scenes/Homepage/Hero/resources';
+import Link from 'next/link';
 
 let touched = false;
 
 const Hero = () => {
-  const [selectedImg, setSelectedImg] = useState(images[0]);
   const [idx, setIdx] = useState(0);
+  const [selectedImg, setSelectedImg] = useState(images[0]);
   const savedCallback = useRef<any>();
-  const { darkenNavBar, lightenNavBar } = useAppContext();
 
   function next() {
     const nxtIdx = idx + 1 <= images.length - 1 ? idx + 1 : 0;
@@ -43,6 +42,7 @@ const Hero = () => {
 
   useEffect(() => {
     return;
+
     function tick() {
       if (!touched) savedCallback.current();
       touched = false;
@@ -100,15 +100,23 @@ const Hero = () => {
             <MotionParent
               className={s.text}
               key={selectedImg.img.src}
+              data-idx={idx}
               variants={textContainerVariants}>
               <MotionConfig transition={textTransition}>
                 <motion.p variants={textItemVariants}>{selectedImg.text.subtitle}</motion.p>
-                <motion.h1 variants={textItemVariants}>{selectedImg.text.title}</motion.h1>
+                <motion.h1
+                  variants={textItemVariants}
+                  dangerouslySetInnerHTML={{ __html: selectedImg.text.title }}
+                />
                 <motion.big variants={textItemVariants}>{selectedImg.text.desc}</motion.big>
                 <motion.div variants={textItemVariants}>
-                  <Button variant="contained" size="large">
-                    Shop Now
-                  </Button>
+                  <Link href={'/collections/all-products'}>
+                    <a>
+                      <Button variant="contained" size="large">
+                        Shop Now
+                      </Button>
+                    </a>
+                  </Link>
                 </motion.div>
               </MotionConfig>
             </MotionParent>

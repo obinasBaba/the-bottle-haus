@@ -66,16 +66,14 @@
   z-index: 100;
   padding: 0 .7rem;
 
+  border: 1px solid red;
+
   @include s.media-breakpoint-up(md) {
     padding: 0 1.5rem;
-    //gap: 4rem;
-
-    //left: 2rem;
   }
 
-  & > :last-child {
-    margin-left: auto;
-  }
+
+
 
   & :local {
 
@@ -83,6 +81,8 @@
       display: flex;
       flex-flow: column;
       align-items: flex-start;
+      margin-right: auto;
+
 
       p {
         margin: 0;
@@ -113,6 +113,46 @@
 
       }
     }
+
+
+    .text[data-idx="0"]{
+      margin-left: auto;
+      color: black;
+      margin-right: 4vmax;
+
+      h1{
+        color: black;
+        span{
+          color: #f66628;
+        }
+      }
+    }
+
+    .text[data-idx="1"]{
+      margin-right: auto;
+      //color: black;
+
+      p{
+        //color: white;
+      }
+
+      h1{
+        color: white;
+        span{
+          //color: #f66628;
+        }
+      }
+    }
+
+    .text[data-idx="2"]{
+      //margin-left: auto;
+      //margin-right: 4vmax;
+
+      //color: black;
+
+
+    }
+
 
     .shopNow {
       margin: 0;

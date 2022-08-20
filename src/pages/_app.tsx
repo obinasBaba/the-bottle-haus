@@ -3,6 +3,9 @@
 import { AppProps } from 'next/app';
 import Layout from '@/components/common/layout';
 import '@global/index.scss';
+
+import 'mouse-follower/src/scss/index.scss';
+
 import React, { useCallback, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

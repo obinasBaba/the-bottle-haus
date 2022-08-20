@@ -1,14 +1,13 @@
 import { Transition, Variants } from 'framer-motion';
 import Img from '@/public/hero-slider/img_11.png';
 import Img2 from '@/public/hero-slider/img_12.png';
-import Img3 from '@/public/hero-slider/img_4.png';
 import Img4 from '@/public/hero-slider/img_7.png';
 
 export const images = [
   {
     img: Img,
     text: {
-      title: 'A COLD DELIGHT',
+      title: '<span>A COLD</span> DELIGHT',
       subtitle: 'Grab Chilled',
       desc: 'Let your emotions come out with whiskey in your hand, The taste makes you feel awesome',
     },
@@ -16,25 +15,17 @@ export const images = [
   {
     img: Img2,
     text: {
-      title: 'SPECIAL RELEASE',
+      title: 'COCKTAIL  <span style="color: #f66628" >GIFT SETS</span>',
       subtitle: 'Exclusive Offer',
-      desc: 'Let your emotions come out with whiskey in your hand, The taste makes you feel awesome',
-    },
-  },
-  {
-    img: Img3,
-    text: {
-      title: 'AUTHENTIC TASTE',
-      subtitle: 'Timeless flavor',
-      desc: 'Let your emotions come out with whiskey in your hand, The taste makes you feel awesome',
+      desc: '50% off all wine cocktail sets',
     },
   },
   {
     img: Img4,
     text: {
-      title: 'WHISKEY PLEASURE',
-      subtitle: 'Taste the Excellence',
-      desc: 'All you need is a Glass. First, it needs  to be chilled, and second, it needs to be ours. You deserve to relax',
+      title: '<span style="color: #fff; !important;">AUTHENTIC</span> TASTE',
+      subtitle: 'Timeless flavor',
+      desc: 'Let your emotions come out with whiskey in your hand, The taste makes you feel awesome',
     },
   },
 ];
