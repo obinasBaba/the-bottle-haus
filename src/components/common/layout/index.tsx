@@ -45,14 +45,7 @@ const Layout: React.FC<Props> = ({ children, pageProps }) => {
       }}
       containerRef={container} // height change detection
       watch={[]}
-      onLocationChange={useCallback(
-        (scroll: LocomotiveScroll) =>
-          scroll.scrollTo(0, {
-            duration: 0,
-            disableLerp: true,
-          }),
-        [],
-      )}
+      onLocationChange={useCallback((scroll: LocomotiveScroll) => null, [])}
       location={asPath}>
       <FixedLayer collections={pageProps.collections} />
       <div className={s.root} ref={container} data-scroll-container={true}>

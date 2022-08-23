@@ -21,7 +21,7 @@ import { useAppInfo } from '@/context/MotionValuesContext';
 import RouteChangeEvent from '@/util/helpers/RouteChangeEvent';
 import { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
-import { LocomotiveScrollProvider } from '@/context/LocoMotive';
+import { LocomotiveScrollProvider, useLocomotiveScroll } from '@/context/LocoMotive';
 import LocomotiveScroll from 'locomotive-scroll';
 import { AnimatePresence } from 'framer-motion';
 
@@ -39,6 +39,33 @@ interface MyAppProps extends AppProps {
   };
 }
 
+function SwappingChild({ Component, pageProps }: any) {
+  const { scroll } = useLocomotiveScroll();
+  const { toolTipsData } = useAppInfo();
+  const { pathname } = useRouter();
+
+  const NestedLayout = Component.Layout || DefaultLayout;
+
+  return (
+    <>
+      {!Component.withLayout ? (
+        <AnimatePresence
+          exitBeforeEnter
+          custom={{ one: '' }}
+          onExitComplete={() => {
+            scroll?.scrollTo(0, { duration: 0, disableLerp: true });
+          }}>
+          <NestedLayout {...pageProps} key={pathname}>
+            <Component {...pageProps} />
+          </NestedLayout>
+        </AnimatePresence>
+      ) : (
+        <Component {...pageProps} />
+      )}
+    </>
+  );
+}
+
 export default function MyApp({
   Component,
   pageProps,
@@ -47,6 +74,9 @@ export default function MyApp({
 }: MyAppProps) {
   const router = useRouter();
   const { pathname } = useRouter();
+
+  const { scroll } = useLocomotiveScroll();
+
   const event = RouteChangeEvent.GetInstance();
 
   useEffect(() => {
@@ -83,17 +113,9 @@ export default function MyApp({
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
 
-            {!Component.withLayout ? (
-              <Layout pageProps={pageProps}>
-                <AnimatePresence exitBeforeEnter custom={{}}>
-                  <NestedLayout {...pageProps} key={pathname}>
-                    <Component {...pageProps} />
-                  </NestedLayout>
-                </AnimatePresence>
-              </Layout>
-            ) : (
-              <Component {...pageProps} />
-            )}
+            <Layout pageProps={pageProps}>
+              <SwappingChild Component={Component} pageProps={pageProps} />
+            </Layout>
           </ThemeProvider>
         </CacheProvider>
       </ContextWrapper>

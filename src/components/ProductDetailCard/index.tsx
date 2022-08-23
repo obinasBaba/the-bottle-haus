@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './productdetailcard.module.scss';
 import cs from 'clsx';
 import Image from 'next/image';
@@ -14,6 +14,9 @@ import { Product } from '@/types/product';
 
 import Bottle from '@/public/whisky-review/kiss.png';
 import { useRouter } from 'next/router';
+import useAddItem from '@/SWRHooksAPI/cart/use-add-item';
+import { useAppInfo } from '@/context/MotionValuesContext';
+import { useAppContext } from '@/context/app';
 
 type ProductCardProps = {
   product: any;
@@ -185,6 +188,16 @@ export const dummyProduct: Product = {
 const ProductDetailCard: React.FC<ProductCardProps> = ({ product }) => {
   const rev = Array.from(new Array(5));
 
+  const addItem = useAddItem();
+
+  const { toolTipsData } = useAppInfo();
+  const { showNavBar } = useAppContext();
+  const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    console.log('product : ', product);
+  }, []);
+
   return (
     <div className={cs(s.container)}>
       <div className="wrapper">
@@ -234,11 +247,17 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product }) => {
 
             <MotionChild className="price_detail">
               <div className="quantity_controller">
-                <Button variant="outlined" className="plus">
+                <Button
+                  variant="outlined"
+                  className="plus"
+                  onClick={() => setQuantity(quantity + 1)}>
                   +
                 </Button>
-                <span className="quantity">1</span>
-                <Button variant="outlined" className="minus">
+                <span className="quantity">{quantity}</span>
+                <Button
+                  variant="outlined"
+                  className="minus"
+                  onClick={() => quantity > 1 && setQuantity(quantity - 1)}>
                   -
                 </Button>
               </div>
@@ -262,7 +281,32 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product }) => {
             </MotionChild>
 
             <MotionChild className="cart_controllers">
-              <Button variant="contained" size="large">
+              <Button
+                variant="contained"
+                size="large"
+                onClick={() => {
+                  showNavBar();
+                  toolTipsData.set({ show: true, text: 'Adding to Cart...', loading: true });
+                  addItem({
+                    productId: product?.id,
+                    // quantity: 1,
+                    variantId: product?.variants[0]?.id?.toString(),
+                  })
+                    .then((r) => {
+                      toolTipsData.set({ show: false });
+                    })
+                    .catch((e) => {
+                      console.error('error: ', JSON.stringify(e, null, 2));
+
+                      toolTipsData.set({
+                        id: 'error',
+                        show: true,
+                        text: 'something is wrong! check your network',
+                        loading: false,
+                        duration: 4000,
+                      });
+                    });
+                }}>
                 Add to cart
               </Button>
               <Button variant="outlined" size="large" startIcon={<Adjust />}>

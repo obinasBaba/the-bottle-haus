@@ -1,4 +1,4 @@
-import { ProductFilterInput } from '@/schema';
+import { Collection, Maybe, ProductFilterInput } from '@/schema';
 
 export type ProductImage = {
   url: string;
@@ -49,6 +49,7 @@ export type Product = {
   price: ProductPrice;
   options: ProductOption[];
   vendor?: string;
+  collections?: Maybe<Maybe<Collection>[]> | null;
 };
 
 export type SearchProductsBody = {

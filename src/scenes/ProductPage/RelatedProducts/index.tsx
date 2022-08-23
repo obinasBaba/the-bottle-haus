@@ -5,7 +5,7 @@ import { dummyProduct } from '@/components/ProductDetailCard';
 import Image from 'next/image';
 import WhiteBg from '@/public/white-bg.png';
 
-const RelatedProducts = () => {
+const RelatedProducts = ({ relatedProducts = Array.from(new Array(4)) }: any) => {
   return (
     <div className={s.container}>
       <div className={s.bg}>
@@ -21,8 +21,8 @@ const RelatedProducts = () => {
         </div>
 
         <div className={s.list}>
-          {Array.from(new Array(4)).map((value, idx) => (
-            <ProductCard loading={false} product={dummyProduct} key={idx} />
+          {relatedProducts.map((product: any, idx: any) => (
+            <ProductCard loading={false} product={product || dummyProduct} key={idx} />
           ))}
         </div>
       </div>

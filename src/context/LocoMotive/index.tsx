@@ -21,6 +21,7 @@ export interface LocomotiveScrollContextValue {
   scale: MotionValue<number>;
   scrollDirection: MotionValue<string>;
   yProgress: MotionValue<number>;
+  containerRef: MutableRefObject<HTMLDivElement | null>;
 }
 
 const LocomotiveScrollContext = createContext<LocomotiveScrollContextValue>({
@@ -66,6 +67,8 @@ export function LocomotiveScrollProvider({
   const scale = useTransform(velocity, [-3000, 0, 3000], [1.01, 1, 1.01], { clamp: true });
 
   useEffect(() => {
+    // return;
+
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     import('locomotive-scroll').then((LocomotiveScroll) => {
@@ -142,7 +145,14 @@ export function LocomotiveScrollProvider({
 
   return (
     <LocomotiveScrollContext.Provider
-      value={{ scroll: LocomotiveScrollRef.current, isReady, scale, scrollDirection, yProgress }}>
+      value={{
+        scroll: LocomotiveScrollRef.current,
+        isReady,
+        scale,
+        scrollDirection,
+        yProgress,
+        containerRef,
+      }}>
       {children}
     </LocomotiveScrollContext.Provider>
   );

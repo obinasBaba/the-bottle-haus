@@ -12,6 +12,8 @@ import Grape from './grape.png';
 import Image from 'next/image';
 
 import Houses from '@/public/houses.png';
+import { useRouter } from 'next/router';
+import { useLocomotiveScroll } from '@/context/LocoMotive';
 
 const transition = {
   duration: 1.2,
@@ -176,7 +178,9 @@ const links = [
 ];
 
 const NavMenu = () => {
-  const { closeNavMenu } = useUI();
+  const { closeNavMenu, openModal } = useUI();
+  const router = useRouter();
+  const { scroll } = useLocomotiveScroll();
 
   return (
     <MotionParent className={s.container} variants={{}}>
@@ -235,7 +239,33 @@ const NavMenu = () => {
                 key={text}
                 variants={footerItemVariant}
                 transition={footerItemVariant.transition}>
-                <Button variant="outlined" size="small">
+                <Button
+                  variant="outlined"
+                  size="small"
+                  onClick={() => {
+                    switch (text) {
+                      case 'Blogs': {
+                        closeNavMenu();
+
+                        setTimeout(() => {
+                          scroll?.scrollTo('#blogs', {
+                            duration: 1.3,
+                            easing: [0.6, 0.01, 0, 0.9],
+                          });
+                        }, 600);
+                        return;
+                      }
+                      case 'Login': {
+                        closeNavMenu();
+                        setTimeout(() => {
+                          openModal();
+                        }, 500);
+                        return;
+                      }
+                      default:
+                        return closeNavMenu();
+                    }
+                  }}>
                   {text}
                 </Button>
               </motion.div>

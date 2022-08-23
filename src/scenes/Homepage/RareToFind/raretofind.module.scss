@@ -2,7 +2,7 @@
 
 .container {
   @include s.padding(7rem, 1rem, 0rem, 1rem);
-  background-color: rgba(148, 196, 200, .74);
+  background-color: s.$clrs-orange-light;
   width: 100%;
 
 
@@ -32,7 +32,7 @@
     .txt_right {
       visibility: hidden;
       position: relative;
-      color: #105b59;
+      color: black;
       @include s.margin(bottom, 3.5rem);
       @include s.font-size-text(1rem);
 
@@ -89,7 +89,7 @@
     top: -20%;
     left: -2%;
     display: block;
-    background-color: #105b59;
+    background-color: s.$clrs-orange;
     width: 50px;
     height: 5px;
   }

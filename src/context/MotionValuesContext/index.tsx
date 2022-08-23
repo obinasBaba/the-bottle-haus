@@ -13,7 +13,7 @@ type ToolTipType = {
 type MotionValueContextType = {
   toolTipsData: MotionValue<any>;
 
-  mouse?: {
+  mouse: {
     mouseX: MotionValue<number>;
     mouseY: MotionValue<number>;
   };

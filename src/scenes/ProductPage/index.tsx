@@ -7,14 +7,15 @@ import RelatedProducts from '@/scenes/ProductPage/RelatedProducts';
 type ProductPageProps = {
   children?: React.ReactNode;
   product: any;
+  relatedProducts: any[];
 };
 
-const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
+const ProductPage: React.FC<ProductPageProps> = ({ product, relatedProducts }) => {
   return (
     <div className={s.container}>
       {product && <ProductCardBig product={product} />}
 
-      <RelatedProducts />
+      <RelatedProducts relatedProducts={relatedProducts} />
 
       <div className={s.suggest}>
         <ProductReview />

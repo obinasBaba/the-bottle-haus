@@ -59,7 +59,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, loading = true }) =>
                 toolTipsData.set({
                   id: 'error',
                   show: true,
-                  text: 'something is wrong..',
+                  text: 'something is wrong! check your network',
                   loading: true,
                 });
               });

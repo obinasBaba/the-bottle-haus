@@ -11,7 +11,7 @@ const data = [
   { text: 'term-service', icon: TermIcon, bg: TermBg },
   { text: 'Blogs', icon: ContactIcon, bg: ContactBg },
   { text: 'gift-set', icon: GiftIcon, bg: GiftBg },
-  { text: 'log-in', icon: LoginIcon, bg: LoginBg },
+  { text: 'Login', icon: LoginIcon, bg: LoginBg },
 ];
 
 export default data;

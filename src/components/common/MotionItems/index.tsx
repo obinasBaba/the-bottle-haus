@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, Variants } from 'framer-motion';
+import { motion, Transition, Variants } from 'framer-motion';
 
 export const basicVariants: Variants = {
   initial: {
@@ -12,6 +12,11 @@ export const basicVariants: Variants = {
   exit: {
     opacity: 0,
   },
+};
+
+export const basicTransition: Transition = {
+  duration: 1.5,
+  ease: [0.6, 0.01, 0, 0.9],
 };
 
 const MotionParent = React.forwardRef((props: any, ref) => {

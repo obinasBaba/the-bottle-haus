@@ -28,6 +28,14 @@
 
         h1 {
           margin-bottom: 0;
+          font-family: s.$fonts-ultra;
+          font-weight: 100;
+          @include s.font-size-title(2rem);
+          margin-top: 0;
+        }
+
+        p{
+          margin-top: 0;
         }
 
       }
@@ -57,6 +65,13 @@
           max-width: 300px;
           border-radius: 22px;
           overflow: hidden;
+          max-height: 8vmax;
+
+          & > :first-child{
+            display: block !important;
+            height: 100% !important;
+            width: 100% !important;
+          }
         }
 
         .date {

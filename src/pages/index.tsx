@@ -14,7 +14,7 @@ export async function getStaticProps({ preview, locale, locales }: GetStaticProp
   });
 
   const featuredCollections = await commerce.getAllProducts({
-    variables: { first: 12, filter: { collections: ['Q29sbGVjdGlvbjoz'] } },
+    variables: { first: 8, filter: { collections: ['Q29sbGVjdGlvbjoz'] } },
     config,
     preview,
   });

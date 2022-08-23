@@ -4,35 +4,38 @@
 
 .container {
   width: 100%;
+  display: flex;
+  flex-flow: column;
   max-width: 1300px;
   @include s.margin(top, 3rem);
   @include s.margin(bottom, 10rem);
+
+  @include s.media-breakpoint-up(md) {
+
+  }
+
   padding: 1rem;
 
   //border: thin solid red;
 
   & :local {
+
+    .house {
+      margin: 0 auto;
+      max-width: 70%;
+      @include s.margin(bottom, 3rem);
+
+    }
+
+
     .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: s.$clrs-accent;
+      overflow: hidden;
 
-      h1 {
-        font-weight: 900;
-        @include s.font-size-text(3.2rem);
-        line-height: 140%;
-        -webkit-text-stroke-width: s.f-unit-light(2px);
-        -webkit-text-stroke-color: s.$clrs-accent;
-      }
-
-      //border: thin solid red;
-
-      span {
-        display: block;
-        color: transparent;
-        -webkit-text-stroke-width: 2px;
-        -webkit-text-stroke-color: s.$clrs-accent;
+      button {
+        font-size: s.f-unit(1.2em);
       }
     }
 
@@ -44,6 +47,7 @@
       row-gap: s.f-unit(2.9rem);
       @include s.margin(top, 4rem);
 
+      overflow: hidden;
 
       @include s.media-breakpoint-up(md) {
         grid-template-columns: repeat(4, minmax(s.f-unit(13rem), 1fr) );
@@ -51,5 +55,24 @@
       }
 
     }
+  }
+}
+
+.title {
+  line-height: 140%;
+  font-family: s.$fonts-ultra;
+  font-weight: 100;
+  margin-top: 0;
+  color: s.$clrs-orange;
+
+  @include s.font-size-text(2.8rem);
+
+  span {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: s.$clrs-orange;
+    letter-spacing: .1vmax;
+    @include s.font-size-text(3.2rem);
   }
 }

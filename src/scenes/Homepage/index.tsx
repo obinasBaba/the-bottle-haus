@@ -2,7 +2,6 @@ import React from 'react';
 import Head from 'next/head';
 import s from './homepage.module.scss';
 import Hero from './Hero';
-import VideoAd from './/VideoAd';
 import RareToFind from './/RareToFind';
 import Testimonials from './/OtherSaying';
 import SlideShow from './/SlideShow';
@@ -43,13 +42,12 @@ const HomePage: React.FC<HomepageProps> = ({
       <Hero />
       <HorizontalMarquee />
       <GlassView />
-      {/* <FeaturedCollection data={featuredCollections} />
-      <RareToFind data={rareToFind} />
+      {/*<FeaturedCollection data={featuredCollections} />*/}
+      {/*<RareToFind data={rareToFind} />*/}
       <Testimonials />
-      <SlideShow />
-      <FeaturedProduct featuredProduct={featuredProduct} />
-      <FeaturedGrid />
-      <OurBlog />*/}
+      {/*<FeaturedProduct featuredProduct={featuredProduct} />*/}
+      {/*<FeaturedGrid />*/}
+      <OurBlog />
     </MotionParent>
   );
 };

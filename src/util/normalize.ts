@@ -103,6 +103,7 @@ export function normalizeProduct(productNode: SaleorProduct): Product {
     variants:
       variants && variants.length > 0 ? normalizeProductVariants(variants as ProductVariant[]) : [],
     options: [],
+    collections: productNode?.collections || [],
     ...rest,
   };
 

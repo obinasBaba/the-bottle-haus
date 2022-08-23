@@ -5,6 +5,7 @@ import ProductCard from '@/components/ProductCard';
 import MyWife from '@/public/tell-my-wife.png';
 import Image from 'next/image';
 import { Product } from '@/types/product';
+import Link from 'next/link';
 
 const MyWifeImg = <Image src={MyWife} alt="i tell here investiment" />;
 
@@ -35,9 +36,13 @@ const RareCatalog = ({ data }: { data: Product[] }) => {
         let The Bottle Haus be your one stop shop for everything rare.
       </p>
 
-      <Button size="large" variant="outlined">
-        Show All
-      </Button>
+      <Link href="/collection/rare-hard-to-find">
+        <a>
+          <Button size="large" variant="outlined">
+            Show All
+          </Button>
+        </a>
+      </Link>
     </div>
   );
 };

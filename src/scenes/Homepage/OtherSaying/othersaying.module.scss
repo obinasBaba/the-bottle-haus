@@ -2,12 +2,18 @@
 
 
 .container {
+  position: relative;
   width: 100%;
   background-color: white;
 
   @include s.padding(ver, 10rem);
   @include s.padding(hor, 2rem);
 
+  .flower_glass{
+    position: absolute;
+    top: 20%;
+    right: 10%;
+  }
 
   //background-color: #ededed;
 
@@ -16,14 +22,14 @@
     .wrapper {
       max-width: 1300px;
       margin: 0 auto;
-
     }
 
     header {
       max-width: 1300px;
       margin: 0 auto;
+      overflow: hidden;
 
-      h1 {
+     /* h1 {
         font-weight: 900;
         @include s.font-size-text(3.2rem);
         line-height: 140%;
@@ -38,31 +44,8 @@
           -webkit-text-stroke-width: 2px;
           -webkit-text-stroke-color: s.$clrs-accent;
         }
-      }
+      }*/
     }
 
-
-    .marquee_wrap {
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      gap: 2rem;
-      margin: 0 auto;
-
-      //border: thin solid red;
-
-      @include s.media-breakpoint-up(md) {
-        align-items: center;
-      }
-    }
-
-    .btn {
-      border: thin solid s.$clrs-orange;
-      margin-top: 5rem;
-
-      @include s.media-breakpoint-up(md) {
-        margin-top: 0;
-      }
-    }
   }
 }
