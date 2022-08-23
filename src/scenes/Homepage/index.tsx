@@ -4,7 +4,6 @@ import s from './homepage.module.scss';
 import Hero from './Hero';
 import RareToFind from './/RareToFind';
 import Testimonials from './/OtherSaying';
-import SlideShow from './/SlideShow';
 import FeaturedGrid from './/FeaturedGrid';
 import OurBlog from './/OurBlog';
 import { Product, ProductTypes } from '@/types/product';
@@ -42,11 +41,11 @@ const HomePage: React.FC<HomepageProps> = ({
       <Hero />
       <HorizontalMarquee />
       <GlassView />
-      {/*<FeaturedCollection data={featuredCollections} />*/}
-      {/*<RareToFind data={rareToFind} />*/}
+      <FeaturedCollection data={featuredCollections} />
+      <RareToFind data={rareToFind} />
       <Testimonials />
-      {/*<FeaturedProduct featuredProduct={featuredProduct} />*/}
-      {/*<FeaturedGrid />*/}
+      <FeaturedProduct featuredProduct={featuredProduct} />
+      <FeaturedGrid />
       <OurBlog />
     </MotionParent>
   );

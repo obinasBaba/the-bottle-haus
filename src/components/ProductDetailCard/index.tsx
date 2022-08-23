@@ -18,27 +18,13 @@ import useAddItem from '@/SWRHooksAPI/cart/use-add-item';
 import { useAppInfo } from '@/context/MotionValuesContext';
 import { useAppContext } from '@/context/app';
 
+import ProductBg from './bottle-bg.png';
+import Opener from './opener.png';
+import clsx from 'clsx';
+
 type ProductCardProps = {
-  product: any;
-};
-
-const returnButtonVariants = {
-  initial: {
-    opacity: 1,
-    x: 0,
-    scale: 1,
-  },
-  hover: {
-    scale: 1.5,
-    opacity: [null, 1, 0, 0, 1],
-    x: [null, '-100%', '-100%', '100%', '0%'],
-  },
-
-  transition: {
-    duration: 0.5,
-    ease: [0.6, 0.01, 0, 0.9],
-    times: [0, 0.45, 0.45, 0.5, 1],
-  },
+  product: Product;
+  productBg: boolean;
 };
 
 function ReturnButton() {
@@ -73,6 +59,25 @@ function ReturnButton() {
     </div>
   );
 }
+
+const returnButtonVariants = {
+  initial: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+  },
+  hover: {
+    scale: 1.5,
+    opacity: [null, 1, 0, 0, 1],
+    x: [null, '-100%', '-100%', '100%', '0%'],
+  },
+
+  transition: {
+    duration: 0.5,
+    ease: [0.6, 0.01, 0, 0.9],
+    times: [0, 0.45, 0.45, 0.5, 1],
+  },
+};
 
 const imgVariants = {
   initial: {
@@ -188,6 +193,7 @@ export const dummyProduct: Product = {
 const ProductDetailCard: React.FC<ProductCardProps> = ({ product }) => {
   const rev = Array.from(new Array(5));
 
+  const router = useRouter();
   const addItem = useAddItem();
 
   const { toolTipsData } = useAppInfo();
@@ -208,11 +214,16 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product }) => {
             delay: 0.2,
           }}>
           <div className="product_img">
-            <ReturnButton />
-            <div className={s.storage}>
+            {router.pathname != '/' && <ReturnButton />}
+
+            <div className={clsx([s.storage, 'storage-art'])}>
               <Image src={Storage} alt="Storage Stack" />
             </div>
             <motion.div className={s.img_wrapper} variants={imgVariants}>
+              <div className={s.product_bg}>
+                <Image src={ProductBg} alt="product bg" />
+              </div>
+
               <Image
                 src={product?.images[0]?.url}
                 alt="gin img"

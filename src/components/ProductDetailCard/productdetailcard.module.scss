@@ -67,12 +67,20 @@
           }
 
           .img_wrapper {
+            position: relative;
+            display: grid;
+            place-items: center;
             max-width: 200px;
 
             //border: 1px solid #000;
 
             @include s.media-breakpoint-up(md) {
               margin-right: 4rem;
+            }
+
+            .product_bg{
+              position: absolute;
+              transform: scale(1.7);
             }
 
           }
@@ -96,7 +104,7 @@
         place-items: center;
         justify-items: start;
         //background-color: #f6f6f6;
-        @include s.padding(5rem, 4rem);
+        @include s.padding(5rem, 2rem);
 
         //border: 1px solid #000;
 
