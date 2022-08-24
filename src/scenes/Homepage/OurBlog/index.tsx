@@ -47,7 +47,7 @@ const OurBlog = () => {
       exit="exit"
       whileInView="inView"
       viewport={{
-        amount: 0.5,
+        amount: 'some',
         once: true,
       }}>
       <motion.div className="wrapper" variants={blogVariants}>

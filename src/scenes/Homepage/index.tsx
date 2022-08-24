@@ -33,7 +33,7 @@ const HomePage: React.FC<HomepageProps> = ({
   const { scale } = useLocomotiveScroll();
 
   return (
-    <MotionParent transition={pageTransition} className={s.container} style={{ scale }}>
+    <MotionParent transition={pageTransition} className={s.container}>
       <Head>
         <title>Homepage</title>
         <meta name="homepage" />

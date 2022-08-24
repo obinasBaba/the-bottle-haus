@@ -2,39 +2,48 @@
 
 
 .container {
+  position: relative;
   width: 100%;
 
-  @include s.padding(top, 6rem);
-  @include s.padding(bottom, 9rem);
+  @include s.padding(top, 10rem);
+  @include s.padding(bottom, 10rem);
+
+  & :local{
+
+    .coll_art{
+      position: absolute;
+      top: 5%;
+      right: 10%;
+    }
+
+    .item {
+      position: relative;
+      border-radius: s.f-unit(21px);
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .grid_img > :first-child{
+      display: block !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
 
   & :global {
 
     .featured_grid_wrapper {
       max-width: 1300px;
       margin: 0 auto;
-
-    }
-
-    .title {
-      font-weight: 900;
-      @include s.font-size-text(3.2rem);
-      line-height: 140%;
-      color: s.$clrs-accent;
-      -webkit-text-stroke-width: s.f-unit-light(2px);
-      -webkit-text-stroke-color: s.$clrs-accent;
-
-
-      span {
-        display: block;
-        color: transparent;
-        -webkit-text-stroke-width: 2px;
-        -webkit-text-stroke-color: s.$clrs-accent;
-      }
     }
 
     .grid_view {
-      width: 100%;
+      @include s.margin(top, 8rem);
 
+      width: 100%;
       display: grid;
       grid-gap: s.f-unit(1rem);
       grid-template-columns: repeat(5, 1fr);
@@ -43,20 +52,6 @@
       //place-items: center;
       padding: s.f-unit(15px);
 
-      & > * {
-        position: relative;
-        border-radius: s.f-unit(21px);
-        overflow: hidden;
-        display: grid;
-        place-items: center;
-        font-weight: 900;
-
-        & > :first-child {
-          display: block !important;
-          width: 100% !important;
-          height: 100% !important;
-        }
-      }
 
       :nth-child(1) {
         grid-column: span 2;

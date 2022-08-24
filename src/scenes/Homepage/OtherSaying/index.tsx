@@ -32,7 +32,7 @@ const OtherSaying = () => {
         once: false,
       }}>
       <div className={s.flower_glass}>
-        <div data-scroll={true} data-scroll-speed={-2} data-scroll-delay={0.05}>
+        <div data-scroll={true} data-scroll-speed={-1} data-scroll-delay={0.05}>
           <Image src={FlowerGlass} alt="flower glass" />
         </div>
       </div>
