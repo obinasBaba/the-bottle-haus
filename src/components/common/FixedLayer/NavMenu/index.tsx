@@ -182,6 +182,31 @@ const NavMenu = () => {
   const router = useRouter();
   const { scroll } = useLocomotiveScroll();
 
+  const onClick = (text: string) => {
+    switch (text) {
+      case 'Blogs': {
+        closeNavMenu();
+
+        setTimeout(() => {
+          scroll?.scrollTo('#blogs', {
+            duration: 1.3,
+            easing: [0.6, 0.01, 0, 0.9],
+          });
+        }, 600);
+        return;
+      }
+      case 'Login': {
+        closeNavMenu();
+        setTimeout(() => {
+          openModal();
+        }, 500);
+        return;
+      }
+      default:
+        return closeNavMenu();
+    }
+  }
+
   return (
     <MotionParent className={s.container} variants={{}}>
       <MotionChild
@@ -222,7 +247,7 @@ const NavMenu = () => {
               <Link href={link}>
                 <a>
                   <p className="no">(0{idx + 1})</p>
-                  <div className={s.link_name}>
+                  <div className={s.link_name} data-cursor="-opaque" >
                     <h1>{name}</h1>
                     <h1>{name}</h1>
                   </div>
@@ -242,30 +267,7 @@ const NavMenu = () => {
                 <Button
                   variant="outlined"
                   size="small"
-                  onClick={() => {
-                    switch (text) {
-                      case 'Blogs': {
-                        closeNavMenu();
-
-                        setTimeout(() => {
-                          scroll?.scrollTo('#blogs', {
-                            duration: 1.3,
-                            easing: [0.6, 0.01, 0, 0.9],
-                          });
-                        }, 600);
-                        return;
-                      }
-                      case 'Login': {
-                        closeNavMenu();
-                        setTimeout(() => {
-                          openModal();
-                        }, 500);
-                        return;
-                      }
-                      default:
-                        return closeNavMenu();
-                    }
-                  }}>
+                  onClick={() => onClick(text)}>
                   {text}
                 </Button>
               </motion.div>

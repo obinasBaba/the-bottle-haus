@@ -29,10 +29,20 @@ const Layout: React.FC<Props> = ({ children, pageProps }) => {
   useEffect(() => {
     const cursor = new MouseFollower({
       stickDelta: 12,
+     /* stateDetection: {
+        '-pointer': 'a,button',
+        '-opaque': '.my-image',
+      }*/
     });
 
+    cursor.on('opaque', () => {
+      console.log('events -- args : ');
+    })
+
+    console.log( 'ecursor events: ', cursor.events, cursor);
+
     return () => {
-      // cursor.destroy()
+      cursor.destroy()
     };
   }, []);
 

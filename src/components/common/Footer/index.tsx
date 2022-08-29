@@ -5,7 +5,7 @@ import Discover from './discover.svg';
 import Paypal from './paypal.svg';
 import Image from 'next/image';
 import Bg from './footer-bg.png';
-import Sign from './signature.png';
+import Sign from './circle-logo.png';
 import Houses from '@/public/houses.png';
 import { Button, InputAdornment, TextField } from '@mui/material';
 import s from './style.module.scss';

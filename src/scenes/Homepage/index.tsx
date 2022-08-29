@@ -41,12 +41,13 @@ const HomePage: React.FC<HomepageProps> = ({
       <Hero />
       <HorizontalMarquee />
       <GlassView />
-      <FeaturedCollection data={featuredCollections} />
-      <RareToFind data={rareToFind} />
+      {/*<FeaturedCollection data={featuredCollections} />*/}
+     {/* <RareToFind data={rareToFind} />
       <Testimonials />
       <FeaturedProduct featuredProduct={featuredProduct} />
+      <OurBlog />*/}
       <FeaturedGrid />
-      <OurBlog />
+
     </MotionParent>
   );
 };
