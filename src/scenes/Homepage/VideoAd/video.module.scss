@@ -1,0 +1,87 @@
+@use '@/styles' as s;
+
+.container {
+  @include s.padding(top, 7rem);
+
+  max-width: 1300px;
+  //border: thin solid crimson;
+  width: 100%;
+
+  & :local {
+
+    .wrapper {
+      display: flex;
+      padding: .5rem;
+      gap: s.f-unit(2rem);
+
+      //border: thin solid red;
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      flex-flow: column;
+      flex: 1;
+      background: s.$clrs-gray-light;
+      border-radius: s.f-unit(2rem);
+      //width: 100%;
+      //max-width: 70%;
+      @include s.padding(3rem, 1.8rem);
+
+
+      &:hover {
+        .title {
+
+          &:after {
+            height: 100%;
+          }
+        }
+      }
+
+      & :local {
+
+        .desc {
+          @include s.font-size-text(.8rem);
+
+          p {
+            margin: 0;
+          }
+        }
+
+        .title {
+          position: relative;
+          align-self: start;
+          z-index: 2;
+          -webkit-text-stroke: .4px black;
+
+          @include s.font-size-title(2rem);
+          @include s.margin(top, 1rem) ;
+
+          &:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            display: block;
+            background: #fadac5;
+            width: 100%;
+            height: 17px;
+            z-index: -1;
+          }
+
+        }
+
+        .art {
+          position: absolute;
+          border-radius: 50%;
+          right: 5%;
+          top: 5%;
+          height: s.f-unit-light(6rem);
+          width: s.f-unit-light(6rem);
+        }
+      }
+
+
+    }
+
+  }
+}

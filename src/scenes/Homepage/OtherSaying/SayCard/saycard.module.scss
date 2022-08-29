@@ -1,0 +1,100 @@
+@use '@/styles' as s;
+
+
+.container {
+  //max-width: 100vmin;
+  //border-radius: 30px;
+  position: relative;
+
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: s.f-unit(2rem);
+
+  //border: thin solid red;
+
+  @include s.padding(top, 10rem);
+
+
+  & :local {
+
+    .text_container{
+      position: relative;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      gap: 2rem;
+
+      //border: 1px solid #000;
+
+      .profile {
+        margin-right: 1.5rem;
+      }
+
+      @include s.media-breakpoint-up(md) {
+        flex-flow: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        //@include s.padding(2rem, 4rem);
+        //@include s.margin(2rem);
+      }
+    }
+
+    .quote_icon {
+      //display: none;
+      max-width: 30px;
+    }
+
+    .text {
+      position: relative;
+
+      @include s.font-size-text(1.3rem);
+    }
+
+    .btn {
+      //border: thin solid s.$clrs-orange;
+      margin-top: 5rem;
+      max-width: s.f-unit-light(8rem);
+
+      @include s.media-breakpoint-up(md) {
+        max-width: s.f-unit-light(6rem);
+
+        margin-top: 0;
+      }
+    }
+
+    .btn_lft{}
+    .btn_rht{}
+
+    @include s.media-breakpoint-up(md) {
+      gap: s.f-unit(5rem);
+
+
+      .btn_lft{}
+
+      .text{
+        max-width: 40ch;
+
+        &:before {
+          content: '';
+          position: absolute;
+          left: -2rem;
+          height: 110%;
+          width: 1px;
+          background-color: s.$clrs-orange-light;
+        }
+      }
+
+      .btn_rht{}
+    }
+
+
+    .name {
+      color: gray;
+    }
+
+  }
+
+}

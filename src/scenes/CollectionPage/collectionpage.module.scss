@@ -1,0 +1,81 @@
+@use '@/styles' as s;
+
+.container {
+  width: 100%;
+
+  display: grid;
+  place-content: center;
+  gap: s.f-unit(2.5rem);
+  padding: 1.2rem;
+  @include s.padding(bottom, 12rem);
+
+  //border: 1px solid #000;
+
+
+  & :local {
+
+    .wrapper {
+
+    }
+
+    .list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: s.f-unit(1.5rem);
+      column-gap: s.f-unit(3rem);
+
+      @include s.media-breakpoint-up(md) {
+        grid-template-columns: repeat(3, 1fr);
+        gap: s.f-unit(1.5rem);
+
+      }
+
+    }
+
+    .pagination {
+      color: red;
+      grid-column: span 3;
+      margin-top: 4rem;
+    }
+
+  }
+}
+
+.empty_container {
+  display: grid;
+  place-items: center;
+}
+
+.layout_container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: s.f-unit(3rem);
+  display: flex;
+
+  //border: thin solid red;
+
+  padding-top: 19vmax;
+
+  @include s.media-breakpoint-up(md) {
+    padding-top: 11vmax;
+  }
+
+
+  & :local {
+
+    aside {
+      //max-width: 300px;
+    }
+
+    .main {
+      position: relative;
+      width: 100%;
+      display: flex;
+      flex-flow: column;
+
+      //border: 1px solid #000;
+    }
+  }
+
+}

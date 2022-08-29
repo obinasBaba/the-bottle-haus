@@ -1,0 +1,66 @@
+@use '@/styles' as s;
+
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+
+
+  @include s.padding(top, 8rem);
+  @include s.padding(bottom, 8rem);
+
+  & :global {
+
+    header {
+      @include s.margin(bottom, 2rem);
+
+      .subtitle {
+        margin-bottom: 0;
+        @include s.font-size-text(1.2rem);
+      }
+
+      .title {
+
+        @include s.font-size-text(3rem);
+        font-weight: 900;
+        margin-top: 0;
+      }
+    }
+
+    .review_list {
+      display: flex;
+      justify-content: center;
+
+      //gap: s.f-unit(1rem);
+
+      @include s.media-breakpoint-up(md) {
+        gap: s.f-unit(3.5rem);
+      }
+
+      @include s.media-breakpoint-up(lg) {
+        gap: s.f-unit(4rem);
+      }
+
+      .review_item {
+        flex: 1;
+
+        @include s.padding(1rem);
+
+        .quote {
+          color: gray;
+          margin-bottom: s.f-unit(3rem);
+
+          @include s.font-size-text(.81rem);
+        }
+
+        .date {
+          color: gray;
+        }
+      }
+
+    }
+  }
+}

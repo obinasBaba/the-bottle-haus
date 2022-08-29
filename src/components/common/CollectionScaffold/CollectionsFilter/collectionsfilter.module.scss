@@ -1,0 +1,165 @@
+@use '@styles' as s;
+
+.container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem 0;
+
+  overflow: hidden;
+
+  & :global {
+
+    .title {
+      color: s.$clrs-accent-light;
+      @include s.font-size-title(2rem);
+
+      @include s.media-breakpoint-up(md){
+        margin: 0;
+        -webkit-text-stroke: 1px s.$clrs-accent-light;
+      }
+    }
+
+    .filter {
+      position: relative;
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: s.f-unit(1rem);
+
+      #demo-multiple-name {
+        color: s.$clrs-orange;
+        font-size: .8rem;
+      }
+
+      svg {
+        fill: s.$clrs-orange-light;
+      }
+
+
+      fieldset {
+        border-radius: 500px;
+        border-color: lighten(s.$clrs-orange-light, 10);
+      }
+
+      .MuiInputBase-root:hover {
+
+        fieldset {
+          border-color: s.$clrs-orange;
+          background-color: rgba(246, 152, 87, 0.03);
+        }
+      }
+
+      label {
+        font-size: .8rem;
+        color: s.$clrs-orange;
+
+      }
+
+
+    }
+  }
+}
+
+.form_control {
+  max-width: 14rem;
+  width: 100%;
+
+  @include s.media-breakpoint-up(md) {
+    width: s.f-unit(17rem);
+  }
+}
+
+.menu_item {
+  font-size: .8rem;
+}
+
+.menu_popup {
+  //max-height: 10vmax;
+  //width: 13rem;
+  //border-radius: 10px;
+
+
+  /* width */
+  &::-webkit-scrollbar {
+    width: 3px;
+    border-radius: 500px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: s.$clrs-orange-light;
+    border-radius: 500px;
+
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
+.popup {
+  //position: absolute;
+  //top: 80%;
+  //right: 0;
+  //border: thin solid red;
+  //border: thick solid red;
+  //background-color: transparent;
+  //overflow: visible;
+
+  //box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12);
+  border-radius: 10px;
+
+}
+
+.price_popup {
+  display: flex;
+  flex-flow: column;
+  padding: 1.5rem;
+  width: 100%;
+  min-width: 14rem;
+  background-color: white;
+
+  //border: thin solid black;
+  //overflow: hidden;
+
+
+  & > :first-child {
+    margin: 0;
+    font-weight: 900;
+  }
+
+  & > :last-child {
+    margin-top: 1.2rem;
+  }
+
+  & :local {
+
+    .hor {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .meta {
+      display: flex;
+      flex-flow: column;
+      margin-bottom: 1rem;
+
+      & > :first-child {
+        margin-bottom: 0;
+      }
+
+      small {
+        color: silver;
+      }
+    }
+  }
+
+}

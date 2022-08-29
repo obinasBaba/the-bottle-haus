@@ -1,0 +1,35 @@
+@use '@/styles' as s;
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+
+  // @include s.margin(top, 10rem);
+  // @include s.padding(bottom, 8rem);
+
+  & :global {
+
+    .wrapper {
+
+      .img {
+
+        margin-bottom: 2rem;
+      }
+
+      .text {
+        display: flex;
+        //gap: 2rem;
+        flex-flow: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        p {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}

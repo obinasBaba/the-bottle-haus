@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "baseUrl": ".",
+//    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/operations/*": ["./src/operations/*"],
+      "@global/*": ["./src/styles/global-style/*"],
+      "@/styles/*": ["./src/styles/*"],
+      "@styles": ["./src/styles/index.scss"],
+      "@/public/*": ["./public/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@homepage/*": ["./src/scenes/homepage/*"],
+      "@homepage": ["./src/scenes/homepage/index"],
+      "@fixedLayer/*": ["./src/components/common/FixedLayer/*"]
+    },
+  },
+  "exclude": ["node_modules"],
+  "include": ["next-env.d.ts", "**/*.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.scss", "**/*.module.scss"]
+}

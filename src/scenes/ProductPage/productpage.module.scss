@@ -1,0 +1,24 @@
+@use '@/styles' as s;
+
+
+.container {
+  width: 100%;
+  background-color: white;
+  padding-top: 10vmin;
+
+
+  @include s.media-breakpoint-up(md){
+    padding-top: 0;
+  }
+
+
+  & :local {
+
+    .suggest {
+      max-width: 1300px;
+      margin: 0 auto;
+
+    }
+  }
+}
+

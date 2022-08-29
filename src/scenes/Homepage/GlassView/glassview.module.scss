@@ -1,0 +1,273 @@
+@use '@/styles' as s;
+
+.container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+
+  //color: black;
+
+  @include s.padding(top, 10rem);
+  @include s.padding(bottom, 7rem);
+  @include s.padding(hor, 2rem);
+
+  & :local {
+
+    .free_layer {
+      position: absolute;
+      z-index: -1;
+      width: 100%;
+      inset: 0;
+      overflow: hidden;
+
+      .bg, .left_leaf, .right_leaf, .bubble {
+        position: absolute;
+      }
+
+      .bg {
+        inset: 0;
+        max-width: 100%;
+        z-index: -1;
+      }
+
+      .bubble {
+        left: 0;
+        top: 10%;
+        display: none;
+
+        @include s.media-breakpoint-up(md) {
+          //display: block;
+        }
+      }
+
+      .right_leaf {
+        z-index: 1;
+        left: 0;
+        top: 10%;
+      }
+
+      .left_leaf {
+        right: 5%;
+        bottom: 5%;
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-flow: column;
+      gap: 5rem;
+
+      //border: 1px solid #000;
+
+
+      .hor {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        max-width: 1300px;
+        width: 100%;
+        margin: 0 auto;
+
+        @include s.media-breakpoint-up(md) {
+          flex-wrap: nowrap;
+        }
+
+        //border: 1px solid #000;
+
+        & > * {
+          display: grid;
+          place-items: center;
+        }
+      }
+
+      .glass {
+        //max-width: ;
+        order: 1;
+        width: 80%;
+
+        @include s.media-breakpoint-up(md) {
+          order: 2;
+          width: 33.333%;
+        }
+      }
+
+      .left_txt {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: flex-start;
+        order: 2;
+        width: 50%;
+        text-align: left;
+
+        header{
+          text-align: left;
+
+          .rev{
+            display: flex;
+            gap: .2rem;
+
+            svg{
+              max-width: s.f-unit(.9rem);
+            }
+          }
+        }
+
+        .name{
+          font-family: s.$fonts-ultra;
+          //letter-spacing: .2vmax;
+          //font-size: 3rem;
+          font-weight: 100;
+          margin: 0;
+        }
+
+
+        @include s.media-breakpoint-up(md) {
+          order: 1;
+          width: 33.333%;
+
+        }
+
+
+
+
+        p {
+          max-width: 29ch;
+        }
+      }
+
+      .right_txt {
+        display: flex;
+        flex-flow: column;
+        gap: 1rem;
+        align-self: flex-start;
+        margin-left: auto;
+        width: 50%;
+        align-items: flex-end;
+        order: 3;
+
+        //border: 1px solid #000;
+
+        & > :first-child {
+          margin: 0;
+          //text-transform: uppercase;
+          font-family: s.$fonts-ultra;
+          font-weight: 100;
+        }
+
+        @include s.media-breakpoint-up(md) {
+          width: min-content;
+          align-self: center;
+          align-items: initial;
+
+
+          h4{
+            margin: 0;
+          }
+        }
+
+      }
+
+      .bottom_txt {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        //border: 1px solid #000;
+
+        div {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+
+
+      }
+
+      .amount {
+        display: grid;
+        place-items: center;
+        box-sizing: content-box;
+        text-align: center;
+
+        margin: 0;
+        border: 1px solid s.$clrs-orange;
+        //padding: 1rem;
+        @include s.height_width(2.5rem, 2.5rem);
+        border-radius: 50%;
+      }
+
+    }
+  }
+}
+
+
+.huge_txt {
+  display: none;
+  text-align: center;
+
+  @include s.media-breakpoint-up(md) {
+    display: block;
+  }
+
+
+  h1 {
+    white-space: nowrap;
+    font-size: 7rem;
+    -webkit-text-stroke: 5px #F9F5EC;
+    color: #F9F5EC;
+    margin: 0;
+    line-height: 0;
+    font-weight: 100;
+    letter-spacing: .1vmax;
+    font-family: s.$fonts-ultra;
+  }
+}
+
+.texture {
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  row-gap: 1rem;
+
+
+  @include s.media-breakpoint-up(md) {
+    //gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  p {
+    font-style: italic;
+  }
+
+  & :local {
+
+    .t_item {
+      width: min-content;
+
+
+      p {
+        margin-bottom: .5rem;
+      }
+
+      .level {
+        display: flex;
+        gap: .2rem;
+
+        span {
+          display: block;
+          width: s.f-unit-light(10px);
+          height: s.f-unit-light(10px);
+          border: 4px solid s.$clrs-orange-light;
+          border-radius: 50%;
+        }
+
+        span.thin {
+          border: 2px solid #C39E71;
+        }
+      }
+
+
+    }
+  }
+}

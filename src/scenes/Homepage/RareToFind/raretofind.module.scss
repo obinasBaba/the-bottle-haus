@@ -1,0 +1,127 @@
+@use '@/styles' as s;
+
+.container {
+  @include s.padding(7rem, 1rem, 0rem, 1rem);
+  background-color: s.$clrs-orange-light;
+  width: 100%;
+
+
+  @include s.media-breakpoint-up(md) {
+    @include s.padding(7rem, 1rem, 0rem, 1rem);
+  }
+
+  & :local {
+
+    .wrapper {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .header {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      justify-content: space-evenly;
+      justify-items: center;
+
+      align-content: center;
+      align-items: end;
+    }
+
+    .txt_left,
+    .txt_right {
+      visibility: hidden;
+      position: relative;
+      color: black;
+      @include s.margin(bottom, 3.5rem);
+      @include s.font-size-text(1rem);
+
+      @include s.media-breakpoint-up(md) {
+        visibility: visible;
+      }
+    }
+  }
+}
+
+.bg_txt {
+  position: absolute;
+  top: 5%;
+  display: flex;
+  //font-size: 4rem;
+  margin: 0 auto;
+
+  & :local {
+
+    h1 {
+      @include s.font-size-text(3rem);
+      align-self: center;
+      @include s.media-breakpoint-up(md) {
+        @include s.font-size-text(5rem);
+      }
+
+      //text-align: center;
+      font-weight: 900;
+      color: transparent;
+      -webkit-text-stroke-width: .2vmax;
+      -webkit-text-stroke-color: white;
+      margin: 0 auto;
+
+    }
+
+    .crown {
+      position: absolute;
+      top: 0;
+      left: -3%;
+      align-self: start;
+      justify-self: start;
+      max-width: 5vmax;
+    }
+  }
+}
+
+
+.txt_left {
+  color: #105b59;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: -2%;
+    display: block;
+    background-color: s.$clrs-orange;
+    width: 50px;
+    height: 5px;
+  }
+}
+
+.txt_right {
+  color: s.$clrs-orange-light;
+  flex: 1;
+
+  & :local {
+
+    .title {
+      margin-bottom: 0;
+      @include s.font-size-text(1.1rem);
+      font-weight: 900;
+
+      &:after {
+        content: '';
+        display: block;
+        width: 80px;
+        height: 2px;
+        margin-top: 10px;
+        background-color: s.$clrs-orange-light;
+      }
+
+    }
+
+    span {
+      display: inline-block;
+      font-size: initial;
+      margin-top: 10px;
+    }
+  }
+}
+

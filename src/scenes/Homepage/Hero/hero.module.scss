@@ -1,0 +1,177 @@
+@use "@/styles" as s;
+
+
+.container {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+
+  @include s.media-breakpoint-up(md) {
+    //margin: 9vmax auto 0;
+    margin: 9rem auto 0;
+
+  }
+
+  & :local {
+
+    .gallery {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+
+      height: 60rem;
+
+
+      border: thick solid thistle;
+
+      @include s.media-breakpoint-up(md) {
+        height: 44rem;
+
+      }
+
+    }
+
+    .img_wrapper {
+      position: relative;
+      height: 100%;
+      display: block;
+    }
+
+    .slow_scale {
+      transition: transform linear 30s;
+      transform: scale(2);
+    }
+
+    .slider {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+
+      //border: 1px solid #000;
+    }
+
+  }
+}
+
+.controller {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: s.f-unit(4rem);
+  z-index: 100;
+  padding: 0 .7rem;
+
+  border: 1px solid red;
+
+  @include s.media-breakpoint-up(md) {
+    padding: 0 1.5rem;
+  }
+
+
+
+
+  & :local {
+
+    .text {
+      display: flex;
+      flex-flow: column;
+      align-items: flex-start;
+      margin-right: auto;
+
+
+      p {
+        margin: 0;
+      }
+
+      big {
+        width: 100%;
+
+        @include s.media-breakpoint-up(md) {
+          max-width: 40ch;
+        }
+
+      }
+
+      h1 {
+        margin: 0;
+        color: #f66628;
+        font-family: s.$fonts-holtwood;
+        @include s.font-size-title(4rem);
+        letter-spacing: .1vmax;
+        max-width: 500px;
+      }
+
+      button {
+        //font-size: 2rem;
+        white-space: nowrap;
+        margin-top: 2rem;
+
+      }
+    }
+
+
+    .text[data-idx="0"]{
+      margin-left: auto;
+      color: black;
+      margin-right: 4vmax;
+
+      h1{
+        color: black;
+        span{
+          color: #f66628;
+        }
+      }
+    }
+
+    .text[data-idx="1"]{
+      margin-right: auto;
+      //color: black;
+
+      p{
+        //color: white;
+      }
+
+      h1{
+        color: white;
+        span{
+          //color: #f66628;
+        }
+      }
+    }
+
+    .text[data-idx="2"]{
+      //margin-left: auto;
+      //margin-right: 4vmax;
+
+      //color: black;
+
+
+    }
+
+
+    .shopNow {
+      margin: 0;
+      display: none;
+
+      @include s.media-breakpoint-up(md) {
+        display: block;
+      }
+
+    }
+
+    .next, .prev {
+      border: 2px solid rgba(253, 127, 40, 0.66);
+      color: s.$clrs-orange;
+
+      border-radius: 50%;
+      height: 2.5rem;
+      width: 2.5rem;
+    }
+
+  }
+}

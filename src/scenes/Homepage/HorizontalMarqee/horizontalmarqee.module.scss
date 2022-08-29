@@ -1,0 +1,30 @@
+@use '@/styles' as s;
+
+.container {
+  width: 100%;
+
+  margin: 2vmax auto 0;
+
+  @include s.media-breakpoint-up(md) {
+    @include s.margin(ver, 9rem);
+  }
+
+
+  & :local {
+
+    .marqueeWrapper {
+      //display: flex;
+      //flex-wrap: wrap;
+      //gap: 2rem;
+
+      //--gradient-color: rgb(164, 35, 35), rgba(255, 255, 255, 0);
+
+
+    }
+
+    .illustration {
+      max-width: 24rem;
+      margin: 0 -1rem;
+    }
+  }
+}

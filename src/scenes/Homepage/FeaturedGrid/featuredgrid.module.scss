@@ -1,0 +1,88 @@
+@use '@/styles' as s;
+
+
+.container {
+  position: relative;
+  width: 100%;
+
+  @include s.padding(top, 10rem);
+  @include s.padding(bottom, 10rem);
+
+  & :local {
+
+    .coll_art {
+      position: absolute;
+      top: 5%;
+      right: 10%;
+    }
+
+    .item {
+      position: relative;
+      border-radius: s.f-unit(21px);
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .grid_img {
+      & > :first-child {
+        transition: filter cubic-bezier(0.6, 0.01, 0, 0.9) 2s, transform cubic-bezier(0.6, 0.01, 0, 0.9) 2s;
+      }
+
+      &:hover {
+
+        & > :first-child {
+          transition: filter cubic-bezier(0.6, 0.01, 0, 0.9) 2s, transform linear 3s;
+
+          filter: blur(1px);
+          transform: scale(1.2);
+        }
+
+
+      }
+
+      & > :first-child {
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+    }
+
+  }
+
+  & :global {
+
+    .featured_grid_wrapper {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .grid_view {
+      @include s.margin(top, 8rem);
+
+      width: 100%;
+      display: grid;
+      grid-gap: s.f-unit(1rem);
+      grid-template-columns: repeat(5, 1fr);
+
+      grid-auto-flow: dense;
+      //place-items: center;
+      padding: s.f-unit(15px);
+
+
+      :nth-child(1) {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+
+      :nth-child(6) {
+        grid-row: span 2;
+      }
+
+    }
+
+  }
+}

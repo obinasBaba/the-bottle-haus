@@ -1,0 +1,39 @@
+@use "@/styles" as s;
+
+.root {
+  position: relative;
+  width: 100%;
+  //max-width: 2460px;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  overflow: hidden;
+
+
+  .main {
+    width: 100%;
+    min-height: 100vh - 10vh;
+
+    flex: 1;
+
+    & :global {
+      .content_wrapper {
+        width: 100%;
+        display: flex;
+        flex-flow: column;
+      }
+
+      .main_content_wrapper {
+        width: 100%;
+      }
+    }
+
+  }
+
+
+  main.with_sidenav {
+
+  }
+}
+
+
