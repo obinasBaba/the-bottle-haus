@@ -9,6 +9,7 @@ import Profile1 from '../say-card-imgs/img.png';
 import Profile2 from '../say-card-imgs/img_1.png';
 import BRight from '@/public/bottle-right.png';
 import BLeft from '@/public/bottle-left.png';
+import Quote from '@/public/quotes.png';
 
 import { basicTransition, basicVariants, MotionParent } from '@/components/common/MotionItems';
 import clsx from 'clsx';
@@ -96,9 +97,9 @@ const SayCard = () => {
           </motion.div>
 
           <motion.div className={s.comment} variants={basicVariants} transition={basicTransition}>
-            {/*<div className={s.quote_icon}>
+            <div className={s.quote_icon}>
               <Image src={Quote} alt="quote pic" />
-            </div>*/}
+            </div>
             <p className={s.text}>{activeQuote.txt}</p>
             <p className={s.name}>- {activeQuote.name}</p>
           </motion.div>

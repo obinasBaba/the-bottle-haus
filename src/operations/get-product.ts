@@ -36,10 +36,8 @@ export default function getProductOperation({ commerce }: OperationContext) {
       },
     );
 
-    console.log( 'product *******  :',  data);
-
     return {
-      product: null,
+      product: data?.product ? normalizeProduct(data.product) : null,
     };
   }
 

@@ -5,11 +5,9 @@ import HomePage, { pageTransition } from '@/scenes/Homepage';
 
 export async function getStaticProps({ preview, locale, locales }: GetStaticPropsContext) {
   const config = { locale, locales };
-   return {
-    props: {},
-  };
 
-  const { product: featuredProduct } = await commerce.getProduct({
+
+  const { product } = await commerce.getProduct({
     variables: { slug: 'don-julio-primavera-tequila' },
   });
 
@@ -29,7 +27,7 @@ export async function getStaticProps({ preview, locale, locales }: GetStaticProp
 
   return {
     props: {
-      featuredProduct,
+      featuredProduct: product,
       featuredCollections,
       rareToFind,
       collections: allCollections.collections,

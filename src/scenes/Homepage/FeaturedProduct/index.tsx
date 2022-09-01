@@ -10,7 +10,7 @@ const FeaturedProduct = ({ featuredProduct }: any) => {
   return (
     <div className={s.container}>
       <div className={s.opener}>
-        <div data-scroll={true} data-scroll-delay={0.05} data-scroll-speed={-2.5}>
+        <div data-scroll={true} data-scroll-delay={0.05} data-scroll-speed={-1.5}>
           <Image src={Opener} alt="product bg" />
         </div>
       </div>
