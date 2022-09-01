@@ -10,6 +10,7 @@ export const images = [
       title: '<span>A COLD</span> DELIGHT',
       subtitle: 'Grab Chilled',
       desc: 'Let your emotions come out with whiskey in your hand, The taste makes you feel awesome',
+      dir: 'right',
     },
   },
   {
@@ -31,8 +32,7 @@ export const images = [
 ];
 export const containerVariants: Variants = {
   initial: {
-    filter: 'grayscale(100%) sepia(20%) brightness(80%)',
-    // scale: 0.65,
+    filter: 'grayscale(100%) sepia(20%) brightness(80%)', // scale: 0.65,
     opacity: 0.7,
     zIndex: 0,
   },
@@ -57,8 +57,7 @@ export const containerVariants: Variants = {
 
   exit: {
     opacity: 0,
-    scale: 1.2,
-    // x: '100%',
+    scale: 1.2, // x: '100%',
   },
 };
 export const imageVariants = {
@@ -84,9 +83,11 @@ export const textContainerVariants: Variants = {
   },
 };
 export const textItemVariants = {
-  initial: {
-    opacity: 0,
-    x: '-150%',
+  initial(arg: any) {
+    return {
+      opacity: 0,
+      x: arg?.dir === 'right' ? '150%' : '-150%',
+    };
   },
 
   animate: {

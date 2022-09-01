@@ -11,7 +11,6 @@ import FeaturedCollection from './/FeaturedCollection';
 import { MotionParent } from '@/components/common/MotionItems';
 import HorizontalMarquee from './/HorizontalMarqee';
 import FeaturedProduct from './/FeaturedProduct';
-import { useLocomotiveScroll } from '@/context/LocoMotive';
 import GlassView from '@/scenes/Homepage/GlassView';
 
 type HomepageProps = {
@@ -30,8 +29,6 @@ const HomePage: React.FC<HomepageProps> = ({
   featuredCollections,
   rareToFind,
 }) => {
-  const { scale } = useLocomotiveScroll();
-
   return (
     <MotionParent transition={pageTransition} className={s.container}>
       <Head>
@@ -47,7 +44,6 @@ const HomePage: React.FC<HomepageProps> = ({
       <FeaturedProduct featuredProduct={featuredProduct} />
       <FeaturedGrid />
       <OurBlog />
-
     </MotionParent>
   );
 };

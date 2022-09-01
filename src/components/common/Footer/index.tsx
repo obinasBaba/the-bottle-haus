@@ -23,7 +23,7 @@ const Footer = () => {
         </div>
 
         <p>
-          @2022 <span>bottlehaus.inc</span>, All right reserved,{' '}
+          @2022 <span>Juvihaus.inc</span>, All right reserved,
           <small>Please Drink Responsibly 😉</small>
         </p>
       </div>
