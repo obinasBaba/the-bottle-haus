@@ -29,7 +29,7 @@ const OtherSaying = () => {
       whileInView="inView"
       viewport={{
         amount: 0.4,
-        once: false,
+        once: true,
       }}>
       <div className={s.flower_glass}>
         <div data-scroll={true} data-scroll-speed={-1} data-scroll-delay={0.05}>

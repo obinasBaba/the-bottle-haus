@@ -43,8 +43,14 @@
     }
 
     .quote_icon {
+      position: absolute;
       //display: none;
-      max-width: 30px;
+      //max-width: 30px;
+      top: -20%;
+      right: 0;
+      opacity: .6;
+
+      transform: rotateY(180deg);
     }
 
     .text {

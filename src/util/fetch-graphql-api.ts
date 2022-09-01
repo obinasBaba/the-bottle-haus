@@ -17,7 +17,7 @@ const fetchGraphqlApi: GraphQLFetcher = async (
   const config = getApiOperations().getConfig();
   const token = getToken(); // accessing the cookie via js-cookie
 
-  console.log('config, token:', config, token);
+  // console.log('config, token:', config, token);
 
   const res = await _fetch(API_URL!, {
     ...fetchOptions,
