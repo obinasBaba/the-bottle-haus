@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import s from './productdetailcard.module.scss';
 import cs from 'clsx';
+import clsx from 'clsx';
 import Image from 'next/image';
 import { Button } from '@mui/material';
 import { Adjust } from '@mui/icons-material';
@@ -19,12 +20,10 @@ import { useAppInfo } from '@/context/MotionValuesContext';
 import { useAppContext } from '@/context/app';
 
 import ProductBg from './bottle-bg.png';
-import Opener from './opener.png';
-import clsx from 'clsx';
 
 type ProductCardProps = {
   product: Product;
-  productBg: boolean;
+  productBg?: boolean;
 };
 
 function ReturnButton() {
@@ -150,8 +149,7 @@ const titleWordVariants = {
       y: 0,
       transition: {
         duration: 1.5,
-        ease: [0.6, 0.01, 0, 0.9],
-        // delay: 0.04 * custom.idx,
+        ease: [0.6, 0.01, 0, 0.9], // delay: 0.04 * custom.idx,
       },
     };
   },
@@ -176,7 +174,7 @@ function ProductTitle(props: { name: string }) {
   );
 }
 
-export const dummyProduct: Product = {
+const dummyProduct: Product = {
   id: '78asdf',
   options: [],
   variants: [],
@@ -200,9 +198,28 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product }) => {
   const { showNavBar } = useAppContext();
   const [quantity, setQuantity] = useState(1);
 
-  useEffect(() => {
-    console.log('product : ', product);
-  }, []);
+  const addToCart = () => {
+    showNavBar();
+    toolTipsData.set({ show: true, text: 'Adding to Cart...', loading: true });
+    addItem({
+      productId: product?.id, // quantity: 1,
+      variantId: product?.variants[0]?.id?.toString(),
+    })
+      .then((r) => {
+        toolTipsData.set({ show: false });
+      })
+      .catch((e) => {
+        console.error('error: ', JSON.stringify(e, null, 2));
+
+        toolTipsData.set({
+          id: 'error',
+          show: true,
+          text: 'something is wrong! check your network',
+          loading: false,
+          duration: 4000,
+        });
+      });
+  };
 
   return (
     <div className={cs(s.container)}>
@@ -272,7 +289,7 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product }) => {
                   -
                 </Button>
               </div>
-              <h1 className="price">${product?.price.value} </h1>
+              <h1 className="price">${product?.price?.value} </h1>
             </MotionChild>
 
             <MotionChild className="reviews">
@@ -292,32 +309,7 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product }) => {
             </MotionChild>
 
             <MotionChild className="cart_controllers">
-              <Button
-                variant="contained"
-                size="large"
-                onClick={() => {
-                  showNavBar();
-                  toolTipsData.set({ show: true, text: 'Adding to Cart...', loading: true });
-                  addItem({
-                    productId: product?.id,
-                    // quantity: 1,
-                    variantId: product?.variants[0]?.id?.toString(),
-                  })
-                    .then((r) => {
-                      toolTipsData.set({ show: false });
-                    })
-                    .catch((e) => {
-                      console.error('error: ', JSON.stringify(e, null, 2));
-
-                      toolTipsData.set({
-                        id: 'error',
-                        show: true,
-                        text: 'something is wrong! check your network',
-                        loading: false,
-                        duration: 4000,
-                      });
-                    });
-                }}>
+              <Button variant="contained" size="large" onClick={addToCart}>
                 Add to cart
               </Button>
               <Button variant="outlined" size="large" startIcon={<Adjust />}>

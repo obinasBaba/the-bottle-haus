@@ -7,6 +7,9 @@ import Head from 'next/head';
 import { pageTransition } from '@/scenes/Homepage';
 
 export async function getStaticProps(arg: GetStaticPropsContext) {
+
+
+
   const allCollections = await commerce.getSiteInfo({});
 
   return {
@@ -24,7 +27,7 @@ const Cart = () => {
         <title>cart</title>
         <meta name="cart page" />
       </Head>
-      <CartPage />
+      <CartPage /> 
     </MotionParent>
   );
 };
