@@ -2,9 +2,9 @@ import React from 'react';
 import s from './payment.module.scss';
 import { Button, FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
 import Image from 'next/image';
-import Paypal from '@/components/common/Footer/paypal.svg';
-import Discover from '@/components/common/Footer/discover.svg';
-import MasterCard from '@/components/common/Footer/mastercard.svg';
+import Paypal from '@/public/paypal.svg';
+import Discover from '@/public/discover.svg';
+import MasterCard from '@/public/mastercard.svg';
 import { CheckoutFormStepComponent, StepScaffold } from '@/scenes/CheckoutPage';
 import { Field } from 'formik';
 

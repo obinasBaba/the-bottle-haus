@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import s from './loadingmodal.module.scss';
 
 import LoadingBg from '@/public/loading-bg.png';
-import Logo from '@/public/logo-croped-2.png';
+import Logo from '@/public/logo-4.png';
 import Image from 'next/image';
 import { MotionParent } from '@/components/common/MotionItems';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
@@ -26,7 +26,11 @@ const LoadingModal = () => {
   // const rotate = useTransform(time, [0, 4000], [0, 1], { clamp: false });
 
   const pathLength = useMotionValue(0.1);
-  const smoothPathLength = useSpring(pathLength);
+  const smoothPathLength = useSpring(pathLength, {
+    mass: 0.5,
+    damping: 15,
+    stiffness: 50,
+  });
   const { closeLoadingModal } = useUI();
 
   useEffect(() => {
@@ -45,13 +49,13 @@ const LoadingModal = () => {
 
   return (
     <MotionParent className={s.container} variants={loadingVariants}>
-      <div className={s.bg}>
+      <motion.div className={s.bg}>
         <Image src={LoadingBg} layout="fill" alt="loading background" />
         <Image src={Logo} alt="customized logo" />
 
-        <svg
-          width="276"
-          height="276"
+        <motion.svg
+          width="296"
+          height="296"
           viewBox="0 0 276 276"
           fill="none"
           xmlns="http://www.w3.org/2000/svg">
@@ -59,12 +63,12 @@ const LoadingModal = () => {
             cx="138"
             cy="138"
             r="133"
-            stroke="#E39A31"
-            strokeWidth="10"
+            stroke="#9D6F4D"
+            strokeWidth="5"
             pathLength={smoothPathLength}
           />
-        </svg>
-      </div>
+        </motion.svg>
+      </motion.div>
     </MotionParent>
   );
 };

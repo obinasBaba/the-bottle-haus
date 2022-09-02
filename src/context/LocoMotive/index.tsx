@@ -89,7 +89,8 @@ export function LocomotiveScrollProvider({
       const dataScrollContainer = document.querySelector('[data-scroll-container]');
 
       if (LocomotiveScrollRef.current?.el) {
-        return console.log('IT IS NOT NULL', LocomotiveScrollRef.current.name);
+        // console.log('IT IS NOT NULL', LocomotiveScrollRef.current.name);
+        return
       }
 
       LocomotiveScrollRef.current = new LocomotiveScroll.default({
@@ -134,6 +135,7 @@ export function LocomotiveScrollProvider({
 
     LocomotiveScrollRef.current.update();
     cursor.current?.removeText();
+    cursor.current?.removeState('opaque')
 
     if (onLocationChange) {
       onLocationChange(LocomotiveScrollRef.current);

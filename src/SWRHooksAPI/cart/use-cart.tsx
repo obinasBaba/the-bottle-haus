@@ -19,7 +19,7 @@ export const handler: SWRHook<GetCartHook> = {
     if (checkoutId) {
       const checkoutId = getCheckoutId().checkoutToken;
 
-      console.log('checkoutId: ', checkoutId);
+      // console.log('checkoutId: ', checkoutId);
 
       checkout = await fetch({
         ...options,

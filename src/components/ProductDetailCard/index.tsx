@@ -20,6 +20,7 @@ import { useAppInfo } from '@/context/MotionValuesContext';
 import { useAppContext } from '@/context/app';
 
 import ProductBg from './bottle-bg.png';
+import Link from 'next/link';
 
 type ProductCardProps = {
   product: Product;
@@ -188,7 +189,7 @@ const dummyProduct: Product = {
     'Situated on the Kentucky River in Frankfort, Kentucky, Buffalo Trace Distillery takes its name from an ancient pathway that migrating buffalo used when traveling westward. The trail was well-known among Native Americans and was eventually used by pioneering settlers who crossed the Ohio River and followed the buffalo trace to the Western frontier.Buffalo Trace Distillery is the oldest continually operating distillery in the United States and includes the rich legacies of master distillers such as E.H. Taylor, Jr, George T. Stagg, Albert B. Blanton, Orville Schupp, and Elmer T. Lee.l',
 };
 
-const ProductDetailCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductDetailCard: React.FC<ProductCardProps> = ({ product, productBg }) => {
   const rev = Array.from(new Array(5));
 
   const router = useRouter();
@@ -237,9 +238,11 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product }) => {
               <Image src={Storage} alt="Storage Stack" />
             </div>
             <motion.div className={s.img_wrapper} variants={imgVariants}>
-              <div className={s.product_bg}>
-                <Image src={ProductBg} alt="product bg" />
-              </div>
+              {productBg && (
+                <div className={s.product_bg}>
+                  <Image src={ProductBg} alt="product bg" />
+                </div>
+              )}
 
               <Image
                 src={product?.images[0]?.url}
@@ -312,9 +315,13 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product }) => {
               <Button variant="contained" size="large" onClick={addToCart}>
                 Add to cart
               </Button>
-              <Button variant="outlined" size="large" startIcon={<Adjust />}>
-                Add personalized Gift Note
-              </Button>
+              <Link href={'/checkout'}>
+                <a>
+                  <Button variant="outlined" size="large" startIcon={<Adjust />}>
+                    To Checkout
+                  </Button>
+                </a>
+              </Link>
             </MotionChild>
           </MotionParent>
         </div>

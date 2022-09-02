@@ -32,7 +32,7 @@ const HomePage: React.FC<HomepageProps> = ({
   return (
     <MotionParent transition={pageTransition} className={s.container}>
       <Head>
-        <title>Homepage</title>
+        <title>Juvi . Homepage</title>
         <meta name="homepage" />
       </Head>
       <Hero />

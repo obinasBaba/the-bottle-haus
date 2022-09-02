@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import s from './collectionsidenav.module.scss';
 import { Collection } from '@/schema';
 import Image from 'next/image';
@@ -7,18 +7,23 @@ import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import { useLocomotiveScroll } from '@/context/LocoMotive';
 import { MotionParent } from '@/components/common/MotionItems';
-import { motion, useAnimation, useTransform, Variants } from 'framer-motion';
+import { motion, MotionValue, useAnimation, useTransform, Variants } from 'framer-motion';
 import { debounce } from '@mui/material';
 import Img from '@/public/drink-img.png';
+import { useAppInfo } from '@/context/MotionValuesContext';
 
 const fallback = [
   { name: 'one', backgroundImage: { url: Img.src } },
-  { name: 'two', backgroundImage: { url: Img.src } },
+  {
+    name: 'two',
+    backgroundImage: { url: Img.src },
+  },
   { name: 'three', backgroundImage: { url: Img.src } },
 ];
 
 type CollectionSideNavProps = {
   collections: Collection[];
+  scrolledTop: MotionValue<boolean>;
 };
 
 const containerVariants: Variants = {
@@ -68,26 +73,38 @@ const wrapperTrans = {
   ease: [0.6, 0.01, 0, 0.9],
 };
 
-const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections }) => {
+const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections, scrolledTop }) => {
   const router = useRouter();
   const control = useAnimation();
-  const { scrollDirection, yProgress } = useLocomotiveScroll();
+  const { appBarScrollState } = useAppInfo();
 
-  useTransform(
-    yProgress,
-    debounce((v) => {
-      if (0.11 > yProgress.get()) return control.start('down');
+  useEffect(() => {
+    appBarScrollState.onChange(
+      debounce((v) => {
+        // if (0.11 > yProgress.get()) return control.start('up');
+        if (scrolledTop.get()) return;
 
-      if (scrollDirection.get() == 'up') {
-        control.start('up');
-      } else if (scrollDirection.get() == 'down') {
+        if (v == 'up') {
+          control.start('up');
+        } else if (v == 'down') {
+          control.start('down');
+        }
+      }, 400),
+    );
+  }, []);
+
+  useEffect(() => {
+    scrolledTop.onChange((v) => {
+      if (v) {
         control.start('down');
       }
-    }, 500),
-  );
+    });
+  }, []);
+
+
 
   return (
-    <MotionParent
+    <motion.div
       className={s.container}
       data-scroll-sticky={true}
       data-scroll={true}
@@ -123,7 +140,7 @@ const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections }) =>
           ))}
         </MotionParent>
       </motion.div>
-    </MotionParent>
+    </motion.div>
   );
 };
 

@@ -22,7 +22,7 @@ const Checkout = () => {
     <MotionParent transition={pageTransition}>
       <Head>
         <title>checkout</title>
-        <meta name="checkout page" />
+        <meta name="Juvi . Checkout " />
       </Head>
       <CheckoutPage />
     </MotionParent>

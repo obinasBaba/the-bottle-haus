@@ -51,13 +51,13 @@ export default NextAuth({
     /*async ,*/
 
     async signIn(arg) {
-      console.log('args ----', arg);
+      // console.log('args ----', arg);
       // window.close()
       return true;
     },
 
     async jwt({ token }) {
-      console.log('JWT: ', token);
+      // console.log('JWT: ', token);
 
       return token;
     },
