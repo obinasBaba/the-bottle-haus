@@ -14,6 +14,8 @@ import useResizeObserver from 'use-resize-observer';
 import { useDebounce } from 'use-debounce';
 import 'locomotive-scroll/dist/locomotive-scroll.css';
 import { MotionValue, useMotionValue, useSpring, useTransform, useVelocity } from 'framer-motion';
+import MouseFollower from 'mouse-follower';
+import gsap from 'gsap';
 
 export interface LocomotiveScrollContextValue {
   scroll: Scroll | null;
@@ -22,6 +24,7 @@ export interface LocomotiveScrollContextValue {
   scrollDirection: MotionValue<string>;
   yProgress: MotionValue<number>;
   containerRef: MutableRefObject<HTMLDivElement | null>;
+  cursor: React.MutableRefObject<MouseFollower | undefined>;
 }
 
 const LocomotiveScrollContext = createContext<LocomotiveScrollContextValue>({
@@ -39,6 +42,8 @@ export interface LocomotiveScrollProviderProps {
   onLocationChange?: (scroll: Scroll) => void;
 }
 
+MouseFollower.registerGSAP(gsap);
+
 export function LocomotiveScrollProvider({
   children,
   options,
@@ -52,6 +57,7 @@ export function LocomotiveScrollProvider({
   const [isReady, setIsReady] = useState(false);
   const LocomotiveScrollRef = useRef<Scroll | null>(null);
   const [height] = useDebounce(containerHeight, 100);
+  const cursor = useRef<MouseFollower>();
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -67,6 +73,14 @@ export function LocomotiveScrollProvider({
   const scale = useTransform(velocity, [-3000, 0, 3000], [1.01, 1, 1.01], { clamp: true });
 
   useEffect(() => {
+    cursor.current = new MouseFollower();
+
+    return () => {
+      cursor.current?.destroy();
+    };
+  }, []);
+
+  useEffect(() => {
     // return;
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -75,7 +89,8 @@ export function LocomotiveScrollProvider({
       const dataScrollContainer = document.querySelector('[data-scroll-container]');
 
       if (LocomotiveScrollRef.current?.el) {
-        return console.log('IT IS NOT NULL', LocomotiveScrollRef.current.name);
+        // console.log('IT IS NOT NULL', LocomotiveScrollRef.current.name);
+        return
       }
 
       LocomotiveScrollRef.current = new LocomotiveScroll.default({
@@ -85,12 +100,12 @@ export function LocomotiveScrollProvider({
 
       setIsReady(true);
 
-      console.log('locomotive starting here -----', LocomotiveScrollRef.current.name);
+      // console.log('locomotive starting here -----', LocomotiveScrollRef.current.name);
     });
 
     return () => {
       LocomotiveScrollRef.current?.destroy();
-      console.log('locomotive DYING here -----', LocomotiveScrollRef.current?.name);
+      // console.log('locomotive DYING here -----', LocomotiveScrollRef.current?.name);
       LocomotiveScrollRef.current = null;
 
       setIsReady(false);
@@ -101,13 +116,6 @@ export function LocomotiveScrollProvider({
     if (!LocomotiveScrollRef.current) {
       return;
     }
-
-    /*console.log(
-      'dependency change ---- -- - - - -',
-      height,
-      ' instance: ',
-      LocomotiveScrollRef.current,
-    );*/
 
     LocomotiveScrollRef?.current?.update();
     yLimit.set(LocomotiveScrollRef.current?.scroll?.instance.limit.y);
@@ -123,9 +131,11 @@ export function LocomotiveScrollProvider({
       return;
     }
 
-    console.log('location change ---- -- - - - -');
+    // console.log('location change ---- -- - - - -');
 
     LocomotiveScrollRef.current.update();
+    cursor.current?.removeText();
+    cursor.current?.removeState('opaque')
 
     if (onLocationChange) {
       onLocationChange(LocomotiveScrollRef.current);
@@ -146,6 +156,7 @@ export function LocomotiveScrollProvider({
   return (
     <LocomotiveScrollContext.Provider
       value={{
+        cursor,
         scroll: LocomotiveScrollRef.current,
         isReady,
         scale,

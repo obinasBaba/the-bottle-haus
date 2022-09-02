@@ -62,7 +62,7 @@ const OurBlog = () => {
             To create this extraordinary <br /> blend, crown blender and <br />
             infused with the juicy flavor
           </p>
-          <Link href="./blog/best-tequila-under-100">
+          <Link href="../../blog/best-tequila-under-100">
             <a>
               <Button variant="outlined">Read All</Button>
             </a>
@@ -70,7 +70,7 @@ const OurBlog = () => {
         </motion.div>
 
         <motion.div className="blog_card" variants={blogItemVariants} transition={transition}>
-          <Link href="./blog/what-s-the-best-gin-for-tom-collins">
+          <Link href="../../blog/what-s-the-best-gin-for-tom-collins">
             <a>
               <div className="cover">
                 <Image src={Cover} alt="cover image" />
@@ -84,7 +84,7 @@ const OurBlog = () => {
         </motion.div>
 
         <motion.div className="blog_card" variants={blogItemVariants} transition={transition}>
-          <Link href="./blog/best-tequila-under-100">
+          <Link href="../../blog/best-tequila-under-100">
             <a>
               <div className="cover">
                 <Image src={Cover1} alt="cover-image" />
@@ -98,7 +98,7 @@ const OurBlog = () => {
         </motion.div>
 
         <motion.div className="blog_card" variants={blogItemVariants} transition={transition}>
-          <Link href="./blog/what-is-the-best-gin-for-a-french-75">
+          <Link href="../../blog/what-is-the-best-gin-for-a-french-75">
             <a>
               <div className="cover">
                 <Image src={Cover2} alt="cover-image" />

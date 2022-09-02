@@ -13,7 +13,7 @@ import { useRouter } from 'next/router';
 import s from './fixed.module.scss';
 import SearchModal from '@fixedLayer/SearchModal';
 import LoadingModal from '@fixedLayer/LoadingModal';
-import SubscribeEmailModal from '@fixedLayer/SubscribeEmailModal';
+import { useAppInfo } from '@/context/MotionValuesContext';
 
 interface Props {
   window?: () => Window;
@@ -28,6 +28,7 @@ function HideOnScroll(props: Props) {
   const [trigger, setTrigger] = useState(true);
 
   const { scrollDirection, yProgress } = useLocomotiveScroll();
+  const { appBarScrollState } = useAppInfo();
 
   useEffect(() => {
     const debouncedResponse = debounce((dir) => {
@@ -35,8 +36,13 @@ function HideOnScroll(props: Props) {
 
       if (0.05 > yProgress.get()) return setTrigger(true);
 
-      if (dir === 'up') setTrigger(true);
-      else if (dir === 'down') setTrigger(false);
+      if (dir === 'up') {
+        setTrigger(true);
+        appBarScrollState.set('up');
+      } else if (dir === 'down') {
+        setTrigger(false);
+        appBarScrollState.set('down');
+      }
     }, 400);
 
     scrollDirection.onChange(debouncedResponse);

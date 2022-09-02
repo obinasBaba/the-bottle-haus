@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Quantity from '@/scenes/CartPage/CartProductList/Quantity';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
 import { Button } from '@mui/material';
+import clsx from 'clsx';
 
 export const basicVariants: Variants = {
   initial: {
@@ -107,11 +108,10 @@ const CartProductList = () => {
                     </td>
 
                     <td className="total">
-                      {loading == id ? (
-                        <div className="loader" />
-                      ) : (
-                        <p>${Number(quantity * price).toFixed(1)}</p>
-                      )}
+                      <p >
+                        <span className={clsx([loading == id && s.hidden, 'value'])}>${Number(quantity * price).toFixed(1)}</span>
+                        {loading == id && <span className="loader" />}
+                      </p>
                     </td>
                   </motion.tr>
                 ),

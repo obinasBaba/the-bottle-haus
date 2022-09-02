@@ -17,18 +17,37 @@ import clsx from 'clsx';
 import CollectionArt from './imgs/collections.png';
 
 const data = [
-  { img: Featured, text: 'Featured', link: '/collection/champagne' },
-  { img: Haus, text: 'Haus', link: '/collection/all-products' },
+  { img: Featured, text: 'Featured', link: '/collection/all-products' },
+  {
+    img: Haus,
+    text: 'More',
+    link: '/collection/all-products',
+  },
   { img: Wine, text: 'Wine', link: '/collection/wine' },
-  { clr: 'lightcoral', text: 'Tequila', link: '/collection/tequila' },
+  {
+    clr: 'lightcoral',
+    text: 'Tequila',
+    link: '/collection/tequila',
+  },
   { clr: '#FE8029', text: 'Gin', link: '/collection/gin' },
-  { img: Vodka, text: 'Vodka', link: '/collection/vodka' },
+  {
+    img: Vodka,
+    text: 'Vodka',
+    link: '/collection/vodka',
+  },
   { img: Haus2, text: 'Haus2', link: '/collection/all-products' },
-  { img: Cognac, text: 'Cognac', link: '/collection/cognac' },
+  {
+    img: Cognac,
+    text: 'Cognac',
+    link: '/collection/cognac',
+  },
   { img: Rum, text: 'Rum', link: '/collections/rum' },
-  { img: Whisky, text: 'Whisky', link: '/collection/whisky' },
-  { clr: '#94C4C8', text: 'More', link: '/collection/all-products' },
-  // { clr: 'teal', text: 'More' },
+  {
+    img: Whisky,
+    text: 'Whisky',
+    link: '/collection/whisky',
+  },
+  { clr: '#94C4C8', text: 'More', link: '/collection/all-products' }, // { clr: 'teal', text: 'More' },
 ];
 
 //https://thebottlehaus.com/collections/champagne
@@ -56,9 +75,10 @@ const FeaturedGrid = () => {
           {data.map(({ img, text, clr, link }, idx) => (
             <>
               <Link href={link}>
-                <a className={clsx([s.item, img && s.grid_img])} style={{ background: clr }}
-                   data-cursor-text={text}
-                >
+                <a
+                  className={clsx([s.item, img && s.grid_img])}
+                  style={{ background: clr }}
+                  data-cursor-text={text}>
                   {img ? <Image src={img} alt={'grid image'} objectFit={'cover'} /> : <p>{text}</p>}
                 </a>
               </Link>

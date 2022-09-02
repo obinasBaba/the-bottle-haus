@@ -12,7 +12,7 @@ export const checkoutCreate = async (fetch: any): Promise<CheckoutCreate> => {
 
   const value = `${checkoutId}:${checkoutToken}`;
 
-  console.log('checkout created: --> ', value);
+  // console.log('checkout created: --> ', value);
 
   if (checkoutId) {
     const options = {

@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import MasterCard from './mastercard.svg';
-import Discover from './discover.svg';
-import Paypal from './paypal.svg';
+import MasterCard from '@/public/mastercard.svg';
+import Discover from '@/public/discover.svg';
+import Paypal from '@/public/paypal.svg';
 import Image from 'next/image';
 import Bg from './footer-bg.png';
 import Sign from './circle-logo.png';
@@ -23,7 +23,7 @@ const Footer = () => {
         </div>
 
         <p>
-          @2022 <span>bottlehaus.inc</span>, All right reserved,{' '}
+          @2022 <span>Juvihaus.inc</span>, All right reserved,
           <small>Please Drink Responsibly 😉</small>
         </p>
       </div>

@@ -227,9 +227,6 @@ const CheckoutPage = () => {
     setActiveStep(steps[n]);
   };
 
-  useEffect(() => {
-    console.log('idsx :', idx);
-  }, [idx]);
 
   return (
     <div className={s.container}>

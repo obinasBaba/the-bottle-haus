@@ -54,7 +54,6 @@ const SayCard = () => {
   const savedCallback = useRef<any>(() => null);
 
   function next() {
-    console.log('idx: ', idx);
 
     const nxtIdx = idx + 1 <= peoples.length - 1 ? idx + 1 : 0;
     setActiveQuote(peoples[nxtIdx]);

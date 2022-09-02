@@ -1,8 +1,8 @@
 import React from 'react';
-import s from './productpage.module.scss';
 import ProductCardBig from '@/components/ProductDetailCard';
 import ProductReview from './ProductReview';
 import RelatedProducts from '@/scenes/ProductPage/RelatedProducts';
+import s from './productpage.module.scss';
 
 type ProductPageProps = {
   children?: React.ReactNode;

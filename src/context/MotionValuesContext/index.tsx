@@ -12,6 +12,7 @@ type ToolTipType = {
 
 type MotionValueContextType = {
   toolTipsData: MotionValue<any>;
+  appBarScrollState: MotionValue<string>;
 
   mouse: {
     mouseX: MotionValue<number>;
@@ -42,6 +43,7 @@ export const MotionValueContextWrapper: React.FC<{ children: React.ReactNode }> 
   //mouse_event motion_values
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const appBarScrollState = useMotionValue('');
 
   useLayoutEffect(() => {
     const updateMouseMotionValue = (ev: MouseEvent) => {
@@ -62,6 +64,7 @@ export const MotionValueContextWrapper: React.FC<{ children: React.ReactNode }> 
           mouseY,
         },
         toolTipsData,
+        appBarScrollState,
       }}>
       {children}
     </MotionValueContext.Provider>

@@ -86,7 +86,7 @@ const FeaturedCollection = ({ data }: { data: Product[] }) => {
           initial="initial"
           whileInView="inView"
           viewport={{
-            amount: 'some',
+            amount: 0.2,
             once: true,
           }}>
           {data.slice(a, b).map((product, idx) => (

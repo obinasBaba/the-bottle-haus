@@ -11,6 +11,12 @@
 
   background-color: white;
 
+  & :local{
+    .hidden{
+      opacity: 0;
+    }
+  }
+
   & :global {
 
     .wrapper {
@@ -96,6 +102,62 @@
 
         tbody {
 
+          p {
+            margin: 0;
+          }
+
+          td {
+            padding-top: 2.5rem;
+          }
+
+          td.name {
+            p {
+              max-width: 26ch;
+            }
+          }
+
+          td.total {
+            position: relative;
+            text-align: right;
+            width: 15ch;
+
+            p{
+              display: grid;
+              place-items: end;
+
+              span.value{
+                align-self: end;
+                justify-self: end;
+              }
+            }
+
+            .loader {
+              //display: none;
+              position: absolute;
+
+
+              margin: 0 auto;
+              width: 18px;
+              height: 18px;
+              box-sizing: border-box;
+
+              border: solid 2px transparent;
+              border-top-color: s.$clrs-orange;
+              border-left-color: s.$clrs-orange-light;
+              border-radius: 50%;
+
+              animation: nprogress-spinner 400ms linear infinite;
+
+              //border: thin solid red;
+              //animation: rotate .3ms ease-in-out infinite;
+
+            }
+          }
+
+          td.image {
+            width: 100px;
+          }
+
           @include s.media-breakpoint-down(md){
             display: block;
             width: 100%;
@@ -129,7 +191,6 @@
               grid-column: 4 / 5;
               grid-row: 1 / 2;
 
-
               text-align: right;
               display: flex;
               align-items: flex-start;
@@ -145,45 +206,6 @@
 
           }
 
-          p {
-            margin: 0;
-          }
-
-          td {
-            padding-top: 2.5rem;
-          }
-
-          td.name {
-            p {
-              max-width: 26ch;
-            }
-          }
-
-          td.total {
-            text-align: right;
-
-            .loader {
-              margin: 0 auto;
-              width: 18px;
-              height: 18px;
-              box-sizing: border-box;
-
-              border: solid 2px transparent;
-              border-top-color: s.$clrs-orange;
-              border-left-color: s.$clrs-orange-light;
-              border-radius: 50%;
-
-              animation: nprogress-spinner 400ms linear infinite;
-
-              //border: thin solid red;
-              //animation: rotate .3ms ease-in-out infinite;
-
-            }
-          }
-
-          td.image {
-            width: 100px;
-          }
         }
 
       }

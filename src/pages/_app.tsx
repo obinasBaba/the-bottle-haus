@@ -7,7 +7,7 @@ import '@global/index.scss';
 import 'mouse-follower/src/scss/index.scss';
 
 import React, { useCallback, useEffect, useRef } from 'react';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import Head from 'next/head';
@@ -28,6 +28,24 @@ import { AnimatePresence } from 'framer-motion';
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
+/*const routeChange = () => {
+  // Temporary fix to avoid flash of unstyled content
+  // during route transitions. Keep an eye on this
+  // issue and remove this code when resolved:
+  // https://github.com/vercel/next.js/issues/17464
+
+  const tempFix = () => {
+    const allStyleElems = document.querySelectorAll('style[media="x"]');
+    allStyleElems.forEach((elem) => {
+      elem.removeAttribute('media');
+    });
+  };
+  tempFix();
+};
+
+Router.events.on('routeChangeComplete', routeChange);
+Router.events.on('routeChangeStart', routeChange);*/
+
 const DefaultLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => <>{children}</>;
 
 interface MyAppProps extends AppProps {
@@ -39,12 +57,60 @@ interface MyAppProps extends AppProps {
   };
 }
 
+// utils/useTransitionFix.ts
+
+type Cleanup = () => void;
+
+export const useTransitionFix = (): Cleanup => {
+  const cleanupRef = useRef<Cleanup>(() => null);
+
+  useEffect(() => {
+    const changeListener = () => {
+      // Create a clone of every <style> and <link> that currently affects the page. It doesn't
+      // matter if Next.js is going to remove them or not since we are going to remove the copies
+      // ourselves later on when the transition finishes.
+      const nodes = document.querySelectorAll('link[rel=stylesheet], style:not([media=x])');
+      const copies = [...nodes].map((el) => el.cloneNode(true) as HTMLElement);
+
+      for (const copy of copies) {
+        // Remove Next.js' data attributes so the copies are not removed from the DOM in the route
+        // change process.
+        copy.removeAttribute('data-n-p');
+        copy.removeAttribute('data-n-href');
+
+        // Add duplicated nodes to the DOM.
+        document.head.appendChild(copy);
+      }
+
+      cleanupRef.current = () => {
+        for (const copy of copies) {
+          // Remove previous page's styles after the transition has finalized.
+          document.head.removeChild(copy);
+        }
+      };
+    };
+
+    Router.events.on('beforeHistoryChange', changeListener);
+
+    return () => {
+      Router.events.off('beforeHistoryChange', changeListener);
+      cleanupRef.current();
+    };
+  }, []);
+
+  // Return an fixed reference function that calls the internal cleanup reference.
+  return useCallback(() => {
+    cleanupRef.current();
+  }, []);
+};
+
 function SwappingChild({ Component, pageProps }: any) {
   const { scroll } = useLocomotiveScroll();
   const { toolTipsData } = useAppInfo();
   const { pathname } = useRouter();
 
   const NestedLayout = Component.Layout || DefaultLayout;
+  const transitionCallback = useTransitionFix();
 
   return (
     <>
@@ -53,6 +119,7 @@ function SwappingChild({ Component, pageProps }: any) {
           exitBeforeEnter
           custom={{ one: '' }}
           onExitComplete={() => {
+            transitionCallback();
             scroll?.scrollTo(0, { duration: 0, disableLerp: true });
           }}>
           <NestedLayout {...pageProps} key={pathname}>
@@ -110,7 +177,6 @@ export default function MyApp({
             <title>This is a Layout</title>
           </Head>
           <ThemeProvider theme={theme}>
-            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
 
             <Layout pageProps={pageProps}>

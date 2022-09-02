@@ -10,14 +10,12 @@ import { MotionParent } from '@/components/common/MotionItems';
 import Head from 'next/head';
 import React from 'react';
 import { pageTransition } from '@/scenes/Homepage';
-import { dummyProduct } from '@/components/ProductDetailCard';
 
 export async function getStaticProps({ params, locale }: GetStaticPropsContext<{ slug: string }>) {
   const { product } = await commerce.getProduct({
     variables: { slug: params!.slug },
   });
 
-  console.log('produuct ::: ', product);
 
   const relatedProducts = await commerce.getAllProducts({
     variables: { first: 4 },
@@ -26,7 +24,7 @@ export async function getStaticProps({ params, locale }: GetStaticPropsContext<{
 
   const allCollections = await commerce.getSiteInfo({});
 
-  console.log('product not found ----- ', params);
+  // console.log('product not found ----- ', params);
 
   if (!product) {
     // return {

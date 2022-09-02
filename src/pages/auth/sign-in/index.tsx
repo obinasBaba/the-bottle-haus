@@ -9,12 +9,12 @@ const SignIn = ({}) => {
 
   const { data: session, status } = useSession();
 
-  console.log('query: ', query);
+  // console.log('query: ', query);
 
   useEffect(() => {
     if (!session) {
-      console.log('query---', query);
-      signIn('google').then(console.log).catch(console.log);
+      // console.log('query---', query);
+      signIn('google').then(() => null).catch(console.error);
     } else if (!session && query) {
       window.prompt(`${query.toString()} -- what si `);
     } else {

@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from 'react';
-import s from './collectionpage.module.scss';
 import ProductCard from '@/components/ProductCard';
 import { Product } from '@/types/product';
 import { Pagination } from '@mui/material';
 import { AnimatePresence, motion, MotionConfig, MotionValue, Variants } from 'framer-motion';
 import { useLocomotiveScroll } from '@/context/LocoMotive';
 import { CollectionsContext } from '@/pages/collection/[slug]';
+import s from './collectionpage.module.scss';
 
 const containerVariants: Variants = {
   initial: {},
@@ -71,11 +71,9 @@ const CollectionPage: React.FC<CollectionPageArgs> = ({ products, rf }) => {
   }, [products]);
 
   useEffect(() => {
-    console.log('sortInfo: ', sortInfo);
+    // console.log('sortInfo: ', sortInfo);
     setRefreshId(refreshId + 1);
   }, [sortInfo]);
-
-  useEffect(() => console.log('ref :', refreshId), [refreshId]);
 
   return (
     <div className={s.container}>
