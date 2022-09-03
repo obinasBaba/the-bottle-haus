@@ -59,15 +59,22 @@
 }
 
 .title {
-  line-height: 140%;
-  font-family: s.$fonts-ultra;
-  font-weight: 100;
+  line-height: 120%;
+  font-weight: normal;
   margin-top: 0;
-  color: s.$clrs-orange;
+  color: gray;
+  font-family: s.$fonts-ruthie;
 
-  @include s.font-size-text(2.8rem);
+
+  @include s.font-size-text(3.2rem);
 
   span {
+
+    font-weight: 100;
+
+
+    font-family: s.$fonts-ultra;
+
     display: block;
     color: transparent;
     -webkit-text-stroke-width: 2px;

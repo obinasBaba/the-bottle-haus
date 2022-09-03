@@ -83,9 +83,8 @@ export const useAppContext = () => {
     throw new Error('useUI must be used within a UIProvider');
   }
 
-  return context as any &
-    State & {
-      darkenNavBar: () => void;
-      lightenNavBar: () => void;
-    };
+  return context as State & {
+    darkenNavBar: () => void;
+    lightenNavBar: () => void;
+  };
 };

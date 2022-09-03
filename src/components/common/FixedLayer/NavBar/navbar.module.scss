@@ -8,10 +8,8 @@
   flex-flow: column;
   justify-content: space-between;
   //backdrop-filter: blur(35px);
-  color: white;
 
-
-
+  //color: white;
   //color: s.$clrs-orange;
 
 
@@ -29,7 +27,7 @@
 
   &.darken {
     color: white;
-    backdrop-filter: blur(0px);
+    //backdrop-filter: blur(0px);
 
     &:after {
       background-color: transparent;
