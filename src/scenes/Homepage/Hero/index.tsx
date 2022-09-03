@@ -103,18 +103,13 @@ const Hero = () => {
               data-idx={idx}
               variants={textContainerVariants}>
               <MotionConfig transition={textTransition}>
-                <motion.p variants={textItemVariants} custom={{ dir: selectedImg?.text?.dir}}>
-                  {selectedImg.text.subtitle}
-                </motion.p>
+                <motion.p variants={textItemVariants}>{selectedImg.text.subtitle}</motion.p>
                 <motion.h1
                   variants={textItemVariants}
-                  custom={{ dir: selectedImg?.text?.dir}}
                   dangerouslySetInnerHTML={{ __html: selectedImg.text.title }}
                 />
-                <motion.big variants={textItemVariants} custom={{ dir: selectedImg?.text?.dir}}>
-                  {selectedImg.text.desc}
-                </motion.big>
-                <motion.div variants={textItemVariants} custom={{ dir: selectedImg?.text?.dir}}>
+                <motion.big variants={textItemVariants}>{selectedImg.text.desc}</motion.big>
+                <motion.div variants={textItemVariants}>
                   <Link href={'/collections/all-products'}>
                     <a>
                       <Button variant="contained" size="large">

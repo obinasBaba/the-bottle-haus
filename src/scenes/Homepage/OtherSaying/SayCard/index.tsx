@@ -24,9 +24,7 @@ const peoples = [
   },
   {
     img: Profile1,
-    txt:
-      'I like this a lot. It is mild but I am happy with it.' +
-      "  I don't like flavors that are overwhelming or are too strong. I will definitely be buying this again.",
+    txt: 'Someone got this for me when I was pregnant so I would not feel left out of the fun and I loved it. It’s so good! And I had really been missing wine. Now it’s my go to gift for all my friends and sometimes I drink it still just because I love the taste.',
     name: 'lsdj',
   },
   {
@@ -54,7 +52,6 @@ const SayCard = () => {
   const savedCallback = useRef<any>(() => null);
 
   function next() {
-
     const nxtIdx = idx + 1 <= peoples.length - 1 ? idx + 1 : 0;
     setActiveQuote(peoples[nxtIdx]);
     setIdx(nxtIdx);

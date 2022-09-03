@@ -8,7 +8,9 @@
 
   @include s.media-breakpoint-up(md) {
     //margin: 9vmax auto 0;
-    margin: 7rem auto 0;
+    margin: 0rem auto 0;
+
+    //border: 6px solid red;
 
   }
 
@@ -25,7 +27,7 @@
       //border: thick solid thistle;
 
       @include s.media-breakpoint-up(md) {
-        height: 44rem;
+        height: 45vmax;
 
       }
 
@@ -73,8 +75,6 @@
   }
 
 
-
-
   & :local {
 
     .text {
@@ -107,7 +107,7 @@
         line-height: 110%;
         margin: 0 0 1rem;
 
-        span{
+        span {
           display: block;
         }
       }
@@ -121,42 +121,35 @@
     }
 
 
-    .text[data-idx="0"]{
-      margin-left: auto;
-      color: black;
-      margin-right: 4vmax;
+    .text[data-idx="0"] {
+      //margin-left: auto;
+      //color: black;
+      //margin-right: 4vmax;
 
-      h1{
-        color: black;
-        span{
+      h1 {
+        color: white;
+
+        span {
           color: #f66628;
         }
       }
     }
 
-    .text[data-idx="1"]{
+    .text[data-idx="1"] {
       margin-right: auto;
       //color: black;
 
-      p{
+      p {
         //color: white;
       }
 
-      h1{
+      h1 {
         color: white;
-        span{
+
+        span {
           //color: #f66628;
         }
       }
-    }
-
-    .text[data-idx="2"]{
-      //margin-left: auto;
-      //margin-right: 4vmax;
-
-      //color: black;
-
-
     }
 
 

@@ -1,6 +1,6 @@
 import { Transition, Variants } from 'framer-motion';
-import Img from '@/public/hero-slider/img_11.png';
-import Img2 from '@/public/hero-slider/img_12.png';
+import Img from '@/public/hero-slider/ex-img-13.png';
+import Img2 from '@/public/hero-slider/img_14.png';
 import Img4 from '@/public/hero-slider/img_7.png';
 
 export const images = [
@@ -10,7 +10,6 @@ export const images = [
       title: '<span>A COLD</span> DELIGHT',
       subtitle: 'Grab Chilled',
       desc: 'Let your emotions come out with whiskey in your hand, The taste makes you feel awesome',
-      dir: 'right',
     },
   },
   {
@@ -19,6 +18,7 @@ export const images = [
       title: 'COCKTAIL  <span style="color: #f66628" >GIFT SETS</span>',
       subtitle: 'Exclusive Offer',
       desc: '50% off all wine cocktail sets',
+      // dir: 'right',
     },
   },
   {

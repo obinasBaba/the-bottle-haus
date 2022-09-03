@@ -7,7 +7,9 @@
   display: flex;
   flex-flow: column;
   justify-content: space-between;
-  backdrop-filter: blur(35px);
+  //backdrop-filter: blur(35px);
+  color: white;
+
 
 
   //color: s.$clrs-orange;
@@ -21,7 +23,7 @@
     inset: 0;
     z-index: -1;
     opacity: .8;
-    background-image: linear-gradient(rgba(236, 233, 233, 0.73), rgba(237, 237, 237, 0));
+    //background-image: linear-gradient(rgba(236, 233, 233, 0.73), rgba(237, 237, 237, 0));
     //background-color: white;
   }
 
