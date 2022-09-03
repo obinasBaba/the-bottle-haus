@@ -76,9 +76,9 @@ const CollectionPage: React.FC<CollectionPageArgs> = ({ products, rf }) => {
   }, [sortInfo]);
 
   return (
-    <div className={s.container}>
+    <div className={s.container} id='product-catalog'>
       {products.length > 0 ? (
-        <div className={s.wrapper}>
+        <div >
           <AnimatePresence exitBeforeEnter>
             <motion.div
               className={s.list}

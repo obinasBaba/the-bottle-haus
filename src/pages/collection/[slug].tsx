@@ -14,6 +14,10 @@ import CollectionPage from '@/scenes/CollectionPage';
 import CollectionSideNav from '@/components/common/CollectionScaffold/CollectionSideNav';
 import CollectionsFilterHeader from '@/components/common/CollectionScaffold/CollectionsFilter';
 import s from '@/scenes/CollectionPage/collectionpage.module.scss';
+import Image from 'next/image';
+
+import RightTop from '@/scenes/CollectionPage/top-right.png';
+import LeftBottom from '@/scenes/CollectionPage/bottom-left.png';
 
 export const CollectionsContext = React.createContext<any>({});
 
@@ -84,25 +88,50 @@ Collections.Layout = ({ children, collections, collectionName }: any) => {
 
   return (
     <CollectionsProvider>
-      <MotionParent className={s.layout_container} transition={pageTransition}>
+      <MotionParent
+        className={s.layout_container}
+        transition={pageTransition}
+        id="layout-container">
         <Head>
           <title>Juvi . Collections</title>
           <meta name="collections page" />
         </Head>
 
-        <motion.div
-          className={s.scroll_trigger}
-          onViewportEnter={(entry) => scrolledTop.set(true)}
-          onViewportLeave={(event) => scrolledTop.set(false)}
-        />
 
-        <CollectionSideNav collections={collections} scrolledTop={scrolledTop} />
+        <div className={s.left}>
+          <Image src={RightTop} objectFit="cover" alt="right-top art image" />
+        </div>
 
-        <motion.main className={s.coll_main} id="fixed-target">
-          <CollectionsFilterHeader title={collectionName} key={collectionName} rf={rf} />
+        <div
+          className={s.coll_bg}
+          data-scroll={true}
+          data-scroll-sticky={true}
+          data-scroll-target="#layout-container">
 
-          {children}
-        </motion.main>
+          <div className={s.right}
+               data-scroll={true}
+               data-scroll-speed='1'
+               data-scroll-delay='.03'
+          >
+            <Image src={LeftBottom} objectFit="cover" alt="left-bottom art image" />
+          </div>
+        </div>
+
+        <div className={s.wrapper}>
+          <motion.div
+            className={s.scroll_trigger}
+            onViewportEnter={(entry) => scrolledTop.set(true)}
+            onViewportLeave={(event) => scrolledTop.set(false)}
+          />
+
+          <CollectionSideNav collections={collections} scrolledTop={scrolledTop} />
+
+          <motion.main className={s.coll_main} id="fixed-target">
+            <CollectionsFilterHeader title={collectionName} key={collectionName} rf={rf} />
+
+            {children}
+          </motion.main>
+        </div>
       </MotionParent>
     </CollectionsProvider>
   );

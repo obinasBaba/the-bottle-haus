@@ -34,7 +34,7 @@ function HideOnScroll(props: Props) {
     const debouncedResponse = debounce((dir) => {
       if (!dir) return;
 
-      if (0.05 > yProgress.get()) return setTrigger(true);
+      // if (0.05 > yProgress.get()) return setTrigger(true);
 
       if (dir === 'up') {
         setTrigger(true);

@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { MotionParent } from '@/components/common/MotionItems';
 import { AnimatePresence, motion, MotionConfig } from 'framer-motion';
-import { Button, debounce, IconButton } from "@mui/material";
+import { Button, debounce, IconButton } from '@mui/material';
 import { KeyboardArrowLeftTwoTone, KeyboardArrowRightTwoTone } from '@mui/icons-material';
 import s from './hero.module.scss';
 import clsx from 'clsx';
@@ -16,7 +16,7 @@ import {
   transition,
 } from '@/scenes/Homepage/Hero/resources';
 import Link from 'next/link';
-import { useAppContext } from "@/context/app";
+import { useAppContext } from '@/context/app';
 
 let touched = false;
 
@@ -26,7 +26,6 @@ const Hero = () => {
   const savedCallback = useRef<any>();
 
   const { lightenNavBar, darkenNavBar } = useAppContext();
-
 
   function next() {
     const nxtIdx = idx + 1 <= images.length - 1 ? idx + 1 : 0;
@@ -45,7 +44,6 @@ const Hero = () => {
   });
 
   useEffect(() => {
-
     function tick() {
       if (!touched) savedCallback.current();
       touched = false;
@@ -70,8 +68,7 @@ const Hero = () => {
       <motion.div
         className={s.gallery}
         onViewportLeave={debounce(lightenNavBar, 200)}
-        onViewportEnter={debounce(darkenNavBar, 200)}
-      >
+        onViewportEnter={debounce(darkenNavBar, 200)}>
         <AnimatePresence>
           <MotionParent
             key={selectedImg.img.src}
@@ -106,7 +103,9 @@ const Hero = () => {
               data-idx={idx}
               variants={textContainerVariants}>
               <MotionConfig transition={textTransition}>
-                <motion.p className={s.caption}  variants={textItemVariants}>{selectedImg.text.subtitle}</motion.p>
+                <motion.p className={s.caption} variants={textItemVariants}>
+                  {selectedImg.text.subtitle}
+                </motion.p>
                 <motion.h1
                   variants={textItemVariants}
                   dangerouslySetInnerHTML={{ __html: selectedImg.text.title }}

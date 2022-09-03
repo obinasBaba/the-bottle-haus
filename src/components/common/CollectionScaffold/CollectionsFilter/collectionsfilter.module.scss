@@ -9,14 +9,15 @@
   overflow: hidden;
 
   & :global {
-
     .title {
-      color: s.$clrs-accent-light;
+      color: #cccccc;
       @include s.font-size-title(2rem);
 
-      @include s.media-breakpoint-up(md){
+      @include s.media-breakpoint-up(md) {
         margin: 0;
-        -webkit-text-stroke: 1px s.$clrs-accent-light;
+        font-weight: bolder;
+        -webkit-text-stroke: 1px #cccccc;
+        //font-family: s.$fonts-quicks;
       }
     }
 
@@ -29,13 +30,12 @@
 
       #demo-multiple-name {
         color: s.$clrs-orange;
-        font-size: .8rem;
+        font-size: 0.8rem;
       }
 
       svg {
         fill: s.$clrs-orange-light;
       }
-
 
       fieldset {
         border-radius: 500px;
@@ -43,7 +43,6 @@
       }
 
       .MuiInputBase-root:hover {
-
         fieldset {
           border-color: s.$clrs-orange;
           background-color: rgba(246, 152, 87, 0.03);
@@ -51,12 +50,9 @@
       }
 
       label {
-        font-size: .8rem;
+        font-size: 0.8rem;
         color: s.$clrs-orange;
-
       }
-
-
     }
   }
 }
@@ -71,14 +67,13 @@
 }
 
 .menu_item {
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 .menu_popup {
   //max-height: 10vmax;
   //width: 13rem;
   //border-radius: 10px;
-
 
   /* width */
   &::-webkit-scrollbar {
@@ -95,7 +90,6 @@
   &::-webkit-scrollbar-thumb {
     background: s.$clrs-orange-light;
     border-radius: 500px;
-
   }
 
   /* Handle on hover */
@@ -115,7 +109,6 @@
 
   //box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12);
   border-radius: 10px;
-
 }
 
 .price_popup {
@@ -129,7 +122,6 @@
   //border: thin solid black;
   //overflow: hidden;
 
-
   & > :first-child {
     margin: 0;
     font-weight: 900;
@@ -140,7 +132,6 @@
   }
 
   & :local {
-
     .hor {
       display: flex;
       width: 100%;
@@ -161,5 +152,4 @@
       }
     }
   }
-
 }

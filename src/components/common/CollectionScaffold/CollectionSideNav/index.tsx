@@ -108,8 +108,8 @@ const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections, scro
       className={s.container}
       data-scroll-sticky={true}
       data-scroll={true}
-      data-scroll-target="#fixed-target"
-      data-scroll-offset="%-5, 0%"
+      data-scroll-target="#product-catalog"
+      data-scroll-offset="-100, 100"
       variants={{}}>
       <motion.div variants={wrapperVariants} animate={control} transition={wrapperTrans}>
         <MotionParent className={s.wrapper} variants={containerVariants}>
