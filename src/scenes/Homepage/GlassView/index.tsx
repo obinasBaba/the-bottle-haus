@@ -174,7 +174,7 @@ const GlassView = () => {
               </motion.p>
 
               <motion.div variants={leftItemsVariants} transition={transition}>
-                <Button variant="contained" size="large">
+                <Button variant="contained" size="large" data-cursor="-opaque">
                   Shop Now
                 </Button>
               </motion.div>

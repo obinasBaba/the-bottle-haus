@@ -312,12 +312,16 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product, productBg }) =
             </MotionChild>
 
             <MotionChild className="cart_controllers">
-              <Button variant="contained" size="large" onClick={addToCart}>
+              <Button variant="contained" size="large" onClick={addToCart} data-cursor="-opaque">
                 Add to cart
               </Button>
               <Link href={'/checkout'}>
                 <a>
-                  <Button variant="outlined" size="large" startIcon={<Adjust />}>
+                  <Button
+                    variant="outlined"
+                    size="large"
+                    startIcon={<Adjust />}
+                    data-cursor="-opaque">
                     To Checkout
                   </Button>
                 </a>

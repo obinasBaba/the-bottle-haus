@@ -8,6 +8,9 @@ import RareCatalog from '@/scenes/Homepage/RareToFind/components/RareCatalog';
 import { motion } from 'framer-motion';
 import { basicTransition } from '@/components/common/MotionItems';
 
+import LeftBottom from './left-bottom.png';
+import RightTop from './right-top.png';
+
 const crownVariants = {
   initial: {
     y: '30%',
@@ -24,7 +27,29 @@ const crownVariants = {
 
 const RareToFind = ({ data }: { data: Product[] }) => {
   return (
-    <div className={s.container}>
+    <div className={s.container} id="rare-to-find">
+      <div
+        className={s.bg}
+        data-scroll={true}
+        data-scroll-target="#rare-to-find"
+        data-scroll-sticky={true}>
+        <div
+          className={s.left_bottom}
+          data-scroll={true}
+          data-scroll-speed="-.4"
+          data-scroll-delay=".05">
+          <Image src={LeftBottom} alt="left-bottom art" />
+        </div>
+
+        <div
+          className={s.right_top}
+          data-scroll={true}
+          data-scroll-speed="-.4"
+          data-scroll-delay=".05">
+          <Image src={RightTop} alt="right-top art" />
+        </div>
+      </div>
+
       <div className={s.wrapper}>
         <motion.header
           className={s.header}

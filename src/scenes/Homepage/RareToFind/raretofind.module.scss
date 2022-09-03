@@ -1,16 +1,40 @@
 @use '@/styles' as s;
 
 .container {
-  @include s.padding(7rem, 1rem, 0rem, 1rem);
-  background-color: s.$clrs-orange-light;
+  position: relative;
+  //background-color: s.$clrs-orange-light;
   width: 100%;
 
+  @include s.padding(7rem, 1rem, 0rem, 1rem);
 
   @include s.media-breakpoint-up(md) {
     @include s.padding(7rem, 1rem, 0rem, 1rem);
   }
 
   & :local {
+
+    .bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100vh;
+
+      background-color: #F3F6F2;
+
+      .right_top {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+
+      .left_bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+    }
 
     .wrapper {
       max-width: 1300px;
@@ -63,7 +87,7 @@
       font-weight: 900;
       color: transparent;
       -webkit-text-stroke-width: .2vmax;
-      -webkit-text-stroke-color: white;
+      -webkit-text-stroke-color: s.$clrs-orange;
       margin: 0 auto;
 
     }

@@ -9,13 +9,14 @@
   @include s.padding(ver, 10rem);
   @include s.padding(hor, 2rem);
 
-  .flower_glass{
+  .flower_glass {
     position: absolute;
     top: 20%;
     right: 10%;
   }
 
   //background-color: #ededed;
+  //border: 1px solid yellow;;
 
   & :local {
 
@@ -28,23 +29,6 @@
       max-width: 1300px;
       margin: 0 auto;
       overflow: hidden;
-
-     /* h1 {
-        font-weight: 900;
-        @include s.font-size-text(3.2rem);
-        line-height: 140%;
-        color: s.$clrs-accent;
-        -webkit-text-stroke-width: s.f-unit-light(2px);
-        -webkit-text-stroke-color: s.$clrs-accent;
-        margin-top: 0;
-
-        span {
-          display: block;
-          color: transparent;
-          -webkit-text-stroke-width: 2px;
-          -webkit-text-stroke-color: s.$clrs-accent;
-        }
-      }*/
     }
 
   }

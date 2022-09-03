@@ -10,6 +10,8 @@ import Profile2 from '../say-card-imgs/img_1.png';
 import BRight from '@/public/bottle-right.png';
 import BLeft from '@/public/bottle-left.png';
 import Quote from '@/public/quotes.png';
+import AvatarBg from './avatar-bg.png';
+import BoxBg from './box-bg.png';
 
 import { basicTransition, basicVariants, MotionParent } from '@/components/common/MotionItems';
 import clsx from 'clsx';
@@ -25,14 +27,14 @@ const peoples = [
   {
     img: Profile1,
     txt: 'Someone got this for me when I was pregnant so I would not feel left out of the fun and I loved it. It’s so good! And I had really been missing wine. Now it’s my go to gift for all my friends and sometimes I drink it still just because I love the taste.',
-    name: 'lsdj',
+    name: 'Debora',
   },
   {
     img: Profile2,
     txt:
-      'I like this a lot. It is mild but I am happy with it. I don&apos;t like flavors that are\n' +
+      'I like this a lot. It is mild but I am happy with it. It like flavors that are\n' +
       '          overwhelming or are too strong. I will definitely be buying this again.',
-    name: 'lk;asdf',
+    name: 'Sara',
   },
 ];
 
@@ -41,7 +43,14 @@ const containerVariants = {
   animate: {
     transition: {
       delayChildren: 0.6,
-      staggerChildren: 0.25,
+      staggerChildren: 0.35,
+    },
+  },
+
+  exit: {
+    transition: {
+      delayChildren: 0.8,
+      staggerChildren: 0.55,
     },
   },
 };
@@ -70,7 +79,7 @@ const SayCard = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       savedCallback.current();
-    }, 7000);
+    }, 10000);
 
     return () => {
       clearInterval(interval);
@@ -79,9 +88,18 @@ const SayCard = () => {
 
   return (
     <div className={s.container}>
-      <IconButton className={clsx([s.btn, s.btn_lft])} color="primary" size="large" onClick={next}>
+      <IconButton
+        className={clsx([s.btn, s.btn_lft])}
+        color="primary"
+        size="large"
+        onClick={next}
+        data-cursor="-opaque">
         <Image src={BLeft} alt="right bottle btn" />
       </IconButton>
+
+      <div className={s.box_bg}>
+        <Image src={BoxBg} alt='testimonal background'/>
+      </div>
 
       <AnimatePresence exitBeforeEnter>
         <MotionParent
@@ -89,6 +107,10 @@ const SayCard = () => {
           key={activeQuote.img.src}
           variants={containerVariants}>
           <motion.div className={s.profile} variants={basicVariants} transition={basicTransition}>
+            <div className={s.avatar_bg}>
+              <Image src={AvatarBg} alt="avatar background image" />
+            </div>
+
             <Avatar alt="Remy Sharp" src={activeQuote.img.src} sx={{ width: 106, height: 106 }} />
           </motion.div>
 
@@ -102,7 +124,12 @@ const SayCard = () => {
         </MotionParent>
       </AnimatePresence>
 
-      <IconButton className={clsx([s.btn, s.btn_rht])} color="primary" size="large" onClick={prev}>
+      <IconButton
+        className={clsx([s.btn, s.btn_rht])}
+        color="primary"
+        size="large"
+        onClick={prev}
+        data-cursor="-opaque">
         <Image src={BRight} alt="right bottle btn" />
       </IconButton>
     </div>

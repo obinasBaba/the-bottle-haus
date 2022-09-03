@@ -112,7 +112,7 @@ const Hero = () => {
                 <motion.div variants={textItemVariants}>
                   <Link href={'/collections/all-products'}>
                     <a>
-                      <Button variant="contained" size="large">
+                      <Button variant="contained" size="large" data-cursor="-opaque">
                         Shop Now
                       </Button>
                     </a>

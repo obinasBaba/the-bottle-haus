@@ -173,7 +173,10 @@ const houseVariants = {
 const links = [
   { name: 'Home', link: '/' },
   { name: 'All Product', link: '/collection/all-products' },
-  { name: 'Cart', link: '/cart' },
+  {
+    name: 'Cart',
+    link: '/cart',
+  },
   { name: 'Contact-us', link: '/contact-us' },
 ];
 
@@ -205,7 +208,7 @@ const NavMenu = () => {
       default:
         return closeNavMenu();
     }
-  }
+  };
 
   return (
     <MotionParent className={s.container} variants={{}}>
@@ -247,7 +250,7 @@ const NavMenu = () => {
               <Link href={link}>
                 <a>
                   <p className="no">(0{idx + 1})</p>
-                  <div className={s.link_name} data-cursor="-opaque" >
+                  <div className={s.link_name} data-cursor="-opaque">
                     <h1>{name}</h1>
                     <h1>{name}</h1>
                   </div>
@@ -264,10 +267,7 @@ const NavMenu = () => {
                 key={text}
                 variants={footerItemVariant}
                 transition={footerItemVariant.transition}>
-                <Button
-                  variant="outlined"
-                  size="small"
-                  onClick={() => onClick(text)}>
+                <Button variant="outlined" size="small" onClick={() => onClick(text)}>
                   {text}
                 </Button>
               </motion.div>

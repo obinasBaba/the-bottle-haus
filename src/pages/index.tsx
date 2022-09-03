@@ -6,11 +6,11 @@ import HomePage, { pageTransition } from '@/scenes/Homepage';
 export async function getStaticProps({ preview, locale, locales }: GetStaticPropsContext) {
   const config = { locale, locales };
 
-  return {
+ /* return {
     props: {
 
     }
-  }
+  }*/
 
   const { product } = await commerce.getProduct({
     variables: { slug: 'don-julio-primavera-tequila' },

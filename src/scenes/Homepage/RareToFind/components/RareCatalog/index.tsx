@@ -38,7 +38,7 @@ const RareCatalog = ({ data }: { data: Product[] }) => {
 
       <Link href="/collection/rare-hard-to-find">
         <a>
-          <Button size="large" variant="outlined">
+          <Button size="large" variant="contained" data-cursor="-opaque">
             Show All
           </Button>
         </a>

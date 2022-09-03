@@ -11,8 +11,7 @@ import { motion } from 'framer-motion';
 
 const transition = {
   duration: 1.5,
-  ease: [0.6, 0.01, 0, 0.9],
-  // delay: 0.2,
+  ease: [0.6, 0.01, 0, 0.9], // delay: 0.2,
 };
 
 const blogVariants = {
@@ -54,7 +53,7 @@ const OurBlog = () => {
         <motion.div className="our_blogs">
           <motion.h1
           /*   variants={blogItemVariants}
-            transition={transition}*/
+                transition={transition}*/
           >
             Our Blogs
           </motion.h1>
@@ -64,7 +63,9 @@ const OurBlog = () => {
           </p>
           <Link href="../../blog/best-tequila-under-100">
             <a>
-              <Button variant="outlined">Read All</Button>
+              <Button variant="outlined" size="large" data-cursor="-opaque">
+                Read All
+              </Button>
             </a>
           </Link>
         </motion.div>

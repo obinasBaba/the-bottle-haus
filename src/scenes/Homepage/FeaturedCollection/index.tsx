@@ -68,7 +68,7 @@ const FeaturedCollection = ({ data }: { data: Product[] }) => {
 
         <Link href={'/collection/whiskey'}>
           <a>
-            <Button variant="contained" size="large">
+            <Button variant="contained" size="large" data-cursor="-opaque">
               Show All
             </Button>
           </a>

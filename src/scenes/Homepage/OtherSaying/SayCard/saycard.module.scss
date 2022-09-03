@@ -5,22 +5,38 @@
   //max-width: 100vmin;
   //border-radius: 30px;
   position: relative;
-
+  z-index: 1;
   width: 100%;
 
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   gap: s.f-unit(2rem);
 
   //border: thin solid red;
 
   @include s.padding(top, 10rem);
+  @include s.padding(bottom, 10rem);
+
+  @include s.media-breakpoint-up(md) {
+    @include s.padding(top, 15rem);
+
+    @include s.padding(hor, 2rem);
+
+  }
 
 
   & :local {
 
-    .text_container{
+    .box_bg{
+      position: absolute;
+      left: 0;
+      z-index: -1;
+      //border: 1px solid #000;
+      width: 100%;
+    }
+
+    .text_container {
       position: relative;
       display: flex;
       flex-flow: column;
@@ -30,13 +46,28 @@
       //border: 1px solid #000;
 
       .profile {
+        position: relative;
         margin-right: 1.5rem;
+        @include s.margin(bottom, 2rem);
+
+
+        .avatar_bg {
+          position: absolute;
+          top: 0;
+          opacity: .6;
+          z-index: -1;
+          transform: scale(1.1);
+        }
       }
 
       @include s.media-breakpoint-up(md) {
+        position: absolute;
+        left: 50%;
         flex-flow: row;
         flex-wrap: nowrap;
         justify-content: center;
+
+        transform: translateX(-50%);
         //@include s.padding(2rem, 4rem);
         //@include s.margin(2rem);
       }
@@ -56,7 +87,7 @@
     .text {
       position: relative;
 
-      @include s.font-size-text(1.3rem);
+      @include s.font-size-text(1.1rem);
     }
 
     .btn {
@@ -71,16 +102,20 @@
       }
     }
 
-    .btn_lft{}
-    .btn_rht{}
+    .btn_lft {
+    }
+
+    .btn_rht {
+    }
 
     @include s.media-breakpoint-up(md) {
       gap: s.f-unit(5rem);
 
 
-      .btn_lft{}
+      .btn_lft {
+      }
 
-      .text{
+      .text {
         max-width: 40ch;
 
         &:before {
@@ -93,7 +128,8 @@
         }
       }
 
-      .btn_rht{}
+      .btn_rht {
+      }
     }
 
 
