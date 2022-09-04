@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React from 'react';
 import {
   GetStaticPathsContext,
   GetStaticPathsResult,
@@ -6,26 +6,9 @@ import {
   InferGetStaticPropsType,
 } from 'next';
 import commerce from '@lib/api/commerce';
-import { MotionParent } from '@/components/common/MotionItems';
-import Head from 'next/head';
-import { motion, MotionValue, useMotionValue } from 'framer-motion';
-import { pageTransition } from '@/scenes/Homepage';
+import { MotionValue } from 'framer-motion';
 import CollectionPage from '@/scenes/CollectionPage';
-import CollectionSideNav from '@/components/common/CollectionScaffold/CollectionSideNav';
-import CollectionsFilterHeader from '@/components/common/CollectionScaffold/CollectionsFilter';
-import s from '@/scenes/CollectionPage/collectionpage.module.scss';
-import Image from 'next/image';
-
-import RightTop from '@/scenes/CollectionPage/top-right.png';
-import LeftBottom from '@/scenes/CollectionPage/bottom-left.png';
-
-export const CollectionsContext = React.createContext<any>({});
-
-const CollectionsProvider: FC<{ children: React.ReactElement }> = (props) => {
-  const [sortInfo, setSortInfo] = useState<any>({ refreshId: 0 });
-
-  return <CollectionsContext.Provider value={{ sortInfo, setSortInfo }} {...props} />;
-};
+import CollectionLayout from '@/components/common/layout/CollectionLayout';
 
 export async function getStaticProps({
   params,
@@ -69,73 +52,20 @@ export async function getStaticPaths({}: GetStaticPathsContext): Promise<GetStat
   };
 }
 
-const rf = new MotionValue<Record<string, any>>();
 
 const Collections: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   products = [],
 }) => {
   return (
     <>
-      <CollectionPage products={products} rf={rf} />
+      <CollectionPage products={products} />
     </>
   );
 };
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-Collections.Layout = ({ children, collections, collectionName }: any) => {
-  const scrolledTop = useMotionValue(true);
-
-  return (
-    <CollectionsProvider>
-      <MotionParent
-        className={s.layout_container}
-        transition={pageTransition}
-        id="layout-container">
-        <Head>
-          <title>Juvi . Collections</title>
-          <meta name="collections page" />
-        </Head>
-
-
-        <div className={s.left}>
-          <Image src={RightTop} objectFit="cover" alt="right-top art image" />
-        </div>
-
-        <div
-          className={s.coll_bg}
-          data-scroll={true}
-          data-scroll-sticky={true}
-          data-scroll-target="#layout-container">
-
-          <div className={s.right}
-               data-scroll={true}
-               data-scroll-speed='1'
-               data-scroll-delay='.03'
-          >
-            <Image src={LeftBottom} objectFit="cover" alt="left-bottom art image" />
-          </div>
-        </div>
-
-        <div className={s.wrapper}>
-          <motion.div
-            className={s.scroll_trigger}
-            onViewportEnter={(entry) => scrolledTop.set(true)}
-            onViewportLeave={(event) => scrolledTop.set(false)}
-          />
-
-          <CollectionSideNav collections={collections} scrolledTop={scrolledTop} />
-
-          <motion.main className={s.coll_main} id="fixed-target">
-            <CollectionsFilterHeader title={collectionName} key={collectionName} rf={rf} />
-
-            {children}
-          </motion.main>
-        </div>
-      </MotionParent>
-    </CollectionsProvider>
-  );
-};
+Collections.Layout = CollectionLayout;
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore

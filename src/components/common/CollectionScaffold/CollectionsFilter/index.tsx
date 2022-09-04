@@ -15,7 +15,7 @@ import { AnimatePresence, motion, Variants } from 'framer-motion';
 import { ArrowDropDown } from '@mui/icons-material';
 import { Theme, useTheme } from '@mui/material/styles';
 import { MotionParent } from '@/components/common/MotionItems';
-import { CollectionsContext } from '@/pages/collection/[slug]';
+import { CollectionsContext } from '@/context/CollectionPageContext';
 
 function valuetext(value: number) {
   return `${value}°C`;
@@ -144,7 +144,7 @@ const titleVariants = {
   transition: { duration: 1, easing: [0.6, 0.01, 0, 0.9] },
 };
 
-const CollectionsFilter = ({ title, rf }: any) => {
+const CollectionsFilter = ({ title }: any) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [value, setValue] = React.useState<number[]>([320, 1037]);
   const [show, setShow] = useState<boolean>(false);
@@ -166,10 +166,6 @@ const CollectionsFilter = ({ title, rf }: any) => {
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
-
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setShow((prevState) => !prevState);
-  };
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);

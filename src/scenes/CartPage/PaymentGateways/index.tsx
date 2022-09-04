@@ -3,9 +3,7 @@ import s from './paymentgateways.module.scss';
 import { Button, Checkbox, TextField } from '@mui/material';
 import ShipmentProtection from './img.png';
 import Image from 'next/image';
-
-import Paypal from '@/public/paypal.svg';
-import Discover from '@/public/discover.svg';
+import Payments from './payments.png';
 
 import Link from 'next/link';
 
@@ -64,7 +62,9 @@ const PaymentGateways = () => {
             </Link>
             <hr />
             <div className="methods">
-              <Button size="large" variant="outlined">
+              <Image src={Payments} />
+
+              {/*  <Button size="large" variant="outlined">
                 Paypal
               </Button>
               <Button size="large" variant="outlined">
@@ -75,7 +75,7 @@ const PaymentGateways = () => {
               </Button>
               <Button size="large" variant="outlined">
                 Check Out
-              </Button>
+              </Button>*/}
             </div>
           </div>
         </div>

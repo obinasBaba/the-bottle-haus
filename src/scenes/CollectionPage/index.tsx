@@ -2,10 +2,10 @@ import React, { useContext, useEffect } from 'react';
 import ProductCard from '@/components/ProductCard';
 import { Product } from '@/types/product';
 import { Pagination } from '@mui/material';
-import { AnimatePresence, motion, MotionConfig, MotionValue, Variants } from 'framer-motion';
+import { AnimatePresence, motion, MotionConfig, Variants } from 'framer-motion';
 import { useLocomotiveScroll } from '@/context/LocoMotive';
-import { CollectionsContext } from '@/pages/collection/[slug]';
 import s from './collectionpage.module.scss';
+import { CollectionsContext } from '@/context/CollectionPageContext';
 
 const containerVariants: Variants = {
   initial: {},
@@ -39,10 +39,9 @@ const itemVariants = {
 
 type CollectionPageArgs = {
   products: Product[];
-  rf: MotionValue<Record<string, any>>;
 };
 
-const CollectionPage: React.FC<CollectionPageArgs> = ({ products, rf }) => {
+const CollectionPage: React.FC<CollectionPageArgs> = ({ products }) => {
   const [totalPageCount, setTotalPageCount] = React.useState<number>(1);
   const [refreshId, setRefreshId] = React.useState<number>(1);
   const [currentPage, setCurrentPage] = React.useState<number>(0);
@@ -76,9 +75,9 @@ const CollectionPage: React.FC<CollectionPageArgs> = ({ products, rf }) => {
   }, [sortInfo]);
 
   return (
-    <div className={s.container} id='product-catalog'>
+    <div className={s.container} id="product-catalog">
       {products.length > 0 ? (
-        <div >
+        <div>
           <AnimatePresence exitBeforeEnter>
             <motion.div
               className={s.list}

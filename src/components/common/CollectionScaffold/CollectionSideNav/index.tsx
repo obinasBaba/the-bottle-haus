@@ -5,9 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
-import { useLocomotiveScroll } from '@/context/LocoMotive';
 import { MotionParent } from '@/components/common/MotionItems';
-import { motion, MotionValue, useAnimation, useTransform, Variants } from 'framer-motion';
+import { motion, MotionValue, useAnimation, Variants } from 'framer-motion';
 import { debounce } from '@mui/material';
 import Img from '@/public/drink-img.png';
 import { useAppInfo } from '@/context/MotionValuesContext';
@@ -56,7 +55,7 @@ const itemVariants = {
 
 const wrapperVariants = {
   up: {
-    y: '13%',
+    y: '7%',
   },
   down: {
     y: '0%',
@@ -89,7 +88,7 @@ const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections, scro
         } else if (v == 'down') {
           control.start('down');
         }
-      }, 400),
+      }, 200),
     );
   }, []);
 
@@ -100,8 +99,6 @@ const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections, scro
       }
     });
   }, []);
-
-
 
   return (
     <motion.div
@@ -121,7 +118,7 @@ const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections, scro
                     <motion.div className={s.active} layoutId="active-bg" />
                   )}
 
-                  <div className={clsx(s.item)} key={name}>
+                  <div className={clsx(s.item)} key={name} data-cursor="-opaque">
                     <p className={s.col_name}>{name} </p>
                     <div className={s.collection_img}>
                       {backgroundImage?.url && (
