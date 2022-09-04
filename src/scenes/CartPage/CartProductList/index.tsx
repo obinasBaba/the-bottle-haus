@@ -4,7 +4,7 @@ import useCart from '@/SWRHooksAPI/cart/use-cart';
 import Image from 'next/image';
 import Quantity from '@/scenes/CartPage/CartProductList/Quantity';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
-import { Button } from '@mui/material';
+import { Button, Typography } from "@mui/material";
 import clsx from 'clsx';
 
 export const basicVariants: Variants = {
@@ -36,9 +36,7 @@ const CartProductList = () => {
           <h1>
             My <span>Cart ({cart?.lineItems.length || 0})</span>
           </h1>
-          <Button size="large" variant="outlined">
-            Back
-          </Button>
+
         </header>
 
         <table className="cart_product_list">
@@ -85,9 +83,7 @@ const CartProductList = () => {
                         <Image
                           src={(media && media[0]?.url) || ''}
                           alt="cart-icon"
-                          // layout="fixed"
-                          width="70"
-                          height="70"
+                          layout="fill"
                           objectFit="cover"
                         />
                       </div>

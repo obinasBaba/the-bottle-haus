@@ -1,14 +1,17 @@
 import React from 'react';
 import s from './paymentgateways.module.scss';
-import { Button, Checkbox, TextField } from '@mui/material';
+import { Button, Checkbox, TextField, Typography } from '@mui/material';
 import ShipmentProtection from './img.png';
 import Image from 'next/image';
 import Payments from './payments.png';
 
 import Link from 'next/link';
+import useCart from '@/SWRHooksAPI/cart/use-cart';
 
 const PaymentGateways = () => {
   const [checked, setChecked] = React.useState(false);
+
+  const { data: cart } = useCart();
 
   return (<div className={s.container}>
       <div className="payment_wrapper">
@@ -20,7 +23,7 @@ const PaymentGateways = () => {
         <div className="payments_detail">
           <div className="total">
             <h3>SUBTOTAL</h3>
-            <h2>$64.988</h2>
+            <h2>${cart?.totalPrice || 0} </h2>
           </div>
 
           <p>Taxes And Shipping Are Calculated At Checkout</p>
@@ -47,35 +50,22 @@ const PaymentGateways = () => {
             </div>
           </div>
 
-          <p>
+          <Typography variant="body2">
             <sup>*</sup> By Deselecting shipping protection, the bottle hause is not liable for
             items lost, damaged, or stolen in transit
-          </p>
+          </Typography>
 
           <div className="payment_btns">
             <Link href="/checkout">
               <a>
-                <Button size="large" variant="contained">
+                <Button size="large" variant="contained" data-cursor='-opaque'>
                   Check Out
                 </Button>
               </a>
             </Link>
             <hr />
             <div className="methods">
-              <Image src={Payments} />
-
-              {/*  <Button size="large" variant="outlined">
-                Paypal
-              </Button>
-              <Button size="large" variant="outlined">
-                Shop Pay
-              </Button>
-              <Button size="large" variant="outlined">
-                G Pay
-              </Button>
-              <Button size="large" variant="outlined">
-                Check Out
-              </Button>*/}
+              <Image src={Payments} alt="payment methods" />
             </div>
           </div>
         </div>

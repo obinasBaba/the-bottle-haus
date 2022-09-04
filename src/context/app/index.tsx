@@ -86,5 +86,7 @@ export const useAppContext = () => {
   return context as State & {
     darkenNavBar: () => void;
     lightenNavBar: () => void;
+    showNavBar: () => void;
+    hideNavBar: () => void;
   };
 };

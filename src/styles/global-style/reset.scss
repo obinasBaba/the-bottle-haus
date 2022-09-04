@@ -76,6 +76,10 @@ body {
 
   .mf-cursor {
 
+    &:before{
+      transform:scale(0.4);
+    }
+
     &.-opaque {
       mix-blend-mode:exclusion;
 

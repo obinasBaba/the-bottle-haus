@@ -1,0 +1,49 @@
+@use '@/styles' as s;
+
+
+//noinspection SassScssResolvedByNameOnly
+.container {
+  position: relative;
+  background-color: white;
+
+
+  //@include margin(top, 10);
+
+
+  & :local {
+
+    .wrapper {
+      max-width: 1500px;
+      margin: 0 auto;
+      display: flex;
+      flex-flow: column;
+      gap: 0;
+
+      //border: 1px solid yellow;
+
+
+      @include s.padding(2rem);
+
+      @include s.media-breakpoint-up(lg) {
+        flex-flow: row;
+        gap: s.f-unit(10rem);
+        @include s.padding(hor, 5rem);
+      }
+
+      @include s.media-breakpoint-up(xl) {
+        gap: s.f-unit(5rem);
+        @include s.padding(hor, 5rem);
+        //padding: 0;
+      }
+
+      @include s.media-breakpoint-up(1400px) {
+        gap: s.f-unit(4rem);
+        padding: 0;
+      }
+
+
+    }
+
+  }
+
+}

@@ -50,7 +50,7 @@ const NavBar = (props: { collections: any[] }) => {
         </div>
       </motion.div>
 
-      {/*<SecondaryNavBar collections={props.collections as Collection[]} />*/}
+      <SecondaryNavBar collections={props.collections as Collection[]} />
     </nav>
   );
 };
