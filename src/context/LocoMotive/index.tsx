@@ -146,8 +146,8 @@ export function LocomotiveScrollProvider({
     if (isReady && LocomotiveScrollRef.current) {
       LocomotiveScrollRef.current.on('scroll', (arg: any) => {
         // console.log('scrolled: ', arg);
-        x.set(arg.delta.x);
-        y.set(arg.delta.y);
+        x.set(arg?.delta?.x || arg.scroll.x);
+        y.set(arg?.delta?.y || arg.scroll.y);
         scrollDirection.set(arg.direction);
       });
     }

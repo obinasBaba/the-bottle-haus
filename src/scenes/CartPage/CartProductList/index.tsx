@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import s from './cartproductlist.module.scss';
 import useCart from '@/SWRHooksAPI/cart/use-cart';
 import Image from 'next/image';
@@ -6,6 +6,7 @@ import Quantity from '@/scenes/CartPage/CartProductList/Quantity';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
 import { Button, Typography } from "@mui/material";
 import clsx from 'clsx';
+import { useLocomotiveScroll } from "@/context/LocoMotive";
 
 export const basicVariants: Variants = {
   initial: {
@@ -28,10 +29,26 @@ const transition = {
 const CartProductList = () => {
   const { data: cart } = useCart();
   const [loading, setLoading] = useState<string | undefined>();
+  const { scroll } = useLocomotiveScroll();
+
+
+  useEffect(() => {
+
+    scroll?.update()
+
+    console.log('scroll-instance: ', scroll);
+
+  }, [cart])
 
   return (
-    <div className={s.container}>
-      <div className="wrapper">
+    <div className={s.container}
+
+         data-scroll={true}
+    >
+      <div className="wrapper"
+
+           id='cart-product-wrapperz' data-scroll={true}
+      >
         <header>
           <h1>
             My <span>Cart ({cart?.lineItems.length || 0})</span>
@@ -39,7 +56,7 @@ const CartProductList = () => {
 
         </header>
 
-        <table className="cart_product_list">
+        <table className="cart_product_list" data-scroll={true}>
           <thead>
             <tr>
               <th scope="col" colSpan={2}>

@@ -27,6 +27,16 @@ const Layout: React.FC<Props> = ({ children, pageProps }) => {
         smooth: true,
         getDirection: true,
         getSpeed: true,
+        /*smoothMobile: {
+          breakpoint: 0,
+          smooth: true,
+          getDirection: true,
+        },*/
+        /*tablet: {
+          breakpoint: 0,
+          smooth: true,
+          getDirection: true,
+        },*/
       }}
       containerRef={container} // height change detection
       watch={[]}

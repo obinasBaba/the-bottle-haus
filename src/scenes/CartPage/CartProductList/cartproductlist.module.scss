@@ -2,15 +2,13 @@
 
 .container {
   width: 100%;
-  padding-top: 10vmax;
+
   flex: 1;
 
   //border: 1px solid black;
 
   // @include s.margin(top, 10rem);
-  @include s.media-breakpoint-up(md) {
-    @include s.padding(top, 10rem);
-  }
+
 
 
   & :local {
@@ -32,6 +30,8 @@
       max-width: 1000px;
 
       //padding: 1.4rem;
+
+      //border: 1px solid gray;
 
       @include s.media-breakpoint-up(lg) {
         width: 100%;

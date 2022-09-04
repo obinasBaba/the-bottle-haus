@@ -21,8 +21,13 @@
 
       //border: 1px solid yellow;
 
-
       @include s.padding(2rem);
+      padding-top: 10vmax;
+
+      @include s.media-breakpoint-up(md) {
+        @include s.padding(top, 10rem);
+      }
+
 
       @include s.media-breakpoint-up(lg) {
         flex-flow: row;
@@ -32,13 +37,13 @@
 
       @include s.media-breakpoint-up(xl) {
         gap: s.f-unit(5rem);
-        @include s.padding(hor, 5rem);
-        //padding: 0;
       }
 
       @include s.media-breakpoint-up(1400px) {
-        gap: s.f-unit(4rem);
-        padding: 0;
+        gap: s.f-unit(5rem);
+
+        @include s.padding(hor, 0rem);
+
       }
 
 

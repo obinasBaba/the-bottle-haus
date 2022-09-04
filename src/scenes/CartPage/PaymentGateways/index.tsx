@@ -4,6 +4,7 @@ import { Button, Checkbox, TextField, Typography } from '@mui/material';
 import ShipmentProtection from './img.png';
 import Image from 'next/image';
 import Payments from './payments.png';
+import { motion } from 'framer-motion';
 
 import Link from 'next/link';
 import useCart from '@/SWRHooksAPI/cart/use-cart';
@@ -13,7 +14,14 @@ const PaymentGateways = () => {
 
   const { data: cart } = useCart();
 
-  return (<div className={s.container}>
+  return (
+    <motion.div
+      className={s.container}
+      variants={{}}
+      data-scroll={true}
+      data-scroll-target="#cart-product-wrapperz"
+      data-scroll-offset="0%, 90px"
+      data-scroll-sticky={true}>
       <div className="payment_wrapper">
         <div className="message">
           <h3>Special instruction for the saleor</h3>
@@ -58,7 +66,7 @@ const PaymentGateways = () => {
           <div className="payment_btns">
             <Link href="/checkout">
               <a>
-                <Button size="large" variant="contained" data-cursor='-opaque'>
+                <Button size="large" variant="contained" data-cursor="-opaque">
                   Check Out
                 </Button>
               </a>
@@ -70,7 +78,8 @@ const PaymentGateways = () => {
           </div>
         </div>
       </div>
-    </div>);
+    </motion.div>
+  );
 };
 
 export default PaymentGateways;

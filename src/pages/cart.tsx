@@ -6,16 +6,6 @@ import { MotionParent } from '@/components/common/MotionItems';
 import Head from 'next/head';
 import { pageTransition } from '@/scenes/Homepage';
 
-export async function getStaticProps(arg: GetStaticPropsContext) {
-  const allCollections = await commerce.getSiteInfo({});
-
-  return {
-    props: {
-      collections: allCollections.collections,
-    },
-    revalidate: 60,
-  };
-}
 
 const Cart = () => {
   return (

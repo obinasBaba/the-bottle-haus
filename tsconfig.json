@@ -22,7 +22,7 @@
       "@/operations/*": ["./src/operations/*"],
       "@global/*": ["./src/styles/global-style/*"],
       "@/styles/*": ["./src/styles/*"],
-      "@styles": ["./src/styles/index.scss"],
+//      "@styles": ["./src/styles/index.scss"],
       "@/public/*": ["./public/*"],
       "@lib/*": ["./src/lib/*"],
       "@homepage/*": ["./src/scenes/homepage/*"],

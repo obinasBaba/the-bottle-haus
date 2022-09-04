@@ -8,7 +8,7 @@ const CartPage = () => {
   return (
     <div className={s.container}>
 
-      <div className={s.wrapper}>
+      <div className={s.wrapper}  >
         <CartProductList />
         <PaymentGateways />
       </div>
