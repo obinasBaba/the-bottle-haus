@@ -12,6 +12,12 @@
 
   & :local {
 
+    .cart_bg {
+      position: absolute;
+      right: 0;
+      top: 10%;
+    }
+
     .wrapper {
       max-width: 1500px;
       margin: 0 auto;

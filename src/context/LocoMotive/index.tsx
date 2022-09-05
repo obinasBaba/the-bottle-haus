@@ -90,7 +90,7 @@ export function LocomotiveScrollProvider({
 
       if (LocomotiveScrollRef.current?.el) {
         // console.log('IT IS NOT NULL', LocomotiveScrollRef.current.name);
-        return
+        return;
       }
 
       LocomotiveScrollRef.current = new LocomotiveScroll.default({
@@ -135,7 +135,7 @@ export function LocomotiveScrollProvider({
 
     LocomotiveScrollRef.current.update();
     cursor.current?.removeText();
-    cursor.current?.removeState('opaque')
+    cursor.current?.removeState('opaque');
 
     if (onLocationChange) {
       onLocationChange(LocomotiveScrollRef.current);

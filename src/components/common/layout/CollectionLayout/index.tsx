@@ -46,13 +46,19 @@ const CollectionLayout = ({ children, collections, collectionName }: any) => {
 
   return (
     <CollectionsProvider>
-      <MotionParent className={s.container} transition={pageTransition} id="layout-container">
+      <MotionParent
+        className={s.container}
+        transition={{ ...pageTransition, filter: 'blur(15px)' }}
+        id="layout-container">
         <Head>
           <title>Juvi . Collections</title>
           <meta name="collections page" />
         </Head>
 
-        <motion.div className={s.left} variants={leftGrapeVariants} transition={pageTransition}>
+        <motion.div
+          className={s.left}
+          variants={leftGrapeVariants}
+          transition={{ ...pageTransition, delay: 1 }}>
           <Image src={RightTop} objectFit="cover" alt="right-top art image" />
         </motion.div>
 
@@ -62,7 +68,7 @@ const CollectionLayout = ({ children, collections, collectionName }: any) => {
           data-scroll-sticky={true}
           data-scroll-target="#layout-container">
           <div className={s.right} data-scroll={true} data-scroll-speed="1" data-scroll-delay=".03">
-            <motion.div variants={rightGrapeVariants} transition={pageTransition}>
+            <motion.div variants={rightGrapeVariants} transition={{ ...pageTransition, delay: 1 }}>
               <Image src={RightBottom} objectFit="cover" alt="left-bottom art image" />
             </motion.div>
           </div>
