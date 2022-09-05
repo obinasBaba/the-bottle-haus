@@ -5,6 +5,7 @@ import { FancyInput } from '@/scenes/CheckoutPage/index';
 import { useCart } from '@/SWRHooksAPI';
 import Link from 'next/link';
 import { useAppInfo } from '@/context/MotionValuesContext';
+import s from './checkoutpage.module.scss';
 
 export function CartInfo() {
   const cart = useCart();
@@ -12,11 +13,13 @@ export function CartInfo() {
   const { toolTipsData } = useAppInfo();
 
   return (
-    <div className="cart_info">
+    <div className={s.cart_info}>
       <header className="hor">
         <h2> {cart?.data?.lineItems.length || 0} item</h2>
         <Link href="/cart" aria-label="to cart">
-          <Button>EDIT</Button>
+          <a>
+            <Button>edit</Button>
+          </a>
         </Link>
       </header>
 
@@ -50,7 +53,7 @@ export function CartInfo() {
                   </Badge>
                 </div>
                 <div className="ver">
-                  <h2 className="price">${price}</h2>
+                  <p className="price">${price}</p>
                   <p className="name">{name}</p>
                 </div>
               </div>
@@ -59,26 +62,28 @@ export function CartInfo() {
         </div>
       </div>
       <div className="btns">
-        <FancyInput label="Gift card or discount code" />
+        <FancyInput size="small" label="Gift card or discount code" />
       </div>
 
       <div className="detail">
         <div className="item">
-          <p>Subtotal</p>
-          <h4>$23.2</h4>
+          <p>Subtotal</p>23.2
+          <h4>${cart.data?.totalPrice || '-'}</h4>
         </div>
         <div className="item">
           <p>Shipping</p>
-          <h4>$3.2</h4>
+          <h4>${cart.data?.lineItems?.length && cart.data?.lineItems?.length > 0 ? 15.2 : '-'}</h4>
         </div>
         <div className="item">
           <p>Taxes</p>
-          <h4>$3.2</h4>
+          <h4>$ -</h4>
         </div>
+
+        <hr />
 
         <div className="item">
           <h4>Total to pay</h4>
-          <h1>$113.2</h1>
+          <h2>$ {cart.data?.totalPrice ? cart.data?.totalPrice + 15.2 : '-'} </h2>
         </div>
       </div>
     </div>
