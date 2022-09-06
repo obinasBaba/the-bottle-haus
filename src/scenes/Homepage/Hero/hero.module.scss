@@ -22,17 +22,17 @@
       height: 60rem;
 
       @include s.media-breakpoint-up(md) {
-        height: 90vh;
+        height: 100vh;
       }
 
-      &::after{
+      &::after {
         content: '';
         position: absolute;
         bottom: 0;
         height: 10%;
         width: 100%;
         //background-color: #f6f6f6;
-        background-image: linear-gradient(to top, rgb(246, 246, 246) 0%, rgba(255, 255, 255, 0) 20%);
+        background-image: linear-gradient(to top, rgb(31, 31, 31) 0%, rgba(255, 255, 255, 0) );
 
         z-index: 1;
       }

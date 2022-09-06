@@ -1,53 +1,122 @@
 @use '@/styles' as s;
 
 .container {
+  position: relative;
+  z-index: 0;
   width: 100%;
-  //background-color: s.$clrs-gray-light;
+  background-color: #F5F1F0;
 
-  @include s.margin(top, 10rem);
-  @include s.padding(bottom, 8rem);
 
-  & :global {
+  & :local {
+
+    .bg {
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      z-index: -1;
+
+      .top, .bottom {
+        position: absolute;
+
+        & > :first-child {
+          display: block !important;
+        }
+      }
+
+      .top {
+        top: 0;
+        left: 0;
+      }
+
+      .bottom {
+        bottom: 0;
+        right: 0;
+      }
+    }
+
+    .contact_us_title {
+      line-height: 120%;
+      margin: 0 1rem 3rem 10%;
+      font-size: 3.4vmax;
+
+      @include s.media-breakpoint-up(md) {
+        @include s.font-size-title(2.7rem);
+        margin: 0 1rem 3rem 0;
+      }
+
+      span {
+        //display: block;
+        font-weight: 900;
+        color: transparent;
+        -webkit-text-stroke: 2px s.$clrs-orange-light;
+      }
+    }
 
     .wrapper {
       max-width: 1300px;
       margin: 0 auto;
 
-      header {
-        h1 {
-          line-height: 120%;
-          margin-top: 0;
-          @include s.font-size-title(3rem);
+      //border: 1px solid #000;
 
-          span {
-            display: block;
-            color: transparent;
-            -webkit-text-stroke: 2px s.$clrs-orange-light;
-          }
+      @include s.padding(top, 24vmax);
+      @include s.padding(bottom, 8rem);
 
-        }
+      @include s.media-breakpoint-up(md) {
+        @include s.padding(top, 10rem);
       }
 
       .content {
         width: 100%;
         display: flex;
+        flex-flow: column;
         justify-content: space-between;
         gap: s.f-unit(2rem);
 
 
-        @include s.media-breakpoint-up(s.$br-lg) {
+        @include s.media-breakpoint-up(lg) {
           justify-content: space-evenly;
+          flex-flow: row;
+          gap: s.f-unit(7vmax);
         }
 
-        .form_modal {
+        .form_wrapper {
+          order: 2;
+
+          border: thin solid lightgray;
+          border-radius: s.f-unit-light(20px);
+          //background-color: white;
+          align-self: flex-start;
+          background-color: rgba(246, 152, 87, .03);
+          backdrop-filter: blur(3px);
+          flex: 1;
+
+          margin: 0 auto;
+
+          @include s.media-breakpoint-up(md) {
+            margin: 0 0 0 #{s.f-unit(5rem)};
+            order: 1;
+
+            //margin: 0 auto;
+
+          }
+
+          //@include s.margin(hor, 4rem);
+        }
+
+        .form {
           display: flex;
           flex-flow: column;
           gap: s.f-unit(1.3rem);
           justify-content: flex-start;
-          background-color: white;
-          width: 35%;
-          border-radius: 40px;
-          border: 1px solid rgba(192, 192, 192, 0.63);
+          margin: 0 auto;
+          width: 100%;
+          max-width: 27rem;
+          margin-top: 3%;
+
+          .hor {
+            display: flex;
+            gap: 1rem;
+          }
 
 
           @include s.padding(2rem);
@@ -57,18 +126,25 @@
           }
 
           fieldset {
-            border-radius: 30px;
+            border-radius: s.f-unit-light(10px);
           }
         }
 
         .contact_detail {
-          background-color: white;
-          width: 40%;
+          order: 1;
+          width: 80%;
+          margin: 0 auto;
           align-self: start;
           border: 1px solid rgba(192, 192, 192, 0.63);
 
+          @include s.media-breakpoint-up(md) {
+            order: 2;
+            width: 33%;
+            margin: 0;
+          }
 
-          border-radius: 30px;
+
+          border-radius: s.f-unit-light(14px);
           @include s.padding(2rem);
 
           p {
