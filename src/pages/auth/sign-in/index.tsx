@@ -14,7 +14,9 @@ const SignIn = ({}) => {
   useEffect(() => {
     if (!session) {
       // console.log('query---', query);
-      signIn('google').then(() => null).catch(console.error);
+      signIn('google')
+        .then(() => null)
+        .catch(console.error);
     } else if (!session && query) {
       window.prompt(`${query.toString()} -- what si `);
     } else {

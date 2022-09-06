@@ -16,6 +16,7 @@ import 'locomotive-scroll/dist/locomotive-scroll.css';
 import { MotionValue, useMotionValue, useSpring, useTransform, useVelocity } from 'framer-motion';
 import MouseFollower from 'mouse-follower';
 import gsap from 'gsap';
+import RouteChangeEvent from '@/util/helpers/RouteChangeEvent';
 
 export interface LocomotiveScrollContextValue {
   scroll: Scroll | null;
@@ -73,7 +74,23 @@ export function LocomotiveScrollProvider({
   const scale = useTransform(velocity, [-3000, 0, 3000], [1.01, 1, 1.01], { clamp: true });
 
   useEffect(() => {
+    const event = RouteChangeEvent.GetInstance();
+
     cursor.current = new MouseFollower();
+
+    cursor?.current?.on('opaque', () => {
+      console.log('opacque vent invoked -------------');
+    });
+
+    event.addListener('start', () => {
+      cursor.current?.removeText();
+      cursor.current?.removeState('opaque');
+    });
+
+    event.addListener('end', () => {
+      cursor.current?.removeText();
+      cursor.current?.removeState('opaque');
+    });
 
     return () => {
       cursor.current?.destroy();

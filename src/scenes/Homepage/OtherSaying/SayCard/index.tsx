@@ -98,7 +98,7 @@ const SayCard = () => {
       </IconButton>
 
       <div className={s.box_bg}>
-        <Image src={BoxBg} alt='testimonal background'/>
+        <Image src={BoxBg} alt="testimonal background" />
       </div>
 
       <AnimatePresence exitBeforeEnter>

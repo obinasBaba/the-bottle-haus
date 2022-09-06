@@ -4,7 +4,6 @@ import { AppProps } from 'next/app';
 import Layout from '@/components/common/layout';
 import '@global/index.scss';
 
-
 import React, { useCallback, useEffect, useRef } from 'react';
 import Router, { useRouter } from 'next/router';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -24,7 +23,6 @@ import { LocomotiveScrollProvider, useLocomotiveScroll } from '@/context/LocoMot
 import LocomotiveScroll from 'locomotive-scroll';
 import { AnimatePresence } from 'framer-motion';
 import 'mouse-follower/src/scss/index.scss';
-
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();

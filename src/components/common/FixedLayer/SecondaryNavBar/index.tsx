@@ -50,6 +50,7 @@ const SecondaryNavBar = ({ collections }: { collections: Collection[] }) => {
               transition={transition}
               initial="initial"
               whileHover="hover"
+              data-cursor="-opaque"
               animate="animate">
               <motion.p className={s.linkText}>{name}</motion.p>
               <motion.p className={clsx([s.linkText])}>{name}</motion.p>

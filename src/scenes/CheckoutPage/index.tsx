@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { Button, IconButton, InputAdornment, TextField } from '@mui/material';
-import { MotionParent } from '@/components/common/MotionItems';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 import { Form, Formik, FormikProps } from 'formik';
 import ContactInformation from '@/scenes/CheckoutPage/ContactInformation';
@@ -8,28 +6,22 @@ import ShippingMethod from '@/scenes/CheckoutPage/ShippingMethod';
 import ShippingAddress from '@/scenes/CheckoutPage/ShippingAddress';
 import Payment from '@/scenes/CheckoutPage/Payment';
 import s from './checkoutpage.module.scss';
-import { CheckCircle, Downloading, HourglassBottom, RadioButtonUnchecked } from "@mui/icons-material";
-import { useRouter } from 'next/router';
 import { useAppInfo } from '@/context/MotionValuesContext';
 import { FormikHelpers } from 'formik/dist/types';
 import { CartInfo } from '@/scenes/CheckoutPage/cartInfo';
 import { pageTransition } from '@/scenes/Homepage';
-
-const wrapperVariants = {
-  initial: {
-    opacity: 0,
-    scale: 0.87,
-    y: -10,
-  },
-  animate: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-  },
-  exit: {
-    opacity: 0, // scale: 0.92,
-  },
-};
+import Image from 'next/image';
+import LTop from './leaf-top.png';
+import LBottom from './leaf-bottom.png';
+import {
+  activeFormVariants,
+  boxContainerVariants,
+  boxVariants,
+  swappingFormVariants,
+} from '@/scenes/CheckoutPage/transition';
+import { StepScaffold } from '@/scenes/CheckoutPage/StepScaffold';
+import { CompletedSteps } from '@/scenes/CheckoutPage/CompletedSteps';
+import { useLocomotiveScroll } from '@/context/LocoMotive';
 
 const steps = [
   {
@@ -50,113 +42,6 @@ const steps = [
   },
 ];
 
-export const StepScaffold = ({ children, controller, title }: any) => {
-  const { idx, prevStep, processingPayment } = controller;
-
-  const router = useRouter();
-  const [disable, setDisable] = useState(false);
-
-  return (
-    <div className={s.scaffold}>
-      <header>
-        <Button variant="contained">{idx + 1}</Button>
-        <h2>{title}</h2>
-      </header>
-
-      {children}
-
-      <div className="hor bottom_controller">
-        {idx !== 0 && (
-          <Button
-            variant="outlined"
-            className="in_btn"
-            size="large"
-            color="primary"
-            disabled={processingPayment}
-            onClick={() => (idx == 0 ? router.push('/cart') : prevStep())}>
-            Back
-          </Button>
-        )}
-
-
-
-        <Button
-          startIcon={ processingPayment && <HourglassBottom color='secondary'/> }
-          variant="contained"
-
-          size="large"
-          // className={clsx([{ [s.alone]: idx === 0 }])}
-          disabled={processingPayment}
-          type="submit"
-          onClick={() => {
-            if (idx == 3) {
-              // setTimeout(() => setDisable(true), 200);
-            }
-          }}>
-          {idx == 3 ? 'Pay Now' : 'Continue'}
-        </Button>
-      </div>
-    </div>
-  );
-};
-
-const CompletedSteps = (props: { completed: Completed } & Record<string, any>) => {
-  const {
-    completed,
-    controller: { setStep, idx },
-  } = props;
-
-  return (
-    <div className={s.step_info}>
-      {completed.map(({ completed, name, data, idx }, index) => (
-        <div className={s.completed_step} key={name}>
-          <div className={s.step_indicator}>
-            <IconButton color={completed && data ? 'primary' : 'secondary'}>
-              {completed && data ? <CheckCircle /> : <RadioButtonUnchecked />}
-            </IconButton>
-          </div>
-          <div className={s.text}>
-            <h4 className={s.step_name}>{name}</h4>
-            <small> {data || ' --'} </small>
-          </div>
-          <Button
-            size="small"
-            variant="outlined"
-            onClick={() => {
-              setStep(idx);
-            }}>
-            edit
-          </Button>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-export const FancyInput = ({ size = 'medium', btnText = 'apply', label = '' }: any) => {
-  return (
-    <div className="input">
-      <TextField
-        fullWidth
-        type="text"
-        size={size}
-        variant="outlined"
-        color="primary"
-        label={label}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <Button variant="contained" size="large">
-                {btnText}
-              </Button>
-            </InputAdornment>
-          ),
-        }}
-      />
-    </div>
-  );
-};
-
 const initialValues = {
   first_name: '',
   last_name: '',
@@ -174,21 +59,35 @@ type CheckoutFormStepArgType = {
 
 export type CheckoutFormStepComponent = React.FC<CheckoutFormStepArgType>;
 
-type Completed = {
+export type Completed = {
   completed: boolean;
   idx: number;
   name: string;
   data: string | null;
 }[];
 
+const getFormData = (idx: number, value: typeof initialValues) => {
+  switch (idx) {
+    case 0:
+      return `${value.first_name} ${value.last_name} (${value.email}) `;
+    case 1:
+      return `${value.address} `;
+    case 2:
+      return `${value.shipment} `;
+    case 3:
+      return `${value.card_name}, ${value.card_number} `;
+    default:
+      return '';
+  }
+};
 const CheckoutPage = () => {
   const [idx, setIdx] = useState(0);
   const [processingPayment, setProcessingPayment] = useState(false);
   const [activeStep, setActiveStep] = useState<typeof steps[number]>(steps[idx]);
   const { toolTipsData } = useAppInfo();
-  const [checkoutFormData, pushCheckoutFormData] = useState<
-    Completed
-  >([
+  const { scroll } = useLocomotiveScroll();
+
+  const [checkoutFormData, pushCheckoutFormData] = useState<Completed>([
     {
       completed: false,
       idx: 0,
@@ -196,21 +95,6 @@ const CheckoutPage = () => {
       data: null,
     },
   ]);
-
-  const getFormData = (idx: number, value: typeof initialValues) => {
-    switch (idx) {
-      case 0:
-        return `${value.first_name} ${value.last_name} (${value.email}) `;
-      case 1:
-        return `${value.address} `;
-      case 2:
-        return `${value.shipment} `;
-      case 3:
-        return `${value.card_name}, ${value.card_number} `;
-      default:
-        return '';
-    }
-  };
 
   const nextStep = (value: typeof initialValues, helper: FormikHelpers<typeof initialValues>) => {
     if (!value) return;
@@ -221,7 +105,7 @@ const CheckoutPage = () => {
         text: 'Processing Payment ....',
       });
 
-      setProcessingPayment(true)
+      setProcessingPayment(true);
 
       pushCheckoutFormData([
         ...checkoutFormData.slice(0, checkoutFormData.length - 1),
@@ -278,64 +162,112 @@ const CheckoutPage = () => {
   };
 
   return (
-    <div className={s.container}>
-      <div className="wrapper">
-        <h1 className={s.checkout_title}>
-          Checkout <span>Detail</span>
-        </h1>
+    <div className={s.container} id="checkout-page-container">
+      <LayoutGroup>
+        <motion.div
+          className={s.checkout_bg}
+          data-scroll={true}
+          data-scroll-sticky={true}
+          data-scroll-target="#checkout-page-container"
+          variants={boxVariants}
+          transition={pageTransition}>
+          <motion.div className={s.top} variants={boxVariants} transition={pageTransition}>
+            <Image src={LTop} alt="checkout background art" />
+          </motion.div>
 
-        <div className="wrapper2">
-          <LayoutGroup>
-            <motion.div className="checkout_form" layout>
-              <MotionParent className="active_step" layout>
-                <Formik
-                  initialValues={initialValues}
-                  validateOnMount={false}
-                  validateOnChange={false}
-                  validateOnBlur={false}
-                  onSubmit={nextStep}
-                  // validationSchema={activeStep.schema}
-                >
-                  {(formikProps) => (
-                    <Form>
-                      <LayoutGroup>
-                        <AnimatePresence exitBeforeEnter>
-                          <motion.div
-                            className="animator"
-                            variants={wrapperVariants}
-                            transition={{ ...pageTransition, duration: 1.1 }}
-                            initial="initial"
-                            animate="animate"
-                            exit="exit"
-                            key={activeStep.name}
-                            layout>
-                            <StepScaffold
-                              controller={{ nextStep, prevStep, setStep, idx, processingPayment }}
-                              title={activeStep.name}>
-                              {activeStep.component({
-                                formikProps,
-                              })}
-                            </StepScaffold>
-                          </motion.div>
-                        </AnimatePresence>
-                      </LayoutGroup>
-                    </Form>
-                  )}
-                </Formik>
-              </MotionParent>
-            </motion.div>
-          </LayoutGroup>
+          <motion.div className={s.bottom} variants={boxVariants} transition={pageTransition}>
+            <Image src={LBottom} alt="checkout background art" />
+          </motion.div>
+        </motion.div>
 
-          <div className="sidebar_info">
-            <CompletedSteps
-              completed={checkoutFormData}
-              controller={{ nextStep, prevStep, setStep, idx }}
-            />
+        <motion.div className="wrapper" variants={boxContainerVariants}>
+          <motion.h1
+            className={s.checkout_title}
+            variants={boxVariants}
+            transition={pageTransition}>
+            Checkout <span>Detail</span>
+          </motion.h1>
 
-            <CartInfo />
-          </div>
-        </div>
-      </div>
+          <motion.div
+            className="wrapper2"
+            layout
+            layoutScroll
+            onBeforeLayoutMeasure={() => {
+              scroll?.update();
+              scroll?.start();
+            }}
+            // onLayoutAnimationStart={() => scroll?.update()}
+            onLayoutAnimationComplete={() => {
+              setTimeout(() => {
+                scroll?.scrollTo(0, {
+                  duration: 1.3,
+                  easing: [0.6, 0.01, 0, 0.9],
+                });
+              }, 300);
+            }}>
+            <LayoutGroup>
+              <motion.div
+                className="checkout_form"
+                layout
+                layoutScroll
+                variants={activeFormVariants}>
+                <motion.div className="active_step" layout layoutScroll>
+                  <Formik
+                    initialValues={initialValues}
+                    validateOnMount={false}
+                    validateOnChange={false}
+                    validateOnBlur={false}
+                    onSubmit={nextStep}
+                    // validationSchema={activeStep.schema}
+                  >
+                    {(formikProps) => (
+                      <Form>
+                        <LayoutGroup>
+                          <AnimatePresence exitBeforeEnter>
+                            <motion.div
+                              className="animator"
+                              variants={swappingFormVariants}
+                              transition={{ ...pageTransition, duration: 1.1 }}
+                              initial="initial"
+                              animate="animate"
+                              exit="exit"
+                              key={activeStep.name}
+                              layout>
+                              <StepScaffold
+                                formikProps={formikProps}
+                                controller={{ nextStep, prevStep, setStep, idx, processingPayment }}
+                                title={activeStep.name}>
+                                {activeStep.component({
+                                  formikProps,
+                                })}
+                              </StepScaffold>
+                            </motion.div>
+                          </AnimatePresence>
+                        </LayoutGroup>
+                      </Form>
+                    )}
+                  </Formik>
+                </motion.div>
+              </motion.div>
+            </LayoutGroup>
+
+            <LayoutGroup>
+              <motion.div
+                className="sidebar_info"
+                layout
+                variants={boxVariants}
+                transition={pageTransition}>
+                <CompletedSteps
+                  completed={checkoutFormData}
+                  controller={{ nextStep, prevStep, setStep, idx }}
+                />
+
+                <CartInfo prossingPayment={processingPayment} />
+              </motion.div>
+            </LayoutGroup>
+          </motion.div>
+        </motion.div>
+      </LayoutGroup>
     </div>
   );
 };

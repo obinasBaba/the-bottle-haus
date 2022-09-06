@@ -1,24 +1,25 @@
 import { Badge, Button } from '@mui/material';
 import Image from 'next/image';
 import React from 'react';
-import { FancyInput } from '@/scenes/CheckoutPage/index';
 import { useCart } from '@/SWRHooksAPI';
 import Link from 'next/link';
 import { useAppInfo } from '@/context/MotionValuesContext';
 import s from './checkoutpage.module.scss';
+import { motion } from 'framer-motion';
+import { FancyInput } from '@/scenes/CheckoutPage/FancyInput';
 
-export function CartInfo() {
+export function CartInfo(props: any) {
   const cart = useCart();
 
   const { toolTipsData } = useAppInfo();
 
   return (
-    <div className={s.cart_info}>
+    <motion.div className={s.cart_info} layout>
       <header className="hor">
         <h2> {cart?.data?.lineItems.length || 0} item</h2>
         <Link href="/cart" aria-label="to cart">
           <a>
-            <Button>edit</Button>
+            <Button data-cursor="-opaque">edit</Button>
           </a>
         </Link>
       </header>
@@ -62,7 +63,11 @@ export function CartInfo() {
         </div>
       </div>
       <div className="btns">
-        <FancyInput size="small" label="Gift card or discount code" />
+        <FancyInput
+          size="small"
+          label="Gift card or discount code"
+          disabled={props.processingPayment}
+        />
       </div>
 
       <div className="detail">
@@ -86,6 +91,6 @@ export function CartInfo() {
           <h2>$ {cart.data?.totalPrice ? cart.data?.totalPrice + 15.2 : '-'} </h2>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

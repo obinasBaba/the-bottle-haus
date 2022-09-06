@@ -6,7 +6,7 @@ import HomePage, { pageTransition } from '@/scenes/Homepage';
 export async function getStaticProps({ preview, locale, locales }: GetStaticPropsContext) {
   const config = { locale, locales };
 
- /* return {
+  /* return {
     props: {
 
     }

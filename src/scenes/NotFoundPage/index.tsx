@@ -10,7 +10,7 @@ const NotFoundPage = () => {
     <div className={s.container}>
       <div className="wrapper">
         <div className="img">
-          <Image src={NoteFoundImg} objectFit="cover" />
+          <Image src={NoteFoundImg} objectFit="cover" alt="not found bottle image" />
         </div>
 
         <div className="text">

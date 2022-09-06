@@ -29,6 +29,10 @@ const NavBar = (props: { collections: any[] }) => {
           </Link>
         </div>
 
+        <div className={s.collection_links}>
+          <SecondaryNavBar collections={props.collections as Collection[]} />
+        </div>
+
         <div className={s.icons}>
           <Button
             className={s.login}
@@ -50,7 +54,7 @@ const NavBar = (props: { collections: any[] }) => {
         </div>
       </motion.div>
 
-      <SecondaryNavBar collections={props.collections as Collection[]} />
+      {/*<SecondaryNavBar collections={props.collections as Collection[]} />*/}
     </nav>
   );
 };

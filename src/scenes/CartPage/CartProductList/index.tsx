@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import s from './cartproductlist.module.scss';
 import useCart from '@/SWRHooksAPI/cart/use-cart';
 import Image from 'next/image';
 import Quantity from '@/scenes/CartPage/CartProductList/Quantity';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
-import { Button, Typography } from "@mui/material";
+import { Button, Typography } from '@mui/material';
 import clsx from 'clsx';
-import { useLocomotiveScroll } from "@/context/LocoMotive";
+import { useLocomotiveScroll } from '@/context/LocoMotive';
 
 export const basicVariants: Variants = {
   initial: {
@@ -31,29 +31,19 @@ const CartProductList = () => {
   const [loading, setLoading] = useState<string | undefined>();
   const { scroll } = useLocomotiveScroll();
 
-
   useEffect(() => {
-
-    scroll?.update()
+    scroll?.update();
 
     console.log('scroll-instance: ', scroll);
-
-  }, [cart])
+  }, [cart]);
 
   return (
-    <div className={s.container}
-
-         data-scroll={true}
-    >
-      <div className="wrapper"
-
-           id='cart-product-wrapperz' data-scroll={true}
-      >
+    <div className={s.container} data-scroll={true}>
+      <div className="wrapper" id="cart-product-wrapperz" data-scroll={true}>
         <header>
           <h1>
             My <span>Cart ({cart?.lineItems.length || 0})</span>
           </h1>
-
         </header>
 
         <table className="cart_product_list" data-scroll={true}>
@@ -121,8 +111,10 @@ const CartProductList = () => {
                     </td>
 
                     <td className="total">
-                      <p >
-                        <span className={clsx([loading == id && s.hidden, 'value'])}>${Number(quantity * price).toFixed(1)}</span>
+                      <p>
+                        <span className={clsx([loading == id && s.hidden, 'value'])}>
+                          ${Number(quantity * price).toFixed(1)}
+                        </span>
                         {loading == id && <span className="loader" />}
                       </p>
                     </td>

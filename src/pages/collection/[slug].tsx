@@ -52,7 +52,6 @@ export async function getStaticPaths({}: GetStaticPathsContext): Promise<GetStat
   };
 }
 
-
 const Collections: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   products = [],
 }) => {

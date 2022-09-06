@@ -1,11 +1,11 @@
-@use '@styles' as s;
+@use '@/styles' as s;
 
 
 .container {
   position: relative;
   padding: .6rem 1rem;
   backdrop-filter: blur(20px);
-  width: 100%;
+  width: min-content;
 
   //border: 1px solid #000;
 
@@ -16,7 +16,7 @@
     z-index: -1;
     opacity: .1;
     //background-image: linear-gradient(s.$clrs-gray-light, rgba(237, 237, 237, 0));
-    background-color: rgba(246, 152, 87, .7);
+    //background-color: rgba(246, 152, 87, .7);
   }
 
   & :local {
@@ -25,21 +25,24 @@
       position: relative;
       display: flex;
       justify-content: center;
-      gap: 2rem;
       margin: 0 auto;
+      gap: s.f-unit(1rem);
       //overflow-y: scroll;
 
       //border: 1px solid blue;
 
 
-      @include s.media-breakpoint-up(md) {
+      @include s.media-breakpoint-up(lg) {
         overflow-y: hidden;
+        //gap: 2rem;
+
       }
     }
 
     a {
       position: relative;
       cursor: pointer;
+      color: gray;
       //border: 1px solid red;
       //overflow: hidden;
 
