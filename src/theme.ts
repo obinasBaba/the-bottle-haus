@@ -4,6 +4,7 @@ import { red } from '@mui/material/colors';
 //#ededed
 
 // Create a theme instance.
+
 const theme = createTheme({
   breakpoints: {
     values: {
@@ -11,7 +12,8 @@ const theme = createTheme({
       sm: 576,
       md: 768,
       lg: 992,
-      xl: 1200,
+      xl: 1200, // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       xxl: 1900,
     },
   },
