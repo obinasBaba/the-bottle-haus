@@ -39,13 +39,6 @@ export const StepScaffold: CheckoutFormStepComponent = ({
             onClick={() => {
               return prevStep();
 
-              scroll?.scrollTo(0, {
-                duration: 1,
-                easing: [0.6, 0.01, 0, 0.9],
-                callback() {
-                  prevStep();
-                },
-              });
             }}>
             Back
           </Button>
@@ -58,19 +51,7 @@ export const StepScaffold: CheckoutFormStepComponent = ({
           size="large"
           disabled={processingPayment}
           type="submit"
-          onClick={(ev) => {
-            // ev.preventDefault();
-            return;
-
-            scroll?.scrollTo(0, {
-              duration: 1.4,
-              easing: [0.6, 0.01, 0, 0.9],
-              callback() {
-                formikProps.validateForm();
-                // formikProps.submitForm();
-              },
-            });
-          }}>
+          >
           {processingPayment ? 'processing...' : idx == 3 ? 'Pay Now' : 'Continue'}
         </Button>
       </div>

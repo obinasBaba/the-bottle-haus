@@ -225,7 +225,6 @@ const CheckoutPage = () => {
                         <LayoutGroup>
                           <AnimatePresence exitBeforeEnter>
                             <motion.div
-                              className="animator"
                               variants={swappingFormVariants}
                               transition={{ ...pageTransition, duration: 1.1 }}
                               initial="initial"

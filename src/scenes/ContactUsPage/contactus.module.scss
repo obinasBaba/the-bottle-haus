@@ -95,9 +95,6 @@
           @include s.media-breakpoint-up(md) {
             margin: 0 0 0 #{s.f-unit(5rem)};
             order: 1;
-
-            //margin: 0 auto;
-
           }
 
           //@include s.margin(hor, 4rem);
@@ -117,7 +114,6 @@
             display: flex;
             gap: 1rem;
           }
-
 
           @include s.padding(2rem);
 
