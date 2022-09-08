@@ -38,9 +38,7 @@ function ReturnButton() {
   const router = useRouter();
 
   return (
-    <div className={s.return_btn} onClick={() => router.back()}
-         data-cursor='-opaque'
-    >
+    <div className={s.return_btn} onClick={() => router.back()} data-cursor="-opaque">
       <motion.svg
         width="54"
         height="54"

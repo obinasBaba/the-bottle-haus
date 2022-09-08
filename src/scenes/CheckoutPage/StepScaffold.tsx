@@ -38,7 +38,6 @@ export const StepScaffold: CheckoutFormStepComponent = ({
             disabled={processingPayment}
             onClick={() => {
               return prevStep();
-
             }}>
             Back
           </Button>
@@ -50,8 +49,7 @@ export const StepScaffold: CheckoutFormStepComponent = ({
           variant="contained"
           size="large"
           disabled={processingPayment}
-          type="submit"
-          >
+          type="submit">
           {processingPayment ? 'processing...' : idx == 3 ? 'Pay Now' : 'Continue'}
         </Button>
       </div>

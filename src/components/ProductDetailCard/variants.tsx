@@ -1,6 +1,6 @@
 import { Variants } from 'framer-motion';
-import { Product } from "@/types/product";
-import Bottle from "@/public/whisky-review/kiss.png";
+import { Product } from '@/types/product';
+import Bottle from '@/public/whisky-review/kiss.png';
 
 export const returnButtonVariants = {
   initial: {
