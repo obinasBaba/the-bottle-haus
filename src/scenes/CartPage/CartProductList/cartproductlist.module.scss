@@ -32,6 +32,7 @@
       //padding: 1.4rem;
 
       //border: 1px solid gray;
+      min-height: 100vh;
 
       @include s.media-breakpoint-up(lg) {
         width: 100%;

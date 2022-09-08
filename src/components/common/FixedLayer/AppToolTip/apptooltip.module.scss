@@ -2,13 +2,17 @@
 
 .container {
   position: absolute;
-  bottom: 7%;
+  bottom: 4%;
   left: 4%;
   user-select: none;
   border-radius: 500px;
   overflow: hidden;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.35);
   z-index: 100;
+
+  @include s.media-breakpoint-up(md){
+    bottom: 7%;
+  }
 
   & :global {
 

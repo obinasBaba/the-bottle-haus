@@ -11,45 +11,24 @@ import {
   SelectChangeEvent,
   Slider,
 } from '@mui/material';
-import { AnimatePresence, motion, Variants } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowDropDown } from '@mui/icons-material';
 import { Theme, useTheme } from '@mui/material/styles';
 import { MotionParent } from '@/components/common/MotionItems';
 import { CollectionsContext } from '@/context/CollectionPageContext';
 
+import Img from './media/img.png';
+import Img2 from './media/img_1.png';
+import Img3 from './media/img_2.png';
+import Img4 from './media/img_3.png';
+import Img5 from './media/img_4.png';
+import Img6 from './media/img_5.png';
+
+const list = [Img, Img2, Img3, Img4, Img5, Img6];
+
 function valuetext(value: number) {
   return `${value}°C`;
 }
-
-const popupVariants: Variants = {
-  initial: {
-    scale: 0.8,
-    x: -20,
-    y: -20,
-    opacity: 0,
-  },
-  animate: {
-    scale: 1,
-    x: 0,
-    y: 0,
-    opacity: 1,
-  },
-
-  exit: {
-    opacity: 0,
-    scale: 0.7,
-    x: -50,
-    y: -50,
-    transition: {
-      opacity: {
-        duration: 0.2,
-      },
-      default: {
-        type: 'spring',
-      },
-    },
-  },
-};
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -177,83 +156,93 @@ const CollectionsFilter = ({ title }: any) => {
 
   return (
     <MotionParent className={s.container}>
-      <AnimatePresence exitBeforeEnter>
-        <MotionParent key={title}>
-          <motion.h1
-            className="title"
-            variants={titleVariants as any}
-            transition={titleVariants.transition}>
-            {title}
-          </motion.h1>
-        </MotionParent>
-      </AnimatePresence>
+      <div className={s.wrapper}>
+        <AnimatePresence exitBeforeEnter>
+          <MotionParent key={title}>
+            <motion.h1
+              className="title"
+              variants={titleVariants as any}
+              transition={titleVariants.transition}>
+              {title}
+            </motion.h1>
+          </MotionParent>
+        </AnimatePresence>
 
-      <div className="filter">
-        <Button
-          variant="outlined"
-          size="medium"
-          aria-describedby={id}
-          endIcon={<ArrowDropDown />}
-          onClick={handlePopperClick}>
-          Price
-        </Button>
+        <div className="filter">
+          <Button
+            variant="outlined"
+            size="medium"
+            aria-describedby={id}
+            endIcon={<ArrowDropDown />}
+            onClick={handlePopperClick}>
+            Price
+          </Button>
 
-        <Popover
-          id={id}
-          open={open}
-          anchorEl={anchorEl}
-          onClose={handleClose}
-          PaperProps={{
-            elevation: 5,
-            className: s.popup,
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'right',
-          }}>
-          <>
-            <div className={s.price_popup} ref={containerRef}>
-              <p>Price Range</p>
-              <div className={s.meta}>
-                <p>$34 - $15000</p>
-                <small>Maximum price: $15,000</small>
-              </div>
-              <Slider
-                getAriaLabel={() => 'Temperature range'}
-                value={value}
-                onChange={handleChange}
-                max={1500}
-                min={30}
-                valueLabelDisplay="auto"
-                getAriaValueText={valuetext}
-              />
-              <div className={s.hor}>
-                <Button variant="text" size="small" disabled>
-                  ${value[0]}
+          <Popover
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleClose}
+            PaperProps={{
+              elevation: 5,
+              className: s.popup,
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}>
+            <>
+              <div className={s.price_popup} ref={containerRef}>
+                <p>Price Range</p>
+                <div className={s.meta}>
+                  <p>$34 - $15000</p>
+                  <small>Maximum price: $15,000</small>
+                </div>
+                <Slider
+                  getAriaLabel={() => 'Temperature range'}
+                  value={value}
+                  onChange={handleChange}
+                  max={1500}
+                  min={30}
+                  valueLabelDisplay="auto"
+                  getAriaValueText={valuetext}
+                />
+                <div className={s.hor}>
+                  <Button variant="text" size="small" disabled>
+                    ${value[0]}
+                  </Button>
+                  -
+                  <Button variant="text" size="small" disabled>
+                    ${value[1]}
+                  </Button>
+                </div>
+                <Button
+                  aria-selected={true}
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  onClick={() => handleClose()}>
+                  Apply Filter
                 </Button>
-                -
-                <Button variant="text" size="small" disabled>
-                  ${value[1]}
-                </Button>
               </div>
-              <Button
-                aria-selected={true}
-                variant="outlined"
-                size="small"
-                fullWidth
-                onClick={() => handleClose()}>
-                Apply Filter
-              </Button>
-            </div>
-          </>
-        </Popover>
+            </>
+          </Popover>
 
-        <SortBySelect />
+          <SortBySelect />
+        </div>
       </div>
+
+      {/*<div className={s.mobile_pro_list}>
+        {list.map((img, idx) => (
+          <div className={s.pro_list_item} key={img.src}>
+            <Image src={img} key={img.src} alt="product list navigation item" placeholder="blur" />
+          </div>
+        ))}
+      </div>*/}
     </MotionParent>
   );
 };

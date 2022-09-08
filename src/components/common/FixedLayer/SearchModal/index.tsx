@@ -10,6 +10,8 @@ import { motion, Transition, Variants } from 'framer-motion';
 import { useFormik } from 'formik';
 import { useAppInfo } from '@/context/MotionValuesContext';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
+import Logo from '@/public/logo-3.png';
 
 const containerVariant = {
   initial: {
@@ -110,7 +112,9 @@ const SearchModal = () => {
 
       <div className={s.wrapper}>
         <nav>
-          <Avatar className={s.logo}>L</Avatar>
+          <Avatar className={s.logo}>
+            <Image src={Logo} alt="app-logo" objectFit="cover" />
+          </Avatar>
 
           <CloseMenuButton onClick={() => closeSearchModal()} />
         </nav>

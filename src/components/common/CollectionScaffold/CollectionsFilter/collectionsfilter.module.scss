@@ -2,18 +2,43 @@
 
 .container {
   width: 100%;
-  display: flex;
+  //display: flex;
   align-items: center;
   padding: 0 1rem 0;
 
   overflow: hidden;
 
+  & :local{
+    .mobile_pro_list{
+      display: flex;
+      display: none;
+      align-items: center;
+      justify-content: space-evenly;
+      width: 100%;
+      //border: 1px solid #000;
+      backdrop-filter: blur(5px);
+      background-color: white;
+
+      .pro_list_item{
+        //border: 1px solid red;
+        max-width: 3.5vmax;
+      }
+    }
+
+    .wrapper{
+      display: flex;
+    }
+  }
+
   & :global {
     .title {
-      color: #cccccc;
-      @include s.font-size-title(2rem);
+      color: gray;
+      @include s.font-size-title(2.8rem);
 
       @include s.media-breakpoint-up(md) {
+        @include s.font-size-title(2.2rem);
+
+        color: #cccccc;
         margin: 0;
         font-weight: bolder;
         -webkit-text-stroke: 1px #cccccc;

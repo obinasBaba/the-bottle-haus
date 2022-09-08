@@ -4,7 +4,7 @@ import useCart from '@/SWRHooksAPI/cart/use-cart';
 import Image from 'next/image';
 import Quantity from '@/scenes/CartPage/CartProductList/Quantity';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
-import { Button, Typography } from '@mui/material';
+import { Button } from '@mui/material';
 import clsx from 'clsx';
 import { useLocomotiveScroll } from '@/context/LocoMotive';
 
@@ -126,7 +126,12 @@ const CartProductList = () => {
         </table>
 
         {cart?.lineItems.length == 0 && (
-          <h1 className="cart_empty"> Your cart is Empty, add something to display it here.</h1>
+          <>
+            <h1 className="cart_empty"> Your cart is Empty, add something to display it here.</h1>
+            <Button size="large" data-cursor="-opaque">
+              Return to shopping
+            </Button>
+          </>
         )}
       </div>
     </div>

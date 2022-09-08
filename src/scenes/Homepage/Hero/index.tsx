@@ -81,6 +81,8 @@ const Hero = () => {
                 objectFit="cover"
                 layout="fill"
                 alt="hero slider image"
+                property
+                placeholder='blur'
               />
             </motion.div>
           </MotionParent>

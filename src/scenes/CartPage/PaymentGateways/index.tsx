@@ -25,7 +25,7 @@ const PaymentGateways = () => {
       <div className="payment_wrapper">
         <div className="message">
           <h3>Special instruction for the saleor</h3>
-          <TextField variant="outlined" fullWidth multiline rows={5} label="message" />
+          <TextField variant="outlined" fullWidth multiline rows={3} label="message" />
         </div>
 
         <div className="payments_detail">
