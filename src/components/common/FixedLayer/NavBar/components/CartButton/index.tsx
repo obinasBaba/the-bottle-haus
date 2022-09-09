@@ -10,6 +10,7 @@ import { MotionParent } from '@/components/common/MotionItems';
 import Badge, { BadgeProps } from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import { ClickAwayListener } from '@mui/base';
+import clsx from 'clsx';
 
 export const popupVariants: Variants = {
   initial: {
@@ -61,7 +62,7 @@ const CartButton = () => {
   }, [show]);
 
   return (
-    <div className={s.container}>
+    <div className={clsx([s.container, 'navbar_cart'])}>
       <Badge
         className={s.badge}
         badgeContent={cart?.data?.lineItems?.length}

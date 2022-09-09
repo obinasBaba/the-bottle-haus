@@ -47,7 +47,7 @@
       row-gap: s.f-unit(2.9rem);
       @include s.margin(top, 4rem);
 
-      overflow: hidden;
+      //overflow: hidden;
 
       @include s.media-breakpoint-up(md) {
         grid-template-columns: repeat(4, minmax(s.f-unit(13rem), 1fr) );

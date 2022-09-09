@@ -6,19 +6,24 @@ import { Product } from '@/types/product';
 import Link from 'next/link';
 import House from './houses.png';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { basicTransition } from '@/components/common/MotionItems';
 
 export function SceneTitle({ title }: any) {
   return <h1 dangerouslySetInnerHTML={{ __html: title }} className={s.title} />;
 }
 
-const headerVariants = {
-  initial: {},
+const headerVariants: Variants = {
+  initial: {
+    overflow: 'hidden',
+  },
   inView: {
     transition: {
       delayChildren: 0.6,
       staggerChildren: 0.25,
+    },
+    transitionEnd: {
+      overflow: 'visible',
     },
   },
 };
@@ -86,8 +91,8 @@ const FeaturedCollection = ({ data }: { data: Product[] }) => {
           initial="initial"
           whileInView="inView"
           viewport={{
-            amount: 0.2,
-            once: true,
+            amount: 0.1,
+            once: false,
           }}>
           {data.slice(a, b).map((product, idx) => (
             <motion.div

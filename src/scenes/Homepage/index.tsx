@@ -8,6 +8,8 @@ import { Product, ProductTypes } from '@/types/product';
 import { PageTransitionContainer } from '@/components/common/MotionItems';
 import HorizontalMarquee from './/HorizontalMarqee';
 import GlassView from '@/scenes/Homepage/GlassView';
+import FeaturedCollection from '@/scenes/Homepage/FeaturedCollection';
+import RareToFind from '@/scenes/Homepage/RareToFind';
 
 type HomepageProps = {
   featuredProduct: ProductTypes['product'];
@@ -34,8 +36,8 @@ const HomePage: React.FC<HomepageProps> = ({
       <Hero />
       <HorizontalMarquee />
       <GlassView />
-      {/*<FeaturedCollection data={featuredCollections} />
-      <RareToFind data={rareToFind} />*/}
+      <FeaturedCollection data={featuredCollections} />
+      <RareToFind data={rareToFind} />
       <Testimonials />
       {/*<FeaturedProduct featuredProduct={featuredProduct} />
       <FeaturedGrid />*/}
