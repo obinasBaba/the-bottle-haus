@@ -17,6 +17,7 @@ import {
 } from '@/scenes/Homepage/Hero/resources';
 import Link from 'next/link';
 import { useAppContext } from '@/context/app';
+import { useAppInfo } from '@/context/MotionValuesContext';
 
 let touched = false;
 
@@ -24,6 +25,7 @@ const Hero = () => {
   const [idx, setIdx] = useState(0);
   const [selectedImg, setSelectedImg] = useState(images[0]);
   const savedCallback = useRef<any>();
+  const { PageAnimationEvent, PageAnimationController } = useAppInfo();
 
   const { lightenNavBar, darkenNavBar } = useAppContext();
 
@@ -100,6 +102,9 @@ const Hero = () => {
 
           <AnimatePresence exitBeforeEnter>
             <MotionParent
+              animate={
+                PageAnimationEvent.get() === 'finished' ? 'animate' : PageAnimationController
+              }
               className={s.text}
               key={selectedImg.img.src}
               data-idx={idx}

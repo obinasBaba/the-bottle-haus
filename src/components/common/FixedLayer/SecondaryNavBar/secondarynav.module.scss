@@ -46,13 +46,22 @@
       //border: 1px solid red;
       //overflow: hidden;
 
-      & > :last-child{
+      & > :last-child {
         position: absolute;
         display: none;
 
-        @include s.media-breakpoint-up(md){
+        @include s.media-breakpoint-up(md) {
           display: block;
         }
+      }
+    }
+
+    .link {
+      display: inline-block;
+      transition: transform cubic-bezier(0.6, 0.01, 0, 0.9) .6s;
+
+      &:hover {
+        transform: translateY(-100%);
       }
     }
 

@@ -2,15 +2,11 @@ import React from 'react';
 import Head from 'next/head';
 import s from './homepage.module.scss';
 import Hero from './Hero';
-import RareToFind from './/RareToFind';
 import Testimonials from './/OtherSaying';
-import FeaturedGrid from './/FeaturedGrid';
 import OurBlog from './/OurBlog';
 import { Product, ProductTypes } from '@/types/product';
-import FeaturedCollection from './/FeaturedCollection';
-import { MotionParent } from '@/components/common/MotionItems';
+import { PageTransitionContainer } from '@/components/common/MotionItems';
 import HorizontalMarquee from './/HorizontalMarqee';
-import FeaturedProduct from './/FeaturedProduct';
 import GlassView from '@/scenes/Homepage/GlassView';
 
 type HomepageProps = {
@@ -30,7 +26,7 @@ const HomePage: React.FC<HomepageProps> = ({
   rareToFind,
 }) => {
   return (
-    <MotionParent transition={pageTransition} className={s.container}>
+    <PageTransitionContainer transition={pageTransition} className={s.container}>
       <Head>
         <title>Juvi . Homepage</title>
         <meta name="homepage" />
@@ -38,13 +34,13 @@ const HomePage: React.FC<HomepageProps> = ({
       <Hero />
       <HorizontalMarquee />
       <GlassView />
-      <FeaturedCollection data={featuredCollections} />
-      <RareToFind data={rareToFind} />
+      {/*<FeaturedCollection data={featuredCollections} />
+      <RareToFind data={rareToFind} />*/}
       <Testimonials />
-      <FeaturedProduct featuredProduct={featuredProduct} />
-      <FeaturedGrid />
+      {/*<FeaturedProduct featuredProduct={featuredProduct} />
+      <FeaturedGrid />*/}
       <OurBlog />
-    </MotionParent>
+    </PageTransitionContainer>
   );
 };
 

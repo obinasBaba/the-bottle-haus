@@ -4,33 +4,32 @@ import { Collection } from '@/schema';
 import s from './secondarynav.module.scss';
 import { motion, Transition, Variants } from 'framer-motion';
 import clsx from 'clsx';
+import { MotionChild } from '@/components/common/MotionItems';
+import { boxContainerVariants } from '@/scenes/CheckoutPage/transition';
 
 const linkVariants: Variants = {
   initial: {
-    opacity: 1,
-    y: 0,
+    opacity: 0,
+    y: '100%',
   },
 
   animate: {
+    opacity: 1,
     y: 0,
-  },
-
-  hover: {
-    // opacity: [null, 1, 0, 0, 1],
-    // y: [null, '-100%', '-100%', '100%', '0%'],
-    y: '-100%',
   },
 };
 
 const transition: Transition = {
   duration: 0.6,
-  ease: [0.6, 0.01, 0, 0.9],
-  // times: [0, 0.45, 0.48, 0.5, 1],
+  ease: [0.6, 0.01, 0, 0.9], // times: [0, 0.45, 0.48, 0.5, 1],
 };
 
 const SecondaryNavBar = ({ collections }: { collections: Collection[] }) => {
   const [data, setData] = useState([
-    { name: 'All Product', slug: 'all-products' },
+    {
+      name: 'All Product',
+      slug: 'all-products',
+    },
     { name: 'Whiskey' },
     { name: 'Alcohol' },
     { name: 'Wine' },
@@ -42,22 +41,18 @@ const SecondaryNavBar = ({ collections }: { collections: Collection[] }) => {
 
   return (
     <nav className={s.container}>
-      <div className={s.wrapper}>
+      <MotionChild className={s.wrapper} variants={boxContainerVariants}>
         {(collections || data).map(({ name, slug }) => (
-          <Link href={`/collection/${slug}`} key={name}>
-            <motion.a
-              variants={linkVariants}
-              transition={transition}
-              initial="initial"
-              whileHover="hover"
-              data-cursor="-opaque"
-              animate="animate">
-              <motion.p className={s.linkText}>{name}</motion.p>
-              <motion.p className={clsx([s.linkText])}>{name}</motion.p>
-            </motion.a>
-          </Link>
+          <MotionChild key={name} variants={linkVariants}>
+            <Link href={`/collection/${slug}`}>
+              <a className={s.link} data-cursor="-opaque">
+                <motion.p className={s.linkText}>{name}</motion.p>
+                <motion.p className={clsx([s.linkText])}>{name}</motion.p>
+              </a>
+            </Link>
+          </MotionChild>
         ))}
-      </div>
+      </MotionChild>
     </nav>
   );
 };

@@ -74,7 +74,7 @@ const FixedLayer = ({ collections }: any) => {
 
   return (
     <div className={s.container}>
-      <AnimatePresence exitBeforeEnter>{false && <LoadingModal />}</AnimatePresence>
+      <AnimatePresence exitBeforeEnter>{loadingModal && <LoadingModal />}</AnimatePresence>
 
       <HideOnScroll>
         <div style={{ pointerEvents: 'auto' }}>

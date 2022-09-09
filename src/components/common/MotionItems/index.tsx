@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, Transition, Variants } from 'framer-motion';
+import { useAppInfo } from '@/context/MotionValuesContext';
 
 export const basicVariants: Variants = {
   initial: {
@@ -19,6 +20,25 @@ export const basicTransition: Transition = {
   ease: [0.6, 0.01, 0, 0.9],
 };
 
+export const PageTransitionContainer = React.forwardRef((props: any, ref) => {
+  const { PageAnimationEvent, PageAnimationController } = useAppInfo();
+
+  return (
+    <motion.div
+      variants={basicVariants}
+      initial="initial"
+      animate={PageAnimationEvent.get() === 'finished' ? 'animate' : PageAnimationController}
+      // animate='animate'
+      exit="exit"
+      ref={ref}
+      {...props}>
+      {props.children}
+    </motion.div>
+  );
+});
+
+PageTransitionContainer.displayName = 'PageTransitionContainer';
+
 const MotionParent = React.forwardRef((props: any, ref) => {
   return (
     <motion.div
@@ -37,7 +57,7 @@ MotionParent.displayName = 'MotionParent';
 
 const MotionChild = React.forwardRef((props: any, ref) => {
   return (
-    <motion.div variants={basicVariants} ref={ref} {...props}>
+    <motion.div variants={basicVariants} transition={basicTransition} ref={ref} {...props}>
       {props.children}
     </motion.div>
   );

@@ -1,4 +1,4 @@
-import { MotionValue, useMotionValue } from 'framer-motion';
+import { AnimationControls, MotionValue, useAnimation, useMotionValue } from 'framer-motion';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import LocomotiveScroll from 'locomotive-scroll';
@@ -13,6 +13,8 @@ type ToolTipType = {
 type MotionValueContextType = {
   toolTipsData: MotionValue<any>;
   appBarScrollState: MotionValue<string>;
+  PageAnimationEvent: MotionValue<string>;
+  PageAnimationController: AnimationControls;
 
   mouse: {
     mouseX: MotionValue<number>;
@@ -40,6 +42,9 @@ export const MotionValueContextWrapper: React.FC<{ children: React.ReactNode }> 
     timer: null,
   });
 
+  const PageAnimationEvent = useMotionValue<string>('');
+  const PageAnimationController = useAnimation();
+
   //mouse_event motion_values
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -65,6 +70,8 @@ export const MotionValueContextWrapper: React.FC<{ children: React.ReactNode }> 
         },
         toolTipsData,
         appBarScrollState,
+        PageAnimationEvent,
+        PageAnimationController,
       }}>
       {children}
     </MotionValueContext.Provider>
