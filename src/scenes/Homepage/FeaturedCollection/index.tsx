@@ -92,7 +92,7 @@ const FeaturedCollection = ({ data }: { data: Product[] }) => {
           whileInView="inView"
           viewport={{
             amount: 0.1,
-            once: false,
+            once: true,
           }}>
           {data.slice(a, b).map((product, idx) => (
             <motion.div

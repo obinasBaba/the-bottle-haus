@@ -10,6 +10,8 @@ import HorizontalMarquee from './/HorizontalMarqee';
 import GlassView from '@/scenes/Homepage/GlassView';
 import FeaturedCollection from '@/scenes/Homepage/FeaturedCollection';
 import RareToFind from '@/scenes/Homepage/RareToFind';
+import FeaturedGrid from "@/scenes/Homepage/FeaturedGrid";
+import FeaturedProduct from "@/scenes/Homepage/FeaturedProduct";
 
 type HomepageProps = {
   featuredProduct: ProductTypes['product'];
@@ -39,8 +41,8 @@ const HomePage: React.FC<HomepageProps> = ({
       <FeaturedCollection data={featuredCollections} />
       <RareToFind data={rareToFind} />
       <Testimonials />
-      {/*<FeaturedProduct featuredProduct={featuredProduct} />
-      <FeaturedGrid />*/}
+      <FeaturedProduct featuredProduct={featuredProduct} />
+      <FeaturedGrid />
       <OurBlog />
     </PageTransitionContainer>
   );

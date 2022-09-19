@@ -85,61 +85,7 @@ const FeaturedGrid = () => {
             </>
           ))}
 
-          {/*<div className="big">
-            <Image src={Featured} alt={'grid image'} objectFit={'cover'} />
-          </div>
 
-          <div className={s.grid_img}>
-            <Image src={Haus} alt={'grid image'} objectFit={'cover'} />
-            liqueur
-          </div>
-
-          <div className="wine">
-            <Image src={Wine} alt={'grid image'} objectFit={'cover'} />
-            WIne
-          </div>
-
-          <div style={{  background: 'lightcoral' }} />
-          <Link href={'/'}>
-            <a style={{ background: 'lightcoral' }}>more</a>
-          </Link>
-
-          <Link href={'/'}>
-            <a style={{ background: '#FE8029' }}>Gin</a>
-          </Link>
-
-          <div className="vodka">
-            <Image src={Vodka} alt={'grid image'} objectFit={'cover'} />
-          </div>
-
-          <div className="haus">
-            <Image src={Haus2} alt={'grid image'} objectFit={'cover'} />
-
-            haus
-          </div>
-
-          <div className="cognac">
-            coganac
-            <Image src={Cognac} alt={'grid image'} objectFit={'cover'} />
-          </div>
-
-          <Link href={'/'}>
-            <a style={{ background: '#94C4C8' }}>Tequila</a>
-          </Link>
-
-          <div className="rum">
-            <Image src={Rum} alt={'grid image'} objectFit={'cover'} />
-            rum
-          </div>
-
-          <div className="whisky">
-            <Image src={Whisky} alt={'grid image'} objectFit={'cover'} />
-            whisky
-          </div>
-
-          <Link href={'/'}>
-            <a style={{ background: 'teal' }}></a>
-          </Link>*/}
         </div>
       </div>
     </div>

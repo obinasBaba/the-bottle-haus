@@ -8,7 +8,7 @@ import Bg from './footer-bg.png';
 import Sign from './circle-logo.png';
 import Houses from '@/public/houses.png';
 import { Button, InputAdornment, TextField } from '@mui/material';
-import s from './style.module.scss';
+import s from './footer.module.scss';
 
 const Footer = () => {
   return (
