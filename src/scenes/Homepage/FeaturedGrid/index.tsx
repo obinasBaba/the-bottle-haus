@@ -84,8 +84,6 @@ const FeaturedGrid = () => {
               </Link>
             </>
           ))}
-
-
         </div>
       </div>
     </div>
