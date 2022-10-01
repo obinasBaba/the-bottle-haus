@@ -121,10 +121,10 @@ const LoadingModal = () => {
           transition={pageTransition}
           onAnimationStart={(state) => {
             PageAnimationEvent.set('started');
-            console.log('on animation start', state);
+            // console.log('on animation start', state);
           }}
           onAnimationComplete={(state) => {
-            console.log('on animation complete', state);
+            // console.log('on animation complete', state);
 
             if (state == 'animate') setReady(true);
 

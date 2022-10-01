@@ -14,6 +14,11 @@ type MotionValueContextType = {
   toolTipsData: MotionValue<any>;
   appBarScrollState: MotionValue<string>;
   PageAnimationEvent: MotionValue<string>;
+  scrollState: MotionValue<{
+    elementId?: string;
+    scrollY?: number;
+    remember: boolean;
+  }>;
   PageAnimationController: AnimationControls;
 
   mouse: {
@@ -49,6 +54,7 @@ export const MotionValueContextWrapper: React.FC<{ children: React.ReactNode }> 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const appBarScrollState = useMotionValue('');
+  const scrollState = useMotionValue<any>(null);
 
   useLayoutEffect(() => {
     const updateMouseMotionValue = (ev: MouseEvent) => {
@@ -72,6 +78,7 @@ export const MotionValueContextWrapper: React.FC<{ children: React.ReactNode }> 
         appBarScrollState,
         PageAnimationEvent,
         PageAnimationController,
+        scrollState,
       }}>
       {children}
     </MotionValueContext.Provider>

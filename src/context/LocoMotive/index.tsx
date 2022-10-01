@@ -4,6 +4,7 @@ import React, {
   MutableRefObject,
   useContext,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
 } from 'react';
@@ -24,6 +25,7 @@ export interface LocomotiveScrollContextValue {
   scale: MotionValue<number>;
   scrollDirection: MotionValue<string>;
   yProgress: MotionValue<number>;
+  y: MotionValue<number>;
   containerRef: MutableRefObject<HTMLDivElement | null>;
   cursor: React.MutableRefObject<MouseFollower | undefined>;
 }
@@ -73,14 +75,10 @@ export function LocomotiveScrollProvider({
 
   const scale = useTransform(velocity, [-3000, 0, 3000], [1.01, 1, 1.01], { clamp: true });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const event = RouteChangeEvent.GetInstance();
 
     cursor.current = new MouseFollower();
-
-    cursor?.current?.on('opaque', () => {
-      console.log('opacque vent invoked -------------');
-    });
 
     event.addListener('start', () => {
       cursor.current?.removeText();
@@ -179,6 +177,7 @@ export function LocomotiveScrollProvider({
         scale,
         scrollDirection,
         yProgress,
+        y,
         containerRef,
       }}>
       {children}

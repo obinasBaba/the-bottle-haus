@@ -29,6 +29,7 @@ export const PageTransitionContainer = (props: any) => {
       initial="initial"
       animate={PageAnimationEvent.get() === 'finished' ? 'animate' : PageAnimationController}
       // animate='animate'
+
       exit="exit"
       {...props}>
       {props.children}

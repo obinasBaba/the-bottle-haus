@@ -104,8 +104,8 @@ export const useTransitionFix = (): Cleanup => {
 };
 
 function SwappingChild({ Component, pageProps }: any) {
-  const { scroll } = useLocomotiveScroll();
-  const { toolTipsData } = useAppInfo();
+  const { scroll, y } = useLocomotiveScroll();
+  const { toolTipsData, scrollState } = useAppInfo();
   const { pathname } = useRouter();
 
   const NestedLayout = Component.Layout || DefaultLayout;

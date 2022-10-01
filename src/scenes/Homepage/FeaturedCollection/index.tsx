@@ -8,6 +8,7 @@ import House from './houses.png';
 import Image from 'next/image';
 import { motion, Variants } from 'framer-motion';
 import { basicTransition } from '@/components/common/MotionItems';
+import { useAppInfo } from '@/context/MotionValuesContext';
 
 export function SceneTitle({ title }: any) {
   return <h1 dangerouslySetInnerHTML={{ __html: title }} className={s.title} />;
@@ -62,8 +63,10 @@ const itemVariants = {
 };
 
 const FeaturedCollection = ({ data }: { data: Product[] }) => {
+  const { scrollState } = useAppInfo();
+
   return (
-    <motion.div className={s.container}>
+    <motion.div className={s.container} id="featured-collection">
       <div className={s.house}>
         <Image src={House} alt="houses" />
       </div>
@@ -100,7 +103,10 @@ const FeaturedCollection = ({ data }: { data: Product[] }) => {
             <motion.div
               key={product?.id || idx}
               variants={itemVariants}
-              transition={basicTransition}>
+              transition={basicTransition}
+              onClick={() => {
+                scrollState.set({ ...scrollState.get(), remember: true });
+              }}>
               <ProductCard product={product} loading={!data} />
             </motion.div>
           ))}
