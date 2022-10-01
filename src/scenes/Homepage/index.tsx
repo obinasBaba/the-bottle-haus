@@ -51,10 +51,7 @@ const HomePage: React.FC<HomepageProps> = ({
       transition={pageTransition}
       className={s.container}
       onAnimationComplete={(state: any) => {
-        console.log('on animation complete', state);
-
         if (state === 'exit') {
-          console.log('y :: ', y.get());
           scrollState.set({ ...scrollState.get(), scrollY: y.get() });
         }
       }}>

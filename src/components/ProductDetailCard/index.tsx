@@ -124,12 +124,12 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product, productBg }) =
             delay: 0.2,
           }}>
           <div className="product_img">
-            {router.pathname != '/' && <ReturnButton />}
+            {!productBg && <ReturnButton />}
 
             <div className={clsx([s.storage, 'storage-art'])}>
               <Image src={Storage} alt="Storage Stack" />
             </div>
-            <motion.div className={s.img_wrapper} variants={imgVariants}>
+            <motion.div className={s.img_wrapper} variants={!productBg ? imgVariants : {}}>
               {productBg && (
                 <div className={s.product_bg}>
                   <Image src={ProductBg} alt="product bg" />

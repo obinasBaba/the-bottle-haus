@@ -18,6 +18,7 @@ import { MotionValue, useMotionValue, useSpring, useTransform, useVelocity } fro
 import MouseFollower from 'mouse-follower';
 import gsap from 'gsap';
 import RouteChangeEvent from '@/util/helpers/RouteChangeEvent';
+import { useRouter } from 'next/router';
 
 export interface LocomotiveScrollContextValue {
   scroll: Scroll | null;
@@ -78,21 +79,11 @@ export function LocomotiveScrollProvider({
   useLayoutEffect(() => {
     const event = RouteChangeEvent.GetInstance();
 
-    cursor.current = new MouseFollower();
-
-    event.addListener('start', () => {
-      cursor.current?.removeText();
-      cursor.current?.removeState('opaque');
-    });
-
     event.addListener('end', () => {
       cursor.current?.removeText();
-      cursor.current?.removeState('opaque');
+      cursor.current?.removeState('-opaque');
+      cursor.current?.removeState('-pointer');
     });
-
-    return () => {
-      cursor.current?.destroy();
-    };
   }, []);
 
   useEffect(() => {
@@ -108,6 +99,8 @@ export function LocomotiveScrollProvider({
         return;
       }
 
+      cursor.current = new MouseFollower();
+
       LocomotiveScrollRef.current = new LocomotiveScroll.default({
         el: dataScrollContainer ?? undefined,
         ...options,
@@ -122,6 +115,8 @@ export function LocomotiveScrollProvider({
       LocomotiveScrollRef.current?.destroy();
       // console.log('locomotive DYING here -----', LocomotiveScrollRef.current?.name);
       LocomotiveScrollRef.current = null;
+
+      cursor.current?.destroy();
 
       setIsReady(false);
     };

@@ -104,7 +104,7 @@ export const useTransitionFix = (): Cleanup => {
 };
 
 function SwappingChild({ Component, pageProps }: any) {
-  const { scroll, y } = useLocomotiveScroll();
+  const { scroll, cursor } = useLocomotiveScroll();
   const { toolTipsData, scrollState } = useAppInfo();
   const { pathname } = useRouter();
 
@@ -119,6 +119,11 @@ function SwappingChild({ Component, pageProps }: any) {
           custom={{ one: '' }}
           onExitComplete={() => {
             // transitionCallback();
+            cursor.current?.removeText();
+            cursor.current?.removeState('-opaque');
+            cursor.current?.removeState('-pointer');
+            // document.body.querySelector('.mf-cursor')?.classList.remove('.')
+
             scroll?.scrollTo(0, { duration: 0, disableLerp: true });
           }}>
           <NestedLayout {...pageProps} key={pathname}>

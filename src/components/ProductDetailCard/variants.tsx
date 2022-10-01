@@ -29,6 +29,11 @@ export const imgVariants = {
     scale: 1,
     opacity: 1,
   },
+
+  exit: {
+    scale: 0.9,
+    opacity: 0,
+  },
 };
 export const signVariants = {
   initial: {
