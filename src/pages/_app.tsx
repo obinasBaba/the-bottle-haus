@@ -118,7 +118,7 @@ function SwappingChild({ Component, pageProps }: any) {
           exitBeforeEnter
           custom={{ one: '' }}
           onExitComplete={() => {
-            transitionCallback();
+            // transitionCallback();
             scroll?.scrollTo(0, { duration: 0, disableLerp: true });
           }}>
           <NestedLayout {...pageProps} key={pathname}>

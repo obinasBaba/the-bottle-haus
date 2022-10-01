@@ -121,15 +121,17 @@ const LoadingModal = () => {
           transition={pageTransition}
           onAnimationStart={(state) => {
             PageAnimationEvent.set('started');
+            console.log('on animation start', state);
           }}
           onAnimationComplete={(state) => {
+            console.log('on animation complete', state);
+
             if (state == 'animate') setReady(true);
 
-            console.log('animation :', state);
-
             if (state === 'exit') {
-              PageAnimationEvent.set('finished');
+
               PageAnimationController.start('animate');
+              PageAnimationEvent.set('finished');
             }
           }}>
           <div className={s.logo}>

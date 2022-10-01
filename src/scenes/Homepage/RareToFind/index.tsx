@@ -54,6 +54,8 @@ const RareToFind = ({ data }: { data: Product[] }) => {
         <motion.header
           className={s.header}
           initial="initial"
+          animate='animate'
+          exit='exit'
           whileInView="inView"
           viewport={{
             amount: 0.4,

@@ -5,7 +5,7 @@ import Img4 from '@/public/hero-slider/img_7.png';
 
 export const images = [
   {
-    img: Img,
+    img: Img2,
     text: {
       title: '<span>A COLD</span> DELIGHT',
       subtitle: 'Grab Chilled',
@@ -13,7 +13,7 @@ export const images = [
     },
   },
   {
-    img: Img2,
+    img: Img,
     text: {
       title: 'COCKTAIL  <span style="color: #f66628" >GIFT SETS</span>',
       subtitle: 'Exclusive Offer',

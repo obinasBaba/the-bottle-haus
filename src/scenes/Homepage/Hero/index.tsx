@@ -55,7 +55,7 @@ const Hero = () => {
 
     return () => {
       clearInterval(interval);
-      lightenNavBar();
+      // lightenNavBar();
     };
   }, []);
 

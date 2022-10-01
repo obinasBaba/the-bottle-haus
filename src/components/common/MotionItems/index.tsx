@@ -20,7 +20,7 @@ export const basicTransition: Transition = {
   ease: [0.6, 0.01, 0, 0.9],
 };
 
-export const PageTransitionContainer = React.forwardRef((props: any, ref) => {
+export const PageTransitionContainer = (props: any) => {
   const { PageAnimationEvent, PageAnimationController } = useAppInfo();
 
   return (
@@ -30,12 +30,11 @@ export const PageTransitionContainer = React.forwardRef((props: any, ref) => {
       animate={PageAnimationEvent.get() === 'finished' ? 'animate' : PageAnimationController}
       // animate='animate'
       exit="exit"
-      ref={ref}
       {...props}>
       {props.children}
     </motion.div>
   );
-});
+};
 
 PageTransitionContainer.displayName = 'PageTransitionContainer';
 

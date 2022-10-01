@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './collectionlayout.module.scss';
 import { motion, useMotionValue } from 'framer-motion';
-import { MotionParent } from '@/components/common/MotionItems';
+import { MotionParent, PageTransitionContainer } from "@/components/common/MotionItems";
 import { pageTransition } from '@/scenes/Homepage';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -46,9 +46,9 @@ const CollectionLayout = ({ children, collections, collectionName }: any) => {
 
   return (
     <CollectionsProvider>
-      <MotionParent
+      <PageTransitionContainer
         className={s.container}
-        transition={{ ...pageTransition, filter: 'blur(15px)' }}
+        transition={{ ...pageTransition }}
         id="layout-container">
         <Head>
           <title>Juvi . Collections</title>
@@ -89,7 +89,7 @@ const CollectionLayout = ({ children, collections, collectionName }: any) => {
             {children}
           </motion.main>
         </div>
-      </MotionParent>
+      </PageTransitionContainer>
     </CollectionsProvider>
   );
 };

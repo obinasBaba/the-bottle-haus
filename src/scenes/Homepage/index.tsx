@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import s from './homepage.module.scss';
 import Hero from './Hero';
-import Testimonials from './/OtherSaying';
+import OtherSaying from './/OtherSaying';
 import OurBlog from './/OurBlog';
 import { Product, ProductTypes } from '@/types/product';
 import { PageTransitionContainer } from '@/components/common/MotionItems';
@@ -40,7 +40,7 @@ const HomePage: React.FC<HomepageProps> = ({
       <GlassView />
       <FeaturedCollection data={featuredCollections} />
       <RareToFind data={rareToFind} />
-      <Testimonials />
+      <OtherSaying />
       <FeaturedProduct featuredProduct={featuredProduct} />
       <FeaturedGrid />
       <OurBlog />

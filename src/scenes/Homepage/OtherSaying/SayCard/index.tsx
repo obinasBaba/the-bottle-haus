@@ -94,7 +94,7 @@ const SayCard = () => {
         size="large"
         onClick={next}
         data-cursor="-opaque">
-        <Image src={BLeft} alt="right bottle btn" />
+        <Image src={BLeft} alt="right bottle btn" priority/>
       </IconButton>
 
       <div className={s.box_bg}>
@@ -130,7 +130,7 @@ const SayCard = () => {
         size="large"
         onClick={prev}
         data-cursor="-opaque">
-        <Image src={BRight} alt="right bottle btn" />
+        <Image src={BRight} alt="right bottle btn" priority/>
       </IconButton>
     </div>
   );

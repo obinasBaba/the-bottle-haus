@@ -27,8 +27,7 @@ const texture = [
 
 const transition = {
   duration: 1.5,
-  ease: [0.6, 0.01, 0, 0.9],
-  // delay: 0.2,
+  ease: [0.6, 0.01, 0, 0.9], // delay: 0.2,
 };
 
 const glassVariants = {
@@ -120,6 +119,7 @@ const GlassView = () => {
       variants={{}}
       initial="initial"
       animate="animate"
+      exit="exit"
       whileInView="inView"
       viewport={{
         amount: 0.4,
@@ -132,10 +132,6 @@ const GlassView = () => {
 
         <div className={s.right_leaf}>
           <Image src={Leaf} alt="scene background" />
-        </div>
-
-        <div className={s.bubble}>
-          <Image src={Bubble} alt="scene background" />
         </div>
 
         <motion.div className={s.left_leaf}>
