@@ -89,10 +89,9 @@ const FeaturedCollection = ({ data }: { data: Product[] }) => {
           className={s.whiskeyWrapper}
           variants={headerVariants}
           initial="initial"
-          animate='animate'
+          animate="animate"
           whileInView="inView"
           exit="exit"
-
           viewport={{
             amount: 0.1,
             once: true,

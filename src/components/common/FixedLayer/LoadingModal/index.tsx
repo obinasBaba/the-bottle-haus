@@ -129,7 +129,6 @@ const LoadingModal = () => {
             if (state == 'animate') setReady(true);
 
             if (state === 'exit') {
-
               PageAnimationController.start('animate');
               PageAnimationEvent.set('finished');
             }

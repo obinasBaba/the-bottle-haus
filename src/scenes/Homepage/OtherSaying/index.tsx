@@ -27,8 +27,8 @@ const OtherSaying = () => {
       className={s.container}
       initial="initial"
       whileInView="inView"
-      exit='exit'
-      animate='animate'
+      exit="exit"
+      animate="animate"
       viewport={{
         amount: 0.4,
         once: true,

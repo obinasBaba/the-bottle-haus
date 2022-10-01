@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './collectionlayout.module.scss';
 import { motion, useMotionValue } from 'framer-motion';
-import { MotionParent, PageTransitionContainer } from "@/components/common/MotionItems";
+import { MotionParent, PageTransitionContainer } from '@/components/common/MotionItems';
 import { pageTransition } from '@/scenes/Homepage';
 import Head from 'next/head';
 import Image from 'next/image';
