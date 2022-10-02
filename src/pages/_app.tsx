@@ -52,7 +52,7 @@ interface MyAppProps extends AppProps {
   session?: Session;
   Component: AppProps['Component'] & {
     Layout: React.FC<{ children: React.ReactNode }>;
-    withLayout: boolean;
+    signIn: boolean;
   };
 }
 
@@ -118,7 +118,7 @@ function SwappingChild({ Component, pageProps }: any) {
           exitBeforeEnter
           custom={{ one: '' }}
           onExitComplete={() => {
-            // transitionCallback();
+            transitionCallback();
             cursor.current?.removeText();
             cursor.current?.removeState('-opaque');
             cursor.current?.removeState('-pointer');
@@ -170,22 +170,24 @@ export default function MyApp({
     };
   }, [router]);
 
-  const NestedLayout = Component.Layout || DefaultLayout;
-
   return (
     <SessionProvider session={session} refetchInterval={0}>
       <ContextWrapper>
         <CacheProvider value={emotionCache}>
           <Head>
             <meta name="viewport" content="initial-scale=1, width=device-width" />
-            <title>This is a Layout</title>
+            <title>Juvi . House</title>
           </Head>
           <ThemeProvider theme={theme}>
             <CssBaseline />
 
-            <Layout pageProps={pageProps}>
-              <SwappingChild Component={Component} pageProps={pageProps} />
-            </Layout>
+            {Component.signIn ? (
+              <Component {...pageProps} />
+            ) : (
+              <Layout pageProps={pageProps}>
+                <SwappingChild Component={Component} pageProps={pageProps} />
+              </Layout>
+            )}
           </ThemeProvider>
         </CacheProvider>
       </ContextWrapper>

@@ -115,8 +115,8 @@ const RegistrationModal = () => {
   const [signUp, setSignUp] = useState<boolean>(false);
   const { toolTipsData } = useAppInfo();
   const [values, setValues] = useState<any>({
-    email: '',
-    password: '',
+    email: null,
+    password: null,
   });
 
   const { closeModal } = useUI();

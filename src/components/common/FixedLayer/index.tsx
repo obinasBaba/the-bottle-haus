@@ -65,6 +65,7 @@ function HideOnScroll(props: Props) {
 
 const FixedLayer = ({ collections }: any) => {
   const { navMenu, displayModal, searchModal, loadingModal, closeLoadingModal } = useUI();
+  const currentPath = useRouter();
 
   useEffect(() => {
     setTimeout(() => {
@@ -74,7 +75,9 @@ const FixedLayer = ({ collections }: any) => {
 
   return (
     <div className={s.container}>
-      <AnimatePresence exitBeforeEnter>{loadingModal && <LoadingModal />}</AnimatePresence>
+      <AnimatePresence exitBeforeEnter>
+        {loadingModal && !currentPath.asPath.includes('sign-in') && <LoadingModal />}
+      </AnimatePresence>
 
       <HideOnScroll>
         <div style={{ pointerEvents: 'auto' }}>

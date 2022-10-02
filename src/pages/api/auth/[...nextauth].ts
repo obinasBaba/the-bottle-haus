@@ -62,7 +62,7 @@ export default NextAuth({
       return token;
     },
     async redirect({ url, baseUrl }) {
-      console.log('i redirect u ----: ', url, baseUrl);
+      // console.log('i redirect u ----: ', url, baseUrl);
 
       return url;
     },

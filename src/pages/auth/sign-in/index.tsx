@@ -12,6 +12,8 @@ const SignIn = ({}) => {
   // console.log('query: ', query);
 
   useEffect(() => {
+    if (session?.user?.email) window.close();
+
     if (!session) {
       // console.log('query---', query);
       signIn('google')
@@ -27,6 +29,6 @@ const SignIn = ({}) => {
   return null;
 };
 
-SignIn.layout = true;
+SignIn.signIn = true;
 
 export default SignIn;
