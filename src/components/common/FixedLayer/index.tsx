@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import NavBar from '@fixedLayer/NavBar';
 import ScrollTopBottle from '@fixedLayer/ScrollTopBottle';
 import { debounce, Slide } from '@mui/material';
@@ -14,6 +14,7 @@ import s from './fixed.module.scss';
 import SearchModal from '@fixedLayer/SearchModal';
 import LoadingModal from '@fixedLayer/LoadingModal';
 import { useAppInfo } from '@/context/MotionValuesContext';
+import RouteChangeEvent from "@/util/helpers/RouteChangeEvent";
 
 interface Props {
   window?: () => Window;
@@ -29,6 +30,14 @@ function HideOnScroll(props: Props) {
 
   const { scrollDirection, yProgress } = useLocomotiveScroll();
   const { appBarScrollState } = useAppInfo();
+
+  useLayoutEffect(() => {
+    const event = RouteChangeEvent.GetInstance();
+
+    event.addListener('end', () => {
+      setTrigger(true);
+    });
+  }, []);
 
   useEffect(() => {
     const debouncedResponse = debounce((dir) => {
