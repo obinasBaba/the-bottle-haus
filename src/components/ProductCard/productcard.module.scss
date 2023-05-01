@@ -185,7 +185,8 @@
   z-index: 3;
   top: 4%;
   left: 6%;
-  background-color: rgba(253, 127, 40, 0.04);
+  background-color: rgba(253, 127, 40);
+  color: white !important;
 
   //@include s.padding(6px, 9px);
   font-size: .6rem;

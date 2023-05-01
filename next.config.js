@@ -1,7 +1,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['bottlehaus.saleor.cloud']
+    domains: ['juvi.saleor.cloud']
   },
   experimental: {
     images: {

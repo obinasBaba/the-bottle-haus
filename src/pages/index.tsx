@@ -11,17 +11,19 @@ export async function getStaticProps({ preview, locale, locales }: GetStaticProp
   // };
 
   const { product } = await commerce.getProduct({
-    variables: { slug: 'don-julio-primavera-tequila' },
+    variables: { slug: 'don-julio-ultima-reserva-extra-anejo-tequila' },
   });
 
   const featuredCollections = await commerce.getAllProducts({
-    variables: { first: 8, filter: { collections: ['Q29sbGVjdGlvbjoz'] } },
+    variables: { first: 8, filter: { collections: ['Q29sbGVjdGlvbjo2'] } },
     config,
     preview,
   });
 
+  console.log('featuredcollections: ', featuredCollections);
+
   const rareToFind = await commerce.getAllProducts({
-    variables: { first: 12, filter: { collections: ['Q29sbGVjdGlvbjoxMA=='] } },
+    variables: { first: 12, filter: { collections: ['Q29sbGVjdGlvbjo3'] } },
     config,
     preview,
   });

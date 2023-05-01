@@ -151,20 +151,19 @@ export type APIProvider = {
 
 export type Provider = typeof provider;
 
-export class CommerceAPICore<P extends CommerceAPIConfig = CommerceAPIConfig> {
-  constructor(private readonly provider: P) {}
+export class CommerceAPICore<C extends CommerceAPIConfig = CommerceAPIConfig> {
+  constructor(private readonly config: C) {}
 
-  // 'Partial' makes it all property in config obj optional.
   // 👉🏾 this is just merging the passed custom user config with the initial default config properties
-  getConfig(userConfig: Partial<P> = {}): P {
+  getConfig(userConfig: Partial<C> = {}): C {
     return Object.entries(userConfig).reduce(
       (cfg, [key, value]) => Object.assign(cfg, { [key]: value }),
-      { ...this.provider },
+      { ...this.config },
     );
   }
 
-  setConfig(newConfig: Partial<P>) {
-    Object.assign(this.provider, newConfig);
+  setConfig(newConfig: Partial<C>) {
+    Object.assign(this.config, newConfig);
   }
 }
 

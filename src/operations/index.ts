@@ -56,7 +56,7 @@ export const provider = { config, operations };
 export function getApiOperations<P extends APIProvider = APIProvider>(
   customProvider: P = provider as any,
 ): CommerceAPI<P> {
-  const commerce = Object.assign(new CommerceAPICore(customProvider.config));
+  const commerce: any = new CommerceAPICore(customProvider.config);
 
   const ops = customProvider.operations; // operations with wrapper functions that has access to context object ({commerce: APIOperations})
 
