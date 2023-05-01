@@ -154,7 +154,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, loading = true }) =>
 
       <div className="price">
         <p className="value">
-          {(product && `$${Number(product.price.value - product.price.discount).toFixed(2)}`) || 'Loading'}{' '}
+          {(product && `$${Number(product.price.value - product.price.discount).toFixed(2)}`) ||
+            'Loading'}{' '}
         </p>
         {product && product!.price.discount > 0 && (
           <p className="discount">${product!.price.value}</p>
