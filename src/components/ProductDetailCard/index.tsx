@@ -28,7 +28,7 @@ import WhiteBg from '@/public/white-bg.png';
 import Sign from '@/public/sign.png';
 import Storage from '@/public/storage-stack.png';
 import ProductBg from './bottle-bg.png';
-import { Stack } from "@mui/system";
+import { Stack } from '@mui/system';
 
 type ProductCardProps = {
   product: Product;
@@ -95,9 +95,8 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product, productBg }) =
   console.log('product: ', product);
 
   const addToCart = () => {
-
-    if (!product?.isAvailable){
-      toolTipsData.set({ show: true, text: 'product is sold-out', loading: false, timer: 3000  });
+    if (!product?.isAvailable) {
+      toolTipsData.set({ show: true, text: 'product is sold-out', loading: false, timer: 3000 });
       return;
     }
 
@@ -193,7 +192,7 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product, productBg }) =
                   -
                 </Button>
               </div>
-              <Stack direction='row' alignItems='center' gap='.5rem'>
+              <Stack direction="row" alignItems="center" gap=".5rem">
                 <h1 className="price">${product?.price?.value} </h1>
 
                 {!product?.isAvailable && (
@@ -232,8 +231,7 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product, productBg }) =
                 onClick={addToCart}
                 data-cursor="-opaque"
                 startIcon={<AddShoppingCart />}
-                disabled={!product?.isAvailable}
-              >
+                disabled={!product?.isAvailable}>
                 {product?.isAvailable ? 'Add to Cart' : 'Sold-Out'}
               </Button>
               <Link href={'/checkout'}>
