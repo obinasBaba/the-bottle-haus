@@ -4,7 +4,7 @@ import cs from 'clsx';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { Button } from '@mui/material';
-import { Adjust } from '@mui/icons-material';
+import { AddShoppingCart, Adjust } from '@mui/icons-material';
 import { pageTransition } from '@/scenes/Homepage';
 import { motion, MotionConfig } from 'framer-motion';
 import { MotionChild, MotionParent } from '@/components/common/MotionItems';
@@ -28,6 +28,7 @@ import WhiteBg from '@/public/white-bg.png';
 import Sign from '@/public/sign.png';
 import Storage from '@/public/storage-stack.png';
 import ProductBg from './bottle-bg.png';
+import { Stack } from "@mui/system";
 
 type ProductCardProps = {
   product: Product;
@@ -91,7 +92,15 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product, productBg }) =
   const { showNavBar } = useAppContext();
   const [quantity, setQuantity] = useState(1);
 
+  console.log('product: ', product);
+
   const addToCart = () => {
+
+    if (!product?.isAvailable){
+      toolTipsData.set({ show: true, text: 'product is sold-out', loading: false, timer: 3000  });
+      return;
+    }
+
     showNavBar();
     toolTipsData.set({ show: true, text: 'Adding to Cart...', loading: true });
     addItem({
@@ -184,7 +193,20 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product, productBg }) =
                   -
                 </Button>
               </div>
-              <h1 className="price">${product?.price?.value} </h1>
+              <Stack direction='row' alignItems='center' gap='.5rem'>
+                <h1 className="price">${product?.price?.value} </h1>
+
+                {!product?.isAvailable && (
+                  <Button
+                    // disabled
+                    unselectable="on"
+                    variant="contained"
+                    size="small"
+                    className={s.sold_out}>
+                    SOLD OUT
+                  </Button>
+                )}
+              </Stack>
             </MotionChild>
 
             <MotionChild className="reviews">
@@ -204,8 +226,15 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product, productBg }) =
             </MotionChild>
 
             <MotionChild className="cart_controllers">
-              <Button variant="contained" size="large" onClick={addToCart} data-cursor="-opaque">
-                Add to cart
+              <Button
+                variant="contained"
+                size="large"
+                onClick={addToCart}
+                data-cursor="-opaque"
+                startIcon={<AddShoppingCart />}
+                disabled={!product?.isAvailable}
+              >
+                {product?.isAvailable ? 'Add to Cart' : 'Sold-Out'}
               </Button>
               <Link href={'/checkout'}>
                 <a>

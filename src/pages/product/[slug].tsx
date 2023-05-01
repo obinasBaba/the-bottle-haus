@@ -16,6 +16,8 @@ export async function getStaticProps({ params, locale }: GetStaticPropsContext<{
     variables: { slug: params!.slug },
   });
 
+  console.log('getStaticProps product : ', product);
+
   const relatedProducts = await commerce.getAllProducts({
     variables: { first: 4 },
     config: {},

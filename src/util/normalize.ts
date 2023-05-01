@@ -98,7 +98,7 @@ export function normalizeProduct(productNode: SaleorProduct): Product {
     },
     // TODO: Check nextjs-commerce bug if no images are added for a product
     images: media?.length ? media : [{ url: placeholderImg }],
-    isAvailable: productNode.isAvailable || null,
+    isAvailable: productNode.isAvailable,
     defaultVariants: productNode.defaultVariant || null,
     variants:
       variants && variants.length > 0 ? normalizeProductVariants(variants as ProductVariant[]) : [],

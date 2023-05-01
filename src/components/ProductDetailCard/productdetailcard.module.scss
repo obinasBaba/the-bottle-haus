@@ -7,6 +7,14 @@
 
   //@include s.margin(top, 10rem);
 
+  & :local{
+    .sold_out{
+      pointer-events: none;
+      //position: absolute;
+      //right: -6rem;
+      //top: 0;
+    }
+  }
 
   & :global {
 
@@ -176,10 +184,12 @@
 
 
               .price_detail {
+                position: relative;
                 display: flex;
                 justify-content: space-between;
-                align-items: center;
+                align-items: flex-start;
                 max-width: 53ch;
+                //border: 1px solid red;
 
                 .quantity_controller {
                   display: flex;
@@ -205,7 +215,8 @@
                 .price {
                   font-weight: 900;
                   margin-bottom: 0;
-                  margin-top: .5rem;
+                  //margin-top: .5rem;
+                  margin-top: 0;
                 }
               }
 

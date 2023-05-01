@@ -36,6 +36,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, loading = true }) =>
   const ghostImgRef = useRef<HTMLDivElement | null>(null);
   const addItem = useAddItem();
 
+  // console.log('productCard product :  ', product);
+
   const { toolTipsData } = useAppInfo();
   const { showNavBar } = useAppContext();
 

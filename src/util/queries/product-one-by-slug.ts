@@ -5,6 +5,7 @@ export const ProductOneBySlug = /* GraphQL */ `
       slug
       name
       description
+      isAvailable
       pricing {
         priceRange {
           start {
