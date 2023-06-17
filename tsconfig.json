@@ -1,7 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es2015",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "esnext",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "ESNext",
+      "ES2015.Promise",
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -15,21 +21,49 @@
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": ".",
-//    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    //    "plugins": [{ "name": "typescript-plugin-css-modules" }],
 
     "paths": {
-      "@/*": ["./src/*"],
-      "@/operations/*": ["./src/operations/*"],
-      "@global/*": ["./src/styles/global-style/*"],
-      "@/styles/*": ["./src/styles/*"],
-//      "@styles": ["./src/styles/index.scss"],
-      "@/public/*": ["./public/*"],
-      "@lib/*": ["./src/lib/*"],
-      "@homepage/*": ["./src/scenes/homepage/*"],
-      "@homepage": ["./src/scenes/homepage/index"],
-      "@fixedLayer/*": ["./src/components/common/FixedLayer/*"]
-    },
+      "@/*": [
+        "./src/*"
+      ],
+      "@/operations/*": [
+        "./src/operations/*"
+      ],
+      "@global/*": [
+        "./src/styles/global-style/*"
+      ],
+      "@/styles/*": [
+        "./src/styles/*"
+      ],
+      //      "@styles": ["./src/styles/index.scss"],
+      "@/public/*": [
+        "./public/*"
+      ],
+      "@lib/*": [
+        "./src/lib/*"
+      ],
+      "@homepage/*": [
+        "./src/scenes/homepage/*"
+      ],
+      "@homepage": [
+        "./src/scenes/homepage/index"
+      ],
+      "@fixedLayer/*": [
+        "./src/components/common/FixedLayer/*"
+      ]
+    }
   },
-  "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.scss", "**/*.module.scss"]
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.scss",
+    "**/*.module.scss"
+  ]
 }

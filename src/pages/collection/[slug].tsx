@@ -10,6 +10,15 @@ import { MotionValue } from 'framer-motion';
 import CollectionPage from '@/scenes/CollectionPage';
 import CollectionLayout from '@/components/common/layout/CollectionLayout';
 
+export async function getStaticPaths({}: GetStaticPathsContext): Promise<GetStaticPathsResult> {
+  const { collections } = await commerce.getSiteInfo({});
+
+  return {
+    paths: collections.slice(0, 1).map(({ slug }) => ({ params: { slug } })), // paths: ['boo'],
+    fallback: 'blocking',
+  };
+}
+
 export async function getStaticProps({
   params,
   locale,
@@ -39,16 +48,7 @@ export async function getStaticProps({
       collectionName: targetCollection!.name,
       products,
     },
-    revalidate: 200,
-  };
-}
-
-export async function getStaticPaths({}: GetStaticPathsContext): Promise<GetStaticPathsResult> {
-  const { collections } = await commerce.getSiteInfo({});
-
-  return {
-    paths: collections.slice(0, 1).map(({ slug }) => ({ params: { slug } })), // paths: ['boo'],
-    fallback: 'blocking',
+    // revalidate: 200,
   };
 }
 

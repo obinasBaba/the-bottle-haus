@@ -36,6 +36,11 @@
       transition: background-color ease-in-out 300ms;
 
 
+      //border: 1px solid red;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
       @include s.padding(.5rem);
       @include s.padding(hor, 1rem);
 
@@ -55,18 +60,32 @@
     }
 
     .collection_img {
+      //position: relative;
       position: absolute;
-      inset: 0;
+      right: 10%;
+
+      //inset: 0;
+      margin-left: auto;
+      //max-width: max-content;
+      height: 100%;
+      width: 4rem;
+      //border: 1px solid red;
+
+      img{
+        //border: 1px solid blue !important;
+        //width: 100% !important;
+        //height: 100% !important;
+      }
     }
 
 
-    .active {
+    .layout_overlay {
       z-index: 1;
       border-radius: 10px;
       position: absolute;
       inset: 0;
       border: thin solid s.$clrs-orange-light;
-      background-color: rgba(246, 152, 87, 0.03);
+      background-color: rgba(246, 152, 87, 0.09);
     }
   }
 }

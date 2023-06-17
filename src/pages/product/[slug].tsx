@@ -39,7 +39,7 @@ export async function getStaticProps({ params, locale }: GetStaticPropsContext<{
       relatedProducts,
       collections: allCollections.collections,
     },
-    revalidate: 11200,
+    // revalidate: 11200,
   };
 }
 

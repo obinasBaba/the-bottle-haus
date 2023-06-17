@@ -16,6 +16,7 @@ export default function getSiteInfoOperation({
 
     const collections = await getCollection(cfg, variables || {});
 
+
     return {
       collections,
       categories: [],

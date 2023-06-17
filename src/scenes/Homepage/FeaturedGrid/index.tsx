@@ -74,7 +74,7 @@ const FeaturedGrid = () => {
         >
           {data.map(({ img, text, clr, link }, idx) => (
             <>
-              <Link href={link}>
+              <Link href={link} key={link}>
                 <a
                   className={clsx([s.item, img && s.grid_img])}
                   style={{ background: clr }}

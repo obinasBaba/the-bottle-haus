@@ -49,6 +49,7 @@ export type Product = {
   price: ProductPrice;
   options: ProductOption[];
   vendor?: string;
+  subTitle?: string;
   collections?: Maybe<Maybe<Collection>[]> | null;
 };
 

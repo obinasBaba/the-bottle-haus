@@ -20,7 +20,7 @@ export async function getStaticProps({ params }: GetStaticPropsContext<any>) {
     props: {
       blog,
     },
-    revalidate: 60,
+    // revalidate: 60,
   };
 }
 

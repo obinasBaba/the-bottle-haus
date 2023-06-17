@@ -115,7 +115,7 @@ const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections, scro
               <Link href={`/collection/${slug}`}>
                 <a>
                   {router.asPath.endsWith(slug) && (
-                    <motion.div className={s.active} layoutId="active-bg" />
+                    <motion.div className={s.layout_overlay} layoutId="active-bg" />
                   )}
 
                   <div className={clsx(s.item)} key={name} data-cursor="-opaque">

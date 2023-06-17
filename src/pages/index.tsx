@@ -15,12 +15,12 @@ export async function getStaticProps({ preview, locale, locales }: GetStaticProp
   });
 
   const featuredCollections = await commerce.getAllProducts({
-    variables: { first: 8, filter: { collections: ['Q29sbGVjdGlvbjo2'] } },
+    variables: { first: 8, filter: { collections: ['Q29sbGVjdGlvbjox'] } },
     config,
     preview,
   });
 
-  console.log('featuredcollections: ', featuredCollections);
+  // console.log('featuredcollections: ', featuredCollections);
 
   const rareToFind = await commerce.getAllProducts({
     variables: { first: 12, filter: { collections: ['Q29sbGVjdGlvbjo3'] } },
@@ -37,7 +37,7 @@ export async function getStaticProps({ preview, locale, locales }: GetStaticProp
       rareToFind,
       collections: allCollections.collections,
     },
-    revalidate: 600,
+    // revalidate: 600,
   };
 }
 

@@ -15,6 +15,15 @@ export const ProductOneBySlug = /* GraphQL */ `
           }
         }
       }
+
+      attributes {
+        values {
+          name
+          value
+          slug
+        }
+      }
+
       variants {
         id
         name

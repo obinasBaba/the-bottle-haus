@@ -47,15 +47,6 @@ Router.events.on('routeChangeStart', routeChange);*/
 
 const DefaultLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => <>{children}</>;
 
-interface MyAppProps extends AppProps {
-  emotionCache?: EmotionCache;
-  session?: Session;
-  Component: AppProps['Component'] & {
-    Layout: React.FC<{ children: React.ReactNode }>;
-    signIn: boolean;
-  };
-}
-
 // utils/useTransitionFix.ts
 
 type Cleanup = () => void;
@@ -135,6 +126,16 @@ function SwappingChild({ Component, pageProps }: any) {
       )}
     </>
   );
+}
+
+interface MyAppProps extends AppProps {
+  emotionCache?: EmotionCache;
+  session?: Session;
+  pageProps: any;
+  Component: AppProps['Component'] & {
+    Layout: React.FC<{ children: React.ReactNode }>;
+    signIn: boolean;
+  };
 }
 
 export default function MyApp({

@@ -92,7 +92,7 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product, productBg }) =
   const { showNavBar } = useAppContext();
   const [quantity, setQuantity] = useState(1);
 
-  console.log('product: ', product);
+  // console.log('product: ', product);
 
   const addToCart = () => {
     if (!product?.isAvailable) {
@@ -121,6 +121,8 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product, productBg }) =
         });
       });
   };
+
+  // console.log('product: ', product);
 
   return (
     <div className={cs(s.container)}>
@@ -171,7 +173,7 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product, productBg }) =
 
           <MotionParent className={s.detail_wrapper} variants={detailTxtWrapper}>
             <div className={s.clip_overflow}>
-              <MotionChild className="sub_title">Don Julio</MotionChild>
+              <MotionChild className="sub_title">{product.subTitle}</MotionChild>
 
               <ProductTitle name={product?.name || 'No Name'} />
             </div>

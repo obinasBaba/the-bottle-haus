@@ -72,14 +72,23 @@ const normalizeProductVariants = (variants: ProductVariant[]) => {
       price,
       listPrice: price,
       requiresShipping: true,
-      options: [],
-      // options: normalizeProductOptions([variant]),
+      options: [], // options: normalizeProductOptions([variant]),
     };
   });
 };
 
 export function normalizeProduct(productNode: SaleorProduct): Product {
-  const { id, name, media = [], variants, description, slug, pricing, ...rest } = productNode;
+  const {
+    id,
+    name,
+    media = [],
+    variants,
+    description,
+    slug,
+    pricing,
+    attributes,
+    ...rest
+  } = productNode;
 
   const product = {
     id,
@@ -95,8 +104,7 @@ export function normalizeProduct(productNode: SaleorProduct): Product {
       discount: 0,
       value: 0,
       currencyCode: 'USD',
-    },
-    // TODO: Check nextjs-commerce bug if no images are added for a product
+    }, // TODO: Check nextjs-commerce bug if no images are added for a product
     images: media?.length ? media : [{ url: placeholderImg }],
     isAvailable: productNode.isAvailable,
     defaultVariants: productNode.defaultVariant || null,
@@ -104,6 +112,7 @@ export function normalizeProduct(productNode: SaleorProduct): Product {
       variants && variants.length > 0 ? normalizeProductVariants(variants as ProductVariant[]) : [],
     options: [],
     collections: productNode?.collections || [],
+    subTitle: (attributes && attributes[0]?.values[0]?.name) || '-',
     ...rest,
   };
 
