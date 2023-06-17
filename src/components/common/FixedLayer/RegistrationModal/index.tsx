@@ -8,108 +8,20 @@ import Image from 'next/image';
 import GG from './google.svg';
 import { useUI } from '@/context/ui/context';
 import { signOut, useSession } from 'next-auth/react';
-import {
-  AnimatePresence,
-  LayoutGroup,
-  motion,
-  MotionConfig,
-  useAnimation,
-  Variants,
-} from 'framer-motion';
+import { AnimatePresence, LayoutGroup, motion, MotionConfig, useAnimation } from 'framer-motion';
 import { basicVariants, MotionChild, MotionParent } from '@/components/common/MotionItems';
 import { useFormik } from 'formik';
 import { useAppInfo } from '@/context/MotionValuesContext';
+import {
+  blurTransition,
+  registrationModalVariants,
+  signInVariant,
+  signOutVariant,
+  text,
+  transition,
+} from '@fixedLayer/RegistrationModal/variants';
 
 type REG_TYPE = 'sign up' | 'sign in';
-
-const signInVariant = {
-  initial: {
-    opacity: 0,
-  },
-  signIn: {
-    opacity: 1,
-  },
-
-  signUp: {
-    opacity: 0,
-  },
-};
-const signOutVariant = {
-  initial: {
-    opacity: 0,
-  },
-  signIn: {
-    opacity: 0,
-  },
-  signUp: {
-    opacity: 1,
-  },
-};
-
-const text: Variants = {
-  initial: {
-    opacity: 0,
-  },
-  signIn: {
-    opacity: 1,
-    transition: {
-      delay: 0.4,
-      duration: 1.4,
-      ease: [0.165, 0.84, 0.44, 1],
-    },
-  },
-
-  signUp: {
-    opacity: 0,
-    transition: {
-      duration: 0.7,
-      ease: [0.165, 0.84, 0.44, 1],
-    },
-  },
-};
-
-const registrationModalVariants = {
-  initial: {
-    opacity: 0,
-    scale: 0.9,
-  },
-  animate: {
-    opacity: 1,
-    scale: 1,
-  },
-  exit: {
-    opacity: 0,
-    scale: 0.9,
-  },
-};
-
-const transition = {
-  duration: 1,
-  ease: [0.6, 0.01, 0, 0.9],
-};
-
-export const blurVariants: Variants = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-  },
-
-  exit: {
-    opacity: 0,
-    transition: {
-      delay: 0.3,
-      duration: 1.2,
-      ease: [0.6, 0.01, 0, 0.9],
-    },
-  },
-};
-
-const blurTransition = {
-  duration: 1.2,
-  ease: [0.165, 0.84, 0.44, 1],
-};
 
 const RegistrationModal = () => {
   const [signUp, setSignUp] = useState<boolean>(false);

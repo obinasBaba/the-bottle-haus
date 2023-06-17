@@ -46,7 +46,7 @@ const inputVariant = {
   },
 };
 
-const lineTransition: Variants & { transition: Transition } = {
+const lineTransition: any  = {
   initial: {
     scaleX: 0,
   },

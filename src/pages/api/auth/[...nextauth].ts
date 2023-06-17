@@ -16,31 +16,27 @@ export default NextAuth({
           email: profile.email,
           image: profile.picture,
           first_name: profile.given_name,
-          last_name: profile.family_name,
-          // emailVerified: profile.email_verified,
+          last_name: profile.family_name, // emailVerified: profile.email_verified,
         };
       },
-    }),
-    // ...add more providers here
+    }), // ...add more providers here
   ],
 
   pages: {
-    signIn: '/auth/sign-in',
+    // signIn: '/auth/sign-in',
     // newUser: '/auth/thankyou',
     // signOut: 'auth/sign-out',
     // error: '/auth/sign-in',
   },
-  /* session: {
-     // strategy: 'jwt',
-
-   },*/
+  session: {
+    strategy: 'jwt',
+  },
 
   cookies: {
     sessionToken: {
       name: 'next-auth.session-token',
       options: {
-        httpOnly: false,
-        // sameSite: 'lax',
+        httpOnly: false, // sameSite: 'lax',
         path: '/',
         secure: true,
       },
@@ -51,7 +47,7 @@ export default NextAuth({
     /*async ,*/
 
     async signIn(arg) {
-      // console.log('args ----', arg);
+      console.log('SignIn args ----', arg);
       // window.close()
       return true;
     },
@@ -62,7 +58,7 @@ export default NextAuth({
       return token;
     },
     async redirect({ url, baseUrl }) {
-      // console.log('i redirect u ----: ', url, baseUrl);
+      console.log('i redirect u ----: ', url, baseUrl);
 
       return url;
     },
