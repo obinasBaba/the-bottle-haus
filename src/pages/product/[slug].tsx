@@ -47,7 +47,7 @@ export async function getStaticPaths({}: GetStaticPathsContext): Promise<GetStat
   const { products } = await commerce.getAllProductPaths({});
 
   return {
-    paths: products?.slice(0, 1).map((product: any) => `/product${product.path}`),
+    paths: products.map((product: any) => `/product${product.path}`),
     fallback: 'blocking',
   };
 }

@@ -14,7 +14,7 @@ export async function getStaticPaths({}: GetStaticPathsContext): Promise<GetStat
   const { collections } = await commerce.getSiteInfo({});
 
   return {
-    paths: collections.slice(0, 1).map(({ slug }) => ({ params: { slug } })), // paths: ['boo'],
+    paths: collections.map(({ slug }) => ({ params: { slug } })), // paths: ['boo'],
     fallback: 'blocking',
   };
 }
