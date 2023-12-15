@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
 import s from './registrationmodal.module.scss';
 
 import SignupBg from '@/public/signup-bg.webp';
@@ -26,6 +26,7 @@ type REG_TYPE = 'sign up' | 'sign in';
 const RegistrationModal = () => {
   const [signUp, setSignUp] = useState<boolean>(false);
   const { toolTipsData } = useAppInfo();
+  const windowRef = useRef< Window | null>(null)
   const [values, setValues] = useState<any>({
     email: null,
     password: null,
@@ -46,12 +47,18 @@ const RegistrationModal = () => {
     }
   }, [session]);
 
+  useEffect(() => {
+    // console.log()
+
+  }, [])
+
   const withGoogle = () => {
     const left = window.top!.outerWidth / 2 + window.top!.screenX - 250;
     const top = window.top!.outerHeight / 2 + window.top!.screenY - 250;
 
     const config = `menubar=yes,location=yes,resizable=no,scrollbars=yes,status=no,height=500,width=500,left=${left},top=${top}`;
     const win = window.open('/auth/sign-in', '_blank', config);
+    windowRef.current = win;
   };
 
   const formic = useFormik({
