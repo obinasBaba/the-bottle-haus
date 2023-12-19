@@ -121,7 +121,7 @@ const ContactUsPage = () => {
                 onSubmit={handleSubmit}>
                 {(formikProps) => (
                   <Form>
-                    <AnimatePresence exitBeforeEnter>
+                    <AnimatePresence mode='wait'>
                       <motion.div key={currentStep.name} variants={swappingFormVariants}>
                         {currentStep.component({
                           formikProps,

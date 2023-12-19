@@ -81,7 +81,7 @@ const CartButton = () => {
         </Button>
       </Badge>
 
-      <AnimatePresence exitBeforeEnter custom={{ globalObj: {} }}>
+      <AnimatePresence mode='wait' custom={{ globalObj: {} }}>
         {show && (
           <ClickAwayListener onClickAway={() => setShow(false)}>
             <MotionParent
@@ -145,7 +145,6 @@ const CartButton = () => {
                       Continue Shopping
                     </Button>
                     <Link href={'/cart'}>
-                      <a>
                         <Button
                           onClick={() => setShow(false)}
                           className="cart_btn"
@@ -153,7 +152,6 @@ const CartButton = () => {
                           size="small">
                           Check Out
                         </Button>
-                      </a>
                     </Link>
                   </div>
                 </footer>

@@ -4,7 +4,7 @@ import { Button } from '@mui/material';
 import ProductCard from '@/components/ProductCard';
 import MyWife from '@/public/tell-my-wife.png';
 import Image from 'next/image';
-import { Product } from '@/types/product';
+import { Product } from '@/lib/types';
 import Link from 'next/link';
 
 const MyWifeImg = <Image src={MyWife} alt="i tell here investiment" />;
@@ -20,8 +20,7 @@ const RareCatalog = ({ data }: { data: Product[] }) => {
             <div className={s.wife} key={product.id}>
               <Image
                 src={MyWife}
-                objectFit="contain"
-                width="200px"
+                fill
                 alt="told my wife this is an investment"
               />
             </div>
@@ -37,11 +36,9 @@ const RareCatalog = ({ data }: { data: Product[] }) => {
       </p>
 
       <Link href="/collection/rare-hard-to-find">
-        <a>
-          <Button size="large" variant="contained" data-cursor="-opaque">
-            Show All
-          </Button>
-        </a>
+        <Button size="large" variant="contained" data-cursor="-opaque">
+          Show All
+        </Button>
       </Link>
     </div>
   );

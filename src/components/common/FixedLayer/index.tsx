@@ -1,20 +1,23 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
-import NavBar from '@fixedLayer/NavBar';
-import ScrollTopBottle from '@fixedLayer/ScrollTopBottle';
 import { debounce, Slide } from '@mui/material';
-import NavMenu from '@fixedLayer/NavMenu';
 import { useUI } from '@/context/ui/context';
-import RegistrationModal from '@fixedLayer/RegistrationModal';
 import { AnimatePresence } from 'framer-motion';
-import AppToolTip from '@fixedLayer/AppToolTip';
 import { useAppContext } from '@/context/app';
 import { useLocomotiveScroll } from '@/context/LocoMotive';
 import { useRouter } from 'next/router';
 import s from './fixed.module.scss';
-import SearchModal from '@fixedLayer/SearchModal';
-import LoadingModal from '@fixedLayer/LoadingModal';
 import { useAppInfo } from '@/context/MotionValuesContext';
 import RouteChangeEvent from '@/util/helpers/RouteChangeEvent';
+import NavMenu from '@fixedLayer/NavMenu';
+import RegistrationModal from '@fixedLayer/RegistrationModal';
+import SearchModal from '@fixedLayer/SearchModal';
+import ScrollTopBottle from '@fixedLayer/ScrollTopBottle';
+import dynamic from 'next/dynamic';
+// import AppToolTip from '@fixedLayer/AppToolTip';
+
+const AppToolTip = dynamic(() => import('@fixedLayer/AppToolTip'), {
+  suspense: false,
+});
 
 interface Props {
   window?: () => Window;
@@ -54,10 +57,12 @@ function HideOnScroll(props: Props) {
       }
     }, 400);
 
-    scrollDirection.onChange(debouncedResponse);
+    if (scrollDirection) {
+      scrollDirection.on('change', debouncedResponse);
+    }
 
     return () => {
-      scrollDirection.clearListeners();
+      scrollDirection?.clearListeners();
     };
   }, [scrollDirection]);
 
@@ -84,22 +89,20 @@ const FixedLayer = ({ collections }: any) => {
 
   return (
     <div className={s.container}>
-      <AnimatePresence exitBeforeEnter>
-        {loadingModal && !currentPath.asPath.includes('sign-in') && <LoadingModal />}
+      <AnimatePresence mode="wait">
+        {/*{loadingModal && !currentPath.asPath.includes('sign-in') && <LoadingModal />}*/}
       </AnimatePresence>
 
-      <HideOnScroll>
+      {/*   <HideOnScroll>
         <div style={{ pointerEvents: 'auto' }}>
           <NavBar collections={collections} />
         </div>
-      </HideOnScroll>
+      </HideOnScroll>*/}
 
-      <AnimatePresence exitBeforeEnter>{navMenu && <NavMenu />}</AnimatePresence>
-      <AnimatePresence exitBeforeEnter>{displayModal && <RegistrationModal />}</AnimatePresence>
+      <AnimatePresence mode="wait">{navMenu && <NavMenu />}</AnimatePresence>
+      <AnimatePresence mode="wait">{displayModal && <RegistrationModal />}</AnimatePresence>
 
-      <AnimatePresence exitBeforeEnter>{searchModal && <SearchModal />}</AnimatePresence>
-
-      {/*<SubscribeEmailModal />*/}
+      <AnimatePresence mode="wait">{searchModal && <SearchModal />}</AnimatePresence>
 
       <ScrollTopBottle />
 

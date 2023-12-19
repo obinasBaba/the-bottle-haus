@@ -3,8 +3,9 @@ import s from './relatedproducts.module.scss';
 import ProductCard from '@/components/ProductCard';
 import Image from 'next/image';
 import WhiteBg from '@/public/white-bg.png';
+import { Product } from '@lib/types';
 
-const RelatedProducts = ({ relatedProducts = Array.from(new Array(4)) }: any) => {
+const RelatedProducts = ({ relatedProducts }: { relatedProducts: Product[] }) => {
   return (
     <div className={s.container}>
       <div className={s.bg}>
@@ -20,8 +21,8 @@ const RelatedProducts = ({ relatedProducts = Array.from(new Array(4)) }: any) =>
         </div>
 
         <div className={s.list}>
-          {relatedProducts.map((product: any, idx: any) => (
-            <ProductCard loading={false} product={product} key={idx} />
+          {relatedProducts.map((product) => (
+            <ProductCard loading={false} product={product} key={product.id} />
           ))}
         </div>
       </div>

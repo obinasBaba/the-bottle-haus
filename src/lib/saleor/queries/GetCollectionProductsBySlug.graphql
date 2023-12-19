@@ -1,0 +1,15 @@
+query GetCollectionProductsBySlug(
+  $slug: String!
+  $sortBy: ProductOrderField!
+  $sortDirection: OrderDirection!
+) {
+  collection(channel: "default-channel", slug: $slug) {
+    products(first: 100, sortBy: { field: $sortBy, direction: $sortDirection }) {
+      edges {
+        node {
+          ...ProductDetails
+        }
+      }
+    }
+  }
+}

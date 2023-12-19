@@ -75,12 +75,12 @@ const FeaturedGrid = () => {
           {data.map(({ img, text, clr, link }, idx) => (
             <>
               <Link href={link} key={link}>
-                <a
+                <div
                   className={clsx([s.item, img && s.grid_img])}
                   style={{ background: clr }}
                   data-cursor-text={text}>
                   {img ? <Image src={img} alt={'grid image'} objectFit={'cover'} /> : <p>{text}</p>}
-                </a>
+                </div>
               </Link>
             </>
           ))}

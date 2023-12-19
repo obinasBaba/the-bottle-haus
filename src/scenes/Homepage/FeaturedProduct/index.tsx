@@ -5,8 +5,13 @@ import DonPablo from './don-pablo.png';
 import Opener from '@/components/ProductDetailCard/opener.png';
 import { motion } from 'framer-motion';
 import s from './featuredproduct.module.scss';
+import {Product} from "@lib/types";
 
-const FeaturedProduct = ({ featuredProduct }: any) => {
+type Props = {
+  featuredProduct: Product;
+}
+
+const FeaturedProduct = ({ featuredProduct }: Props) => {
   return (
     <motion.div className={s.container}>
       <div className={s.opener}>
@@ -17,7 +22,7 @@ const FeaturedProduct = ({ featuredProduct }: any) => {
 
       <ProductCardBig
         productBg={true}
-        product={{ ...featuredProduct, images: [{ url: DonPablo.src }] }}
+        product={featuredProduct}
       />
     </motion.div>
   );

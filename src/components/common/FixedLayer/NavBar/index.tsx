@@ -59,9 +59,7 @@ const NavBar = (props: { collections: any[] }) => {
         <motion.div className={s.wrapper} variants={wrapperVariants}>
           <MotionChild className={s.logo}>
             <Link href="/">
-              <a>
                 <Image src={Logo} alt="app-logo" objectFit="cover" />
-              </a>
             </Link>
           </MotionChild>
 

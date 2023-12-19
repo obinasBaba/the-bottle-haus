@@ -10,7 +10,6 @@ import Leaf from './media/side-leaf.png';
 import LeafRight from './media/right-leaf.png';
 import Bg2 from './media/image 27.png';
 import Glass from './media/bott 1.png';
-import Bubble from './media/bubbles.png';
 import ReviewGlass from '@/scenes/Homepage/GlassView/ReviewGlass';
 import { motion, useSpring, useTransform, Variants } from 'framer-motion';
 import { useAppInfo } from '@/context/MotionValuesContext';

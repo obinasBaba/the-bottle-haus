@@ -1,0 +1,58 @@
+fragment ProductDetails on Product {
+  id
+  slug
+  name
+  isAvailableForPurchase
+  description
+  seoTitle
+  seoDescription
+  pricing {
+    priceRange {
+      start {
+        net {
+          currency
+          amount
+        }
+
+        gross {
+          currency
+          amount
+        }
+      }
+      stop {
+        gross {
+          currency
+          amount
+        }
+      }
+    }
+
+    discount {
+      net {
+        currency
+        amount
+      }
+    }
+  }
+  media {
+    url(size: 1080)
+    type
+    alt
+  }
+  collections {
+    name
+  }
+  updatedAt
+
+#  attributes {
+#    values {
+#      name
+#      value
+#      slug
+#    }
+#  }
+
+  variants {
+    ...Variant
+  }
+}

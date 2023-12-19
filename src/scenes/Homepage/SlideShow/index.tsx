@@ -70,11 +70,9 @@ const SlideShow = () => {
             </h1>
             <p className="desc">{slide.desc}</p>
             <Link href={slide.link}>
-              <a>
                 <Button size="large" variant="outlined">
                   Shop Now
                 </Button>
-              </a>
             </Link>
           </div>
         </div>

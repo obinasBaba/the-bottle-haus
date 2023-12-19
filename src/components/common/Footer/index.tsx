@@ -75,19 +75,19 @@ const Footer = () => {
             <h2>Resources</h2>
             <div className="links">
               <Link href={'/'}>
-                <a>Terms and Conditions</a>
+                <>Terms and Conditions</>
               </Link>
               <Link href={'/'}>
-                <a>Privacy Policy</a>
+                <>Privacy Policy</>
               </Link>
               <Link href={'/'}>
-                <a>Shipping & Return Policy</a>
+                <>Shipping & Return Policy</>
               </Link>
               <Link href="/src/pages/contact-us">
-                <a>Contact Us</a>
+                <>Contact Us</>
               </Link>
               <Link href={'/'}>
-                <a>Order Tracking</a>
+                <>Order Tracking</>
               </Link>
             </div>
           </div>

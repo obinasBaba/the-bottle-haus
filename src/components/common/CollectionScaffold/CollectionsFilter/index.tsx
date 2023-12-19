@@ -157,7 +157,7 @@ const CollectionsFilter = ({ title }: any) => {
   return (
     <MotionParent className={s.container}>
       <div className={s.wrapper}>
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence mode='wait'>
           <MotionParent key={title}>
             <motion.h1
               className="title"

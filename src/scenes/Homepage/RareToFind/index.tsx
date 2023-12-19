@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import RareImage from '@/public/rare.png';
 import TextCrown from '@/public/text-crown.png';
-import { Product } from '@/types/product';
+import { Product } from '@/lib/types';
 import s from './raretofind.module.scss';
 import RareCatalog from '@/scenes/Homepage/RareToFind/components/RareCatalog';
 import { motion } from 'framer-motion';
@@ -86,7 +86,7 @@ const RareToFind = ({ data }: { data: Product[] }) => {
           </div>
         </motion.header>
 
-        <RareCatalog data={data} />
+        <RareCatalog data={data.slice(0, 12)} />
       </div>
     </div>
   );

@@ -223,7 +223,7 @@ const CheckoutPage = () => {
                     {(formikProps) => (
                       <Form>
                         <LayoutGroup>
-                          <AnimatePresence exitBeforeEnter>
+                          <AnimatePresence mode='wait'>
                             <motion.div
                               variants={swappingFormVariants}
                               transition={{ ...pageTransition, duration: 1.1 }}

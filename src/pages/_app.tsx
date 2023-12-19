@@ -99,14 +99,14 @@ function SwappingChild({ Component, pageProps }: any) {
   const { toolTipsData, scrollState } = useAppInfo();
   const { pathname } = useRouter();
 
-  const NestedLayout = Component.Layout || DefaultLayout;
+  const ComponentOrDefaultLayout = Component.Layout || DefaultLayout;
   const transitionCallback = useTransitionFix();
 
   return (
     <>
       {!Component.withLayout ? (
         <AnimatePresence
-          exitBeforeEnter
+          mode='wait'
           custom={{ one: '' }}
           onExitComplete={() => {
             transitionCallback();
@@ -117,9 +117,9 @@ function SwappingChild({ Component, pageProps }: any) {
 
             scroll?.scrollTo(0, { duration: 0, disableLerp: true });
           }}>
-          <NestedLayout {...pageProps} key={pathname}>
+          <ComponentOrDefaultLayout {...pageProps} key={pathname}>
             <Component {...pageProps} />
-          </NestedLayout>
+          </ComponentOrDefaultLayout>
         </AnimatePresence>
       ) : (
         <Component {...pageProps} />

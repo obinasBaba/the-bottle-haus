@@ -45,7 +45,10 @@ const ScrollTopBottle = () => {
   const control = useAnimationControls();
 
   useEffect(() => {
-    yProgress.onChange((y) => {
+    if (!yProgress)
+      return;
+
+    yProgress.on('change', (y) => {
       if (y > 0.17) {
         if (show) return;
         show = true;
@@ -57,7 +60,7 @@ const ScrollTopBottle = () => {
       }
     });
 
-    return () => yProgress.clearListeners();
+    return () => yProgress?.clearListeners();
   }, [control, yProgress]);
 
   return (

@@ -5,17 +5,16 @@ import {
   GetStaticPropsContext,
   InferGetStaticPropsType,
 } from 'next';
-import commerce from '@lib/api/commerce';
-import { MotionValue } from 'framer-motion';
 import CollectionPage from '@/scenes/CollectionPage';
 import CollectionLayout from '@/components/common/layout/CollectionLayout';
+import { getCollectionProducts, getCollections } from '@lib/saleor';
 
 export async function getStaticPaths({}: GetStaticPathsContext): Promise<GetStaticPathsResult> {
-  const { collections } = await commerce.getSiteInfo({});
+  const collections = await getCollections();
 
   return {
-    paths: collections.map(({ slug }) => ({ params: { slug } })), // paths: ['boo'],
-    fallback: 'blocking',
+    paths: collections.map(({ handle }) => ({ params: { slug: handle } })), // paths: ['boo'],
+    fallback: false,
   };
 }
 
@@ -25,30 +24,21 @@ export async function getStaticProps({
   preview,
   locales,
 }: GetStaticPropsContext<any>) {
-  const config = { locale, locales };
+  const collections = await getCollections();
 
-  const { collections } = await commerce.getSiteInfo({ config, preview });
-  const targetCollection = collections.find((coll) => coll.slug === params.slug);
+  const targetCollection = collections.find((coll) => coll.handle === params.slug);
 
-  // if (!targetCollection) throw new Error('you messed up with the slug: ', params.slug);
-
-  const products = await commerce.getAllProducts({
-    variables: {
-      first: 100,
-      filter: {
-        collections: [targetCollection!.id],
-      },
-    },
+  const products = await getCollectionProducts({
+    collection: targetCollection?.handle ?? 'collections-not-found',
   });
 
   return {
     props: {
       sideNav: true,
       collections,
-      collectionName: targetCollection!.name,
+      collectionName: targetCollection!.title,
       products,
-    },
-    // revalidate: 200,
+    }, // revalidate: 200,
   };
 }
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import s from './collectionsidenav.module.scss';
-import { Collection } from '@/schema';
+import { Collection } from '@/lib/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
@@ -78,7 +78,8 @@ const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections, scro
   const { appBarScrollState } = useAppInfo();
 
   useEffect(() => {
-    appBarScrollState.onChange(
+    appBarScrollState.on(
+      'change',
       debounce((v) => {
         // if (0.11 > yProgress.get()) return control.start('up');
         if (scrolledTop.get()) return;
@@ -93,7 +94,7 @@ const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections, scro
   }, []);
 
   useEffect(() => {
-    scrolledTop.onChange((v) => {
+    scrolledTop.on('change', (v) => {
       if (v) {
         control.start('down');
       }
@@ -110,28 +111,26 @@ const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections, scro
       variants={{}}>
       <motion.div variants={wrapperVariants} animate={control} transition={wrapperTrans}>
         <MotionParent className={s.wrapper} variants={containerVariants}>
-          {collections.map(({ name, backgroundImage, slug }, idx) => (
-            <motion.div key={name} variants={itemVariants} transition={transition}>
-              <Link href={`/collection/${slug}`}>
-                <a>
-                  {router.asPath.endsWith(slug) && (
-                    <motion.div className={s.layout_overlay} layoutId="active-bg" />
-                  )}
+          {collections.map(({ title, handle, backgroundImage }, idx) => (
+            <motion.div key={handle} variants={itemVariants} transition={transition}>
+              <Link href={`/collection/${handle}`}>
+                {router.asPath.endsWith(handle) && (
+                  <motion.div className={s.layout_overlay} layoutId="active-bg" />
+                )}
 
-                  <div className={clsx(s.item)} key={name} data-cursor="-opaque">
-                    <p className={s.col_name}>{name} </p>
-                    <div className={s.collection_img}>
-                      {backgroundImage?.url && (
-                        <Image
-                          src={backgroundImage.url}
-                          alt={backgroundImage?.alt || 'collection image'}
-                          objectFit="contain"
-                          layout="fill"
-                        />
-                      )}
-                    </div>
+                <div className={clsx(s.item)} key={title} data-cursor="-opaque">
+                  <p className={s.col_name}>{title} </p>
+                  <div className={s.collection_img}>
+                    {backgroundImage?.url && (
+                      <Image
+                        src={backgroundImage.url}
+                        alt={backgroundImage?.alt || 'collection image'}
+                        objectFit="contain"
+                        layout="fill"
+                      />
+                    )}
                   </div>
-                </a>
+                </div>
               </Link>
             </motion.div>
           ))}

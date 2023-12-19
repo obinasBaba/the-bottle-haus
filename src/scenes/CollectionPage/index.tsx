@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ProductCard from '@/components/ProductCard';
-import { Product } from '@/types/product';
+import { Product } from '@/lib/types';
 import { Pagination } from '@mui/material';
 import { AnimatePresence, motion, MotionConfig, Variants } from 'framer-motion';
 import { useLocomotiveScroll } from '@/context/LocoMotive';
@@ -42,21 +42,26 @@ type CollectionPageArgs = {
 };
 
 const CollectionPage: React.FC<CollectionPageArgs> = ({ products }) => {
-  const [totalPageCount, setTotalPageCount] = React.useState<number>(1);
-  const [refreshId, setRefreshId] = React.useState<number>(1);
-  const [currentPage, setCurrentPage] = React.useState<number>(0);
+  const [totalPageCount, setTotalPageCount] = useState<number>(1);
+  const [refreshId, setRefreshId] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [paginatedProducts, setPaginatedProducts] = useState<Product[]>([]);
   const { scroll } = useLocomotiveScroll();
 
   const { sortInfo } = useContext(CollectionsContext);
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    scroll?.scrollTo(0, {
-      duration: 1,
-      easing: [0.6, 0.01, 0, 0.9],
-      callback: () => {
-        setTimeout(() => setCurrentPage(value * 9 - 9), 500);
-      },
-    });
+    if (scroll?.scrollTo) {
+      scroll?.scrollTo(0, {
+        duration: 1,
+        easing: [0.6, 0.01, 0, 0.9],
+        callback: () => {
+          setTimeout(() => setCurrentPage(value * 9 - 9), 500);
+        },
+      });
+    } else {
+      setCurrentPage(value * 9 - 9);
+    }
   };
 
   useEffect(() => {
@@ -74,11 +79,16 @@ const CollectionPage: React.FC<CollectionPageArgs> = ({ products }) => {
     setRefreshId(refreshId + 1);
   }, [sortInfo]);
 
+  useEffect(() => {
+    // handle pagination
+    setPaginatedProducts(products.slice(currentPage, currentPage + 9));
+  }, [currentPage, products]);
+
   return (
     <div className={s.container} id="product-catalog">
       {products.length > 0 ? (
         <div>
-          <AnimatePresence exitBeforeEnter>
+          <AnimatePresence mode="wait">
             <motion.div
               className={s.list}
               variants={containerVariants}

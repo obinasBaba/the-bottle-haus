@@ -1,0 +1,6 @@
+schema: schema.graphql
+documents: '**/*.graphql'
+extensions:
+  endpoints:
+        default: https://liquor.eu.saleor.cloud/graphql/
+#    produciton: https://ethiotvguide.com:8001/graphql/

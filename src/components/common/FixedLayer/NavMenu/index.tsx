@@ -248,13 +248,11 @@ const NavMenu = () => {
               transition={transition}
               onClick={() => setTimeout(() => closeNavMenu(), 400)}>
               <Link href={link}>
-                <a>
                   <p className="no">(0{idx + 1})</p>
                   <div className={s.link_name} data-cursor="-opaque">
                     <h1>{name}</h1>
                     <h1>{name}</h1>
                   </div>
-                </a>
               </Link>
             </motion.div>
           ))}

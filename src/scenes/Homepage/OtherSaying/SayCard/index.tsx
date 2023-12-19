@@ -101,7 +101,7 @@ const SayCard = () => {
         <Image src={BoxBg} alt="testimonal background" />
       </div>
 
-      <AnimatePresence exitBeforeEnter>
+      <AnimatePresence mode='wait'>
         <MotionParent
           className={s.text_container}
           key={activeQuote.img.src}

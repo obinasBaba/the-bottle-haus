@@ -1,0 +1,19 @@
+query SearchProducts(
+  $search: String!
+  $sortBy: ProductOrderField!
+  $sortDirection: OrderDirection!
+  $collections: [ID!] = []
+) {
+  products(
+    first: 100
+    channel: "default-channel"
+    sortBy: { field: $sortBy, direction: $sortDirection }
+    filter: { search: $search, collections: $collections }
+  ) {
+    edges {
+      node {
+        ...ProductDetails
+      }
+    }
+  }
+}

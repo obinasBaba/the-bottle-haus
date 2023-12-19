@@ -45,10 +45,8 @@ const SecondaryNavBar = ({ collections }: { collections: Collection[] }) => {
         {(collections || data).map(({ name, slug }) => (
           <MotionChild key={name} variants={linkVariants}>
             <Link href={`/collection/${slug}`}>
-              <a className={s.link} data-cursor="-opaque">
                 <motion.p className={s.linkText}>{name}</motion.p>
                 <motion.p className={clsx([s.linkText])}>{name}</motion.p>
-              </a>
             </Link>
           </MotionChild>
         ))}

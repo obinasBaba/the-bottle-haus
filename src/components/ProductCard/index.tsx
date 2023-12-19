@@ -1,21 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
 import s from './productcard.module.scss';
-import { ProductTypes } from '@/types/product';
 import Image from 'next/image';
 import cs from 'clsx';
 import clsx from 'clsx';
 import Link from 'next/link';
 import useAddItem from '@/SWRHooksAPI/cart/use-add-item';
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { AddRounded } from '@mui/icons-material';
 import { useAppInfo } from '@/context/MotionValuesContext';
 import { useAppContext } from '@/context/app';
 import gsap from 'gsap';
 import { motion, useAnimation } from 'framer-motion';
 import { pageTransition } from '@/scenes/Homepage';
+import { Product } from '@lib/types';
 
 type ProductCardProps = {
-  product?: ProductTypes['product'];
+  product?: Product;
   loading: boolean;
 };
 
@@ -96,15 +96,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, loading = true }) =>
 
   return (
     <div className={cs(s.container, { [s.loading]: loading, [s.loaded]: !loading || product })}>
-      {ready && !product?.isAvailable && (
+      {ready && !product?.availableForSale && (
         <Button disabled unselectable="on" variant="outlined" size="small" className={s.sold_out}>
           SOLD OUT
         </Button>
       )}
 
-      <div className="loading_bg" />
+      <div className={s.loading_bg} />
 
-      {ready && product?.isAvailable && (
+      {ready && product?.availableForSale && (
         <Button
           variant="outlined"
           // size='small'
@@ -115,52 +115,36 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, loading = true }) =>
         </Button>
       )}
 
-      <Link href={`/product/${product?.slug}`}>
-        <a className={s.img_link}>
+      <Link href={`/product/${product?.handle}`}>
+        <div className={s.img_link}>
           <motion.div
             className={s.product_img}
-            variants={pImgVariant}
-            initial="initial"
-            animate={control}
+            // variants={pImgVariant}
+            // initial="initial"
+            // animate={control}
             transition={{ ...pageTransition, duration: 1 }}>
             {product && (
-              <Image
-                src={product?.images[0].url!}
-                alt={product?.images[0].alt}
-                width="240px"
-                height="340px"
-                objectFit="contain"
-                className="p_img"
-              />
+              <Image fill src={product?.images[0].url!} alt={product?.images[0].altText} />
             )}
           </motion.div>
 
           <div className={clsx([s.product_img, s.ghost_img])} ref={ghostImgRef}>
-            <Image
-              src={product?.images[0].url!}
-              alt={product?.images[0].alt}
-              width="240px"
-              height="340px"
-              objectFit="contain"
-              className="p_img"
-            />
+            <Image fill src={product?.images[0].url!} alt={product?.images[0].altText ?? 'ghost'} />
           </div>
-        </a>
+        </div>
       </Link>
 
-      <Link href={`/product/${product?.slug}`}>
-        <a>
-          <p className={'title'}>{product?.name || 'Loading'}</p>
-        </a>
+      <Link href={`/product/${product?.handle}`}>
+        <p className={s.title}>{product?.title || 'Loading'}</p>
       </Link>
 
-      <div className="price">
-        <p className="value">
+      <div className={s.price}>
+        <Typography className={s.value}>
           {(product && `$${Number(product.price.value - product.price.discount).toFixed(2)}`) ||
             'Loading'}{' '}
-        </p>
+        </Typography>
         {product && product!.price.discount > 0 && (
-          <p className="discount">${product!.price.value}</p>
+          <Typography className={s.discount}>${product!.price.value}</Typography>
         )}
       </div>
     </div>

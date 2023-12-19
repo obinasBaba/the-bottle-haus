@@ -44,6 +44,7 @@ const rightGrapeVariants = {
 const CollectionLayout = ({ children, collections, collectionName }: any) => {
   const scrolledTop = useMotionValue(true);
 
+
   return (
     <CollectionsProvider>
       <PageTransitionContainer

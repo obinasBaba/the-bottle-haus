@@ -53,7 +53,7 @@ const AppToolTip = () => {
 
   // subscription
   useLayoutEffect(() => {
-    toolTipsData.onChange(async (v) => {
+    toolTipsData.on('change', async (v) => {
       const { closable = true, loading = true } = v;
       if (v.text) {
         toolTipTextNode.current.innerHTML = v.text;

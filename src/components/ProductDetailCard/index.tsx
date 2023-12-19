@@ -8,7 +8,7 @@ import { AddShoppingCart, Adjust } from '@mui/icons-material';
 import { pageTransition } from '@/scenes/Homepage';
 import { motion, MotionConfig } from 'framer-motion';
 import { MotionChild, MotionParent } from '@/components/common/MotionItems';
-import { Product } from '@/types/product';
+import { Product } from '@/lib/types';
 import { useRouter } from 'next/router';
 import useAddItem from '@/SWRHooksAPI/cart/use-add-item';
 import { useAppInfo } from '@/context/MotionValuesContext';
@@ -94,8 +94,12 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product, productBg }) =
 
   // console.log('product: ', product);
 
+  if (!product) {
+    return null;
+  }
+
   const addToCart = () => {
-    if (!product?.isAvailable) {
+    if (!product.availableForSale) {
       toolTipsData.set({ show: true, text: 'product is sold-out', loading: false, timer: 3000 });
       return;
     }
@@ -122,18 +126,16 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product, productBg }) =
       });
   };
 
-  // console.log('product: ', product);
-
   return (
     <div className={cs(s.container)}>
-      <div className="wrapper">
+      <div className={s.wrapper}>
         <MotionConfig
           transition={{
             duration: 1.5,
             ease: [0.6, 0.01, 0, 0.9],
             delay: 0.2,
           }}>
-          <div className="product_img">
+          <div className={s.product_img}>
             {!productBg && <ReturnButton />}
 
             <div className={clsx([s.storage, 'storage-art'])}>
@@ -157,7 +159,7 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product, productBg }) =
           </div>
         </MotionConfig>
 
-        <div className="detail">
+        <div className={s.detail}>
           <div className={s.signature}>
             <motion.div variants={signVariants}>
               <Image src={Sign} alt="juvi signature" />
@@ -165,7 +167,7 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product, productBg }) =
           </div>
 
           <motion.div
-            className="bg"
+            className={s.bg}
             variants={detailTxtBackgroundVariant}
             transition={detailTxtBackgroundVariant.transition}>
             <Image src={WhiteBg} alt="white bg" objectFit="cover" />
@@ -173,31 +175,31 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product, productBg }) =
 
           <MotionParent className={s.detail_wrapper} variants={detailTxtWrapper}>
             <div className={s.clip_overflow}>
-              <MotionChild className="sub_title">{product.subTitle}</MotionChild>
+              <MotionChild className={s.sub_title}>{product.title?.slice(0,10)}</MotionChild>
 
-              <ProductTitle name={product?.name || 'No Name'} />
+              <ProductTitle name={product?.title || 'No Name'} />
             </div>
 
-            <MotionChild className="price_detail">
-              <div className="quantity_controller">
+            <MotionChild className={s.price_detail}>
+              <div className={s.quantity_controller}>
                 <Button
                   variant="outlined"
-                  className="plus"
+                  className={s.plus}
                   onClick={() => setQuantity(quantity + 1)}>
                   +
                 </Button>
-                <span className="quantity">{quantity}</span>
+                <span className={s.quantity}>{quantity}</span>
                 <Button
                   variant="outlined"
-                  className="minus"
+                  className={s.minus}
                   onClick={() => quantity > 1 && setQuantity(quantity - 1)}>
                   -
                 </Button>
               </div>
               <Stack direction="row" alignItems="center" gap=".5rem">
-                <h1 className="price">${product?.price?.value} </h1>
+                <h1 className={s.price}>${product?.priceRange.maxVariantPrice?.amount} </h1>
 
-                {!product?.isAvailable && (
+                {!product?.availableForSale && (
                   <Button
                     // disabled
                     unselectable="on"
@@ -210,8 +212,8 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product, productBg }) =
               </Stack>
             </MotionChild>
 
-            <MotionChild className="reviews">
-              <div className="rev_svg">
+            <MotionChild className={s.reviews}>
+              <div className={s.rev_svg}>
                 {rev.map((_, idx) => (
                   <span key={idx} />
                 ))}
@@ -219,33 +221,31 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product, productBg }) =
               <p>19 reviews</p>
             </MotionChild>
 
-            <MotionChild className="desc_wrapper">
-              <div className="desc">
-                <p className="text">{product?.description}</p>
+            <MotionChild className={s.desc_wrapper}>
+              <div className={s.desc}>
+                <div dangerouslySetInnerHTML={{ __html: product?.descriptionHtml }} />
               </div>
-              <div className="bottom_gradient" />
+              <div className={s.bottom_gradient} />
             </MotionChild>
 
-            <MotionChild className="cart_controllers">
+            <MotionChild className={s.cart_controllers}>
               <Button
                 variant="contained"
                 size="large"
                 onClick={addToCart}
                 data-cursor="-opaque"
                 startIcon={<AddShoppingCart />}
-                disabled={!product?.isAvailable}>
-                {product?.isAvailable ? 'Add to Cart' : 'Sold-Out'}
+                disabled={!product?.availableForSale}>
+                {product?.availableForSale ? 'Add to Cart' : 'Sold-Out'}
               </Button>
               <Link href={'/checkout'}>
-                <a>
-                  <Button
-                    variant="outlined"
-                    size="large"
-                    startIcon={<Adjust />}
-                    data-cursor="-opaque">
-                    To Checkout
-                  </Button>
-                </a>
+                <Button
+                  variant="outlined"
+                  size="large"
+                  startIcon={<Adjust />}
+                  data-cursor="-opaque">
+                  To Checkout
+                </Button>
               </Link>
             </MotionChild>
           </MotionParent>

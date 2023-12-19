@@ -62,17 +62,14 @@ const OurBlog = () => {
             infused with the juicy flavor
           </p>
           <Link href="../../blog/best-tequila-under-100">
-            <a>
               <Button variant="outlined" size="large" data-cursor="-opaque">
                 Read All
               </Button>
-            </a>
           </Link>
         </motion.div>
 
         <motion.div className="blog_card" variants={blogItemVariants} transition={transition}>
           <Link href="../../blog/what-s-the-best-gin-for-tom-collins">
-            <a>
               <div className="cover">
                 <Image src={Cover} alt="cover image" />
               </div>
@@ -80,13 +77,11 @@ const OurBlog = () => {
               <p className="date">
                 Posted by The Bottle Haus <br /> • Tue, Sep 21, 22
               </p>
-            </a>
           </Link>
         </motion.div>
 
         <motion.div className="blog_card" variants={blogItemVariants} transition={transition}>
           <Link href="../../blog/best-tequila-under-100">
-            <a>
               <div className="cover">
                 <Image src={Cover1} alt="cover-image" />
               </div>
@@ -94,13 +89,11 @@ const OurBlog = () => {
               <p className="date">
                 Posted by The Bottle Haus <br /> • Fri, Jun 11, 19
               </p>
-            </a>
           </Link>
         </motion.div>
 
         <motion.div className="blog_card" variants={blogItemVariants} transition={transition}>
           <Link href="../../blog/what-is-the-best-gin-for-a-french-75">
-            <a>
               <div className="cover">
                 <Image src={Cover2} alt="cover-image" />
               </div>
@@ -108,7 +101,6 @@ const OurBlog = () => {
               <p className="date">
                 Posted by The Bottle Haus <br /> • Mon, Mar 01, 21
               </p>
-            </a>
           </Link>
         </motion.div>
       </motion.div>

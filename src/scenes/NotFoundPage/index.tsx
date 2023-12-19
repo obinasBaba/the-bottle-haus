@@ -21,11 +21,9 @@ const NotFoundPage = () => {
             </p>{' '}
           </big>
           <Link href="/">
-            <a>
               <Button size="large" variant="outlined">
                 Back To Main Page
               </Button>
-            </a>
           </Link>
         </div>
       </div>

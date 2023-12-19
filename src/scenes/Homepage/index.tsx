@@ -4,7 +4,6 @@ import s from './homepage.module.scss';
 import Hero from './Hero';
 import OtherSaying from './/OtherSaying';
 import OurBlog from './/OurBlog';
-import { Product, ProductTypes } from '@/types/product';
 import { PageTransitionContainer } from '@/components/common/MotionItems';
 import HorizontalMarquee from './/HorizontalMarqee';
 import GlassView from '@/scenes/Homepage/GlassView';
@@ -15,10 +14,12 @@ import FeaturedProduct from '@/scenes/Homepage/FeaturedProduct';
 import { useLocomotiveScroll } from '@/context/LocoMotive';
 import { useAppInfo } from '@/context/MotionValuesContext';
 
+import { Product as JuviProduct } from '@/lib/types';
+
 type HomepageProps = {
-  featuredProduct: ProductTypes['product'];
-  featuredCollections: Product[];
-  rareToFind: Product[];
+  featuredProduct: JuviProduct;
+  featuredCollections: JuviProduct[];
+  rareToFind: JuviProduct[];
 };
 
 export const pageTransition = {
@@ -37,7 +38,7 @@ const HomePage: React.FC<HomepageProps> = ({
   useLayoutEffect(() => {
     // cursor.current?.removeText();
     // cursor.current?.removeState('opaque');
-    console.log('homepage scroll state: ', scrollState.get());
+    // console.log('homepage scroll state: ', scrollState.get());
 
     if (scrollState.get() !== null && scrollState.get()?.remember) {
       scroll?.scrollTo(scrollState.get()?.scrollY || 0, { duration: 0 });

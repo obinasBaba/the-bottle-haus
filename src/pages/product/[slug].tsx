@@ -4,28 +4,18 @@ import {
   GetStaticPropsContext,
   InferGetStaticPropsType,
 } from 'next';
-import commerce from '@lib/api/commerce';
 import ProductPage from '@/scenes/ProductPage';
 import { MotionParent } from '@/components/common/MotionItems';
 import Head from 'next/head';
 import React from 'react';
 import { pageTransition } from '@/scenes/Homepage';
 
+import { getCollections, getProduct, getProducts } from '@lib/saleor';
+
 export async function getStaticProps({ params, locale }: GetStaticPropsContext<{ slug: string }>) {
-  const { product } = await commerce.getProduct({
-    variables: { slug: params!.slug },
-  });
-
-  // console.log('getStaticProps product : ', product);
-
-  const relatedProducts = await commerce.getAllProducts({
-    // variables: { first: 4 },
-    config: {},
-  });
-
-  const allCollections = await commerce.getSiteInfo({});
-
-  // console.log('product not found ----- ', params);
+  const product = await getProduct(params!.slug);
+  const relatedProducts = await getProducts({});
+  const allCollections = await getCollections();
 
   if (!product) {
     // return {
@@ -37,18 +27,17 @@ export async function getStaticProps({ params, locale }: GetStaticPropsContext<{
     props: {
       product,
       relatedProducts,
-      collections: allCollections.collections,
-    },
-    // revalidate: 11200,
+      collections: allCollections,
+    }, // revalidate: 11200,
   };
 }
 
 export async function getStaticPaths({}: GetStaticPathsContext): Promise<GetStaticPathsResult> {
-  const { products } = await commerce.getAllProductPaths({});
+  const products = await getProducts({});
 
   return {
-    paths: products.map((product: any) => `/product${product.path}`),
-    fallback: 'blocking',
+    paths: products.map((product) => `/product/${product.handle}`),
+    fallback: false,
   };
 }
 

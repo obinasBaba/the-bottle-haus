@@ -65,7 +65,7 @@ const CartProductList = () => {
           </thead>
 
           <tbody>
-            <AnimatePresence exitBeforeEnter>
+            <AnimatePresence mode='wait'>
               {cart?.lineItems.map(
                 (
                   {

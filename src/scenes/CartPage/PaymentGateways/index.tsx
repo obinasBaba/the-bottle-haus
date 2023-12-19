@@ -50,9 +50,7 @@ const PaymentGateways = () => {
                 <h4>Shipping Protection</h4>
                 <small>from Damage, Loss & Theft $4.44</small>
                 <Link href="/cart">
-                  <a>
                     <small className="detail">View Detail</small>
-                  </a>
                 </Link>
               </div>
             </div>
@@ -65,11 +63,9 @@ const PaymentGateways = () => {
 
           <div className="payment_btns">
             <Link href="/checkout">
-              <a>
                 <Button size="large" variant="contained" data-cursor="-opaque">
                   Check Out
                 </Button>
-              </a>
             </Link>
             <hr />
             <div className="methods">

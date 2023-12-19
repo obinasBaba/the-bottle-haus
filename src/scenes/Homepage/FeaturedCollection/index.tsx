@@ -2,7 +2,7 @@ import React from 'react';
 import s from './featuredcollection.module.scss';
 import { Button } from '@mui/material';
 import ProductCard from '@/components/ProductCard';
-import { Product } from '@/types/product';
+import { Product } from '@/lib/types';
 import Link from 'next/link';
 import House from './houses.png';
 import Image from 'next/image';
@@ -75,11 +75,9 @@ const FeaturedCollection = ({ data }: { data: Product[] }) => {
         <SceneTitle title="Rated <span>Whiskeys</span>" />
 
         <Link href={'/collection/whiskey'}>
-          <a>
-            <Button variant="contained" size="large" data-cursor="-opaque">
-              Show All
-            </Button>
-          </a>
+          <Button variant="contained" size="large" data-cursor="-opaque">
+            Show All
+          </Button>
         </Link>
       </header>
 
@@ -107,7 +105,7 @@ const FeaturedCollection = ({ data }: { data: Product[] }) => {
               onClick={() => {
                 scrollState.set({ ...scrollState.get(), remember: true });
               }}>
-              <ProductCard product={product} loading={!data} />
+              <ProductCard product={product} loading={false} />
             </motion.div>
           ))}
         </motion.div>

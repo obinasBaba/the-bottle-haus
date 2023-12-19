@@ -164,7 +164,7 @@ const RegistrationModal = () => {
                   <small className="or">OR</small>
                 </div>
               </motion.div>
-              <AnimatePresence exitBeforeEnter>
+              <AnimatePresence mode='wait'>
                 {signUp && (
                   <motion.div
                     variants={basicVariants}

@@ -101,10 +101,11 @@ const Hero = () => {
             <KeyboardArrowLeftTwoTone />
           </IconButton>
 
-          <AnimatePresence exitBeforeEnter>
+          <AnimatePresence mode='wait'>
             <MotionParent
               animate={
                 PageAnimationEvent.get() === 'finished' ? 'animate' : PageAnimationController
+                // 'animate'
               }
               className={s.text}
               key={selectedImg.img.src}
@@ -121,11 +122,9 @@ const Hero = () => {
                 <motion.big variants={textItemVariants}>{selectedImg.text.desc}</motion.big>
                 <motion.div variants={textItemVariants}>
                   <Link href={'/collections/all-products'}>
-                    <a>
                       <Button variant="contained" size="large" data-cursor="-opaque">
                         Shop Now
                       </Button>
-                    </a>
                   </Link>
                 </motion.div>
               </MotionConfig>

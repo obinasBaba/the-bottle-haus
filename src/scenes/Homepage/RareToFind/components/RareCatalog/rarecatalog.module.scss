@@ -27,12 +27,18 @@
     }
 
     .wife {
+      position: relative;
       //border: thin solid red;
       display: grid;
       place-items: center;
       padding-bottom: 50px;
       padding-left: 50px;
-      //justify-content: end;
+      overflow: hidden;
+
+      img {
+        object-fit: contain;
+        margin-top: -3rem;
+      }
     }
 
 

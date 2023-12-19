@@ -27,8 +27,8 @@ export const PageTransitionContainer = (props: any) => {
     <motion.div
       variants={basicVariants}
       initial="initial"
-      animate={PageAnimationEvent.get() === 'finished' ? 'animate' : PageAnimationController}
-      // animate='animate'
+      // animate={PageAnimationEvent.get() === 'finished' ? 'animate' : PageAnimationController}
+      animate='animate'
 
       exit="exit"
       {...props}>

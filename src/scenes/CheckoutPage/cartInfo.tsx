@@ -18,9 +18,7 @@ export function CartInfo(props: any) {
       <header className="hor">
         <h2> {cart?.data?.lineItems.length || 0} item</h2>
         <Link href="/cart" aria-label="to cart">
-          <a>
             <Button data-cursor="-opaque">edit</Button>
-          </a>
         </Link>
       </header>
 

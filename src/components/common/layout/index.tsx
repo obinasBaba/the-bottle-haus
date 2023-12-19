@@ -1,12 +1,10 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useRef } from 'react';
 import s from './layout.module.scss';
 import FixedLayer from '@fixedLayer/index';
 import Footer from '@/components/common/Footer';
 import cs from 'clsx';
 import { Collection } from '@/schema';
 import { useRouter } from 'next/router';
-import { LocomotiveScrollProvider } from '@/context/LocoMotive';
-import LocomotiveScroll from 'locomotive-scroll';
 
 interface Props {
   children: React.ReactNode;
@@ -22,21 +20,34 @@ const Layout: React.FC<Props> = ({ children, pageProps }) => {
   const { asPath, pathname } = useRouter();
 
   return (
+    <>
+      <FixedLayer collections={pageProps.collections} />
+      <div className={s.root} ref={container} data-scroll-container={true}>
+        <main className={cs([s.main])} data-scroll-section={true} id="main-container">
+          <div className="content_wrapper">
+            <div className="main_content_wrapper">{children}</div>
+          </div>
+        </main>
+
+        <Footer />
+      </div>
+    </>
+  );
+
+  /* return (
     <LocomotiveScrollProvider
       options={{
         smooth: true,
         getDirection: true,
-        getSpeed: true,
-        /*smoothMobile: {
+        getSpeed: true /!*smoothMobile: {
           breakpoint: 0,
           smooth: true,
           getDirection: true,
-        },*/
-        /*tablet: {
+        },*!/ /!*tablet: {
           breakpoint: 0,
           smooth: true,
           getDirection: true,
-        },*/
+        },*!/,
       }}
       containerRef={container} // height change detection
       watch={[]}
@@ -52,7 +63,7 @@ const Layout: React.FC<Props> = ({ children, pageProps }) => {
         <Footer />
       </div>
     </LocomotiveScrollProvider>
-  );
+  ); */
 };
 
 export default Layout;
