@@ -35,7 +35,7 @@ const fetchGraphqlApi: GraphQLFetcher = async (
     }),
   });
 
-  const { data, errors, status } = await res.json();
+  const { data, errors, status } : any = await res.json();
 
   if (errors) {
     throw getError(errors, status);

@@ -85,9 +85,7 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product, productBg }) =
   const rev = Array.from(new Array(5));
 
   // const addItem = useAddItem();
-  const addItem : any = () => {
-
-  }
+  const addItem: any = () => {};
 
   const { toolTipsData } = useAppInfo();
   const { showNavBar } = useAppContext();
@@ -111,10 +109,10 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product, productBg }) =
       productId: product?.id, // quantity: 1,
       variantId: product?.variants[0]?.id?.toString(),
     })
-      .then((r) => {
+      .then(() => {
         toolTipsData.set({ show: false });
       })
-      .catch((e) => {
+      .catch((e: any) => {
         console.error('error: ', JSON.stringify(e, null, 2));
 
         toolTipsData.set({
@@ -176,7 +174,7 @@ const ProductDetailCard: React.FC<ProductCardProps> = ({ product, productBg }) =
 
           <MotionParent className={s.detail_wrapper} variants={detailTxtWrapper}>
             <div className={s.clip_overflow}>
-              <MotionChild className={s.sub_title}>{product.title?.slice(0,10)}</MotionChild>
+              <MotionChild className={s.sub_title}>{product.title?.slice(0, 10)}</MotionChild>
 
               <ProductTitle name={product?.title || 'No Name'} />
             </div>

@@ -11,11 +11,6 @@ type Props = {
   cart?: Cart;
 };
 
-const Buttons = () => {
-  return (props: any) => {
-    return <Quantity {...props} />;
-  };
-};
 
 const CartPage = ({ cart }: Props) => {
   return (

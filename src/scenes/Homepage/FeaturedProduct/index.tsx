@@ -1,15 +1,14 @@
 import React from 'react';
 import ProductCardBig from '@/components/ProductDetailCard';
 import Image from 'next/image';
-import DonPablo from './don-pablo.png';
 import Opener from '@/components/ProductDetailCard/opener.png';
 import { motion } from 'framer-motion';
 import s from './featuredproduct.module.scss';
-import {Product} from "@lib/types";
+import { Product } from '@lib/types';
 
 type Props = {
   featuredProduct: Product;
-}
+};
 
 const FeaturedProduct = ({ featuredProduct }: Props) => {
   return (
@@ -20,10 +19,7 @@ const FeaturedProduct = ({ featuredProduct }: Props) => {
         </div>
       </div>
 
-      <ProductCardBig
-        productBg={true}
-        product={featuredProduct}
-      />
+      <ProductCardBig productBg={true} product={featuredProduct} />
     </motion.div>
   );
 };
