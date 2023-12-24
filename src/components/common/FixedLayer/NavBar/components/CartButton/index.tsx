@@ -1,16 +1,19 @@
+'use client';
+
 import React, { useEffect, useRef, useState } from 'react';
 import s from './cartbutton.module.scss';
 import Image from 'next/image';
-import { useCart } from '@/SWRHooksAPI';
 import { AnimatePresence, Variants } from 'framer-motion';
 import Link from 'next/link';
-import { Button } from '@mui/material';
+import { Button, Chip } from '@mui/material';
 import { ShoppingCartTwoTone } from '@mui/icons-material';
 import { MotionParent } from '@/components/common/MotionItems';
 import Badge, { BadgeProps } from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import { ClickAwayListener } from '@mui/base';
 import clsx from 'clsx';
+import { Cart } from '@lib/types';
+import { Stack } from '@mui/system';
 
 export const popupVariants: Variants = {
   initial: {
@@ -51,11 +54,15 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   },
 }));
 
-const CartButton = () => {
+type Props = {
+  cart?: Cart;
+};
+
+const CartButton = ({ cart }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const [show, setShow] = useState<boolean>(false);
-  const cart = useCart();
+  // const cart = useCart();
 
   useEffect(() => {
     show && containerRef.current?.focus({ preventScroll: true });
@@ -65,7 +72,7 @@ const CartButton = () => {
     <div className={clsx([s.container, 'navbar_cart'])}>
       <Badge
         className={s.badge}
-        badgeContent={cart?.data?.lineItems?.length}
+        badgeContent={cart?.totalQuantity}
         showZero={false}
         // color="primary"
         anchorOrigin={{
@@ -77,11 +84,11 @@ const CartButton = () => {
           color="inherit"
           onClick={() => setShow(!show)}
           startIcon={<ShoppingCartTwoTone />}>
-          {cart?.data?.totalPrice || 0} $
+          {cart?.cost.totalAmount.amount || 0} $
         </Button>
       </Badge>
 
-      <AnimatePresence mode='wait' custom={{ globalObj: {} }}>
+      <AnimatePresence mode="wait" custom={{ globalObj: {} }}>
         {show && (
           <ClickAwayListener onClickAway={() => setShow(false)}>
             <MotionParent
@@ -100,27 +107,28 @@ const CartButton = () => {
                 <div className="cart_list_wrapper">
                   <div className="cart_list_bottom_gradient" />
                   <div className="cart_list">
-                    {cart.data?.lineItems.map(
+                    {cart?.lines.map(
                       ({
                         id,
-                        name,
-                        variant: {
-                          price,
-                          product: { media },
+                        quantity,
+                        merchandise: {
+                          product: { images, title, price },
                         },
                       }) => (
                         <div className="cart_list_item" key={id}>
                           <Image
-                            src={(media && media[0]?.url) || ''}
+                            src={(images && images[0]?.url) || ''}
                             alt="cart-icon"
                             layout="fixed"
-                            width="55px"
-                            height="55px"
-                            objectFit="contain"
+                            width={55}
+                            height={55}
                           />
                           <div className="ver">
-                            <h3 className="price">${price}</h3>
-                            <p className="name">{name}</p>
+                            <Stack direction="row" spacing={1}>
+                              <h3 className="price">${price.value}</h3>
+                              <Chip label={quantity} size="small" color="primary" />
+                            </Stack>
+                            <p className="name">{title}</p>
                           </div>
                         </div>
                       ),
@@ -129,12 +137,12 @@ const CartButton = () => {
                 </div>
 
                 <p className="count_text">
-                  You have <span>{cart.data?.lineItems.length || 0}</span> items in your cart
+                  You have <span>{cart?.lines?.length || 0}</span> items in your cart
                 </p>
                 <footer>
                   <div className="hor">
                     <p>Total</p>
-                    <p>$122.90</p>
+                    <p>${cart?.cost.subtotalAmount.amount || 0}</p>
                   </div>
                   <div className="hor">
                     <Button
@@ -145,13 +153,13 @@ const CartButton = () => {
                       Continue Shopping
                     </Button>
                     <Link href={'/cart'}>
-                        <Button
-                          onClick={() => setShow(false)}
-                          className="cart_btn"
-                          variant="outlined"
-                          size="small">
-                          Check Out
-                        </Button>
+                      <Button
+                        onClick={() => setShow(false)}
+                        className="cart_btn"
+                        variant="outlined"
+                        size="small">
+                        Check Out
+                      </Button>
                     </Link>
                   </div>
                 </footer>

@@ -1,53 +1,18 @@
-// noinspection ES6UnusedImports
-
-import { AppProps } from 'next/app';
-import Layout from '@/components/common/layout';
-import '@global/index.scss';
-
 import React, { useCallback, useEffect, useRef } from 'react';
+import { AppProps } from 'next/app';
 import Router, { useRouter } from 'next/router';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import Head from 'next/head';
-import { CacheProvider, EmotionCache } from '@emotion/react';
-import { ThemeProvider } from '@mui/system';
-import { CssBaseline } from '@mui/material';
 import ContextWrapper from '@/context';
-import createEmotionCache from '@/createEmotoinCache';
-import theme from '@/theme';
 import { useAppInfo } from '@/context/MotionValuesContext';
 import RouteChangeEvent from '@/util/helpers/RouteChangeEvent';
 import { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
-import { LocomotiveScrollProvider, useLocomotiveScroll } from '@/context/LocoMotive';
-import LocomotiveScroll from 'locomotive-scroll';
+import { useLocomotiveScroll } from '@/context/LocoMotive';
 import { AnimatePresence } from 'framer-motion';
+
+import '@global/index.scss';
 import 'mouse-follower/src/scss/index.scss';
 
-// Client-side cache, shared for the whole session of the user in the browser.
-const clientSideEmotionCache = createEmotionCache();
-
-/*const routeChange = () => {
-  // Temporary fix to avoid flash of unstyled content
-  // during route transitions. Keep an eye on this
-  // issue and remove this code when resolved:
-  // https://github.com/vercel/next.js/issues/17464
-
-  const tempFix = () => {
-    const allStyleElems = document.querySelectorAll('style[media="x"]');
-    allStyleElems.forEach((elem) => {
-      elem.removeAttribute('media');
-    });
-  };
-  tempFix();
-};
-
-Router.events.on('routeChangeComplete', routeChange);
-Router.events.on('routeChangeStart', routeChange);*/
-
 const DefaultLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => <>{children}</>;
-
-// utils/useTransitionFix.ts
 
 type Cleanup = () => void;
 
@@ -106,7 +71,7 @@ function SwappingChild({ Component, pageProps }: any) {
     <>
       {!Component.withLayout ? (
         <AnimatePresence
-          mode='wait'
+          mode="wait"
           custom={{ one: '' }}
           onExitComplete={() => {
             transitionCallback();
@@ -129,7 +94,6 @@ function SwappingChild({ Component, pageProps }: any) {
 }
 
 interface MyAppProps extends AppProps {
-  emotionCache?: EmotionCache;
   session?: Session;
   pageProps: any;
   Component: AppProps['Component'] & {
@@ -138,12 +102,7 @@ interface MyAppProps extends AppProps {
   };
 }
 
-export default function MyApp({
-  Component,
-  pageProps,
-  emotionCache = clientSideEmotionCache,
-  session,
-}: MyAppProps) {
+export default function MyApp({ Component, pageProps, session }: MyAppProps) {
   const router = useRouter();
   const { pathname } = useRouter();
 
@@ -174,23 +133,7 @@ export default function MyApp({
   return (
     <SessionProvider session={session} refetchInterval={0}>
       <ContextWrapper>
-        <CacheProvider value={emotionCache}>
-          <Head>
-            <meta name="viewport" content="initial-scale=1, width=device-width" />
-            <title>Juvi . House</title>
-          </Head>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-
-            {Component.signIn ? (
-              <Component {...pageProps} />
-            ) : (
-              <Layout pageProps={pageProps}>
-                <SwappingChild Component={Component} pageProps={pageProps} />
-              </Layout>
-            )}
-          </ThemeProvider>
-        </CacheProvider>
+        <SwappingChild Component={Component} pageProps={pageProps} />
       </ContextWrapper>
     </SessionProvider>
   );

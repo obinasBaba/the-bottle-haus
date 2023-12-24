@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import s from './searchmodal.module.scss';
 import { Avatar, FormControl, Input, InputAdornment } from '@mui/material';
@@ -6,10 +8,10 @@ import { MotionChild, MotionParent } from '@/components/common/MotionItems';
 import { useUI } from '@/context/ui/context';
 import { Search } from '@mui/icons-material';
 import { blurBgVariants } from '@fixedLayer/NavMenu';
-import { motion, Transition, Variants } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useFormik } from 'formik';
 import { useAppInfo } from '@/context/MotionValuesContext';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Logo from '@/public/logo-3.png';
 
@@ -46,7 +48,7 @@ const inputVariant = {
   },
 };
 
-const lineTransition: any  = {
+const lineTransition: any = {
   initial: {
     scaleX: 0,
   },
@@ -91,13 +93,13 @@ const SearchModal = () => {
       });
 
       setTimeout(() => {
-        router.push('/collection/all-products').then(() => {
-          toolTipsData.set({
-            text: '',
-          });
-          closeSearchModal();
-        });
+        router.push('/collection/all-products');
       }, 3000);
+
+      toolTipsData.set({
+        text: '',
+      });
+      closeSearchModal();
     },
   });
 
@@ -152,4 +154,8 @@ const SearchModal = () => {
   );
 };
 
-export default SearchModal;
+export default function SearchModalWrapper() {
+  const { searchModal } = useUI();
+
+  return <AnimatePresence mode="wait">{searchModal && <SearchModal />}</AnimatePresence>;
+}

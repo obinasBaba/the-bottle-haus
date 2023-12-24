@@ -1,10 +1,10 @@
-// noinspection JSIgnoredPromiseFromCall,ES6MissingAwait
+'use client'
 
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import s from './apptooltip.module.scss';
 import { useAppInfo } from '@/context/MotionValuesContext';
 import { motion, useAnimation } from 'framer-motion';
-import { useRouter } from 'next/router';
+import { usePathname, useRouter } from 'next/navigation';
 import RouteChangeEvent from '@/util/helpers/RouteChangeEvent';
 import dynamic from 'next/dynamic';
 
@@ -43,7 +43,7 @@ const LottiLoading = dynamic(() => import('@/components/LottiLoading'), {
 const AppToolTip = () => {
   const { toolTipsData } = useAppInfo();
   const controller = useAnimation();
-  const { pathname } = useRouter();
+  const pathname = usePathname();
   const toolTipTextNode = useRef<any>();
   const [showLoading, setShowLoading] = useState<boolean>(true);
 

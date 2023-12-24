@@ -1,34 +1,26 @@
 import React, { useRef } from 'react';
 import s from './layout.module.scss';
-import FixedLayer from '@fixedLayer/index';
-import Footer from '@/components/common/Footer';
 import cs from 'clsx';
-import { Collection } from '@/schema';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
+import Footer from '@/components/common/Footer';
 
 interface Props {
   children: React.ReactNode;
-  pageProps: {
-    sideNav?: boolean;
-    collections: Collection[];
-    collectionName: string;
-  };
 }
 
-const Layout: React.FC<Props> = ({ children, pageProps }) => {
+const Layout: React.FC<Props> = ({ children }) => {
   const container = useRef<HTMLDivElement | null>(null);
-  const { asPath, pathname } = useRouter();
+  const pathname = usePathname();
 
   return (
     <>
-      <FixedLayer collections={pageProps.collections} />
+      {/*<FixedLayer collections={pageProps.collections} />*/}
       <div className={s.root} ref={container} data-scroll-container={true}>
         <main className={cs([s.main])} data-scroll-section={true} id="main-container">
-          <div className="content_wrapper">
-            <div className="main_content_wrapper">{children}</div>
-          </div>
-        </main>
 
+          {children}
+
+        </main>
         <Footer />
       </div>
     </>

@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import s from '@/scenes/CheckoutPage/checkoutpage.module.scss';
 import { Button } from '@mui/material';
@@ -16,7 +16,7 @@ export const StepScaffold: CheckoutFormStepComponent = ({
 
   const router = useRouter();
   const [disable, setDisable] = useState(false);
-  const { scroll } = useLocomotiveScroll();
+  // const { scroll } = useLocomotiveScroll();
 
   return (
     <div className={s.scaffold}>

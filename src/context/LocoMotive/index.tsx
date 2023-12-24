@@ -1,3 +1,5 @@
+'use client';
+
 import React, {
   createContext,
   DependencyList,
@@ -13,12 +15,12 @@ import React, {
 import { LocomotiveScrollOptions, Scroll } from 'locomotive-scroll';
 import useResizeObserver from 'use-resize-observer';
 import { useDebounce } from 'use-debounce';
-import 'locomotive-scroll/dist/locomotive-scroll.css';
 import { MotionValue, useMotionValue, useSpring, useTransform, useVelocity } from 'framer-motion';
 import MouseFollower from 'mouse-follower';
 import gsap from 'gsap';
 import RouteChangeEvent from '@/util/helpers/RouteChangeEvent';
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 export interface LocomotiveScrollContextValue {
   scroll: Scroll | null;
@@ -27,7 +29,6 @@ export interface LocomotiveScrollContextValue {
   scrollDirection: MotionValue<string>;
   yProgress: MotionValue<number>;
   y: MotionValue<number>;
-  containerRef: MutableRefObject<HTMLDivElement | null>;
   cursor: React.MutableRefObject<MouseFollower | undefined>;
 }
 
@@ -39,7 +40,6 @@ const LocomotiveScrollContext = createContext<LocomotiveScrollContextValue>({
 
 export interface LocomotiveScrollProviderProps {
   options: LocomotiveScrollOptions;
-  containerRef: MutableRefObject<HTMLDivElement | null>;
   watch: DependencyList | undefined;
   onUpdate?: (scroll: Scroll) => void;
   location?: string;
@@ -51,17 +51,22 @@ MouseFollower.registerGSAP(gsap);
 export function LocomotiveScrollProvider({
   children,
   options,
-  containerRef,
   watch,
   onUpdate,
   location,
   onLocationChange,
 }: WithChildren<LocomotiveScrollProviderProps>) {
-  const { height: containerHeight } = useResizeObserver<HTMLDivElement>({ ref: containerRef });
+  const containerRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const { height: containerHeight } = useResizeObserver<HTMLDivElement>({ ref: containerRef});
   const [isReady, setIsReady] = useState(false);
   const LocomotiveScrollRef = useRef<Scroll | null>(null);
   const [height] = useDebounce(containerHeight, 100);
   const cursor = useRef<MouseFollower>();
+
+  const pathname = usePathname();
+  const searchParams = useSearchParams()
+
+
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -87,12 +92,35 @@ export function LocomotiveScrollProvider({
   }, []);
 
   useEffect(() => {
+    const url = `${pathname}?${searchParams}`
+    console.log( 'url -------', url)
+
+    cursor.current?.removeText();
+    cursor.current?.removeState('-opaque');
+    cursor.current?.removeState('-pointer');
+
+    console.log('scroll : ', LocomotiveScrollRef.current);
+
+    if (LocomotiveScrollRef.current){
+      // scroll to the top
+      console.log('scroll to the top --');
+      if ( typeof LocomotiveScrollRef.current?.scrollTo === 'function' ) {
+        LocomotiveScrollRef?.current?.update();
+        LocomotiveScrollRef.current?.scrollTo(0, { duration: 0, disableLerp: true });
+      }
+    }
+
+  }, [pathname, searchParams])
+
+
+  useEffect(() => {
     // return;
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     import('locomotive-scroll').then((LocomotiveScroll) => {
       const dataScrollContainer = document.querySelector('[data-scroll-container]');
+      containerRef.current = dataScrollContainer as HTMLDivElement;
 
       if (LocomotiveScrollRef.current?.el) {
         // console.log('IT IS NOT NULL', LocomotiveScrollRef.current.name);
@@ -116,7 +144,7 @@ export function LocomotiveScrollProvider({
       // console.log('locomotive DYING here -----', LocomotiveScrollRef.current?.name);
       LocomotiveScrollRef.current = null;
 
-      cursor.current?.destroy();
+      // cursor.current?.destroy();
 
       setIsReady(false);
     };
@@ -134,7 +162,7 @@ export function LocomotiveScrollProvider({
     if (onUpdate) {
       onUpdate(LocomotiveScrollRef.current);
     }
-  }, [watch, height]);
+  }, [pathname, searchParams, height]);
 
   useEffect(() => {
     if (LocomotiveScrollRef.current === null || !location) {
@@ -150,7 +178,7 @@ export function LocomotiveScrollProvider({
     if (onLocationChange) {
       onLocationChange(LocomotiveScrollRef.current);
     }
-  }, [location, onLocationChange]);
+  }, [location, onLocationChange, pathname, searchParams]);
 
   useEffect(() => {
     if (isReady && LocomotiveScrollRef.current) {
@@ -173,7 +201,6 @@ export function LocomotiveScrollProvider({
         scrollDirection,
         yProgress,
         y,
-        containerRef,
       }}>
       {children}
     </LocomotiveScrollContext.Provider>

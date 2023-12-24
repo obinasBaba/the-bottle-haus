@@ -28,7 +28,9 @@ import { saleorCheckoutToVercelCart, saleorProductToVercelProduct } from './mapp
 import { invariant } from './utils';
 
 const endpoint = process.env.SALEOR_INSTANCE_URL;
-invariant(endpoint, 'Missing SALEOR_INSTANCE_URL!');
+// const endpoint = process.env.SALEOR_INSTANCE_URL ?? 'https://liquor.eu.saleor.cloud/graphql/';
+
+// invariant(endpoint, 'Missing SALEOR_INSTANCE_URL!');
 
 type GraphQlError = {
   message: string;
@@ -48,6 +50,9 @@ export async function saleorFetch<Result, Variables>({
   cache?: RequestCache;
   tags?: NextFetchRequestConfig['tags'];
 }): Promise<Result> {
+
+  const endpoint = process.env.SALEOR_INSTANCE_URL;
+
   invariant(endpoint, 'Missing SALEOR_INSTANCE_URL!');
 
   const options = cache ? { cache, next: { tags } } : { next: { revalidate: 900, tags } };
@@ -75,6 +80,7 @@ export async function saleorFetch<Result, Variables>({
 }
 
 export async function getCollections(): Promise<Collection[]> {
+
   const saleorCollections = await saleorFetch({
     query: GetCollectionsDocument,
     variables: {},

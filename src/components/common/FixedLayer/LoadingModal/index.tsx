@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import s from './loadingmodal.module.scss';
 
@@ -5,10 +7,11 @@ import LoadingBg from '@/public/loading-bg.png';
 import Logo from '@/public/logo-4.png';
 import Image from 'next/image';
 import { MotionParent } from '@/components/common/MotionItems';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { AnimatePresence, motion, useMotionValue, useSpring } from 'framer-motion';
 import { useUI } from '@/context/ui/context';
 import { pageTransition } from '@/scenes/Homepage';
 import { useAppInfo } from '@/context/MotionValuesContext';
+import { usePathname } from 'next/navigation';
 
 const logoVariants = {
   initial: {
@@ -167,4 +170,13 @@ const LoadingModal = () => {
   );
 };
 
-export default LoadingModal;
+export default function LoadingModalWrapper() {
+  const { navMenu, displayModal, searchModal, loadingModal, closeLoadingModal } = useUI();
+  const currentPath = usePathname();
+
+  return (
+    <AnimatePresence mode="wait">
+      {loadingModal && !currentPath?.includes('sign-in') && <LoadingModal />}
+    </AnimatePresence>
+  );
+}

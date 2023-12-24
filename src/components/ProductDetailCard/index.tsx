@@ -9,8 +9,7 @@ import { pageTransition } from '@/scenes/Homepage';
 import { motion, MotionConfig } from 'framer-motion';
 import { MotionChild, MotionParent } from '@/components/common/MotionItems';
 import { Product } from '@/lib/types';
-import { useRouter } from 'next/router';
-import useAddItem from '@/SWRHooksAPI/cart/use-add-item';
+import { useRouter } from 'next/navigation';
 import { useAppInfo } from '@/context/MotionValuesContext';
 import Link from 'next/link';
 import { useAppContext } from '@/context/app';
@@ -85,8 +84,10 @@ function ProductTitle(props: { name: string }) {
 const ProductDetailCard: React.FC<ProductCardProps> = ({ product, productBg }) => {
   const rev = Array.from(new Array(5));
 
-  const router = useRouter();
-  const addItem = useAddItem();
+  // const addItem = useAddItem();
+  const addItem : any = () => {
+
+  }
 
   const { toolTipsData } = useAppInfo();
   const { showNavBar } = useAppContext();

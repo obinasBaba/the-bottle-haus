@@ -1,12 +1,14 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import s from './cartproductlist.module.scss';
-import useCart from '@/SWRHooksAPI/cart/use-cart';
 import Image from 'next/image';
-import Quantity from '@/scenes/CartPage/CartProductList/Quantity';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
 import { Button } from '@mui/material';
 import clsx from 'clsx';
 import { useLocomotiveScroll } from '@/context/LocoMotive';
+import { Cart } from '@lib/types';
+import Quantity from './Quantity';
 
 export const basicVariants: Variants = {
   initial: {
@@ -26,8 +28,13 @@ const transition = {
   ease: [0.6, 0.01, 0, 0.9],
 };
 
-const CartProductList = () => {
-  const { data: cart } = useCart();
+type Props = {
+  cart?: Cart;
+};
+
+const CartProductList = ({ cart }: Props) => {
+  // const { data: cart } = useCart();
+
   const [loading, setLoading] = useState<string | undefined>();
   const { scroll } = useLocomotiveScroll();
 
@@ -42,7 +49,7 @@ const CartProductList = () => {
       <div className="wrapper" id="cart-product-wrapperz" data-scroll={true}>
         <header>
           <h1>
-            My <span>Cart ({cart?.lineItems.length || 0})</span>
+            My <span>Cart ({cart?.lines?.length || 0})</span>
           </h1>
         </header>
 
@@ -65,17 +72,14 @@ const CartProductList = () => {
           </thead>
 
           <tbody>
-            <AnimatePresence mode='wait'>
-              {cart?.lineItems.map(
+            <AnimatePresence mode="wait">
+              {cart?.lines?.map(
                 (
                   {
                     id,
-                    name,
                     quantity,
-                    variant: {
-                      id: variantId,
-                      price,
-                      product: { media },
+                    merchandise: {
+                      product: { images, title, price, variants },
                     },
                   },
                   idx,
@@ -88,7 +92,7 @@ const CartProductList = () => {
                     <td className="image">
                       <div className="p_image">
                         <Image
-                          src={(media && media[0]?.url) || ''}
+                          src={(images && images[0]?.url) || ''}
                           alt="cart-icon"
                           layout="fill"
                           objectFit="cover"
@@ -96,16 +100,16 @@ const CartProductList = () => {
                       </div>
                     </td>
                     <td className="name">
-                      <p>{name}</p>
+                      <p>{title}</p>
                     </td>
 
                     <td className="price">
-                      <h3>${price}</h3>
+                      <h3>${price.value}</h3>
                     </td>
                     <td className="quantity">
                       <Quantity
-                        value={quantity}
-                        item={{ id, variant: { id: variantId } }}
+                        quantity={quantity}
+                        item={{ variant: { id: variants[0] }, lineId: id }}
                         setLoading={setLoading}
                       />
                     </td>
@@ -113,7 +117,7 @@ const CartProductList = () => {
                     <td className="total">
                       <p>
                         <span className={clsx([loading == id && s.hidden, 'value'])}>
-                          ${Number(quantity * price).toFixed(1)}
+                          ${Number(quantity * price.value).toFixed(1)}
                         </span>
                         {loading == id && <span className="loader" />}
                       </p>
@@ -125,7 +129,7 @@ const CartProductList = () => {
           </tbody>
         </table>
 
-        {cart?.lineItems.length == 0 && (
+        {cart?.lines.length == 0 && (
           <>
             <h1 className="cart_empty"> Your cart is Empty, add something to display it here.</h1>
             <Button size="large" data-cursor="-opaque">

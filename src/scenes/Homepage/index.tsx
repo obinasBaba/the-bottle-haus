@@ -1,5 +1,5 @@
-import React, { useLayoutEffect } from 'react';
-import Head from 'next/head';
+'use client';
+
 import s from './homepage.module.scss';
 import Hero from './Hero';
 import OtherSaying from './/OtherSaying';
@@ -15,6 +15,7 @@ import { useLocomotiveScroll } from '@/context/LocoMotive';
 import { useAppInfo } from '@/context/MotionValuesContext';
 
 import { Product as JuviProduct } from '@/lib/types';
+import { useLayoutEffect } from 'react';
 
 type HomepageProps = {
   featuredProduct: JuviProduct;
@@ -23,7 +24,7 @@ type HomepageProps = {
 };
 
 export const pageTransition = {
-  duration: 1.5,
+  duration: 2.5,
   ease: [0.6, 0.01, 0, 0.9],
 };
 
@@ -36,9 +37,9 @@ const HomePage: React.FC<HomepageProps> = ({
   const { scrollState } = useAppInfo();
 
   useLayoutEffect(() => {
-    // cursor.current?.removeText();
-    // cursor.current?.removeState('opaque');
-    // console.log('homepage scroll state: ', scrollState.get());
+    cursor.current?.removeText();
+    cursor.current?.removeState('opaque');
+    console.log('homepage scroll state: ', scrollState.get());
 
     if (scrollState.get() !== null && scrollState.get()?.remember) {
       scroll?.scrollTo(scrollState.get()?.scrollY || 0, { duration: 0 });
@@ -56,10 +57,6 @@ const HomePage: React.FC<HomepageProps> = ({
           scrollState.set({ ...scrollState.get(), scrollY: y.get() });
         }
       }}>
-      <Head>
-        <title>Juvi . Homepage</title>
-        <meta name="homepage" />
-      </Head>
       <Hero />
       <HorizontalMarquee />
       <GlassView />

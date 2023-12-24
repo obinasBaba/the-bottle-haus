@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useTransition } from 'react';
 import s from './productcard.module.scss';
 import Image from 'next/image';
 import cs from 'clsx';
 import clsx from 'clsx';
 import Link from 'next/link';
-import useAddItem from '@/SWRHooksAPI/cart/use-add-item';
 import { Button, Typography } from '@mui/material';
 import { AddRounded } from '@mui/icons-material';
 import { useAppInfo } from '@/context/MotionValuesContext';
@@ -13,6 +12,8 @@ import gsap from 'gsap';
 import { motion, useAnimation } from 'framer-motion';
 import { pageTransition } from '@/scenes/Homepage';
 import { Product } from '@lib/types';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { addItem } from '@lib/saleor/cart-actions';
 
 type ProductCardProps = {
   product?: Product;
@@ -34,9 +35,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, loading = true }) =>
   const [ready, setReady] = useState(false);
   const control = useAnimation();
   const ghostImgRef = useRef<HTMLDivElement | null>(null);
-  const addItem = useAddItem();
-
-  // console.log('productCard product :  ', product);
+  // const addItem = useAddItem();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [isPending, startTransition] = useTransition();
 
   const { toolTipsData } = useAppInfo();
   const { showNavBar } = useAppContext();
@@ -46,14 +48,33 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, loading = true }) =>
   }, [loading, product]);
 
   const onAddToCart = () => {
-    showNavBar();
-    toolTipsData.set({ show: true, text: 'Adding to Cart', loading: true });
+    if (!product?.availableForSale) return;
 
-    addItem({
-      productId: product?.id, // quantity: 1,
-      variantId: product!.variants[0].id.toString(),
-    })
-      .then((r) => {
+    console.log('product: ', product);
+
+
+    showNavBar();
+    toolTipsData.set({ show: true, text: 'Adding to Cart', loading: true, closeable: false });
+
+    const selectedVariantId = product.variants[0].id;
+
+    addItem(selectedVariantId)
+      .then((res) => {
+
+        console.log('response: ', res);
+
+        if (res){
+          toolTipsData.set({
+            // id: 'error',
+            loading: false,
+            show: true,
+            text: res as string,
+            duration: 3000,
+          });
+          return;
+        }
+
+
         const cartRect = document.querySelector('.navbar_cart')?.getBoundingClientRect()!;
         const targetRect = ghostImgRef.current?.getBoundingClientRect()!;
 
@@ -72,7 +93,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, loading = true }) =>
               opacity: 1,
               duration: 0,
               onComplete() {
-                control.start('initial');
+                control.start('initial', {
+                  duration: 0,
+                });
               },
             });
           },
@@ -81,6 +104,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, loading = true }) =>
         control.start('animate');
 
         toolTipsData.set({ show: false });
+        router.refresh();
       })
       .catch((e) => {
         console.error('error: ', JSON.stringify(e, null, 2));
@@ -89,7 +113,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, loading = true }) =>
           id: 'error',
           show: true,
           text: 'something is wrong! check your network',
-          loading: true,
         });
       });
   };
@@ -110,7 +133,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, loading = true }) =>
           // size='small'
           color="primary"
           className={s.add_to_cart}
-          onClick={onAddToCart}>
+          onClick={() => {
+            // Safeguard in case someone messes with `disabled` in devtools.
+            onAddToCart();
+          }}>
           <AddRounded />
         </Button>
       )}

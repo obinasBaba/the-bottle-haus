@@ -23,8 +23,7 @@ import Img3 from './media/img_2.png';
 import Img4 from './media/img_3.png';
 import Img5 from './media/img_4.png';
 import Img6 from './media/img_5.png';
-
-const list = [Img, Img2, Img3, Img4, Img5, Img6];
+import { usePathname } from 'next/navigation';
 
 function valuetext(value: number) {
   return `${value}°C`;
@@ -131,6 +130,8 @@ const CollectionsFilter = ({ title }: any) => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 
   const { setSortInfo } = useContext(CollectionsContext);
+  const pathname =  usePathname();
+
 
   const handlePopperClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -163,7 +164,7 @@ const CollectionsFilter = ({ title }: any) => {
               className="title"
               variants={titleVariants as any}
               transition={titleVariants.transition}>
-              {title}
+              {pathname?.split('/')?.pop() ?? '-'}
             </motion.h1>
           </MotionParent>
         </AnimatePresence>

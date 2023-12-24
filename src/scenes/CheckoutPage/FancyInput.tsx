@@ -1,5 +1,4 @@
-import { Button, InputAdornment, TextField } from '@mui/material';
-import React from 'react';
+import { Button, InputAdornment, TextField } from '@/components/ui/mui';
 import s from './checkoutpage.module.scss';
 
 export const FancyInput = ({

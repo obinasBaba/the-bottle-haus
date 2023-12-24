@@ -113,6 +113,7 @@ export type VercelCommerceProduct = {
   id: string;
   handle: string;
   availableForSale: boolean;
+  quantityAvailable: number;
   title: string;
   description: string;
   descriptionHtml: string;

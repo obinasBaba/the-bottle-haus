@@ -6,7 +6,7 @@
       "dom.iterable",
       "esnext",
       "ESNext",
-      "ES2015.Promise",
+      "ES2015.Promise"
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -22,7 +22,6 @@
     "incremental": true,
     "baseUrl": ".",
     //    "plugins": [{ "name": "typescript-plugin-css-modules" }],
-
     "paths": {
       "@/*": [
         "./src/*"
@@ -52,7 +51,12 @@
       "@fixedLayer/*": [
         "./src/components/common/FixedLayer/*"
       ]
-    }
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "exclude": [
     "node_modules"
@@ -64,6 +68,7 @@
     "**/*.tsx",
     "**/*.js",
     "**/*.scss",
-    "**/*.module.scss"
+    "**/*.module.scss",
+    ".next/types/**/*.ts"
   ]
 }

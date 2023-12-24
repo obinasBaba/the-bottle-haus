@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect } from 'react';
 import s from './scrolltop.module.scss';
 import Bottle from '@/public/scroll-top.png';

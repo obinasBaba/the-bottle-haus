@@ -1,4 +1,6 @@
-import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
+'use client';
+
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import s from './registrationmodal.module.scss';
 
 import SignupBg from '@/public/signup-bg.webp';
@@ -7,7 +9,7 @@ import { Button, IconButton, TextField } from '@mui/material';
 import Image from 'next/image';
 import GG from './google.svg';
 import { useUI } from '@/context/ui/context';
-import { signOut, useSession } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 import { AnimatePresence, LayoutGroup, motion, MotionConfig, useAnimation } from 'framer-motion';
 import { basicVariants, MotionChild, MotionParent } from '@/components/common/MotionItems';
 import { useFormik } from 'formik';
@@ -26,31 +28,30 @@ type REG_TYPE = 'sign up' | 'sign in';
 const RegistrationModal = () => {
   const [signUp, setSignUp] = useState<boolean>(false);
   const { toolTipsData } = useAppInfo();
-  const windowRef = useRef< Window | null>(null)
+  const windowRef = useRef<Window | null>(null);
   const [values, setValues] = useState<any>({
     email: null,
     password: null,
   });
 
   const { closeModal } = useUI();
-  const { data: session } = useSession();
+  const { data: session } = { data: {} };
   const control = useAnimation();
 
   useEffect(() => {
     if (session) {
       setTimeout(() => {
-        setValues({
-          email: session.user?.email,
-          password: session.expires,
-        });
+        // setValues({
+        //   email: session.user?.email,
+        //   password: session.expires,
+        // });
       }, 500);
     }
   }, [session]);
 
   useEffect(() => {
     // console.log()
-
-  }, [])
+  }, []);
 
   const withGoogle = () => {
     const left = window.top!.outerWidth / 2 + window.top!.screenX - 250;
@@ -164,7 +165,7 @@ const RegistrationModal = () => {
                   <small className="or">OR</small>
                 </div>
               </motion.div>
-              <AnimatePresence mode='wait'>
+              <AnimatePresence mode="wait">
                 {signUp && (
                   <motion.div
                     variants={basicVariants}
@@ -227,4 +228,8 @@ const RegistrationModal = () => {
   );
 };
 
-export default RegistrationModal;
+export default function RegistrationModalWrapper() {
+  const { displayModal } = useUI();
+
+  return <AnimatePresence mode="wait">{displayModal && <RegistrationModal />}</AnimatePresence>;
+}

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import s from './collectionsidenav.module.scss';
-import { Collection } from '@/lib/types';
+import { Collection } from '@lib/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
-import { useRouter } from 'next/router';
+import { usePathname, useRouter } from 'next/navigation';
 import { MotionParent } from '@/components/common/MotionItems';
 import { motion, MotionValue, useAnimation, Variants } from 'framer-motion';
 import { debounce } from '@mui/material';
@@ -74,6 +74,7 @@ const wrapperTrans = {
 
 const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections, scrolledTop }) => {
   const router = useRouter();
+  const pathname = usePathname();
   const control = useAnimation();
   const { appBarScrollState } = useAppInfo();
 
@@ -91,6 +92,10 @@ const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections, scro
         }
       }, 200),
     );
+
+    return () => {
+      control.stop();
+    };
   }, []);
 
   useEffect(() => {
@@ -114,7 +119,7 @@ const CollectionSideNav: React.FC<CollectionSideNavProps> = ({ collections, scro
           {collections.map(({ title, handle, backgroundImage }, idx) => (
             <motion.div key={handle} variants={itemVariants} transition={transition}>
               <Link href={`/collection/${handle}`}>
-                {router.asPath.endsWith(handle) && (
+                {pathname?.endsWith(handle) && (
                   <motion.div className={s.layout_overlay} layoutId="active-bg" />
                 )}
 

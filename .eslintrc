@@ -8,7 +8,6 @@
     "prettier"
   ],
   "rules": {
-    "prettier/prettier": "warn",
     "array-bracket-newline": "off",
     "camelcase": "off",
     "import/prefer-default-export": "off",

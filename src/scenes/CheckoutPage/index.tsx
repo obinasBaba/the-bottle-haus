@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+'use client';
+
+import React, { Suspense, useState } from 'react';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 import { Form, Formik, FormikProps } from 'formik';
 import ContactInformation from '@/scenes/CheckoutPage/ContactInformation';
@@ -22,6 +24,7 @@ import {
 import { StepScaffold } from '@/scenes/CheckoutPage/StepScaffold';
 import { CompletedSteps } from '@/scenes/CheckoutPage/CompletedSteps';
 import { useLocomotiveScroll } from '@/context/LocoMotive';
+import { PageTransitionContainer } from '@/components/common/MotionItems';
 
 const steps = [
   {
@@ -80,10 +83,15 @@ const getFormData = (idx: number, value: typeof initialValues) => {
       return '';
   }
 };
-const CheckoutPage = () => {
+
+type Props = {
+  CartInfo: any;
+}
+
+const CheckoutPage = ( { CartInfo } : Props ) => {
   const [idx, setIdx] = useState(0);
   const [processingPayment, setProcessingPayment] = useState(false);
-  const [activeStep, setActiveStep] = useState<typeof steps[number]>(steps[idx]);
+  const [activeStep, setActiveStep] = useState<(typeof steps)[number]>(steps[idx]);
   const { toolTipsData } = useAppInfo();
   const { scroll } = useLocomotiveScroll();
 
@@ -162,7 +170,7 @@ const CheckoutPage = () => {
   };
 
   return (
-    <div className={s.container} id="checkout-page-container">
+    <PageTransitionContainer className={s.container} id="checkout-page-container">
       <LayoutGroup>
         <motion.div
           className={s.checkout_bg}
@@ -223,7 +231,7 @@ const CheckoutPage = () => {
                     {(formikProps) => (
                       <Form>
                         <LayoutGroup>
-                          <AnimatePresence mode='wait'>
+                          <AnimatePresence mode="wait">
                             <motion.div
                               variants={swappingFormVariants}
                               transition={{ ...pageTransition, duration: 1.1 }}
@@ -261,13 +269,17 @@ const CheckoutPage = () => {
                   controller={{ nextStep, prevStep, setStep, idx }}
                 />
 
-                <CartInfo prossingPayment={processingPayment} />
+                <motion.div className={s.cart_info} layout>
+                  <Suspense fallback={'loading .....'}>
+                    {CartInfo}
+                  </Suspense>
+                </motion.div>
               </motion.div>
             </LayoutGroup>
           </motion.div>
         </motion.div>
       </LayoutGroup>
-    </div>
+    </PageTransitionContainer>
   );
 };
 

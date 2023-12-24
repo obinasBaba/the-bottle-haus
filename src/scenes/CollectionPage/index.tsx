@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useContext, useEffect, useState } from 'react';
 import ProductCard from '@/components/ProductCard';
 import { Product } from '@/lib/types';
@@ -20,6 +22,7 @@ const containerVariants: Variants = {
     },
   },
 };
+
 const itemVariants = {
   initial: {
     opacity: 0,
@@ -95,7 +98,8 @@ const CollectionPage: React.FC<CollectionPageArgs> = ({ products }) => {
               initial="initial"
               animate="animate"
               exit="exit"
-              key={products.length + currentPage + refreshId}>
+              key={products.length + currentPage + refreshId}
+            >
               <MotionConfig
                 transition={{
                   duration: 0.8,

@@ -82,7 +82,7 @@
       background-color: #fff;
       //border: 2px solid transparent;
       overflow: hidden;
-      transition: transform ease-in-out 200ms;
+      transition: border ease-in-out 200ms;
       height: 23rem;
       border: 1px solid rgba(253, 127, 40, 0.24);
 
@@ -95,7 +95,7 @@
       img {
         object-fit: contain;
         transform: scale(1);
-        transition: transform ease-out 600ms;
+        //transition: transform ease-out 600ms;
 
 
         &:hover {

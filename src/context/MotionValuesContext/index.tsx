@@ -1,7 +1,8 @@
+'use client';
+
 import { AnimationControls, MotionValue, useAnimation, useMotionValue } from 'framer-motion';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import LocomotiveScroll from 'locomotive-scroll';
 import React, { createContext, useContext, useLayoutEffect } from 'react';
 
 type ToolTipType = {

@@ -1,30 +1,95 @@
-import React from 'react';
-import s from './quantity.module.scss';
-import { useRemoveItem, useUpdateItem } from '@/SWRHooksAPI';
+'use client';
 
-const Quantity = ({ value, item, setLoading }: any) => {
-  const removeItem = useRemoveItem();
-  const updateItem = useUpdateItem();
+import s from './quantity.module.scss';
+import { removeItem, updateItemQuantity } from '@lib/saleor/cart-actions';
+import { useAppInfo } from '@/context/MotionValuesContext';
+import { useRouter } from 'next/navigation';
+// import { useAppInfo } from '@/context/MotionValuesContext';
+
+const Quantity = ({ quantity, item, setLoading, lineId }: any) => {
+  // const removeItem = useRemoveItem();
+  // const updateItem = useUpdateItem();
+  const router = useRouter();
+
+  const { toolTipsData } = useAppInfo();
 
   return (
     <div className={s.container}>
       <button
-        onClick={() => {
+        onClick={async () => {
           setLoading(item.id);
-          updateItem({ quantity: value - 1, id: item.id, variantId: item.variant.id }).then((dat) =>
-            setLoading(false),
-          );
+          toolTipsData.set({ show: true, text: 'Updating Cart', loading: true });
+
+          updateItemQuantity({
+            quantity: quantity - 1,
+            variantId: item.variant.id,
+            lineId: item.lineId,
+          })
+            .then((data) => {
+              setLoading(false);
+              if (data) {
+                toolTipsData.set({
+                  id: 'error',
+                  show: true,
+                  text: 'Error updating cart',
+                  loading: true,
+                });
+                return;
+              }
+
+              toolTipsData.set({ show: false });
+              router.refresh();
+            })
+            .catch((err) => {
+              setLoading(false);
+
+              toolTipsData.set({
+                id: 'error',
+                show: true,
+                text: 'Error updating cart',
+                loading: true,
+              });
+            });
         }}>
         -
       </button>
-      <h3 className="value">{value}</h3>
+      <h3 className="value">{quantity}</h3>
       <button
         className="plus"
         onClick={() => {
           setLoading(item.id);
-          updateItem({ quantity: value + 1, id: item.id, variantId: item.variant.id }).then((dat) =>
-            setLoading(false),
-          );
+          toolTipsData.set({ show: true, text: 'Updating Cart', loading: true });
+
+          updateItemQuantity({
+            quantity: quantity + 1,
+            variantId: item.variant.id,
+            lineId: item.lineId,
+          })
+            .then((data) => {
+              setLoading(false);
+              if (data) {
+                toolTipsData.set({
+                  id: 'error',
+                  show: true,
+                  text: 'Error updating cart',
+                  loading: true,
+                });
+                return;
+              }
+
+              toolTipsData.set({ show: false });
+              router.refresh();
+            })
+            .catch((err) => {
+              setLoading(false);
+
+              toolTipsData.set({
+                id: 'error',
+                show: true,
+                text: 'Error updating cart',
+                loading: true,
+              });
+            });
         }}>
         +
       </button>
@@ -32,7 +97,33 @@ const Quantity = ({ value, item, setLoading }: any) => {
         className="delete"
         onClick={async () => {
           setLoading(item.id);
-          const res = removeItem({ id: item.id }).then((r) => setLoading(false));
+          toolTipsData.set({ show: true, text: 'Deleting Item ', loading: true });
+
+          removeItem(item.lineId)
+            .then((dat) => {
+              setLoading(false);
+              if (dat) {
+                toolTipsData.set({
+                  id: 'error',
+                  show: true,
+                  text: 'Error updating cart',
+                  loading: true,
+                });
+                return;
+              }
+
+              toolTipsData.set({ show: false });
+              router.refresh();
+            })
+            .catch((err) => {
+              setLoading(false);
+              toolTipsData.set({
+                id: 'error',
+                show: true,
+                text: 'Error updating cart',
+                loading: true,
+              });
+            });
         }}>
         <svg
           xmlns="http://www.w3.org/2000/svg"

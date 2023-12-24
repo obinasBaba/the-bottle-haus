@@ -1,18 +1,25 @@
+'use client';
+
+
 import React from 'react';
 import s from './paymentgateways.module.scss';
 import { Button, Checkbox, TextField, Typography } from '@mui/material';
-import ShipmentProtection from './img.png';
+import ShipmentProtection from '@/public/truck.png';
 import Image from 'next/image';
-import Payments from './payments.png';
+import Payments from '@/public/payments.png';
 import { motion } from 'framer-motion';
 
 import Link from 'next/link';
-import useCart from '@/SWRHooksAPI/cart/use-cart';
+import { Cart } from '@lib/types';
 
-const PaymentGateways = () => {
+type Props = {
+  cart?: Cart;
+};
+
+const PaymentGateways = ({ cart }: Props) => {
   const [checked, setChecked] = React.useState(false);
 
-  const { data: cart } = useCart();
+  // const { data: cart } = useCart();
 
   return (
     <motion.div
@@ -31,7 +38,7 @@ const PaymentGateways = () => {
         <div className="payments_detail">
           <div className="total">
             <h3>SUBTOTAL</h3>
-            <h2>${cart?.totalPrice || 0} </h2>
+            <h2>${cart?.cost.subtotalAmount.amount || 0} </h2>
           </div>
 
           <p>Taxes And Shipping Are Calculated At Checkout</p>
@@ -50,7 +57,7 @@ const PaymentGateways = () => {
                 <h4>Shipping Protection</h4>
                 <small>from Damage, Loss & Theft $4.44</small>
                 <Link href="/cart">
-                    <small className="detail">View Detail</small>
+                  <small className="detail">View Detail</small>
                 </Link>
               </div>
             </div>
@@ -63,9 +70,9 @@ const PaymentGateways = () => {
 
           <div className="payment_btns">
             <Link href="/checkout">
-                <Button size="large" variant="contained" data-cursor="-opaque">
-                  Check Out
-                </Button>
+              <Button size="large" variant="contained" data-cursor="-opaque">
+                Check Out
+              </Button>
             </Link>
             <hr />
             <div className="methods">

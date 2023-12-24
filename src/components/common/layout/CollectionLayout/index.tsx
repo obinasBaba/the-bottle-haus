@@ -1,15 +1,18 @@
+'use client';
+
 import React from 'react';
 import s from './collectionlayout.module.scss';
 import { motion, useMotionValue } from 'framer-motion';
-import { MotionParent, PageTransitionContainer } from '@/components/common/MotionItems';
+import { PageTransitionContainer } from '@/components/common/MotionItems';
 import { pageTransition } from '@/scenes/Homepage';
 import Head from 'next/head';
 import Image from 'next/image';
 import RightTop from '@/scenes/CollectionPage/top-right.png';
 import RightBottom from '@/scenes/CollectionPage/bottom-left.png';
-import CollectionSideNav from '@/components/common/CollectionScaffold/CollectionSideNav';
-import CollectionsFilterHeader from '@/components/common/CollectionScaffold/CollectionsFilter';
+import CollectionSideNav from 'src/components/common/layout/CollectionLayout/CollectionSideNav';
+import CollectionsFilterHeader from 'src/components/common/layout/CollectionLayout/CollectionsFilter';
 import CollectionsProvider from '@/context/CollectionPageContext';
+import { Collection } from '@lib/types';
 
 const leftGrapeVariants = {
   initial: {
@@ -41,9 +44,14 @@ const rightGrapeVariants = {
   },
 };
 
-const CollectionLayout = ({ children, collections, collectionName }: any) => {
-  const scrolledTop = useMotionValue(true);
+type Props = {
+  children: React.ReactNode;
+  collections: Collection[];
+  collectionName: string;
+};
 
+const CollectionLayout = ({ children, collections, collectionName }: Props) => {
+  const scrolledTop = useMotionValue(true);
 
   return (
     <CollectionsProvider>

@@ -1,4 +1,4 @@
-@use "@/styles" as s;
+@use "@/styles/index" as s;
 
 
 .container {
@@ -37,6 +37,8 @@
 
 
       //border: 1px solid red;
+      border: 2px solid transparent;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -47,7 +49,7 @@
       &:hover {
         &:not(.active) {
           background-color: rgba(246, 152, 87, 0.02);
-          outline: 2px solid rgba(246, 152, 87, 0.2);
+          border: 2px solid rgba(246, 152, 87, 0.2);
         }
       }
 

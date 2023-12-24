@@ -6,3 +6,14 @@ $contact-bg: #ECF0F3;
 $orange: #fd7f28;
 $orange-light: #f69857;
 $brownie: #9D6F4D;
+
+:export{
+    grayLight: $gray-light;
+    accent: $accent;
+    accentLight: $accent-light;
+    mainBg: $main-bg;
+    contactBg: $contact-bg;
+    orange: $orange;
+    orangeLight: $orange-light;
+    brownie: $brownie;
+}

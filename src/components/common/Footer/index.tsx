@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import MasterCard from '@/public/mastercard.svg';
@@ -13,13 +15,13 @@ import s from './footer.module.scss';
 const Footer = () => {
   return (
     <div className={s.container} data-scroll-section={true}>
-      <div className="bg">
-        <Image src={Bg} objectFit="cover" alt="footer background image" />
+      <div className={s.bg}>
+        <Image src={Bg} alt="footer background image" />
       </div>
 
-      <div className="house">
-        <div className="img">
-          <Image src={Houses} objectFit="cover" alt="old house image" />
+      <div className={s.house}>
+        <div className={s.img}>
+          <Image src={Houses} alt="old house image" />
         </div>
 
         <p>
@@ -28,27 +30,27 @@ const Footer = () => {
         </p>
       </div>
 
-      <div className="signature">
-        <Image src={Sign} objectFit="cover" alt="signature logo" />
+      <div className={s.signature}>
+        <Image src={Sign} alt="signature logo" />
       </div>
 
-      <div className="wrapper">
-        <div className="proposition">
-          <h2 className="title">proposition 65 Warning</h2>
-          <p className="warning">
+      <div className={s.wrapper}>
+        <div className={s.proposition}>
+          <h2 className={s.title}>proposition 65 Warning</h2>
+          <p className={s.warning}>
             WARNING: Drinking distilled spirits, beer, coolers, wine and other alcoholic beverages
             may increase cancer risk, and, during pregnancy, can cause birth defects. For more
             information go to www.P65Warnings.ca.gov/alcohol
           </p>
         </div>
 
-        <div className="newsletter">
-          <div className="letter">
-            <h2 className="title"> Newsletter </h2>
-            <p className="subscribe">
+        <div className={s.newsletter}>
+          <div className={s.letter}>
+            <h2 className={s.title}> Newsletter </h2>
+            <p className={s.subscribe}>
               Subscribe to be the first to hear about our exclusive offers and latest arrivals.
             </p>
-            <div className="input">
+            <div className={s.input}>
               <TextField
                 fullWidth
                 type="email"
@@ -70,10 +72,10 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="right">
-          <div className="resources">
+        <div className={s.right}>
+          <div className={s.resources}>
             <h2>Resources</h2>
-            <div className="links">
+            <div className={s.links}>
               <Link href={'/'}>
                 <>Terms and Conditions</>
               </Link>
@@ -83,7 +85,7 @@ const Footer = () => {
               <Link href={'/'}>
                 <>Shipping & Return Policy</>
               </Link>
-              <Link href="/src/pages/contact-us">
+              <Link href="/contact-us">
                 <>Contact Us</>
               </Link>
               <Link href={'/'}>
@@ -92,9 +94,9 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="payments">
+          <div className={s.payments}>
             <h3>Accepted Payments</h3>
-            <div className="methods">
+            <div className={s.methods}>
               <Image src={Paypal} alt="paypal icon" />
               <Image src={Discover} alt="discover icon" />
               <Image src={MasterCard} alt="master icon" />

@@ -134,7 +134,8 @@ export function saleorProductToVercelProduct(
   return {
     id: product.id,
     handle: product.slug,
-    availableForSale: product.isAvailableForPurchase || true,
+    availableForSale: !!product.isAvailable,
+    quantityAvailable: product.defaultVariant?.quantityAvailable || 0,
     title: product.name,
     description: product.description || '',
     descriptionHtml: product.description ? parseEditorJsToHtml(product.description) : '',

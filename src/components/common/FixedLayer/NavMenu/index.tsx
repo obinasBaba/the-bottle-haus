@@ -1,8 +1,10 @@
+'use client';
+
 import React from 'react';
 import s from './navmenu.module.scss';
 import data from './data';
 import { Button } from '@mui/material';
-import { motion, Variants } from 'framer-motion';
+import { AnimatePresence, motion, Variants } from 'framer-motion';
 import { useUI } from '@/context/ui/context';
 import { basicVariants, MotionChild, MotionParent } from '@/components/common/MotionItems';
 import Link from 'next/link';
@@ -12,7 +14,7 @@ import Grape from './grape.png';
 import Image from 'next/image';
 
 import Houses from '@/public/houses.png';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useLocomotiveScroll } from '@/context/LocoMotive';
 
 const transition = {
@@ -172,7 +174,7 @@ const houseVariants = {
 
 const links = [
   { name: 'Home', link: '/' },
-  { name: 'All Product', link: '/collection/all-products' },
+  { name: 'All Product', link: '/collection/champagne' },
   {
     name: 'Cart',
     link: '/cart',
@@ -248,11 +250,11 @@ const NavMenu = () => {
               transition={transition}
               onClick={() => setTimeout(() => closeNavMenu(), 400)}>
               <Link href={link}>
-                  <p className="no">(0{idx + 1})</p>
-                  <div className={s.link_name} data-cursor="-opaque">
-                    <h1>{name}</h1>
-                    <h1>{name}</h1>
-                  </div>
+                <p className="no">(0{idx + 1})</p>
+                <div className={s.link_name} data-cursor="-opaque">
+                  <h1>{name}</h1>
+                  <h1>{name}</h1>
+                </div>
               </Link>
             </motion.div>
           ))}
@@ -279,4 +281,8 @@ const NavMenu = () => {
   );
 };
 
-export default NavMenu;
+export default function NavMenuWrapper() {
+  const { navMenu, displayModal, searchModal, loadingModal, closeLoadingModal } = useUI();
+
+  return <AnimatePresence mode="wait">{navMenu && <NavMenu />}</AnimatePresence>;
+}

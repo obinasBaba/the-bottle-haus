@@ -3,9 +3,15 @@ fragment ProductDetails on Product {
   slug
   name
   isAvailableForPurchase
+  isAvailable
   description
   seoTitle
   seoDescription
+
+  defaultVariant {
+    quantityAvailable
+  }
+
   pricing {
     priceRange {
       start {

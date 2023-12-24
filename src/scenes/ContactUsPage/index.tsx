@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import s from './contactus.module.scss';
 import { Button, TextField, Typography } from '@mui/material';

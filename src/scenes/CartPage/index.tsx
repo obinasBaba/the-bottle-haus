@@ -1,11 +1,23 @@
-import React from 'react';
 import CartProductList from '@/scenes/CartPage/CartProductList';
 import PaymentGateways from '@/scenes/CartPage/PaymentGateways';
 import Image from 'next/image';
 import s from './cartpage.module.scss';
-import CartBg from './image 62.png';
+import CartBg from '@/public/image 62.png';
+import { Cart } from '@lib/types';
+import React from 'react';
+import Quantity from '@/scenes/CartPage/CartProductList/Quantity';
 
-const CartPage = () => {
+type Props = {
+  cart?: Cart;
+};
+
+const Buttons = () => {
+  return (props: any) => {
+    return <Quantity {...props} />;
+  };
+};
+
+const CartPage = ({ cart }: Props) => {
   return (
     <div className={s.container} id="cart-page">
       <div
@@ -19,8 +31,8 @@ const CartPage = () => {
       </div>
 
       <div className={s.wrapper}>
-        <CartProductList />
-        <PaymentGateways />
+        <CartProductList cart={cart} />
+        <PaymentGateways cart={cart} />
       </div>
     </div>
   );

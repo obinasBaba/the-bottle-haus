@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import s from './shippingmethod.module.scss';
 import { Radio } from '@mui/material';
 import Image from 'next/image';
-import ShipmentProtection from '@/scenes/CartPage/PaymentGateways/img.png';
+import ShipmentProtection from '@/public/truck.png';
 import NoShip from './no-home-delivery-svgrepo-com.svg';
 import { CheckoutFormStepComponent } from '@/scenes/CheckoutPage';
 
