@@ -27,24 +27,22 @@
       justify-content: center;
       margin: 0 auto;
       gap: s.f-unit(1rem);
-      //overflow-y: scroll;
-
-      //border: 1px solid blue;
-
-
-      @include s.media-breakpoint-up(lg) {
-        overflow-y: hidden;
-        //gap: 2rem;
-
-      }
+      overflow-y: hidden;
     }
 
-    a {
+    .link_wrap {
       position: relative;
       cursor: pointer;
       color: gray;
+      display: inline-block;
+      transition: transform ease-out .15s;
+
       //border: 1px solid red;
-      //overflow: hidden;
+
+      &:hover {
+        transform: translateY(-100%);
+      }
+
 
       & > :last-child {
         position: absolute;
@@ -53,15 +51,6 @@
         @include s.media-breakpoint-up(md) {
           display: block;
         }
-      }
-    }
-
-    .link {
-      display: inline-block;
-      transition: transform cubic-bezier(0.6, 0.01, 0, 0.9) .6s;
-
-      &:hover {
-        transform: translateY(-100%);
       }
     }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { getCollection, getCollectionProducts } from '@lib/saleor';
 import CollectionPageScene from '@/scenes/CollectionPage';
 
@@ -25,9 +25,9 @@ const CollectionPage = async ({ params }: { params: { slug: string } }) => {
   });
 
   return (
-    <>
+    <Suspense>
       <CollectionPageScene products={products} />
-    </>
+    </Suspense>
   );
 };
 

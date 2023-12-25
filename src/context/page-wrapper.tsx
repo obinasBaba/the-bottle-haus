@@ -12,6 +12,7 @@ const Layout = ({ children }: any) => {
         smooth: true,
         getDirection: true,
         getSpeed: true,
+        // smoothMobile: true,
       }}
       watch={[]}>
       <div className={s.root} data-scroll-container={true}>

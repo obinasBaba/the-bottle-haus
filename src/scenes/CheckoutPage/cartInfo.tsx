@@ -91,7 +91,16 @@ export async function CartInfo(props: any) {
 
         <div className="item">
           <h4>Total to pay</h4>
-          <h2>$ {cart?.cost.totalAmount.amount ? cart?.cost.totalAmount.amount + 15.2 : '-'} </h2>
+          <h2>
+            ${' '}
+            {(cart?.cost.totalAmount.amount
+              ? Number(cart?.cost.totalAmount.amount) + 15.2
+              : 0
+            ).toLocaleString('en-Us', {
+              minimumIntegerDigits: 2,
+              maximumFractionDigits: 2,
+            })}{' '}
+          </h2>
         </div>
       </div>
     </>

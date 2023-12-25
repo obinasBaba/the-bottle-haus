@@ -66,6 +66,7 @@
       max-width: 1300px;
       margin: 14vmax auto 0;
 
+      padding: 2rem;
 
       @include s.media-breakpoint-up(md) {
         @include s.margin(top, 9rem);

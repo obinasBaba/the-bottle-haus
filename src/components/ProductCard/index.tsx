@@ -37,8 +37,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, loading = true }) =>
   const ghostImgRef = useRef<HTMLDivElement | null>(null);
   // const addItem = useAddItem();
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const [isPending, startTransition] = useTransition();
+
 
   const { toolTipsData } = useAppInfo();
   const { showNavBar } = useAppContext();

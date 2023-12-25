@@ -8,78 +8,88 @@
 
   overflow: hidden;
 
+  //border: 1px solid #000;
+
   & :local{
     .mobile_pro_list{
       display: flex;
-      display: none;
       align-items: center;
-      justify-content: space-evenly;
+      justify-content: space-between;
       width: 100%;
-      //border: 1px solid #000;
-      backdrop-filter: blur(5px);
-      background-color: white;
+      backdrop-filter: blur(1px);
+
+      @include s.media-breakpoint-up(md) {
+        display: none;
+      }
 
       .pro_list_item{
         //border: 1px solid red;
-        max-width: 3.5vmax;
+        max-width: 2.5vmax;
       }
     }
 
     .wrapper{
       display: flex;
-    }
-  }
 
-  & :global {
-    .title {
-      color: gray;
-      @include s.font-size-title(2.8rem);
-
-      @include s.media-breakpoint-up(md) {
-        @include s.font-size-title(2.2rem);
-
-        color: #cccccc;
+      .title {
+        color: gray;
+        font-size: 3rem;
+        //border: 1px solid #000;
         margin: 0;
-        font-weight: bolder;
-        -webkit-text-stroke: 1px #cccccc;
-        text-transform: capitalize;
-        //font-family: s.$fonts-quicks;
-      }
-    }
+        padding: 0;
+        text-decoration: underline;
 
-    .filter {
-      position: relative;
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: s.f-unit(1rem);
+        @include s.media-breakpoint-up(md) {
+          @include s.font-size-title(2.2rem);
 
-      #demo-multiple-name {
-        color: s.$clrs-orange;
-        font-size: 0.8rem;
-      }
-
-      svg {
-        fill: s.$clrs-orange-light;
-      }
-
-      fieldset {
-        border-radius: 500px;
-        border-color: lighten(s.$clrs-orange-light, 10);
-      }
-
-      .MuiInputBase-root:hover {
-        fieldset {
-          border-color: s.$clrs-orange;
-          background-color: rgba(246, 152, 87, 0.03);
+          color: #cccccc;
+          margin: 0;
+          font-weight: bolder;
+          -webkit-text-stroke: 1px #cccccc;
+          text-transform: capitalize;
+          //font-family: s.$fonts-quicks;
         }
       }
 
-      label {
-        font-size: 0.8rem;
-        color: s.$clrs-orange;
+      .filter {
+        position: relative;
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: s.f-unit(1rem);
+
+        #demo-multiple-name {
+          color: s.$clrs-orange;
+          font-size: 0.8rem;
+        }
+
+        svg {
+          fill: s.$clrs-orange-light;
+        }
+
+        fieldset {
+          border-radius: 500px;
+          border-color: lighten(s.$clrs-orange-light, 10);
+        }
+
+        .MuiInputBase-root:hover {
+          fieldset {
+            border-color: s.$clrs-orange;
+            background-color: rgba(246, 152, 87, 0.03);
+          }
+        }
+
+        label {
+          font-size: 0.8rem;
+          color: s.$clrs-orange;
+        }
       }
+
     }
+  }
+
+  & :local {
+
   }
 }
 

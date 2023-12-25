@@ -2,7 +2,7 @@
 
 import React from 'react';
 import s from './collectionlayout.module.scss';
-import { motion, useMotionValue } from 'framer-motion';
+import { AnimatePresence, motion, useMotionValue } from 'framer-motion';
 import { PageTransitionContainer } from '@/components/common/MotionItems';
 import { pageTransition } from '@/scenes/Homepage';
 import Head from 'next/head';
@@ -67,7 +67,7 @@ const CollectionLayout = ({ children, collections, collectionName }: Props) => {
         <motion.div
           className={s.left}
           variants={leftGrapeVariants}
-          transition={{ ...pageTransition, delay: 1 }}>
+          transition={{ ...pageTransition }}>
           <Image src={RightTop} objectFit="cover" alt="right-top art image" />
         </motion.div>
 
@@ -77,7 +77,7 @@ const CollectionLayout = ({ children, collections, collectionName }: Props) => {
           data-scroll-sticky={true}
           data-scroll-target="#layout-container">
           <div className={s.right} data-scroll={true} data-scroll-speed="1" data-scroll-delay=".03">
-            <motion.div variants={rightGrapeVariants} transition={{ ...pageTransition, delay: 1 }}>
+            <motion.div variants={rightGrapeVariants} transition={{ ...pageTransition}}>
               <Image src={RightBottom} objectFit="cover" alt="left-bottom art image" />
             </motion.div>
           </div>
@@ -94,8 +94,10 @@ const CollectionLayout = ({ children, collections, collectionName }: Props) => {
 
           <motion.main className={s.coll_main} id="fixed-target">
             <CollectionsFilterHeader title={collectionName} key={collectionName} />
-
+          <AnimatePresence mode="wait">
             {children}
+          </AnimatePresence>
+
           </motion.main>
         </div>
       </PageTransitionContainer>

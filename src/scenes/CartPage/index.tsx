@@ -20,7 +20,7 @@ const CartPage = ({ cart }: Props) => {
         data-scroll={true}
         data-scroll-sticky={true}
         data-scroll-target={'#cart-page'}>
-        <div>
+        <div className={s.cart_bg_img}>
           <Image src={CartBg} alt="cart background art" />
         </div>
       </div>

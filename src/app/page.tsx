@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { getCollectionProducts, getProduct } from '@lib/saleor';
 import HomePage from '@/scenes/Homepage/index';
 
@@ -16,13 +16,13 @@ const Page = async () => {
   });
 
   return (
-    <>
+    <Suspense>
       <HomePage
         featuredProduct={product!}
         featuredCollections={featuredCollections}
         rareToFind={rareToFind}
       />
-    </>
+    </Suspense>
   );
 };
 

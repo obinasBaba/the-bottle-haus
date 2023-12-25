@@ -19,8 +19,7 @@ import { MotionValue, useMotionValue, useSpring, useTransform, useVelocity } fro
 import MouseFollower from 'mouse-follower';
 import gsap from 'gsap';
 import RouteChangeEvent from '@/util/helpers/RouteChangeEvent';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 export interface LocomotiveScrollContextValue {
   scroll: Scroll | null;
@@ -57,16 +56,14 @@ export function LocomotiveScrollProvider({
   onLocationChange,
 }: WithChildren<LocomotiveScrollProviderProps>) {
   const containerRef = useRef() as MutableRefObject<HTMLDivElement>;
-  const { height: containerHeight } = useResizeObserver<HTMLDivElement>({ ref: containerRef});
+  const { height: containerHeight } = useResizeObserver<HTMLDivElement>({ ref: containerRef });
   const [isReady, setIsReady] = useState(false);
   const LocomotiveScrollRef = useRef<Scroll | null>(null);
   const [height] = useDebounce(containerHeight, 100);
   const cursor = useRef<MouseFollower>();
 
   const pathname = usePathname();
-  const searchParams = useSearchParams()
-
-
+  const searchParams = useSearchParams();
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -92,8 +89,8 @@ export function LocomotiveScrollProvider({
   }, []);
 
   useEffect(() => {
-    const url = `${pathname}?${searchParams}`
-    console.log( 'url -------', url)
+    const url = `${pathname}?${searchParams}`;
+    console.log('url -------', url);
 
     cursor.current?.removeText();
     cursor.current?.removeState('-opaque');
@@ -101,17 +98,15 @@ export function LocomotiveScrollProvider({
 
     console.log('scroll : ', LocomotiveScrollRef.current);
 
-    if (LocomotiveScrollRef.current){
+    if (LocomotiveScrollRef.current) {
       // scroll to the top
       console.log('scroll to the top --');
-      if ( typeof LocomotiveScrollRef.current?.scrollTo === 'function' ) {
+      if (typeof LocomotiveScrollRef.current?.scrollTo === 'function') {
         LocomotiveScrollRef?.current?.update();
         LocomotiveScrollRef.current?.scrollTo(0, { duration: 0, disableLerp: true });
       }
     }
-
-  }, [pathname, searchParams])
-
+  }, [pathname, searchParams]);
 
   useEffect(() => {
     // return;
@@ -127,7 +122,10 @@ export function LocomotiveScrollProvider({
         return;
       }
 
-      cursor.current = new MouseFollower();
+      // check if the media query is greater than 768px
+      if (window.matchMedia('(min-width: 1000px)').matches) {
+        cursor.current = new MouseFollower();
+      }
 
       LocomotiveScrollRef.current = new LocomotiveScroll.default({
         el: dataScrollContainer ?? undefined,

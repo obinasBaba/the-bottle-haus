@@ -1,12 +1,10 @@
 'use client';
 
-import { AnimatePresence as AP } from 'framer-motion';
-
-export { AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 export const AnimatePresenceCb = ({ children, custom }: any) => {
   return (
-    <AP
+    <AnimatePresence
       mode="wait"
       custom={custom}
       onExitComplete={() => {
@@ -20,6 +18,6 @@ export const AnimatePresenceCb = ({ children, custom }: any) => {
         // scroll?.scrollTo(0, { duration: 0, disableLerp: true });
       }}>
       {children}
-    </AP>
+    </AnimatePresence>
   );
 };

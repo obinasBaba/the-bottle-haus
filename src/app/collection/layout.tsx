@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import CollectionLayoutScene from '@/components/common/layout/CollectionLayout';
 import { getCollections } from '@lib/saleor';
 
@@ -16,11 +16,13 @@ const CollectionLayout = async ({
   }
 
   return (
-    <CollectionLayoutScene
-      collections={collections}
-      collectionName={'Collection Not Found (title )'}>
-      {children}
-    </CollectionLayoutScene>
+    <Suspense fallback='loading ....'>
+      <CollectionLayoutScene
+        collections={collections}
+        collectionName={'Collection Not Found (title )'}>
+        {children}
+      </CollectionLayoutScene>
+    </Suspense>
   );
 };
 

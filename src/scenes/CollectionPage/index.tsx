@@ -91,15 +91,14 @@ const CollectionPage: React.FC<CollectionPageArgs> = ({ products }) => {
     <div className={s.container} id="product-catalog">
       {products.length > 0 ? (
         <div>
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="popLayout">
             <motion.div
               className={s.list}
               variants={containerVariants}
               initial="initial"
               animate="animate"
               exit="exit"
-              key={products.length + currentPage + refreshId}
-            >
+              key={products.length + currentPage + refreshId}>
               <MotionConfig
                 transition={{
                   duration: 0.8,

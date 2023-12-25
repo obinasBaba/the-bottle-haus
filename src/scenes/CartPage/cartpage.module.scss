@@ -4,10 +4,7 @@
 .container {
   position: relative;
   background-color: white;
-
-
-  //@include margin(top, 10);
-
+  z-index: 1;
 
   & :local {
 
@@ -15,6 +12,16 @@
       position: absolute;
       right: 0;
       top: 10%;
+
+      .cart_bg_img{
+        position: relative;
+        //border: 1px solid #000;
+        z-index: -1;
+
+        img{
+          object-fit: cover;
+        }
+      }
     }
 
     .wrapper {

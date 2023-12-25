@@ -93,7 +93,7 @@ const SearchModal = () => {
       });
 
       setTimeout(() => {
-        router.push('/collection/all-products');
+        router.push('/collection/champagne');
       }, 3000);
 
       toolTipsData.set({
