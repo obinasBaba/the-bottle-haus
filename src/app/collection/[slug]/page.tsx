@@ -1,11 +1,12 @@
 import React from 'react';
-import { getCollection, getCollectionProducts, getCollections } from '@lib/saleor';
+import { getCollection, getCollectionProducts } from '@lib/saleor';
 import CollectionPageScene from '@/scenes/CollectionPage';
 
+// export const dynamicParams = true;
 
-export const dynamicParams = true;
+// export const dynamic = 'force-static';
 
-export async function generateStaticParams() {
+/* export async function generateStaticParams() {
 
   const collections = await getCollections();
 
@@ -15,7 +16,7 @@ export async function generateStaticParams() {
     },
   }));
 
-}
+} */
 const CollectionPage = async ({ params }: { params: { slug: string } }) => {
   const targetCollection = await getCollection(params!.slug);
 
