@@ -6,7 +6,6 @@ import {
   InferGetStaticPropsType,
 } from 'next';
 import blogData from '@lib/blogdata';
-import commerce from '@lib/api/commerce';
 import s from './blog.module.scss';
 import Logo from './img.png';
 import Image from 'next/image';
@@ -19,8 +18,7 @@ export async function getStaticProps({ params }: GetStaticPropsContext<any>) {
   return {
     props: {
       blog,
-    },
-    // revalidate: 60,
+    }, // revalidate: 60,
   };
 }
 
