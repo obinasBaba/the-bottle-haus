@@ -5,12 +5,10 @@ import s from './cartpage.module.scss';
 import CartBg from '@/public/image 62.png';
 import { Cart } from '@lib/types';
 import React from 'react';
-import Quantity from '@/scenes/CartPage/CartProductList/Quantity';
 
 type Props = {
   cart?: Cart;
 };
-
 
 const CartPage = ({ cart }: Props) => {
   return (

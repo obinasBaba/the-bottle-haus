@@ -33,16 +33,12 @@ type Props = {
 };
 
 const CartProductList = ({ cart }: Props) => {
-  // const { data: cart } = useCart();
-
   const [loading, setLoading] = useState<string | undefined>();
   const { scroll } = useLocomotiveScroll();
 
   useEffect(() => {
     scroll?.update();
-
-    console.log('scroll-instance: ', scroll);
-  }, [cart]);
+  }, [cart, scroll]);
 
   return (
     <div className={s.container} data-scroll={true}>

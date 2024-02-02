@@ -1,9 +1,6 @@
 'use client';
-
-import { AnimationControls, MotionValue, useAnimation, useMotionValue } from 'framer-motion';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import React, { createContext, useContext, useLayoutEffect } from 'react';
+import { AnimationControls, MotionValue, useAnimation, useMotionValue } from 'framer-motion';
 
 type ToolTipType = {
   text: string;
